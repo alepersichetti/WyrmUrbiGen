@@ -57,7 +57,7 @@ Works with any analogue "OSR" roleplaying game. Sibling of [WyrmHex](https://git
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the game master's map, and the **key** (as `.txt` and as a **PDF book** like WyrmDelve's) tells everything about the settlement: history, government and factions, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
+**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the game master's map, and the **key** (as `.txt` and as a **PDF file**) tells everything about the settlement: history, government and factions, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
 
 At start the program asks whether the settlement is:
 
