@@ -57,7 +57,7 @@ Compatibile con qualunque gioco di ruolo analogico "OSR". Fratello di [WyrmHex](
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa del master, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
+**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa dell'arbitro, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
 
 All'avvio il programma chiede se l'insediamento è:
 
@@ -173,7 +173,7 @@ Tutto va in `settlements_generated/<seme>/`:
 
 | File | Cosa contiene |
 |---|---|
-| `<seme>_gm.png` (o `.pdf`) | la **mappa del master**: numeri degli edifici, postierle segrete `$`, galleria segreta `░` |
+| `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, postierle segrete `$`, galleria segreta `░` |
 | `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa senza numeri e senza segreti |
 | `.txt` accanto a ogni mappa | la mappa come testo, solo caratteri della tastiera |
 | `<seme>_key.txt` | la **chiave**: storia, minaccia, governo e fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
@@ -186,12 +186,12 @@ Tutto va in `settlements_generated/<seme>/`:
 | `╔═╗ ║` | `=H=` | edificio in pietra |
 | `┌─┐ │` | `-|-` | edificio in legno o graticcio |
 | `+` | `+` | porta (in grassetto: porta della città) |
-| `12` | `12` | numero dell'edificio (solo master) |
+| `12` | `12` | numero dell'edificio (solo arbitro) |
 | `▓` | `#` | mura |
 | `█` | `@` | torre o bastione |
 | `▒` | `%` | palizzata |
 | `[A]` | `[A]` | ingresso dalla strada |
-| `░` | `:` | fossato asciutto (sulla mappa del master può essere la galleria segreta) |
+| `░` | `:` | fossato asciutto (sulla mappa dell'arbitro può essere la galleria segreta) |
 | `≈` | `~` | acqua: fiume, lago, mare, fossato |
 | `=` | `=` | ponte o molo |
 | `.` `·` | `.` | strada, piazza, cortile; strada di campagna |
@@ -203,7 +203,7 @@ Tutto va in `settlements_generated/<seme>/`:
 | `†` | `t` | cimitero |
 | `○` `Θ` `π` | `o` `O` `h` | pozzo, fontana, banco del mercato |
 | `∴` | `*` | macerie |
-| `$` | `$` | postierla segreta (solo master) |
+| `$` | `$` | postierla segreta (solo arbitro) |
 
 **Scala.** In fondo alla legenda c'è una scala grafica. Le lettere sono alte il doppio di quanto sono larghe: una riga di caratteri vale il doppio di una colonna, e la chiave dice quanti metri (o piedi) vale una riga.
 
@@ -253,7 +253,7 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 
 ## Galleria
 
-Mappe del master ridotte (gli originali sono a 600 dpi). Un esempio di chiave e di libro: [esempio_chiave_citta.txt](img_examples/esempio_chiave_citta.txt), [esempio_libro_citta.pdf](img_examples/esempio_libro_citta.pdf).
+Mappe dell'arbitro ridotte (gli originali sono a 600 dpi). Un esempio di chiave e di libro: [esempio_chiave_citta.txt](img_examples/esempio_chiave_citta.txt), [esempio_libro_citta.pdf](img_examples/esempio_libro_citta.pdf).
 
 **Città, basso medioevo, fiume (avventura)**
 

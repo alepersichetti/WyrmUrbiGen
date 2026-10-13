@@ -33,11 +33,11 @@ suggested. Three colour schemes. --ascii-only uses keyboard characters only,
 like WyrmHex; the .txt maps always do.
 
 Output goes to settlements_generated/<seed>/ next to this file (or --output):
-  <seed>_gm.png/.txt        game master map: building numbers, secrets
+  <seed>_referee.png/.txt   referee's map: building numbers, secrets
   <seed>_players.png/.txt   the same map without numbers and secrets
   <seed>_key.txt            the whole key as plain text
   <seed>_book.pdf           the key as an A4 book (Sebaldus-Gotisch headings,
-                            Crimson Text), with the game master map inside
+                            Crimson Text), with the referee's map inside
 
 The seed (e.g. C2-B-R-A2-K7Q2MB = type+size, era, terrain, purpose+danger,
 code) holds the whole settlement: the same seed always gives the same one.
@@ -267,7 +267,7 @@ TEXTS = {
     "orientation_landscape": ("orizzontale", "landscape"),
     "info_sheet": ("Foglio {paper} {o} ({w} x {h} px a {dpi} dpi), caratteri da {mm:.2f} mm",
                    "{paper} sheet, {o} ({w} x {h} px at {dpi} dpi), {mm:.2f} mm letters"),
-    "step_maps": ("Mappe del master e dei giocatori ({paper}, {dpi} dpi)", "Game master's and players' maps ({paper}, {dpi} dpi)"),
+    "step_maps": ("Mappe dell'arbitro e dei giocatori ({paper}, {dpi} dpi)", "Referee's and players' maps ({paper}, {dpi} dpi)"),
     "step_key": ("Chiave e libro", "Key and book"),
     "saved": ("Salvate: {a}  +  {b}", "Saved: {a}  +  {b}"),
     "saved_txt": ("Salvata: {a}", "Saved: {a}"),
@@ -310,8 +310,8 @@ TEXTS = {
     "lg_hill": ("colline", "hills"),
     "lg_mount": ("montagne", "mountains"),
     "lg_reed": ("canneto", "reeds"),
-    "lg_secret": ("postierla segreta (solo master)", "secret postern (GM only)"),
-    "lg_tunnel": ("galleria segreta (solo master)", "secret tunnel (GM only)"),
+    "lg_secret": ("postierla segreta (solo arbitro)", "secret postern (referee only)"),
+    "lg_tunnel": ("galleria segreta (solo arbitro)", "secret tunnel (referee only)"),
     "lg_scale": ("Scala:", "Scale:"),
     "lg_row": (" (una riga = {r} {u})", " (one row = {r} {u})"),
     # key
@@ -340,8 +340,8 @@ TEXTS = {
     "secret_use": ("Segreto: in realtà è il {x}.", "Secret: it is really the {x}."),
     "seat_of": ("Qui risiede {r}.", "{r} resides here."),
     "services": ("Servizi: ", "Services: "),
-    "tunnel_here": ("Da qui parte la galleria segreta che esce oltre le mura (░ sulla mappa del master).",
-                    "The secret tunnel leaving past the walls starts here (░ on the GM map)."),
+    "tunnel_here": ("Da qui parte la galleria segreta che esce oltre le mura (░ sulla mappa dell'arbitro).",
+                    "The secret tunnel leaving past the walls starts here (░ on the referee's map)."),
     "abandoned": ("Abbandonato: porte sfondate, nessuno ci vive più.", "Abandoned: doors broken in, nobody lives here any more."),
     "ruined": ("In rovina: tetto crollato, macerie (∴ sulla mappa).", "In ruins: the roof has fallen in, rubble (∴ on the map)."),
     "room_monsters": ("Mostri: {m}.", "Monsters: {m}."),
@@ -395,7 +395,7 @@ TEXTS = {
     "hirelings": ("Avventurieri da assoldare", "Adventurers for hire"),
     "hireling_pay": (" Chiede 25 mo al mese e mezza parte del bottino.", " Asks 25 gp a month and half a share of the loot."),
     "hooks": ("Lavori e agganci (d4)", "Jobs and hooks (d4)"),
-    "rumours": ("Voci (d8; V vera, F falsa: solo per il master)", "Rumours (d8; T true, F false: GM only)"),
+    "rumours": ("Voci (d8; V vera, F falsa: solo per l'arbitro)", "Rumours (d8; T true, F false: referee only)"),
     "true": ("V", "T"),
     "false": ("F", "F"),
     "events": ("Eventi durante il soggiorno (d6)", "Events during the stay (d6)"),
@@ -405,9 +405,9 @@ TEXTS = {
     "walls_none": ("Nessuna cinta: si entra da ogni strada.", "No walls: every road leads in."),
     "moat_water": (", con un fossato pieno d'acqua.", ", with a water-filled moat."),
     "moat_dry": (", con un fossato asciutto.", ", with a dry ditch."),
-    "postern": ("Postierle segrete nelle mura: {n} ($ sulla mappa del master).", "Secret posterns in the walls: {n} ($ on the GM map)."),
-    "tunnel": ("Galleria segreta dal n. {n} ({t}) fino a oltre le mura (░ sulla mappa del master).",
-               "Secret tunnel from no. {n} ({t}) to beyond the walls (░ on the GM map)."),
+    "postern": ("Postierle segrete nelle mura: {n} ($ sulla mappa dell'arbitro).", "Secret posterns in the walls: {n} ($ on the referee's map)."),
+    "tunnel": ("Galleria segreta dal n. {n} ({t}) fino a oltre le mura (░ sulla mappa dell'arbitro).",
+               "Secret tunnel from no. {n} ({t}) to beyond the walls (░ on the referee's map)."),
     "harbour": ("Un molo (=) per le barche: si arriva e si parte anche dall'acqua.", "A pier (=) for boats: you can come and go by water too."),
     "h_buildings": ("Gli edifici", "The buildings"),
     "outside_walls": ("Fuori le mura", "Outside the walls"),
@@ -869,8 +869,8 @@ class Plan:
         self.buildings = []
         self.feat = {}              # (x, y) -> well, fountain, stall, tree, statue
         self.gates = []             # {"angle", "cells", "inner", "outer", "letter"}
-        self.secret = set()         # posterns: $ on the game master's map
-        self.tunnel = set()         # secret tunnel: ░ on the game master's map
+        self.secret = set()         # posterns: $ on the referee's map
+        self.tunnel = set()         # secret tunnel: ░ on the referee's map
         self.tunnel_from = None     # the building the tunnel starts from
         self.main = set()           # main street cells
         self.cx = self.cy = self.R = 0
@@ -3346,8 +3346,8 @@ def ground_char(plan, x, y, G):
     return " "
 
 
-def map_canvas(plan, gm, G, labels=True):
-    """The map as letters. gm: building numbers and secrets."""
+def map_canvas(plan, referee, G, labels=True):
+    """The map as letters. referee: building numbers and secrets."""
     W, H = plan.W, plan.H
     c = Canvas(W, H)
     for y in range(H):
@@ -3375,8 +3375,8 @@ def map_canvas(plan, gm, G, labels=True):
             elif cell == GRAVE:
                 c.put(x, y, G(*SYMBOLS["grave"]) if x % 2 == 0 else " ")
     for b in plan.buildings:
-        draw_building(c, b, G, gm and labels)
-    if gm:
+        draw_building(c, b, G, referee and labels)
+    if referee:
         for x, y in plan.tunnel:
             if plan.bmap[y][x] < 0 and plan.cell[y][x] not in FORT:
                 c.put(x, y, G(*SYMBOLS["tunnel"]), "n")
@@ -3442,7 +3442,7 @@ def scale_bar(plan, units):
     return n, best, unit, row
 
 
-def legend_entries(plan, p, gm, G, units):
+def legend_entries(plan, p, referee, G, units):
     used = set()
     for y in range(plan.H):
         for x in range(plan.W):
@@ -3454,7 +3454,7 @@ def legend_entries(plan, p, gm, G, units):
     if any(not b.stone for b in plan.buildings):
         out.append([(G("┌─┐", "-|-"), "n"), (" " + tr("lg_wood"), "n")])
     out.append([("+", "n"), (" " + tr("lg_door"), "n")])
-    if gm:
+    if referee:
         out.append([("12", "b"), (" " + tr("lg_number"), "n")])
     if any(b.ruined for b in plan.buildings):
         out.append([(G(*SYMBOLS["rubble"]), "n"), (" " + tr("lg_ruin"), "n")])
@@ -3492,9 +3492,9 @@ def legend_entries(plan, p, gm, G, units):
                             ("reed", "reed1", "lg_reed")):
         if key in used:
             out.append([(G(*SYMBOLS[sym]), "n"), (" " + tr(label), "n")])
-    if gm and plan.secret:
+    if referee and plan.secret:
         out.append([("$", "b"), (" " + tr("lg_secret"), "n")])
-    if gm and plan.tunnel:
+    if referee and plan.tunnel:
         out.append([(G(*SYMBOLS["tunnel"]), "n"), (" " + tr("lg_tunnel"), "n")])
     n, length, unit, row = scale_bar(plan, units)
     bar_text = G("├" + "─" * (n - 2) + "┤", "|" + "-" * (n - 2) + "|")
@@ -4645,11 +4645,11 @@ def main():
     plain = Glyphs(None, True)
     subtitle = tr("subtitle", seed=seed, t=capitalized(type_name(p["type"])), e=pick(ERA[p["era"]]["name"]),
                   n=number(p["pop"]), b=len(plan.buildings))
-    gm_layout = Layout(map_canvas(plan, True, G), legend_entries(plan, p, True, G, units), title, subtitle)
-    paper, char_mm, orientation = ask_paper(gm_layout, aspect, p["paper"], p.pop("ask_paper", False), log)
+    ref_layout = Layout(map_canvas(plan, True, G), legend_entries(plan, p, True, G, units), title, subtitle)
+    paper, char_mm, orientation = ask_paper(ref_layout, aspect, p["paper"], p.pop("ask_paper", False), log)
     files = p["files"] or (ask_output() if interactive else "png")
     fonts = (font_spec, bold_spec, advance_em, aspect)
-    pixels = pixel_layout(gm_layout, paper, orientation, char_mm, fonts)
+    pixels = pixel_layout(ref_layout, paper, orientation, char_mm, fonts)
     printed = pixels[2] / DPI * 25.4
     log.info(tr("info_sheet", paper=paper, o=tr("orientation_" + orientation), w=pixels[5], h=pixels[6], dpi=DPI,
                 mm=printed))
@@ -4662,7 +4662,7 @@ def main():
     pl_pixels = pixel_layout(pl_layout, paper, orientation, char_mm, fonts)
 
     log.step(tr("step_maps", paper=paper, dpi=DPI))
-    pages = [("gm", compose_page(gm_layout), pixels,
+    pages = [("referee", compose_page(ref_layout), pixels,
               compose_page(Layout(map_canvas(plan, True, plain), legend_entries(plan, p, True, plain, units), title, subtitle))),
              ("players", compose_page(pl_layout), pl_pixels,
               compose_page(Layout(map_canvas(plan, False, plain), legend_entries(plan, p, False, plain, units), pl_title, subtitle)))]

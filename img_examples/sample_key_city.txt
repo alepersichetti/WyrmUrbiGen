@@ -1,0 +1,351 @@
+WyrmUrbiGen v1.0.0 — Carpaia
+Seed: C9500-B-R-A2-K7Q2MB
+City · Late Middle Ages · River
+Place of adventure, danger 2 · 9,500 inhabitants
+Scale: one row of letters = 60.4 ft, one column = half
+
+HISTORY
+  Carpaia grew around Puccio di Spinello's castle and broke free of it through a long struggle and
+  a charter signed by the emperor. A heretic was burned in the square; his daughter swore revenge
+  and vanished. A three-month siege ended when someone opened a postern by night: no one knows who.
+
+THE THREAT: HELD BY BRIGANDS
+  A band of brigands led by Lando Salimbeni has taken over Carpaia: they squeeze the inhabitants,
+  hold the notables hostage and use no. 19 (The Mortar Inn) as their headquarters.
+  Who is behind it: Lando Salimbeni, leader (Thief 3 · AC 6 [13] · 5hp · THAC0 19 [+0] · ML 10 · AL
+  Chaotic): devout, quotes saints in every sentence; wants a safe escort for a precious load;
+  secret: is a spy for an enemy town.
+  If nobody steps in (one step every 1d4 days)
+    1.  They execute a notable in the square.
+    2.  Reinforcements arrive: 2d6 more brigands.
+    3.  They burn a quarter and leave with the loot.
+  Wandering monsters (d6; every 2 turns at night, every hour by day: 1 in 6)
+    1.  Lando Salimbeni's brigands: the threat itself, roaming the streets.
+    2.  Hippogriff (1d6) · danger 2, HD ~3-4: half eagle, half horse, nesting in abandoned
+        towers.
+    3.  Giant spider (1d6) · danger 2, HD ~3-4: spiders as big as ponies, weaving webs
+        between the pillars.
+    4.  Serpent folk (1d6) · danger 2, HD ~3-4: an ancient race of serpents with human
+        bodies, devoted to forgotten gods.
+    5.  Living statue (1d6) · danger 2, HD ~3-4: a statue of crystal, iron or stone that
+        wakes to defend a place.
+    6.  Gargoyle (1d6) · danger 2, HD ~3-4: a winged statue that comes alive when no one is
+        looking.
+
+GOVERNMENT AND FACTIONS
+  Isotta Geremei, the foreign podestà (Fighter 6 · AC 4 [15] · 22hp · THAC0 17 [+2] · ML 8 · AL
+  Chaotic): tired and ill, always coughing; wants more customers, at any cost; secret: made a pact
+  with something in the woods. (lives at no. 10)
+  · The Butchers' guild. Goal: to lower the tolls on goods. Led by Bice da Todi, leader.
+  · The foreign merchants. Goal: a warehouse of their own and their own laws. Led by Iacopo di
+    Ubaldo, leader. Rival: the cathedral chapter.
+  · The cathedral chapter. Goal: to recover the lands taken from the bishop. Led by Berta
+    Varano, leader.
+
+DEMOGRAPHICS
+  9,500 people on 52.8 hectares (180 per hectare), in about 3,167 dwellings; on the map 42 numbered
+  buildings: in big places every box is a group of houses or a block.
+  Noble households: 48. Lawyers: 15. Clergy: 238, of whom priests: 8; places of worship: 24. Guards
+  and watchmen: 32 (few: a slack town). Livestock: 20,900, two thirds of it fowl.
+  Shops and trades: shoemakers 45, furriers 23, maidservants 27, tailors 21, barbers 16, jewellers
+  13, taverns 15, old-clothes sellers 18, pastrycooks 14, masons 14, carpenters 11, weavers 12,
+  chandlers 8, mercers 10, coopers 9, bakers 8, water carriers 7, scabbard makers 5, wine sellers
+  6, hatters 7, saddlers 6, poulterers 8, purse makers 6, butchers 5, fishmongers 7, beer sellers
+  3, spice merchants 4, blacksmiths 3, painters 3, doctors 5, locksmiths 3, bathers 2, ropemakers
+  4, inns 3, tanners 3, copyists 4, sculptors 3, harness makers 3, cutlers 2, glovers 2,
+  woodcarvers 2, magic shops 1, bookbinders 2, illuminators 1, booksellers 1.
+  Numbers from S. John Ross's Medieval Demographics Made Easy: every shop is in town, the map shows
+  the 42 most important ones.
+
+COUNTRYSIDE AND ECONOMY
+  The country around is core land, fully farmed: about 2,500 peasants live in the surrounding
+  6-mile hex, in 10 villages.
+  The lord's net revenue: 75 gp a month (900 gp a year), already divided by 2 for the troubled
+  times.
+  Property for sale
+    ·   Inn (500 gp): 5 sp a month net profit (6 gp a year). With 4 servants. Seller:
+        Usanna Badnight.
+    ·   Large farm (500 gp): 12 gp a month in a good year (a knight's monthly expenses).
+        With 3 tenants. Seller: Novella da Messina.
+    ·   Large manor (10,000 gp): 75 gp a month; +10 gp a month for each protected village.
+        With 8 tenant families and 4d6 families paying homage. Seller: Tancia the Red.
+  Rules from Coins and Scrolls (OSR: Land and Investments): land is rarely sold, it is more often
+  inherited, given or seized. In times of plague, war or famine every income is halved; in truly
+  chaotic times it is divided by 10. Whoever cheats on taxes keeps another 5% of the income, until
+  a careful lord audits the books.
+
+RUMOURS AND EVENTS
+  Rumours (d8; T true, F false: referee only)
+    1.  Lando Salimbeni's brigands fear fire more than swords. [T]
+    2.  The parish's holy water is enough to drive every evil from here. [F]
+    3.  Mea Varano (no. 33) is really a noble in disguise. [F]
+    4.  Lando Salimbeni's brigands are just a tale to scare children. [F]
+    5.  A knight left for the Keep of Spolino a month ago and never came back; his sword
+        was worth a castle. [T]
+    6.  Hippogriff prowls near the graveyard at night. [T]
+    7.  The lord is about to raise taxes to pay for a war. [T]
+    8.  In the woods to the north there's a witch who buys hair and teeth. [T]
+  Events during the stay (d6)
+    1.  A merchant offers a reward for a stolen letter.
+    2.  An execution in the square: the condemned swears innocence and names a name.
+    3.  Feast of the patron saint: foreign merchants, jugglers, pickpockets everywhere.
+    4.  A wedding between two families: everyone is invited, adventurers too.
+    5.  Fire alarm at night: everyone to the buckets, and someone takes advantage of the
+        chaos.
+    6.  A procession blocks the streets; whoever doesn't kneel gets dark looks.
+
+WALLS, GATES AND SECRETS
+  Stone walls, with a water-filled moat.
+  · [A] Sally Gate (south)
+  · [B] Lion Gate (west)
+  · [C] Sally Gate (north-east)
+  · Secret posterns in the walls: 2 ($ on the referee's map).
+  · Secret tunnel from no. 10 (Baglioni Citadel) to beyond the walls (░ on the referee's map).
+
+THE BUILDINGS
+
+  SALLY GATE QUARTER
+      1 Friary of St Blaise (friary, stone)
+        Built against the walls, where land was cheap.
+        Lapo Ironeater, prior (Cleric 5 · AC 3 [16] · 13hp · THAC0 17 [+2] · ML 7 · AL Neutral ·
+        Spells: light, cure light wounds, bless, speak with animals): cheerful and gossipy; wants
+        to marry their daughter well; secret: poisoned his first wife. 9 people live here.
+      2 The Ram (tavern, stone)
+        A cellar dug into the rock where people gamble.
+        Gualtiero Pallavicino, tavern keeper (Normal human · AC 9 [10] · HD ½ (4hp) · ML 8 · AL
+        Neutral): cheerful and gossipy; wants to ruin a rival; secret: none, but everyone thinks
+        otherwise.
+      3 Commune Palace (town hall, stone)
+        Crenellated, with the civic tower, the council bell and the loggia where sentences are
+        read.
+        Elisabetta Fairbrow, notary and chancellor (Normal human · AC 9 [10] · HD ½ (1hp) · ML 6 ·
+        AL Chaotic): always drunk after vespers; wants the lord's favour; secret: hides a heretic
+        in the cellar. 4 people live here.
+      4 Surgeon Rosaspina's Shop (barber-surgeon, stone)
+        A brass basin hung outside, a chair with straps, saws that are (almost) clean.
+        Rosaspina di Dino, surgeon (Normal human · AC 9 [10] · HD ½ (3hp) · ML 8 · AL Neutral):
+        proud of their lineage; wants to leave this place for good; secret: none: they really are a
+        good person. 3 people live here.
+      5 Astrologer Emilia's House (astrologer's house, stone)
+        A garret with a spyglass, coloured smoke from the chimney.
+        Emilia Hardhead, astrologer (Magic-user 7 · AC 9 [10] · 18hp · THAC0 17 [+2] · ML 8 · AL
+        Lawful · Spells: sleep, magic missile, read languages, ESP, invisibility, dispel magic,
+        fireball): loyal to the lord unto death; wants news of a spouse gone to war; secret:
+        becomes something else at night.
+      6 Spinola Palace (noble palace, stone)
+        Rusticated ground floor, an arcaded courtyard, stone benches along the façade.
+        Ubaldo di Donato, lord (Fighter 2 · AC 3 [16] · 12hp · THAC0 19 [+0] · ML 8 · AL Neutral):
+        a stickler for rules and contracts; wants to avenge a murdered brother; secret: knows a
+        passage under the walls. 13 people live here.
+      7 Mother church of St Justina (church, stone)
+        A porch where the old folk gather and contracts are sealed.
+        Giannozzo Chiaramonte, parish priest (Cleric 4 · AC 5 [14] · 19hp · THAC0 19 [+0] · ML 7 ·
+        AL Neutral · Spells: detect evil, protection from evil, hold person): superstitious, wears
+        charms everywhere; wants a genuine relic; secret: is a spy for an enemy town. 2 people live
+        here.
+      8 Colonna Bank (bank, stone)
+        A green-baize counter under an arcade, armed guards at the door.
+        Neri the Red, banker (Normal human · AC 9 [10] · HD ½ (4hp) · ML 8 · AL Neutral): a
+        braggart who tells made-up deeds; wants a forbidden book; secret: is a spy for an enemy
+        town. 3 people live here.
+        Monsters: Living statue (1d6) · danger 2, HD ~3-4.
+      9 The Mortar Tavern (tavern, stone)
+        A cellar dug into the rock where people gamble.
+        Nella Pallavicino, tavern keeper (Normal human · AC 9 [10] · HD ½ (3hp) · ML 8 · AL
+        Neutral): always drunk after vespers; wants news of a spouse gone to war; secret: none, but
+        everyone thinks otherwise.
+        Clue: an empty pedestal (from no. 8).
+      10 Baglioni Citadel (citadel, stone)
+        A square keep, an inner moat and a drawbridge toward the square.
+        Corrado Spinola, castellan (Fighter 4 · AC 4 [15] · 22hp · THAC0 17 [+2] · ML 10 · AL
+        Chaotic): a dreamer who longs for adventure; wants the lord's favour; secret: secretly
+        loves a member of the rival family. 10 people live here.
+        the foreign podestà resides here.
+        The secret tunnel leaving past the walls starts here (░ on the referee's map).
+
+  LION GATE QUARTER
+      11 Dianora's Mill (mill, stone)
+        The miller weighs with a steelyard everyone says is rigged.
+        Dianora Tizzoni, miller (Normal human · AC 9 [10] · HD ½ (1hp) · ML 6 · AL Lawful): laughs
+        at everything, even funerals; wants a genuine relic; secret: none, but everyone thinks
+        otherwise. 3 people live here.
+      12 Lambertazzi Tower (tower house, stone)
+        Putlog holes for flying bridges to the allies' towers.
+        Uberto Guidi, head of the family (Fighter 4 · AC 3 [16] · 18hp · THAC0 17 [+2] · ML 10 · AL
+        Lawful): cynical, has seen too many wars; wants to marry their daughter well; secret: pays
+        the thieves' guild to be left alone. 8 people live here.
+      13 The Mermaid Tavern (tavern, stone)
+        Low and smoky, a branch hung over the door, long benches.
+        Usanna Orsini, tavern keeper (Normal human · AC 9 [10] · HD ½ (2hp) · ML 8 · AL Neutral):
+        tired and ill, always coughing; wants to pay off a debt to the bank; secret: hides a
+        heretic in the cellar.
+        Clue: a sack of stolen supplies, half empty (from no. 16).
+      14 The Mermaid (tavern, stone)
+        Low and smoky, a branch hung over the door, long benches.
+        Dino da Rimini, tavern keeper (Normal human · AC 9 [10] · HD ½ (4hp) · ML 8 · AL Chaotic):
+        hot-tempered, quick to the knife; wants to pay off a debt to the bank; secret: none: they
+        really are a good person. 2 people live here.
+      15 Visconti Palace (noble palace, stone)
+        Rusticated ground floor, an arcaded courtyard, stone benches along the façade.
+        Tano Correggio, lord (Fighter 4 · AC 5 [14] · 22hp · THAC0 17 [+2] · ML 8 · AL Neutral): a
+        shrewd haggler; wants a forbidden book; secret: is the lord's illegitimate child. 8 people
+        live here.
+      16 Cathedral of St Lucy (cathedral, stone)
+        Soaring vaults, stained glass and a treasury kept in the sacristy behind three locks.
+        Novella di Ottaviano, mitred abbess (Cleric 6 · AC 3 [16] · 18hp · THAC0 17 [+2] · ML 8 ·
+        AL Chaotic · Spells: cure light wounds, remove fear, speak with animals, bless, locate
+        object): learned, speaks Latin to customers; wants to marry their daughter well; secret:
+        was banished from another town. 8 people live here.
+        Monsters: Serpent folk (1d6) · danger 2, HD ~3-4.
+        Treasure (5,900 gp): 4,000 gp, 2 gems (100 gp, 500 gp), 1 piece of jewellery (1,300 gp); in
+        a stolen chest.
+      17 Church of St Frigidian (church, stone)
+        A low crypt with the founders' tombs, shut by a rusty gate.
+        Maso Longsword, parish priest (Cleric 2 · AC 5 [14] · 6hp · THAC0 19 [+0] · ML 9 · AL
+        Neutral · Spells: detect evil): always drunk after vespers; wants to marry their daughter
+        well; secret: becomes something else at night. 2 people live here.
+        Monsters: Giant spider (1d6) · danger 2, HD ~3-4.
+      18 Guardhouse (guardhouse, stone)
+        A rack of spears, a ledger of who comes and goes, dice on the table.
+        Matilde Baglioni, captain of the guard (Fighter 2 · AC 2 [17] · 10hp · THAC0 19 [+0] · ML 9
+        · AL Neutral): generous to those in need; wants a forbidden book; secret: made a pact with
+        something in the woods. 8 people live here.
+
+  ST ROMUALD QUARTER
+      19 The Mortar Inn (inn, stone)
+        A yard for merchants' carts and a well of its own.
+        Filippa Longsword, innkeeper (Normal human · AC 9 [10] · HD ½ (2hp) · ML 7 · AL Chaotic):
+        laughs at everything, even funerals; wants to avenge a murdered brother; secret: becomes
+        something else at night. 2 people live here.
+        Lair: Lando Salimbeni's brigands (3d6).
+      20 The Sun Apothecary (apothecary, stone)
+        Majolica jars with Latin names, a stuffed crocodile hanging from the ceiling.
+        Bice Visconti, apothecary (Magic-user 3 · AC 9 [10] · 11hp · THAC0 19 [+0] · ML 10 · AL
+        Neutral · Spells: shield, charm person, ESP): melancholy, recently widowed; wants that
+        nobody digs under their house; secret: none: they really are a good person. 2 people live
+        here.
+        Clue: a trail of small holes in the dust, as if from many legs (from no. 17).
+      21 The Crane Apothecary (apothecary, stone)
+        Majolica jars with Latin names, a stuffed crocodile hanging from the ceiling.
+        Agnese di Cecco, apothecary (Magic-user 1 · AC 9 [10] · 1hp · THAC0 19 [+0] · ML 9 · AL
+        Neutral · Spells: charm person): a shrewd haggler; wants to ruin a rival; secret: forges
+        coins.
+        Clue: the remains of a fire and a forgotten knife (from no. 19).
+      22 Armoury (armoury, stone)
+        Racks of pikes, crossbows, greased armour on stands.
+        Bice Hardhead, master-at-arms (Fighter 4 · AC 5 [14] · 13hp · THAC0 17 [+2] · ML 9 · AL
+        Neutral): a dreamer who longs for adventure; wants to know who steals their hens; secret:
+        is a spy for an enemy town.
+      23 Church of St George (church, stone)
+        Last Judgement frescoes blackened by candle smoke.
+        Ottavia the One-Eyed, priestess (Cleric 3 · AC 3 [16] · 14hp · THAC0 19 [+0] · ML 8 · AL
+        Lawful · Spells: remove fear, protection from evil): always drunk after vespers; wants that
+        nobody digs under their house; secret: none, but everyone thinks otherwise. 2 people live
+        here.
+      24 Studium Generale (university, stone)
+        Lecture halls round a courtyard, foreign students grouped by nation, frequent brawls.
+        Ezzelino Varano, rector of the university (Magic-user 4 · AC 9 [10] · 13hp · THAC0 19 [+0]
+        · ML 8 · AL Neutral · Spells: detect magic, sleep, levitate, wizard lock): a dreamer who
+        longs for adventure; wants to avenge a murdered brother; secret: is a spy for an enemy
+        town. 16 people live here.
+      25 Butchers' Guild Hall (guild hall, stone)
+        The guild's arms carved above the door, a hall with the statutes chained to a lectern.
+        Gherardo di Castruccio, guild consul (Normal human · AC 9 [10] · HD ½ (1hp) · ML 6 · AL
+        Neutral): proud of their lineage; wants to avenge a murdered brother; secret: becomes
+        something else at night. 4 people live here.
+        Clue: feathers, scales and fur from no known animal (from no. 31).
+      26 Hospital of St Lawrence (hospital, stone)
+        A foundling wheel on the street, a pharmacy at the back.
+        Cecco Salimbeni, rector (Cleric 1 · AC 4 [15] · 4hp · THAC0 19 [+0] · ML 7 · AL Neutral):
+        hot-tempered, quick to the knife; wants to find a lost ring; secret: poisoned his first
+        wife. 11 people live here.
+      27 Fieschi Tower (tower house, stone)
+        Putlog holes for flying bridges to the allies' towers.
+        Gemma Pico, head of the family (Fighter 4 · AC 2 [17] · 10hp · THAC0 17 [+2] · ML 8 · AL
+        Neutral): a stickler for rules and contracts; wants to leave this place for good; secret:
+        owns a treasure map they can't read. 9 people live here.
+      28 Pepoli Palace (noble palace, stone)
+        Rusticated ground floor, an arcaded courtyard, stone benches along the façade.
+        Ubaldo da Aquileia, lord (Fighter 3 · AC 3 [16] · 8hp · THAC0 19 [+0] · ML 9 · AL Lawful):
+        melancholy, recently widowed; wants to pay off a debt to the bank; secret: forges coins. 11
+        people live here.
+      29 The Serpent Inn (inn, stone)
+        A wrought iron sign, a big fireplace, the common room above the stable.
+        Zanobi di Folco, innkeeper (Normal human · AC 9 [10] · HD ½ (1hp) · ML 6 · AL Neutral):
+        kind but terrified of everything; wants to leave this place for good; secret: knows a
+        passage under the walls. 5 people live here.
+      30 The Wheel Inn (inn, stone)
+        A wrought iron sign, a big fireplace, the common room above the stable.
+        Rosaspina da Chioggia, innkeeper (Normal human · AC 9 [10] · HD ½ (2hp) · ML 6 · AL
+        Lawful): proud of their lineage; wants more customers, at any cost; secret: sells well
+        water as holy water. 5 people live here.
+      31 Buondelmonti Tower (tower house, stone)
+        Tall and narrow, the door on the first floor up a ladder that can be pulled in.
+        Simone Ironeater, head of the family (Fighter 1 · AC 5 [14] · 3hp · THAC0 19 [+0] · ML 7 ·
+        AL Lawful): shy, stammers; wants forgiveness for an old sin; secret: was banished from
+        another town. 2 people live here.
+        Monsters: Hippogriff (1d6) · danger 2, HD ~3-4.
+
+  OUTSIDE THE WALLS
+      32 Giannozzo's Boatyard (boatyard, timber)
+        Hulls on wooden slipways, a smell of pitch.
+        Giannozzo Scaligeri, shipwright (Normal human · AC 9 [10] · HD ½ (2hp) · ML 8 · AL Lawful):
+        cynical, has seen too many wars; wants a forbidden book; secret: is the lord's illegitimate
+        child. 5 people live here.
+      33 Mea's Boatyard (boatyard, timber)
+        Hulls on wooden slipways, a smell of pitch.
+        Mea Varano, shipwright (Normal human · AC 9 [10] · HD ½ (4hp) · ML 6 · AL Lawful): proud of
+        their lineage; wants to pay off a debt to the bank; secret: none, but everyone thinks
+        otherwise. 7 people live here.
+      34 Chiaramonte Warehouse (warehouse, stone)
+        Bales of wool, barrels of oil, salt and a guard dog that never sleeps.
+        Caterina di Ezzelino, warehouse master (Normal human · AC 9 [10] · HD ½ (4hp) · ML 7 · AL
+        Neutral): a shrewd haggler; wants a genuine relic; secret: was banished from another town.
+        3 people live here.
+      35 The Serpent Bathhouse (bathhouse, stone)
+        Steam, wooden tubs, and more business than washing.
+        Piccarda di Lando, bathkeeper (Normal human · AC 9 [10] · HD ½ (3hp) · ML 6 · AL Lawful):
+        superstitious, wears charms everywhere; wants a cure for a sick child; secret: sells well
+        water as holy water. 6 people live here.
+      36 Fieschi Dye Works (dye works, stone)
+        The river runs red, blue and yellow below it; cloth stretched over the roofs.
+        Vanni Salimbeni, master dyer (Normal human · AC 9 [10] · HD ½ (3hp) · ML 6 · AL Lawful):
+        miserly to the last penny; wants news of a spouse gone to war; secret: keeps a magic item
+        they don't know how to use. 5 people live here.
+      37 Caterina's Tannery (tannery, timber)
+        Vats of lime and urine, a stench that keeps the curious away.
+        Caterina Longsword, tanner (Normal human · AC 9 [10] · HD ½ (3hp) · ML 6 · AL Lawful):
+        devout, quotes saints in every sentence; wants to pay off a debt to the bank; secret:
+        witnessed a murder and keeps quiet. 6 people live here.
+      38 Fish Market (fish market, stone)
+        Marble counters washed every evening, gulls and cats squabbling.
+        Lotario di Rinaldo, fishmonger (Normal human · AC 9 [10] · HD ½ (1hp) · ML 6 · AL Lawful):
+        proud of their lineage; wants a safe escort for a precious load; secret: pays the thieves'
+        guild to be left alone.
+      39 Lisa's Farmstead (farmstead, stone)
+        House and byre under one roof, a well with a pulley.
+        Lisa Pio, tenant farmer (Normal human · AC 9 [10] · HD ½ (4hp) · ML 6 · AL Chaotic):
+        obsessed with cleanliness; wants a forbidden book; secret: secretly loves a member of the
+        rival family. 6 people live here.
+      40 Lapo's Farmstead (farmstead, stone)
+        House and byre under one roof, a well with a pulley.
+        Lapo di Ubaldo, tenant farmer (Normal human · AC 9 [10] · HD ½ (2hp) · ML 8 · AL Lawful):
+        miserly to the last penny; wants to pay off a debt to the bank; secret: is in debt up to
+        the neck. 3 people live here.
+      41 Dianora's Farmstead (farmstead, stone)
+        House and byre under one roof, a well with a pulley.
+        Dianora Beccaria, tenant farmer (Normal human · AC 9 [10] · HD ½ (1hp) · ML 7 · AL
+        Neutral): obsessed with cleanliness; wants a genuine relic; secret: made a pact with
+        something in the woods. 8 people live here.
+      42 Abbey of St Blaise (monastery, stone)
+        A cloister, a scriptorium, a cellar and an infirmary stocked from the herb garden.
+        Duccio da Lecce, abbot (Cleric 7 · AC 3 [16] · 26hp · THAC0 17 [+2] · ML 10 · AL Lawful ·
+        Spells: light, protection from evil, remove fear, hold person, find traps, continual light,
+        locate object): superstitious, wears charms everywhere; wants a safe escort for a precious
+        load; secret: poisoned his first wife. 10 people live here.
+
+SOURCES
+  Monsters, clues and treasure come from WyrmDelve (treasure: Old-School Essentials SRD, Open Game
+  License 1.0a). Population, density and trades: S. John Ross, Medieval Demographics Made Easy.
+  Country, revenue and property: Skerples, OSR: Land and Investments (Coins and Scrolls). Only the
+  numbers of these sources are used.

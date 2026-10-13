@@ -36,10 +36,10 @@ GOVERNO E FAZIONI
   Isotta Geremei, il podestà forestiero (Guerriero 6 · CA 4 [15] · PF 22 · THAC0 17 [+2] · Mor 8 ·
   AL Caotico): stanca e malata, tossisce sempre; vuole più clienti, a qualunque costo; segreto: ha
   fatto un patto con qualcosa nel bosco. (risiede al n. 10)
-  · L'Arte dei Beccai: vuole abbassare le gabelle sulle merci. Guida: Bice da Todi, capo.
-  · I mercanti forestieri: vuole un fondaco tutto loro e le loro leggi. Guida: Iacopo di
+  · L'Arte dei Beccai. Scopo: abbassare le gabelle sulle merci. Guida: Bice da Todi, capo.
+  · I mercanti forestieri. Scopo: un fondaco tutto loro e le loro leggi. Guida: Iacopo di
     Ubaldo, capo. Rivale: il capitolo dei canonici.
-  · Il capitolo dei canonici: vuole riavere le terre tolte al vescovo. Guida: Berta Varano,
+  · Il capitolo dei canonici. Scopo: riavere le terre tolte al vescovo. Guida: Berta Varano,
     capo.
 
 DEMOGRAFIA
@@ -74,7 +74,9 @@ CONTADO ED ECONOMIA
   eredita, si dona o si conquista. In tempi di peste, guerra o carestia ogni rendita si dimezza; in
   tempi di vero caos si divide per 10. Chi imbroglia sulle tasse tiene un altro 5% della rendita,
   finché un signore attento non controlla i conti.
-  Voci (d8; V vera, F falsa: solo per il master)
+
+VOCI ED EVENTI
+  Voci (d8; V vera, F falsa: solo per l'arbitro)
     1.  I briganti di Lando Salimbeni temono il fuoco più delle spade. [V]
     2.  Basta l'acqua santa della pieve per scacciare ogni male da qui. [F]
     3.  Mea Varano (n. 33) è in realtà un nobile in incognito. [F]
@@ -97,9 +99,9 @@ MURA, PORTE E SEGRETI
   · [A] Porta del Soccorso (sud)
   · [B] Porta del Leone (ovest)
   · [C] Porta del Soccorso (nord-est)
-  · Postierle segrete nelle mura: 2 ($ sulla mappa del master).
-  · Galleria segreta dal n. 10 (Rocca Malaspiniana) fino a oltre le mura (░ sulla mappa del
-    master).
+  · Postierle segrete nelle mura: 2 ($ sulla mappa dell'arbitro).
+  · Galleria segreta dal n. 10 (Rocca Malaspiniana) fino a oltre le mura (░ sulla mappa
+    dell'arbitro).
 
 GLI EDIFICI
 
@@ -160,7 +162,7 @@ GLI EDIFICI
         Caotico): sognatore, vuole partire all'avventura; vuole il favore del signore; segreto: ama
         segretamente un membro della famiglia rivale. In casa vivono 10 persone.
         Qui risiede il podestà forestiero.
-        Da qui parte la galleria segreta che esce oltre le mura (░ sulla mappa del master).
+        Da qui parte la galleria segreta che esce oltre le mura (░ sulla mappa dell'arbitro).
 
   CONTRADA DI PORTA DEL LEONE
       11 Mulino di Dianora (mulino, pietra)

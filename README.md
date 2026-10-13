@@ -57,7 +57,7 @@ Works with any analogue "OSR" roleplaying game. Sibling of [WyrmHex](https://git
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the game master's map, and the **key** (as `.txt` and as a **PDF file**) tells everything about the settlement: history, government and factions, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
+**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the referee's map, and the **key** (as `.txt` and as a **PDF file**) tells everything about the settlement: history, government and factions, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
 
 At start the program asks whether the settlement is:
 
@@ -173,7 +173,7 @@ Everything goes into `settlements_generated/<seed>/`:
 
 | File | What it holds |
 |---|---|
-| `<seed>_gm.png` (or `.pdf`) | the **game master's map**: building numbers, secret posterns `$`, secret tunnel `░` |
+| `<seed>_referee.png` (or `.pdf`) | the **referee's map**: building numbers, secret posterns `$`, secret tunnel `░` |
 | `<seed>_players.png` (or `.pdf`) | the **players' map**: the same map without numbers and without secrets |
 | `.txt` next to every map | the map as text, keyboard characters only |
 | `<seed>_key.txt` | the **key**: history, threat, government and factions, demographics, economy, services and mercenaries, rumours and events, walls and gates, and every building with its inhabitant |
@@ -186,12 +186,12 @@ Everything goes into `settlements_generated/<seed>/`:
 | `╔═╗ ║` | `=H=` | stone building |
 | `┌─┐ │` | `-|-` | timber or half-timbered building |
 | `+` | `+` | door (in bold: town gate) |
-| `12` | `12` | building number (game master only) |
+| `12` | `12` | building number (referee only) |
 | `▓` | `#` | walls |
 | `█` | `@` | tower or bastion |
 | `▒` | `%` | palisade |
 | `[A]` | `[A]` | entrance from the road |
-| `░` | `:` | dry ditch (on the game master's map it can be the secret tunnel) |
+| `░` | `:` | dry ditch (on the referee's map it can be the secret tunnel) |
 | `≈` | `~` | water: river, lake, sea, moat |
 | `=` | `=` | bridge or pier |
 | `.` `·` | `.` | street, square, yard; country road |
@@ -203,7 +203,7 @@ Everything goes into `settlements_generated/<seed>/`:
 | `†` | `t` | graveyard |
 | `○` `Θ` `π` | `o` `O` `h` | well, fountain, market stall |
 | `∴` | `*` | rubble |
-| `$` | `$` | secret postern (game master only) |
+| `$` | `$` | secret postern (referee only) |
 
 **Scale.** At the bottom of the legend there is a scale bar. Letters are twice as tall as they are wide: a row of letters is worth twice a column, and the key says how many metres (or feet) a row is worth.
 
@@ -253,35 +253,35 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 
 ## Gallery
 
-Game master's maps, scaled down (the originals are 600 dpi). A sample key and book (in Italian): [esempio_chiave_citta.txt](img_examples/esempio_chiave_citta.txt), [esempio_libro_citta.pdf](img_examples/esempio_libro_citta.pdf).
+Referee's maps, scaled down (the originals are 600 dpi). A sample key and book: [sample_key_city.txt](img_examples/sample_key_city.txt), [sample_book_city.pdf](img_examples/sample_book_city.pdf).
 
 **City, Late Middle Ages, river (adventure)**
 
-<a href="img_examples/thumbs/citta_basso_medioevo_fiume.png"><img src="img_examples/thumbs/citta_basso_medioevo_fiume.png" alt="City, Late Middle Ages, river (adventure)" width="100%"></a>
+<a href="img_examples/thumbs/en/city_late_middle_ages_river.png"><img src="img_examples/thumbs/en/city_late_middle_ages_river.png" alt="City, Late Middle Ages, river (adventure)" width="100%"></a>
 
 **Big city, Renaissance, coast**
 
-<a href="img_examples/thumbs/grande_citta_rinascimento_costa.png"><img src="img_examples/thumbs/grande_citta_rinascimento_costa.png" alt="Big city, Renaissance, coast" width="100%"></a>
+<a href="img_examples/thumbs/en/big_city_renaissance_coast.png"><img src="img_examples/thumbs/en/big_city_renaissance_coast.png" alt="Big city, Renaissance, coast" width="100%"></a>
 
 **Town, Late Middle Ages, hills**
 
-<a href="img_examples/thumbs/paese_basso_medioevo_collina.png"><img src="img_examples/thumbs/paese_basso_medioevo_collina.png" alt="Town, Late Middle Ages, hills" width="100%"></a>
+<a href="img_examples/thumbs/en/town_late_middle_ages_hills.png"><img src="img_examples/thumbs/en/town_late_middle_ages_hills.png" alt="Town, Late Middle Ages, hills" width="100%"></a>
 
 **Village, Early Middle Ages, forest**
 
-<a href="img_examples/thumbs/villaggio_alto_medioevo_foresta.png"><img src="img_examples/thumbs/villaggio_alto_medioevo_foresta.png" alt="Village, Early Middle Ages, forest" width="100%"></a>
+<a href="img_examples/thumbs/en/village_early_middle_ages_forest.png"><img src="img_examples/thumbs/en/village_early_middle_ages_forest.png" alt="Village, Early Middle Ages, forest" width="100%"></a>
 
 **Motte-and-bailey castle, swamp**
 
-<a href="img_examples/thumbs/castello_motte_palude.png"><img src="img_examples/thumbs/castello_motte_palude.png" alt="Motte-and-bailey castle, swamp" width="100%"></a>
+<a href="img_examples/thumbs/en/motte_and_bailey_castle_swamp.png"><img src="img_examples/thumbs/en/motte_and_bailey_castle_swamp.png" alt="Motte-and-bailey castle, swamp" width="100%"></a>
 
 **Castle, Late Middle Ages, lake**
 
-<a href="img_examples/thumbs/castello_basso_medioevo_lago.png"><img src="img_examples/thumbs/castello_basso_medioevo_lago.png" alt="Castle, Late Middle Ages, lake" width="100%"></a>
+<a href="img_examples/thumbs/en/castle_late_middle_ages_lake.png"><img src="img_examples/thumbs/en/castle_late_middle_ages_lake.png" alt="Castle, Late Middle Ages, lake" width="100%"></a>
 
 **Star fort, keyboard characters only**
 
-<a href="img_examples/thumbs/fortezza_stellata_solo_ascii.png"><img src="img_examples/thumbs/fortezza_stellata_solo_ascii.png" alt="Star fort, keyboard characters only" width="100%"></a>
+<a href="img_examples/thumbs/en/star_fort_keyboard_only.png"><img src="img_examples/thumbs/en/star_fort_keyboard_only.png" alt="Star fort, keyboard characters only" width="100%"></a>
 
 ## Sources and licences
 
