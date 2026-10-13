@@ -57,7 +57,7 @@ Compatibile con qualunque gioco di ruolo analogico "OSR". Fratello di [WyrmHex](
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa del master, e la **chiave** (in `.txt` e in un **libro PDF** come quello di WyrmDelve) racconta tutto dell'insediamento: storia, governo e fazioni, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
+**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa del master, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
 
 All'avvio il programma chiede se l'insediamento è:
 
