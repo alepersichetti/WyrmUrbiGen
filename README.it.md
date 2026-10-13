@@ -177,7 +177,7 @@ Tutto va in `settlements_generated/<seme>/`:
 | `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa senza numeri e senza segreti |
 | `.txt` accanto a ogni mappa | la mappa come testo, solo caratteri della tastiera |
 | `<seme>_key.txt` | la **chiave**: storia, minaccia, governo e fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
-| `<seme>_book.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
+| `<seme>_key.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
 
 ### Simboli
 

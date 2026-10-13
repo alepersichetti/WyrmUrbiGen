@@ -6,7 +6,7 @@ fortresses for OSR games, all in ASCII.
 
 Sibling of WyrmHex (hexcrawl maps) and WyrmDelve (dungeons). It draws the plan
 of a settlement with letters and symbols, like an old roguelike, numbers every
-building, and writes a key (TXT and a PDF book, like WyrmDelve's) with the
+building, and writes a key (a TXT file and a PDF file, like WyrmDelve's) with the
 history, the government and factions, the inhabitants of every building with
 OSR stats, rumours and events, and:
 
@@ -36,7 +36,7 @@ Output goes to settlements_generated/<seed>/ next to this file (or --output):
   <seed>_referee.png/.txt   referee's map: building numbers, secrets
   <seed>_players.png/.txt   the same map without numbers and secrets
   <seed>_key.txt            the whole key as plain text
-  <seed>_book.pdf           the key as an A4 book (Sebaldus-Gotisch headings,
+  <seed>_key.pdf            the key as an A4 PDF file (Sebaldus-Gotisch headings,
                             Crimson Text), with the referee's map inside
 
 The seed (e.g. C2-B-R-A2-K7Q2MB = type+size, era, terrain, purpose+danger,
@@ -210,9 +210,9 @@ TEXTS = {
     "units_imperial": ("imperiale (piedi)", "imperial (feet)"),
     "units_metric": ("metrica (metri)", "metric (metres)"),
     "output_intro": ("Che file vuoi?", "Which files do you want?"),
-    "output_png": ("mappe in PNG e libro PDF, separati", "PNG maps and a PDF book, apart"),
-    "output_pdf": ("mappe in PDF e libro PDF, separati", "PDF maps and a PDF book, apart"),
-    "output_single": ("un unico PDF: le due mappe e poi il libro", "one single PDF: the two maps, then the book"),
+    "output_png": ("mappe in PNG e chiave in un file PDF, separati", "PNG maps and the key in a PDF file, apart"),
+    "output_pdf": ("mappe in PDF e chiave in un file PDF, separati", "PDF maps and the key in a PDF file, apart"),
+    "output_single": ("un unico file PDF: le due mappe e poi la chiave", "one single PDF file: the two maps, then the key"),
     "paper_choice": ("  Scegli il formato (premi Invio per quello consigliato).",
                      "  Choose the format (press Enter for the suggested one)."),
     "q_paper": ("  Formato di stampa (A4, A3, A2, A1) [{default}]: ", "  Print format (A4, A3, A2, A1) [{default}]: "),
@@ -232,7 +232,7 @@ TEXTS = {
                     "No monospaced font found: check that the fonts folder is next to wyrmurbigen.py, "
                     "or give a .ttf file with --font."),
     "err_size": ("{path}: {size} non è un foglio A4, A3, A2 o A1 a 600 dpi", "{path}: {size} is not an A4, A3, A2 or A1 sheet at 600 dpi"),
-    "err_book_fonts": ("ERRORE: manca il font {f} nella cartella {d}, quindi il PDF non viene creato (le mappe e la chiave .txt sì).",
+    "err_pdf_fonts": ("ERRORE: manca il font {f} nella cartella {d}, quindi il PDF non viene creato (le mappe e la chiave .txt sì).",
                        "ERROR: the font {f} is missing from {d}, so the PDF is not made (the maps and the .txt key are)."),
     "err_no_fpdf": ("ERRORE: manca la libreria fpdf2, quindi il PDF non viene creato. Scrivi: pip install -r requirements.txt",
                     "ERROR: the fpdf2 library is missing, so the PDF is not made. Type: pip install -r requirements.txt"),
@@ -240,7 +240,7 @@ TEXTS = {
                      "e poi: pip install -r requirements.txt",
                      "ERROR: the old «fpdf» library {v} is installed instead of «fpdf2». Type: pip uninstall -y fpdf fpdf2  "
                      "and then: pip install -r requirements.txt"),
-    "err_book": ("ERRORE: il PDF non è stato creato: {e}", "ERROR: the PDF was not made: {e}"),
+    "err_pdf": ("ERRORE: il PDF non è stato creato: {e}", "ERROR: the PDF was not made: {e}"),
     "warn_no_monsters": ("Manca data/monsters.json (o è rovinato): niente mostri", "data/monsters.json is missing (or broken): no monsters"),
     "warn_no_treasure": ("Manca data/treasure.json (o è rovinato): niente tesori", "data/treasure.json is missing (or broken): no treasure"),
     "warn_tiny": ("Caratteri molto piccoli: scegli un formato più grande se puoi.", "Very small letters: choose a bigger format if you can."),
@@ -268,12 +268,12 @@ TEXTS = {
     "info_sheet": ("Foglio {paper} {o} ({w} x {h} px a {dpi} dpi), caratteri da {mm:.2f} mm",
                    "{paper} sheet, {o} ({w} x {h} px at {dpi} dpi), {mm:.2f} mm letters"),
     "step_maps": ("Mappe dell'arbitro e dei giocatori ({paper}, {dpi} dpi)", "Referee's and players' maps ({paper}, {dpi} dpi)"),
-    "step_key": ("Chiave e libro", "Key and book"),
+    "step_key": ("Chiave e file PDF", "Key and PDF file"),
     "saved": ("Salvate: {a}  +  {b}", "Saved: {a}  +  {b}"),
     "saved_txt": ("Salvata: {a}", "Saved: {a}"),
     "saved_key": ("Chiave: {a}", "Key: {a}"),
-    "saved_book": ("Libro: {a}", "Book: {a}"),
-    "saved_book_maps": ("PDF unico (mappe e libro): {a}", "Single PDF (maps and book): {a}"),
+    "saved_pdf": ("File PDF: {a}", "PDF file: {a}"),
+    "saved_pdf_maps": ("File PDF unico (mappe e chiave): {a}", "Single PDF file (maps and key): {a}"),
     "pb_drawing": ("disegno", "drawing"),
     "pb_saving": ("salvataggio", "saving"),
     "pb_done": ("fatto", "done"),
@@ -424,9 +424,9 @@ TEXTS = {
                 "Skerples, OSR: Land and Investments (Coins and Scrolls). Only the numbers of these sources are used."),
     # help
     "h_description": ("WyrmUrbiGen: genera villaggi, paesi, città, castelli e fortezze per giochi OSR, in ASCII come un "
-                      "roguelike, con abitanti, mostri e tesori. Mappe PNG o PDF a 600 dpi + TXT, chiave e libro PDF.",
+                      "roguelike, con abitanti, mostri e tesori. Mappe PNG o PDF a 600 dpi + TXT, chiave in TXT e in un file PDF.",
                       "WyrmUrbiGen: makes villages, towns, cities, castles and fortresses for OSR games, in ASCII like a "
-                      "roguelike, with inhabitants, monsters and treasure. 600 dpi PNG or PDF maps + TXT, key and PDF book."),
+                      "roguelike, with inhabitants, monsters and treasure. 600 dpi PNG or PDF maps + TXT, key as TXT and as a PDF file."),
     "h_epilog": ("Senza opzioni parte la modalità interattiva. I parametri non indicati sono scelti a caso.",
                  "Without options the interactive mode starts. Parameters you leave out are chosen at random."),
     "h_language": ("lingua dei testi: it o en", "language of the texts: it or en"),
@@ -440,9 +440,9 @@ TEXTS = {
     "h_seed": ("seme completo (es. C9500-B-R-A2-K7Q2MB) per rifare un insediamento", "full seed (e.g. C9500-B-R-A2-K7Q2MB) to rebuild a settlement"),
     "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero", "1 black on white (default), 2 white on light blue, 3 white on black"),
     "h_format": ("formato di stampa; senza, viene suggerito e chiesto", "print format; without it, it is suggested and asked"),
-    "h_png": ("mappe in PNG e libro PDF a parte (di base)", "PNG maps and a separate PDF book (the default)"),
-    "h_pdf": ("mappe in PDF e libro PDF a parte", "PDF maps and a separate PDF book"),
-    "h_single": ("un unico PDF con le mappe e il libro", "one single PDF with the maps and the book"),
+    "h_png": ("mappe in PNG e chiave in un file PDF a parte (di base)", "PNG maps and the key in a separate PDF file (the default)"),
+    "h_pdf": ("mappe in PDF e chiave in un file PDF a parte", "PDF maps and the key in a separate PDF file"),
+    "h_single": ("un unico file PDF con le mappe e la chiave", "one single PDF file with the maps and the key"),
     "h_title": ("titolo della mappa (default: il nome dell'insediamento)", "map title (default: the settlement's name)"),
     "h_no_title": ("mappa senza nome", "map without a name"),
     "h_content": ("cosa mettere nella chiave: storia, abitanti, mostri, tesori, anche insieme separati da virgole; "
@@ -4015,15 +4015,15 @@ def write_key(blocks, path):
         f.write("\n".join(lines) + "\n")
 
 
-# --- the book ---
-BOOK_FONTS = ("Sebaldus-Gotisch.ttf", "CrimsonText-Regular.ttf", "CrimsonText-Italic.ttf", "CrimsonText-Bold.ttf",
+# --- the PDF file ---
+PDF_FONTS = ("Sebaldus-Gotisch.ttf", "CrimsonText-Regular.ttf", "CrimsonText-Italic.ttf", "CrimsonText-Bold.ttf",
               "CrimsonText-BoldItalic.ttf", "DejaVuSans.ttf")
 
 
-def book_problem():
-    missing = [name for name in BOOK_FONTS if not os.path.isfile(font_file(name))]
+def pdf_problem():
+    missing = [name for name in PDF_FONTS if not os.path.isfile(font_file(name))]
     if missing:
-        return tr("err_book_fonts", f=", ".join(missing), d=short_path(FONT_DIR))
+        return tr("err_pdf_fonts", f=", ".join(missing), d=short_path(FONT_DIR))
     try:
         import fpdf
     except ImportError:
@@ -4038,8 +4038,8 @@ def book_problem():
     return None
 
 
-def write_book(blocks, path, settings, maps=()):
-    """The key as an A4 book, like WyrmDelve's: Sebaldus-Gotisch headings,
+def write_pdf(blocks, path, settings, maps=()):
+    """The key as an A4 PDF file, like WyrmDelve's: Sebaldus-Gotisch headings,
     Crimson Text body. `maps`: (title, PIL image, paper, orientation) pages
     to put at the front (the single-PDF option)."""
     from fpdf import FPDF
@@ -4468,7 +4468,7 @@ def ask_units():
 
 
 def ask_output():
-    """png, pdf (maps and book apart) or single (one PDF with everything)."""
+    """png, pdf (maps and PDF file apart) or single (one PDF file with everything)."""
     options = ("png", "pdf", "single")
     return options[menu(tr("output_intro"), [tr("output_" + o) for o in options], 0)]
 
@@ -4609,7 +4609,7 @@ def main():
     if content[3] and not TREASURE:
         log.warn(tr("warn_no_treasure"))
         content[3] = False
-    problem = book_problem()
+    problem = pdf_problem()
     if problem:
         log.error(problem)
     folder = os.path.join(p["output"], seed)
@@ -4692,12 +4692,12 @@ def main():
     write_key(blocks, f"{base}_key.txt")
     log.info(tr("saved_key", a=short_path(f"{base}_key.txt")))
     if not problem:
-        book = f"{base}_book.pdf"
+        pdf_path = f"{base}_key.pdf"
         try:
-            write_book(blocks, book, settings, maps=images)
-            log.info(tr("saved_book_maps" if images else "saved_book", a=short_path(book)))
+            write_pdf(blocks, pdf_path, settings, maps=images)
+            log.info(tr("saved_pdf_maps" if images else "saved_pdf", a=short_path(pdf_path)))
         except Exception as e:          # never lose the maps and the key over the PDF
-            log.error(tr("err_book", e=f"{type(e).__name__}: {e}"))
+            log.error(tr("err_pdf", e=f"{type(e).__name__}: {e}"))
     elif images:
         for name, img, _, _ in images:
             save_png(img, f"{base}_{name}.png", settings)

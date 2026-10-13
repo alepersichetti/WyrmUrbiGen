@@ -177,7 +177,7 @@ Everything goes into `settlements_generated/<seed>/`:
 | `<seed>_players.png` (or `.pdf`) | the **players' map**: the same map without numbers and without secrets |
 | `.txt` next to every map | the map as text, keyboard characters only |
 | `<seed>_key.txt` | the **key**: history, threat, government and factions, demographics, economy, services and mercenaries, rumours and events, walls and gates, and every building with its inhabitant |
-| `<seed>_book.pdf` | the same key as an **A4 book** (headings in Sebaldus-Gotisch, text in Crimson Text); with the **single PDF** option it also holds the two maps |
+| `<seed>_key.pdf` | the same key as an **A4 book** (headings in Sebaldus-Gotisch, text in Crimson Text); with the **single PDF** option it also holds the two maps |
 
 ### Symbols
 
