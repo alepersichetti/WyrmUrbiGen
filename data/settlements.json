@@ -43,13 +43,6 @@
     {"id": "river", "code": "R", "menu": {"it": "Fiume", "en": "River"}, "name": {"it": "fiume", "en": "river"}, "epithet": [{"it": "sul Fiume", "en": "on the River"}, {"it": "al Ponte", "en": "Bridge"}]},
     {"id": "lake", "code": "L", "menu": {"it": "Lago", "en": "Lake"}, "name": {"it": "lago", "en": "lake"}, "epithet": [{"it": "sul Lago", "en": "on the Lake"}, {"it": "Lacuale", "en": "Lakeside"}]}
   ],
-  "name_parts": {
-    "start": ["Mont", "Val", "Roc", "Pietr", "Fos", "Brac", "Cor", "Gual", "Mar", "Sar", "Ter", "Vel", "Cas", "Lup", "Orv",
-              "Spol", "Bel", "Cer", "Fal", "Gav", "Ser", "Tor", "Arc", "Bor", "Cald", "Fiesc", "Gran", "Lan", "Mons", "Nov",
-              "Ponz", "Rad", "Sov", "Trev", "Vign", "Zag", "Acqu", "Carp", "Font", "Querc"],
-    "end": ["ano", "ate", "engo", "asco", "ola", "ino", "ello", "ara", "ezza", "orio", "iglia", "ena", "occhio", "ignano", "aldo",
-            "ugia", "erno", "oli", "ana", "iano", "esco", "ice", "ona", "ago", "aia"]
-  },
   "saints": [{"it": "San Michele", "en": "St Michael"}, {"it": "San Giorgio", "en": "St George"}, {"it": "San Martino", "en": "St Martin"},
              {"it": "San Pietro", "en": "St Peter"}, {"it": "San Lorenzo", "en": "St Lawrence"}, {"it": "San Donnino", "en": "St Domninus"},
              {"it": "San Bartolomeo", "en": "St Bartholomew"}, {"it": "Sant'Agata", "en": "St Agatha"}, {"it": "Santa Lucia", "en": "St Lucy"},
