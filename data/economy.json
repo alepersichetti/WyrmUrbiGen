@@ -1,0 +1,26 @@
+{
+  "economy": {
+    "source": "Skerples, OSR: Land and Investments (Coins and Scrolls, 2017): only the numbers are used.",
+    "regions": [
+      {"id": "core", "name": {"it": "terra centrale, del tutto coltivata", "en": "core land, fully farmed"}, "per_sq_mile": 80, "per_hex": 2500, "villages": 10, "revenue": 75},
+      {"id": "developed", "name": {"it": "terra sviluppata", "en": "developed land"}, "per_sq_mile": 30, "per_hex": 900, "villages": 10, "revenue": 50},
+      {"id": "undeveloped", "name": {"it": "terra poco sviluppata", "en": "undeveloped land"}, "per_sq_mile": 10, "per_hex": 300, "villages": 3, "revenue": 30},
+      {"id": "wild", "name": {"it": "montagna o terra selvaggia", "en": "mountain or wasteland"}, "per_sq_mile": 2, "per_hex": 60, "villages": 1, "revenue": 10}
+    ],
+    "terrain_region": {"plains": "core", "river": "core", "coast": "developed", "hills": "developed", "lake": "developed",
+                       "forest": "undeveloped", "swamp": "undeveloped", "mountains": "wild"},
+    "settlement_revenue": {"town": 20, "city": 75, "bigcity": 75},
+    "village_pop": 200,
+    "troubled": {"half": ["plague", "raiders", "bandits", "dragon", "deeps", "mine", "feud"], "tenth": ["ruin", "tyrant"]},
+    "tax_cheat": 0.05,
+    "properties": [
+      {"id": "small_farm", "name": {"it": "piccola fattoria", "en": "small farm"}, "cost": 100, "income": {"it": "nessuna rendita: chi la lavora non muore di fame; un anno di lavoro frutta 1d10 ma", "en": "no income: farming it keeps you from starving; a year's work brings 1d10 sp"}, "people": "", "where": ["village", "town", "castle"]},
+      {"id": "large_farm", "name": {"it": "grande fattoria", "en": "large farm"}, "cost": 500, "income": {"it": "12 mo al mese in un buon anno (quanto spende un cavaliere)", "en": "12 gp a month in a good year (a knight's monthly expenses)"}, "people": "1d6", "people_what": {"it": "affittuari", "en": "tenants"}, "where": ["village", "town", "castle", "city", "bigcity"]},
+      {"id": "small_manor", "name": {"it": "piccolo maniero", "en": "small manor"}, "cost": 1000, "extra": {"it": "più un barone disposto a nominarti cavaliere (di solito altre 2.000 mo in regali)", "en": "plus a baron willing to knight you (usually another 2,000 gp in bribes)"}, "income": {"it": "50 mo al mese; +10 mo al mese per ogni villaggio sotto la tua protezione", "en": "50 gp a month; +10 gp a month for each village under your protection"}, "people": "2d6", "people_what": {"it": "famiglie di affittuari (1d4 persone l'una) e altrettante che ti rendono omaggio", "en": "tenant families (1d4 people each) and as many paying homage"}, "where": ["village", "castle", "town"]},
+      {"id": "large_manor", "name": {"it": "grande maniero", "en": "large manor"}, "cost": 10000, "income": {"it": "75 mo al mese; +10 mo al mese per ogni villaggio protetto", "en": "75 gp a month; +10 gp a month for each protected village"}, "people": "2d6", "people_what": {"it": "famiglie di affittuari e 4d6 famiglie che ti rendono omaggio", "en": "tenant families and 4d6 families paying homage"}, "where": ["castle", "town", "city"]},
+      {"id": "inn", "name": {"it": "locanda", "en": "inn"}, "cost": 500, "income": {"it": "5 ma al mese di guadagno netto (6 mo l'anno)", "en": "5 sp a month net profit (6 gp a year)"}, "people": "1d4", "people_what": {"it": "servi", "en": "servants"}, "where": ["town", "city", "bigcity"]},
+      {"id": "mine", "name": {"it": "miniera o cava", "en": "mine or quarry"}, "cost": 0, "extra": {"it": "non si compra: si scopre sulle proprie terre", "en": "can't be bought: it is found on your own land"}, "income": {"it": "5 ma al mese", "en": "5 sp a month"}, "people": "1d4", "people_what": {"it": "famiglie di lavoranti", "en": "families of workers"}, "where": ["village", "castle"], "terrains": ["mountains", "hills"]},
+      {"id": "shop", "name": {"it": "bottega o altra impresa", "en": "shop or other venture"}, "cost": 500, "income": {"it": "lo 0,1% del capitale investito al mese (1.000 mo = 1 mo al mese)", "en": "0.1% of the money invested per month (1,000 gp = 1 gp a month)"}, "people": "", "where": ["town", "city", "bigcity", "village"]}
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "clues": {
+    "vermin": [
+      {"it": "gusci vuoti, zampe staccate e un ronzio lontano", "en": "empty husks, severed legs and a distant buzzing"},
+      {"it": "ragnatele spesse in un angolo, con un cadavere avvolto", "en": "thick webs in a corner, with a wrapped-up corpse"},
+      {"it": "escrementi minuscoli ovunque e il legno rosicchiato", "en": "tiny droppings everywhere and gnawed wood"},
+      {"it": "una scia di piccoli fori nella polvere, come di molte zampe", "en": "a trail of small holes in the dust, as if from many legs"}
+    ],
+    "aquatic": [
+      {"it": "pozze d'acqua sul pavimento e una scia viscida", "en": "puddles on the floor and a slimy trail"},
+      {"it": "odore di pesce marcio e alghe secche negli angoli", "en": "a smell of rotten fish and dried weed in the corners"},
+      {"it": "lische spolpate e squame grandi come monete", "en": "picked fish bones and scales as big as coins"}
+    ],
+    "beast": [
+      {"it": "ciuffi di pelo e ossa rosicchiate", "en": "tufts of fur and gnawed bones"},
+      {"it": "graffi profondi sulle pareti e un odore di tana", "en": "deep claw marks on the walls and a smell of den"},
+      {"it": "orme fresche di zampe nella polvere", "en": "fresh paw prints in the dust"}
+    ],
+    "ooze": [
+      {"it": "pareti stranamente pulite e lisce, senza un granello di polvere", "en": "walls strangely clean and smooth, without a speck of dust"},
+      {"it": "un'armatura vuota, corrosa e ancora fumante", "en": "an empty suit of armour, corroded and still smoking"},
+      {"it": "monete e fibbie sparse, senza più i loro proprietari", "en": "scattered coins and buckles, with no owners left"}
+    ],
+    "fungus": [
+      {"it": "spore luminose nell'aria e un odore di muffa", "en": "glowing spores in the air and a smell of mould"},
+      {"it": "piccoli funghi spuntati dalle fessure, tutti piegati nella stessa direzione", "en": "little mushrooms sprouting from the cracks, all leaning the same way"},
+      {"it": "un cadavere coperto di peluria grigia", "en": "a corpse covered in grey fuzz"}
+    ],
+    "magical": [
+      {"it": "una pietra a forma d'uomo, con un'espressione di terrore", "en": "a man-shaped stone with a look of terror"},
+      {"it": "un forziere aperto e graffiato dall'interno", "en": "an open chest, scratched from the inside"},
+      {"it": "solchi profondi nel pavimento e un odore di bestia sconosciuta", "en": "deep furrows in the floor and the smell of an unknown beast"},
+      {"it": "piume, scaglie e peli che non appartengono a nessun animale noto", "en": "feathers, scales and fur from no known animal"}
+    ],
+    "dragon": [
+      {"it": "scaglie grandi come scudi e pareti annerite", "en": "scales the size of shields and blackened walls"},
+      {"it": "una moneta d'oro fusa a metà", "en": "a gold coin, half melted"},
+      {"it": "un caldo innaturale che sale dal corridoio", "en": "an unnatural heat coming up the corridor"}
+    ],
+    "giant": [
+      {"it": "orme enormi e un osso di bue spolpato", "en": "huge footprints and a stripped ox bone"},
+      {"it": "una clava spezzata grande come un tronco", "en": "a broken club as big as a tree trunk"},
+      {"it": "un russare lontano che fa tremare la polvere", "en": "distant snoring that makes the dust tremble"}
+    ],
+    "humanoid": [
+      {"it": "i resti di un fuoco e un coltello dimenticato", "en": "the remains of a fire and a forgotten knife"},
+      {"it": "segni di riconoscimento graffiati sul muro", "en": "recognition marks scratched on the wall"},
+      {"it": "un sacco di provviste rubate, mezzo vuoto", "en": "a sack of stolen supplies, half empty"},
+      {"it": "voci sommesse che arrivano dal corridoio", "en": "hushed voices coming down the corridor"}
+    ],
+    "undead": [
+      {"it": "un freddo innaturale e impronte di piedi scalzi nella polvere", "en": "an unnatural cold and bare footprints in the dust"},
+      {"it": "bende sporche e un odore di tomba", "en": "dirty bandages and a smell of the grave"},
+      {"it": "ossa rosicchiate da denti umani", "en": "bones gnawed by human teeth"}
+    ],
+    "spirit": [
+      {"it": "candele che si spengono da sole e un sussurro senza fonte", "en": "candles that go out by themselves and a whisper from nowhere"},
+      {"it": "brina sulle pareti, anche se l'aria è tiepida", "en": "frost on the walls, though the air is warm"},
+      {"it": "un ritratto con il volto graffiato via", "en": "a portrait with the face scratched away"}
+    ],
+    "construct": [
+      {"it": "schegge di pietra e i segni di qualcosa di pesante trascinato", "en": "stone chips and the marks of something heavy dragged along"},
+      {"it": "un piedistallo vuoto", "en": "an empty pedestal"},
+      {"it": "un ticchettio regolare, come di un meccanismo", "en": "a regular ticking, as of a mechanism"}
+    ],
+    "elemental": [
+      {"it": "pareti bruciate, o fradice, o levigate dal vento", "en": "walls scorched, or soaked, or scoured by wind"},
+      {"it": "un cerchio di evocazione spezzato sul pavimento", "en": "a broken summoning circle on the floor"},
+      {"it": "un vento che soffia dove non dovrebbe esserci aria", "en": "a wind blowing where there should be no air"}
+    ],
+    "demon": [
+      {"it": "simboli bruciati sul pavimento e odore di zolfo", "en": "symbols burned into the floor and a smell of sulphur"},
+      {"it": "una pergamena con un patto firmato col sangue", "en": "a scroll with a pact signed in blood"},
+      {"it": "impronte di zoccoli bruciate nella pietra", "en": "hoofprints burned into the stone"}
+    ],
+    "dwellers": [
+      {"it": "segni di passaggio recenti: impronte, rifiuti, un fuoco spento da poco", "en": "recent signs of passage: footprints, refuse, a fire put out not long ago"},
+      {"it": "una trappola rozza tesa sulla soglia", "en": "a crude trap set on the threshold"},
+      {"it": "un mucchio di ossa e di oggetti rubati, il bottino di qualcuno", "en": "a heap of bones and stolen goods, someone's loot"},
+      {"it": "il simbolo degli abitanti di oggi dipinto sul muro", "en": "today's dwellers' sign painted on the wall"}
+    ]
+  }
+}

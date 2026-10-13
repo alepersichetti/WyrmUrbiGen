@@ -1,0 +1,390 @@
+{
+  "license": "All the tables in this file (room treasure chances, treasure by dungeon level, treasure types A-V, gems, jewellery, magic item types and magic items) are Open Game Content under the Open Game License v1.0a (see LICENSE-OGL.txt), adapted and translated from the Old-School Essentials System Reference Document (c) 2019 Gavin Norman. The hiding places are original WyrmDelve text, also designated Open Game Content.",
+  "coins": {"cp": {"it": "mr", "en": "cp"}, "sp": {"it": "ma", "en": "sp"}, "ep": {"it": "me", "en": "ep"}, "gp": {"it": "mo", "en": "gp"}, "pp": {"it": "mp", "en": "pp"}},
+  "coin_value": {"cp": 0.01, "sp": 0.1, "ep": 0.5, "gp": 1, "pp": 5},
+  "room_chance": {"empty": 1, "monster": 3, "special": 0, "trap": 2},
+  "dwellers_type": "D",
+  "unguarded": [
+    {"levels": [1, 1], "items": [{"chance": 100, "dice": "1d6", "times": 100, "what": "sp"}, {"chance": 50, "dice": "1d6", "times": 10, "what": "gp"}, {"chance": 5, "dice": "1d6", "what": "gems"}, {"chance": 2, "dice": "1d6", "times": 1, "what": "jewellery"}, {"chance": 2, "what": "magic", "items": [{"count": 1, "kind": "any"}]}]},
+    {"levels": [2, 3], "items": [{"chance": 100, "dice": "1d12", "times": 100, "what": "sp"}, {"chance": 50, "dice": "1d6", "times": 100, "what": "gp"}, {"chance": 10, "dice": "1d6", "what": "gems"}, {"chance": 5, "dice": "1d6", "times": 1, "what": "jewellery"}, {"chance": 8, "what": "magic", "items": [{"count": 1, "kind": "any"}]}]},
+    {"levels": [4, 5], "items": [{"chance": 100, "dice": "1d6", "times": 1000, "what": "sp"}, {"chance": 100, "dice": "1d6", "times": 200, "what": "gp"}, {"chance": 20, "dice": "1d6", "what": "gems"}, {"chance": 10, "dice": "1d6", "times": 1, "what": "jewellery"}, {"chance": 10, "what": "magic", "items": [{"count": 1, "kind": "any"}]}]},
+    {"levels": [6, 7], "items": [{"chance": 100, "dice": "1d6", "times": 2000, "what": "sp"}, {"chance": 100, "dice": "1d6", "times": 500, "what": "gp"}, {"chance": 30, "dice": "1d6", "what": "gems"}, {"chance": 15, "dice": "1d6", "times": 1, "what": "jewellery"}, {"chance": 15, "what": "magic", "items": [{"count": 1, "kind": "any"}]}]},
+    {"levels": [8, 99], "items": [{"chance": 100, "dice": "1d6", "times": 5000, "what": "sp"}, {"chance": 100, "dice": "1d6", "times": 1000, "what": "gp"}, {"chance": 40, "dice": "1d12", "what": "gems"}, {"chance": 20, "dice": "1d12", "times": 1, "what": "jewellery"}, {"chance": 20, "what": "magic", "items": [{"count": 1, "kind": "any"}]}]}
+  ],
+  "types": {
+    "A": {"average": 18000.0, "items": [
+      {"chance": 25, "dice": "1d6", "times": 1000, "what": "cp"},
+      {"chance": 30, "dice": "1d6", "times": 1000, "what": "sp"},
+      {"chance": 20, "dice": "1d4", "times": 1000, "what": "ep"},
+      {"chance": 35, "dice": "2d6", "times": 1000, "what": "gp"},
+      {"chance": 25, "dice": "1d2", "times": 1000, "what": "pp"},
+      {"chance": 50, "dice": "6d6", "what": "gems"},
+      {"chance": 50, "dice": "6d6", "times": 1, "what": "jewellery"},
+      {"chance": 30, "what": "magic", "items": [{"count": 3, "kind": "any"}]}
+    ]},
+    "B": {"average": 2000.0, "items": [
+      {"chance": 50, "dice": "1d8", "times": 1000, "what": "cp"},
+      {"chance": 25, "dice": "1d6", "times": 1000, "what": "sp"},
+      {"chance": 25, "dice": "1d4", "times": 1000, "what": "ep"},
+      {"chance": 25, "dice": "1d3", "times": 1000, "what": "gp"},
+      {"chance": 25, "dice": "1d6", "what": "gems"},
+      {"chance": 25, "dice": "1d6", "times": 1, "what": "jewellery"},
+      {"chance": 10, "what": "magic", "items": [{"count": 1, "kind": "weapon_armour"}]}
+    ]},
+    "C": {"average": 1000.0, "items": [
+      {"chance": 20, "dice": "1d12", "times": 1000, "what": "cp"},
+      {"chance": 30, "dice": "1d4", "times": 1000, "what": "sp"},
+      {"chance": 10, "dice": "1d4", "times": 1000, "what": "ep"},
+      {"chance": 25, "dice": "1d4", "what": "gems"},
+      {"chance": 25, "dice": "1d4", "times": 1, "what": "jewellery"},
+      {"chance": 10, "what": "magic", "items": [{"count": 2, "kind": "any"}]}
+    ]},
+    "D": {"average": 3900.0, "items": [
+      {"chance": 10, "dice": "1d8", "times": 1000, "what": "cp"},
+      {"chance": 15, "dice": "1d12", "times": 1000, "what": "sp"},
+      {"chance": 60, "dice": "1d6", "times": 1000, "what": "gp"},
+      {"chance": 30, "dice": "1d8", "what": "gems"},
+      {"chance": 30, "dice": "1d8", "times": 1, "what": "jewellery"},
+      {"chance": 15, "what": "magic", "items": [{"count": 2, "kind": "any"}, {"count": 1, "kind": "potion"}]}
+    ]},
+    "E": {"average": 2300.0, "items": [
+      {"chance": 5, "dice": "1d10", "times": 1000, "what": "cp"},
+      {"chance": 30, "dice": "1d12", "times": 1000, "what": "sp"},
+      {"chance": 25, "dice": "1d4", "times": 1000, "what": "ep"},
+      {"chance": 25, "dice": "1d8", "times": 1000, "what": "gp"},
+      {"chance": 10, "dice": "1d10", "what": "gems"},
+      {"chance": 10, "dice": "1d10", "times": 1, "what": "jewellery"},
+      {"chance": 25, "what": "magic", "items": [{"count": 3, "kind": "any"}, {"count": 1, "kind": "scroll"}]}
+    ]},
+    "F": {"average": 7700.0, "items": [
+      {"chance": 10, "dice": "2d10", "times": 1000, "what": "sp"},
+      {"chance": 20, "dice": "1d8", "times": 1000, "what": "ep"},
+      {"chance": 45, "dice": "1d12", "times": 1000, "what": "gp"},
+      {"chance": 30, "dice": "1d3", "times": 1000, "what": "pp"},
+      {"chance": 20, "dice": "2d12", "what": "gems"},
+      {"chance": 10, "dice": "1d12", "times": 1, "what": "jewellery"},
+      {"chance": 30, "what": "magic", "items": [{"count": 3, "kind": "not_weapon"}, {"count": 1, "kind": "potion"}, {"count": 1, "kind": "scroll"}]}
+    ]},
+    "G": {"average": 23000.0, "items": [
+      {"chance": 50, "dice": "1d4", "times": 10000, "what": "gp"},
+      {"chance": 50, "dice": "1d6", "times": 1000, "what": "pp"},
+      {"chance": 25, "dice": "3d6", "what": "gems"},
+      {"chance": 25, "dice": "1d10", "times": 1, "what": "jewellery"},
+      {"chance": 35, "what": "magic", "items": [{"count": 4, "kind": "any"}, {"count": 1, "kind": "scroll"}]}
+    ]},
+    "H": {"average": 60000.0, "items": [
+      {"chance": 25, "dice": "3d8", "times": 1000, "what": "cp"},
+      {"chance": 50, "dice": "1d100", "times": 1000, "what": "sp"},
+      {"chance": 50, "dice": "1d4", "times": 10000, "what": "ep"},
+      {"chance": 50, "dice": "1d6", "times": 10000, "what": "gp"},
+      {"chance": 25, "dice": "5d4", "times": 1000, "what": "pp"},
+      {"chance": 50, "dice": "1d100", "what": "gems"},
+      {"chance": 50, "dice": "1d4", "times": 10, "what": "jewellery"},
+      {"chance": 15, "what": "magic", "items": [{"count": 4, "kind": "any"}, {"count": 1, "kind": "potion"}, {"count": 1, "kind": "scroll"}]}
+    ]},
+    "I": {"average": 11000.0, "items": [
+      {"chance": 30, "dice": "1d8", "times": 1000, "what": "pp"},
+      {"chance": 50, "dice": "2d6", "what": "gems"},
+      {"chance": 50, "dice": "2d6", "times": 1, "what": "jewellery"},
+      {"chance": 15, "what": "magic", "items": [{"count": 1, "kind": "any"}]}
+    ]},
+    "J": {"average": 25.0, "items": [
+      {"chance": 25, "dice": "1d4", "times": 1000, "what": "cp"},
+      {"chance": 10, "dice": "1d3", "times": 1000, "what": "sp"}
+    ]},
+    "K": {"average": 180.0, "items": [
+      {"chance": 30, "dice": "1d6", "times": 1000, "what": "sp"},
+      {"chance": 10, "dice": "1d2", "times": 1000, "what": "ep"}
+    ]},
+    "L": {"average": 240.0, "items": [
+      {"chance": 50, "dice": "1d4", "what": "gems"}
+    ]},
+    "M": {"average": 50000.0, "items": [
+      {"chance": 40, "dice": "2d4", "times": 1000, "what": "gp"},
+      {"chance": 50, "dice": "5d6", "times": 1000, "what": "pp"},
+      {"chance": 55, "dice": "5d4", "what": "gems"},
+      {"chance": 45, "dice": "2d6", "times": 1, "what": "jewellery"}
+    ]},
+    "N": {"average": 0.0, "items": [
+      {"chance": 40, "what": "magic", "items": [{"dice": "2d4", "kind": "potion"}]}
+    ]},
+    "O": {"average": 0.0, "items": [
+      {"chance": 50, "what": "magic", "items": [{"dice": "1d4", "kind": "scroll"}]}
+    ]},
+    "P": {"average": 0.1, "items": [
+      {"chance": 100, "dice": "3d8", "times": 1, "what": "cp"}
+    ]},
+    "Q": {"average": 1.0, "items": [
+      {"chance": 100, "dice": "3d6", "times": 1, "what": "sp"}
+    ]},
+    "R": {"average": 3.0, "items": [
+      {"chance": 100, "dice": "2d6", "times": 1, "what": "ep"}
+    ]},
+    "S": {"average": 5.0, "items": [
+      {"chance": 100, "dice": "2d4", "times": 1, "what": "gp"}
+    ]},
+    "T": {"average": 17.0, "items": [
+      {"chance": 100, "dice": "1d6", "times": 1, "what": "pp"}
+    ]},
+    "U": {"average": 160.0, "items": [
+      {"chance": 10, "dice": "1d100", "times": 1, "what": "cp"},
+      {"chance": 10, "dice": "1d100", "times": 1, "what": "sp"},
+      {"chance": 5, "dice": "1d100", "times": 1, "what": "gp"},
+      {"chance": 5, "dice": "1d4", "what": "gems"},
+      {"chance": 5, "dice": "1d4", "times": 1, "what": "jewellery"},
+      {"chance": 2, "what": "magic", "items": [{"count": 1, "kind": "any"}]}
+    ]},
+    "V": {"average": 330.0, "items": [
+      {"chance": 10, "dice": "1d100", "times": 1, "what": "sp"},
+      {"chance": 5, "dice": "1d100", "times": 1, "what": "ep"},
+      {"chance": 10, "dice": "1d100", "times": 1, "what": "gp"},
+      {"chance": 5, "dice": "1d100", "times": 1, "what": "pp"},
+      {"chance": 10, "dice": "1d4", "what": "gems"},
+      {"chance": 10, "dice": "1d4", "times": 1, "what": "jewellery"},
+      {"chance": 5, "what": "magic", "items": [{"count": 1, "kind": "any"}]}
+    ]}
+  },
+  "gems": [
+    {"roll": [1, 4], "value": 10},
+    {"roll": [5, 9], "value": 50},
+    {"roll": [10, 15], "value": 100},
+    {"roll": [16, 19], "value": 500},
+    {"roll": [20, 20], "value": 1000}
+  ],
+  "jewellery": {"dice": "3d6", "times": 100},
+  "magic_types": [
+    {"b": [1, 10], "x": [1, 10], "kind": "armour"},
+    {"b": [11, 15], "x": [11, 15], "kind": "misc"},
+    {"b": [16, 40], "x": [16, 35], "kind": "potion"},
+    {"b": [41, 45], "x": [36, 40], "kind": "ring"},
+    {"b": [46, 50], "x": [41, 45], "kind": "rod"},
+    {"b": [51, 70], "x": [46, 75], "kind": "scroll"},
+    {"b": [71, 90], "x": [76, 95], "kind": "sword"},
+    {"b": [91, 100], "x": [96, 100], "kind": "weapon"}
+  ],
+  "magic": {
+    "armour": {"basic_die": 4, "items": [
+      {"b": [1, 1], "x": [1, 15], "name": {"it": "Armatura +1", "en": "Armour +1"}},
+      {"b": [2, 2], "x": [16, 25], "name": {"it": "Armatura +1, scudo +1", "en": "Armour +1, shield +1"}},
+      {"b": null, "x": [26, 27], "name": {"it": "Armatura +1, scudo +2", "en": "Armour +1, shield +2"}},
+      {"b": null, "x": [28, 28], "name": {"it": "Armatura +1, scudo +3", "en": "Armour +1, shield +3"}},
+      {"b": null, "x": [29, 33], "name": {"it": "Armatura +2", "en": "Armour +2"}},
+      {"b": null, "x": [34, 36], "name": {"it": "Armatura +2, scudo +1", "en": "Armour +2, shield +1"}},
+      {"b": null, "x": [37, 41], "name": {"it": "Armatura +2, scudo +2", "en": "Armour +2, shield +2"}},
+      {"b": null, "x": [42, 42], "name": {"it": "Armatura +2, scudo +3", "en": "Armour +2, shield +3"}},
+      {"b": null, "x": [43, 45], "name": {"it": "Armatura +3", "en": "Armour +3"}},
+      {"b": null, "x": [46, 46], "name": {"it": "Armatura +3, scudo +1", "en": "Armour +3, shield +1"}},
+      {"b": null, "x": [47, 47], "name": {"it": "Armatura +3, scudo +2", "en": "Armour +3, shield +2"}},
+      {"b": null, "x": [48, 48], "name": {"it": "Armatura +3, scudo +3", "en": "Armour +3, shield +3"}},
+      {"b": null, "x": [49, 51], "name": {"it": "Armatura maledetta -1", "en": "Cursed armour -1"}},
+      {"b": null, "x": [52, 53], "name": {"it": "Armatura maledetta -2", "en": "Cursed armour -2"}},
+      {"b": null, "x": [54, 54], "name": {"it": "Armatura maledetta -2 con scudo +1", "en": "Cursed armour -2 with Shield +1"}},
+      {"b": [3, 3], "x": [55, 56], "name": {"it": "Armatura maledetta, CA 9 [10]", "en": "Cursed armour, AC 9 [10]"}},
+      {"b": null, "x": [57, 62], "name": {"it": "Scudo maledetto -2", "en": "Cursed shield -2"}},
+      {"b": null, "x": [63, 65], "name": {"it": "Scudo maledetto, CA 9 [10]", "en": "Cursed shield, AC 9 [10]"}},
+      {"b": [4, 4], "x": [66, 85], "name": {"it": "Scudo +1", "en": "Shield +1"}},
+      {"b": null, "x": [86, 95], "name": {"it": "Scudo +2", "en": "Shield +2"}},
+      {"b": null, "x": [96, 100], "name": {"it": "Scudo +3", "en": "Shield +3"}}
+    ]},
+    "misc": {"basic_die": 10, "items": [
+      {"b": null, "x": [1, 3], "name": {"it": "Amuleto di protezione dalla divinazione", "en": "Amulet of Protection Against Scrying"}},
+      {"b": [1, 1], "x": [4, 5], "name": {"it": "Borsa divoratrice", "en": "Bag of Devouring"}},
+      {"b": [2, 2], "x": [6, 11], "name": {"it": "Borsa conservante", "en": "Bag of Holding"}},
+      {"b": null, "x": [12, 16], "name": {"it": "Stivali della levitazione", "en": "Boots of Levitation"}},
+      {"b": null, "x": [17, 21], "name": {"it": "Stivali della velocità", "en": "Boots of Speed"}},
+      {"b": null, "x": [22, 26], "name": {"it": "Stivali del viaggio e del balzo", "en": "Boots of Travelling and Leaping"}},
+      {"b": [3, 3], "x": [27, 31], "name": {"it": "Scopa volante", "en": "Broom of Flying"}},
+      {"b": [4, 4], "x": [32, 35], "name": {"it": "Sfera di cristallo", "en": "Crystal Ball"}},
+      {"b": null, "x": [36, 37], "name": {"it": "Sfera di cristallo con chiaroudienza", "en": "Crystal Ball with Clairaudience"}},
+      {"b": null, "x": [38, 38], "name": {"it": "Sfera di cristallo con ESP", "en": "Crystal Ball with ESP"}},
+      {"b": null, "x": [39, 40], "name": {"it": "Mantello dello spostamento", "en": "Cloak of Displacement"}},
+      {"b": null, "x": [41, 41], "name": {"it": "Tamburi del panico", "en": "Drums of Panic"}},
+      {"b": null, "x": [42, 42], "name": {"it": "Bottiglia dell'efreet", "en": "Efreeti Bottle"}},
+      {"b": null, "x": [43, 43], "name": {"it": "Strumento di evocazione elementale: aria", "en": "Elemental Summoning Device: Air"}},
+      {"b": null, "x": [44, 44], "name": {"it": "Strumento di evocazione elementale: terra", "en": "Elemental Summoning Device: Earth"}},
+      {"b": null, "x": [45, 45], "name": {"it": "Strumento di evocazione elementale: fuoco", "en": "Elemental Summoning Device: Fire"}},
+      {"b": null, "x": [46, 46], "name": {"it": "Strumento di evocazione elementale: acqua", "en": "Elemental Summoning Device: Water"}},
+      {"b": [5, 5], "x": [47, 56], "name": {"it": "Mantello e stivali elfici", "en": "Elven Cloak and Boots"}},
+      {"b": null, "x": [57, 57], "name": {"it": "Tappeto volante", "en": "Flying Carpet"}},
+      {"b": [6, 6], "x": [58, 64], "name": {"it": "Guanti della forza dell'ogre", "en": "Gauntlets of Ogre Power"}},
+      {"b": null, "x": [65, 66], "name": {"it": "Cintura della forza dei giganti", "en": "Girdle of Giant Strength"}},
+      {"b": [7, 7], "x": [67, 77], "name": {"it": "Elmo del cambio di allineamento", "en": "Helm of Alignment Changing"}},
+      {"b": null, "x": [78, 82], "name": {"it": "Elmo della lettura di lingue e magia", "en": "Helm of Reading Languages and Magic"}},
+      {"b": [8, 8], "x": [83, 83], "name": {"it": "Elmo della telepatia", "en": "Helm of Telepathy"}},
+      {"b": null, "x": [84, 84], "name": {"it": "Elmo del teletrasporto", "en": "Helm of Teleportation"}},
+      {"b": null, "x": [85, 85], "name": {"it": "Corno della distruzione", "en": "Horn of Blasting"}},
+      {"b": [9, 9], "x": [86, 90], "name": {"it": "Medaglione di ESP (9 m)", "en": "Medallion of ESP 30'"}},
+      {"b": null, "x": [91, 93], "name": {"it": "Medaglione di ESP (27 m)", "en": "Medallion of ESP 90'"}},
+      {"b": null, "x": [94, 94], "name": {"it": "Specchio imprigiona-vita", "en": "Mirror of Life Trapping"}},
+      {"b": [10, 10], "x": [95, 97], "name": {"it": "Corda da scalata", "en": "Rope of Climbing"}},
+      {"b": null, "x": [98, 100], "name": {"it": "Scarabeo di protezione", "en": "Scarab of Protection"}}
+    ]},
+    "potion": {"basic_die": 8, "items": [
+      {"b": null, "x": [1, 3], "name": {"it": "Pozione di chiaroudienza", "en": "Potion of clairaudience"}},
+      {"b": null, "x": [4, 7], "name": {"it": "Pozione di chiaroveggenza", "en": "Potion of clairvoyance"}},
+      {"b": null, "x": [8, 10], "name": {"it": "Pozione di controllo degli animali", "en": "Potion of control animal"}},
+      {"b": null, "x": [11, 13], "name": {"it": "Pozione di controllo dei draghi", "en": "Potion of control dragon"}},
+      {"b": null, "x": [14, 16], "name": {"it": "Pozione di controllo dei giganti", "en": "Potion of control giant"}},
+      {"b": null, "x": [17, 19], "name": {"it": "Pozione di controllo degli umani", "en": "Potion of control human"}},
+      {"b": null, "x": [20, 22], "name": {"it": "Pozione di controllo dei vegetali", "en": "Potion of control plant"}},
+      {"b": null, "x": [23, 25], "name": {"it": "Pozione di controllo dei non morti", "en": "Potion of control undead"}},
+      {"b": null, "x": [26, 32], "name": {"it": "Pozione di illusione", "en": "Potion of delusion"}},
+      {"b": [1, 1], "x": [33, 35], "name": {"it": "Pozione di rimpicciolimento", "en": "Potion of diminution"}},
+      {"b": [2, 2], "x": [36, 39], "name": {"it": "Pozione di ESP", "en": "Potion of ESP"}},
+      {"b": null, "x": [40, 43], "name": {"it": "Pozione di resistenza al fuoco", "en": "Potion of fire resistance"}},
+      {"b": null, "x": [44, 47], "name": {"it": "Pozione di volo", "en": "Potion of flying"}},
+      {"b": [3, 3], "x": [48, 51], "name": {"it": "Pozione di forma gassosa", "en": "Potion of gaseous form"}},
+      {"b": null, "x": [52, 55], "name": {"it": "Pozione di forza dei giganti", "en": "Potion of giant strength"}},
+      {"b": [4, 4], "x": [56, 59], "name": {"it": "Pozione di crescita", "en": "Potion of growth"}},
+      {"b": [5, 5], "x": [60, 63], "name": {"it": "Pozione di guarigione", "en": "Potion of healing"}},
+      {"b": null, "x": [64, 68], "name": {"it": "Pozione di eroismo", "en": "Potion of heroism"}},
+      {"b": [6, 6], "x": [69, 72], "name": {"it": "Pozione di invisibilità", "en": "Potion of invisibility"}},
+      {"b": null, "x": [73, 76], "name": {"it": "Pozione di invulnerabilità", "en": "Potion of invulnerability"}},
+      {"b": [7, 7], "x": [77, 80], "name": {"it": "Pozione di levitazione", "en": "Potion of levitation"}},
+      {"b": null, "x": [81, 84], "name": {"it": "Pozione di longevità", "en": "Potion of longevity"}},
+      {"b": [8, 8], "x": [85, 86], "name": {"it": "Pozione di veleno", "en": "Potion of poison"}},
+      {"b": null, "x": [87, 89], "name": {"it": "Pozione di metamorfosi", "en": "Potion of polymorph self"}},
+      {"b": null, "x": [90, 97], "name": {"it": "Pozione di velocità", "en": "Potion of speed"}},
+      {"b": null, "x": [98, 100], "name": {"it": "Pozione di ricerca dei tesori", "en": "Potion of treasure finding"}}
+    ]},
+    "ring": {"basic_die": 6, "items": [
+      {"b": [1, 1], "x": [1, 5], "name": {"it": "Anello di controllo degli animali", "en": "Ring of control Animals"}},
+      {"b": null, "x": [6, 10], "name": {"it": "Anello di controllo degli umani", "en": "Ring of control Humans"}},
+      {"b": null, "x": [11, 16], "name": {"it": "Anello di controllo dei vegetali", "en": "Ring of control Plants"}},
+      {"b": null, "x": [17, 26], "name": {"it": "Anello di illusione", "en": "Ring of delusion"}},
+      {"b": null, "x": [27, 29], "name": {"it": "Anello di evocazione del djinn", "en": "Ring of djinni Summoning"}},
+      {"b": [2, 2], "x": [30, 39], "name": {"it": "Anello di resistenza al fuoco", "en": "Ring of fire Resistance"}},
+      {"b": [3, 3], "x": [40, 50], "name": {"it": "Anello di invisibilità", "en": "Ring of invisibility"}},
+      {"b": null, "x": [51, 55], "name": {"it": "Anello di protezione +1, raggio 1,5 m", "en": "Ring of protection +1, 5' radius"}},
+      {"b": [4, 4], "x": [56, 70], "name": {"it": "Anello di protezione +1", "en": "Ring of protection +1"}},
+      {"b": null, "x": [71, 72], "name": {"it": "Anello di rigenerazione", "en": "Ring of regeneration"}},
+      {"b": null, "x": [73, 74], "name": {"it": "Anello di accumula-incantesimi", "en": "Ring of spell Storing"}},
+      {"b": null, "x": [75, 80], "name": {"it": "Anello di riflessione degli incantesimi", "en": "Ring of spell Turning"}},
+      {"b": null, "x": [81, 82], "name": {"it": "Anello di telecinesi", "en": "Ring of telekinesis"}},
+      {"b": [5, 5], "x": [83, 88], "name": {"it": "Anello di camminare sull'acqua", "en": "Ring of water Walking"}},
+      {"b": [6, 6], "x": [89, 94], "name": {"it": "Anello di debolezza", "en": "Ring of weakness"}},
+      {"b": null, "x": [95, 96], "name": {"it": "Anello di desideri (1–2)", "en": "Ring of wishes, 1–2"}},
+      {"b": null, "x": [97, 97], "name": {"it": "Anello di desideri (1–3)", "en": "Ring of wishes, 1–3"}},
+      {"b": null, "x": [98, 98], "name": {"it": "Anello di desideri (2–4)", "en": "Ring of wishes, 2–4"}},
+      {"b": null, "x": [99, 100], "name": {"it": "Anello di vista a raggi X", "en": "Ring of X-Ray Vision"}}
+    ]},
+    "rod": {"basic_die": 6, "items": [
+      {"b": [1, 1], "x": [1, 8], "name": {"it": "Verga della cancellazione", "en": "Rod of Cancellation"}},
+      {"b": null, "x": [9, 11], "name": {"it": "Bastone del comando", "en": "Staff of Commanding"}},
+      {"b": [2, 2], "x": [12, 21], "name": {"it": "Bastone della guarigione", "en": "Staff of Healing"}},
+      {"b": null, "x": [22, 23], "name": {"it": "Bastone del potere", "en": "Staff of Power"}},
+      {"b": [3, 3], "x": [24, 28], "name": {"it": "Bastone dei serpenti", "en": "Staff of Snakes"}},
+      {"b": null, "x": [29, 31], "name": {"it": "Bastone della percussione", "en": "Staff of Striking"}},
+      {"b": null, "x": [32, 34], "name": {"it": "Bastone dell'avvizzimento", "en": "Staff of Withering"}},
+      {"b": null, "x": [35, 35], "name": {"it": "Bastone dello stregone", "en": "Staff of Wizardry"}},
+      {"b": null, "x": [36, 40], "name": {"it": "Bacchetta del gelo", "en": "Wand of Cold"}},
+      {"b": [4, 4], "x": [41, 45], "name": {"it": "Bacchetta della scoperta dei nemici", "en": "Wand of Enemy Detection"}},
+      {"b": null, "x": [46, 50], "name": {"it": "Bacchetta della paura", "en": "Wand of Fear"}},
+      {"b": null, "x": [51, 55], "name": {"it": "Bacchetta delle palle di fuoco", "en": "Wand of Fire Balls"}},
+      {"b": null, "x": [56, 60], "name": {"it": "Bacchetta dell'illusione", "en": "Wand of Illusion"}},
+      {"b": null, "x": [61, 65], "name": {"it": "Bacchetta dei fulmini", "en": "Wand of Lightning Bolts"}},
+      {"b": [5, 5], "x": [66, 70], "name": {"it": "Bacchetta della scoperta della magia", "en": "Wand of Magic Detection"}},
+      {"b": null, "x": [71, 75], "name": {"it": "Bacchetta della scoperta dei metalli", "en": "Wand of Metal Detection"}},
+      {"b": null, "x": [76, 80], "name": {"it": "Bacchetta della negazione", "en": "Wand of Negation"}},
+      {"b": [6, 6], "x": [81, 85], "name": {"it": "Bacchetta della paralisi", "en": "Wand of Paralysation"}},
+      {"b": null, "x": [86, 90], "name": {"it": "Bacchetta della metamorfosi", "en": "Wand of Polymorph"}},
+      {"b": null, "x": [91, 95], "name": {"it": "Bacchetta della scoperta delle porte segrete", "en": "Wand of Secret Door Detection"}},
+      {"b": null, "x": [96, 100], "name": {"it": "Bacchetta della scoperta delle trappole", "en": "Wand of Trap Detection"}}
+    ]},
+    "scroll": {"basic_die": 8, "items": [
+      {"b": [1, 1], "x": [1, 15], "name": {"it": "Pergamena con 1 incantesimo", "en": "Scroll with 1 spell"}},
+      {"b": [2, 2], "x": [16, 25], "name": {"it": "Pergamena con 2 incantesimi", "en": "Scroll with 2 spells"}},
+      {"b": [3, 3], "x": [26, 31], "name": {"it": "Pergamena con 3 incantesimi", "en": "Scroll with 3 spells"}},
+      {"b": null, "x": [32, 34], "name": {"it": "Pergamena con 5 incantesimi", "en": "Scroll with 5 spells"}},
+      {"b": null, "x": [35, 35], "name": {"it": "Pergamena con 7 incantesimi", "en": "Scroll with 7 spells"}},
+      {"b": [4, 4], "x": [36, 40], "name": {"it": "Pergamena maledetta", "en": "Cursed scroll"}},
+      {"b": null, "x": [41, 50], "name": {"it": "Pergamena di protezione dagli elementali", "en": "Scroll of protection from elementals"}},
+      {"b": [5, 5], "x": [51, 60], "name": {"it": "Pergamena di protezione dai licantropi", "en": "Scroll of protection from lycanthropes"}},
+      {"b": null, "x": [61, 65], "name": {"it": "Pergamena di protezione dalla magia", "en": "Scroll of protection from magic"}},
+      {"b": [6, 6], "x": [66, 75], "name": {"it": "Pergamena di protezione dai non morti", "en": "Scroll of protection from undead"}},
+      {"b": [7, 7], "x": [76, 78], "name": {"it": "Mappa del tesoro (I)", "en": "Treasure map (I)"}},
+      {"b": null, "x": [79, 80], "name": {"it": "Mappa del tesoro (II)", "en": "Treasure map (II)"}},
+      {"b": null, "x": [81, 82], "name": {"it": "Mappa del tesoro (III)", "en": "Treasure map (III)"}},
+      {"b": null, "x": [83, 83], "name": {"it": "Mappa del tesoro (IV)", "en": "Treasure map (IV)"}},
+      {"b": null, "x": [84, 84], "name": {"it": "Mappa del tesoro (V)", "en": "Treasure map (V)"}},
+      {"b": null, "x": [85, 85], "name": {"it": "Mappa del tesoro (VI)", "en": "Treasure map (VI)"}},
+      {"b": null, "x": [86, 86], "name": {"it": "Mappa del tesoro (VII)", "en": "Treasure map (VII)"}},
+      {"b": [8, 8], "x": [87, 90], "name": {"it": "Mappa del tesoro (VIII)", "en": "Treasure map (VIII)"}},
+      {"b": null, "x": [91, 95], "name": {"it": "Mappa del tesoro (IX)", "en": "Treasure map (IX)"}},
+      {"b": null, "x": [96, 96], "name": {"it": "Mappa del tesoro (X)", "en": "Treasure map (X)"}},
+      {"b": null, "x": [97, 98], "name": {"it": "Mappa del tesoro (XI)", "en": "Treasure map (XI)"}},
+      {"b": null, "x": [99, 100], "name": {"it": "Mappa del tesoro (XII)", "en": "Treasure map (XII)"}}
+    ]},
+    "sword": {"basic_die": 8, "items": [
+      {"b": [1, 1], "x": [1, 2], "name": {"it": "Spada -1, maledetta", "en": "Sword -1, Cursed"}},
+      {"b": null, "x": [3, 4], "name": {"it": "Spada -2, maledetta", "en": "Sword -2, Cursed"}},
+      {"b": [2, 2], "x": [5, 44], "name": {"it": "Spada +1", "en": "Sword +1"}},
+      {"b": [3, 3], "x": [45, 50], "name": {"it": "Spada +1, +2 contro i licantropi", "en": "Sword +1, +2 vs Lycanthropes"}},
+      {"b": [4, 4], "x": [51, 56], "name": {"it": "Spada +1, +2 contro gli incantatori", "en": "Sword +1, +2 vs Spell Users"}},
+      {"b": [5, 5], "x": [57, 61], "name": {"it": "Spada +1, +3 contro i draghi", "en": "Sword +1, +3 vs Dragons"}},
+      {"b": null, "x": [62, 66], "name": {"it": "Spada +1, +3 contro le creature incantate", "en": "Sword +1, +3 vs Enchanted Creatures"}},
+      {"b": null, "x": [67, 71], "name": {"it": "Spada +1, +3 contro le creature che si rigenerano", "en": "Sword +1, +3 vs Regenerating Creatures"}},
+      {"b": [6, 6], "x": [72, 76], "name": {"it": "Spada +1, +3 contro i non morti", "en": "Sword +1, +3 vs Undead"}},
+      {"b": null, "x": [77, 77], "name": {"it": "Spada +1, risucchio di energia", "en": "Sword +1, Energy Drain"}},
+      {"b": null, "x": [78, 81], "name": {"it": "Spada +1, fiammeggiante", "en": "Sword +1, Flaming"}},
+      {"b": [7, 7], "x": [82, 89], "name": {"it": "Spada +1, luce", "en": "Sword +1, Light"}},
+      {"b": null, "x": [90, 92], "name": {"it": "Spada +1, localizzare oggetti", "en": "Sword +1, Locate Objects"}},
+      {"b": null, "x": [93, 93], "name": {"it": "Spada +1, desideri", "en": "Sword +1, Wishes"}},
+      {"b": [8, 8], "x": [94, 96], "name": {"it": "Spada +2", "en": "Sword +2"}},
+      {"b": null, "x": [97, 98], "name": {"it": "Spada +2, charme", "en": "Sword +2, Charm Person"}},
+      {"b": null, "x": [99, 100], "name": {"it": "Spada +3", "en": "Sword +3"}}
+    ]},
+    "weapon": {"basic_die": 4, "items": [
+      {"b": null, "x": [1, 2], "name": {"it": "Frecce +1 (3d10)", "en": "Arrows +1 (3d10)"}},
+      {"b": [1, 1], "x": [3, 12], "name": {"it": "Frecce +1 (2d6)", "en": "Arrows +1 (2d6)"}},
+      {"b": null, "x": [13, 18], "name": {"it": "Frecce +2 (1d6)", "en": "Arrows +2 (1d6)"}},
+      {"b": [2, 2], "x": [19, 27], "name": {"it": "Ascia +1", "en": "Axe +1"}},
+      {"b": null, "x": [28, 30], "name": {"it": "Ascia +2", "en": "Axe +2"}},
+      {"b": null, "x": [31, 33], "name": {"it": "Arco +1", "en": "Bow +1"}},
+      {"b": null, "x": [34, 43], "name": {"it": "Quadrelli +1 (2d6)", "en": "Crossbow bolts +1 (2d6)"}},
+      {"b": null, "x": [44, 45], "name": {"it": "Quadrelli +1 (3d10)", "en": "Crossbow bolts +1 (3d10)"}},
+      {"b": null, "x": [46, 52], "name": {"it": "Quadrelli +2 (1d6)", "en": "Crossbow bolts +2 (1d6)"}},
+      {"b": [3, 3], "x": [53, 55], "name": {"it": "Pugnale +1", "en": "Dagger +1"}},
+      {"b": null, "x": [56, 56], "name": {"it": "Pugnale +2, +3 contro orchi, goblin e coboldi", "en": "Dagger +2, +3 vs orcs, goblins and kobolds"}},
+      {"b": [4, 4], "x": [57, 64], "name": {"it": "Mazza +1", "en": "Mace +1"}},
+      {"b": null, "x": [65, 67], "name": {"it": "Mazza +2", "en": "Mace +2"}},
+      {"b": null, "x": [68, 68], "name": {"it": "Mazza +3", "en": "Mace +3"}},
+      {"b": null, "x": [69, 74], "name": {"it": "Fionda +1", "en": "Sling +1"}},
+      {"b": null, "x": [75, 82], "name": {"it": "Lancia +1", "en": "Spear +1"}},
+      {"b": null, "x": [83, 86], "name": {"it": "Lancia +2", "en": "Spear +2"}},
+      {"b": null, "x": [87, 87], "name": {"it": "Lancia +3", "en": "Spear +3"}},
+      {"b": null, "x": [88, 94], "name": {"it": "Martello da guerra +1", "en": "War hammer +1"}},
+      {"b": null, "x": [95, 99], "name": {"it": "Martello da guerra +2", "en": "War hammer +2"}},
+      {"b": null, "x": [100, 100], "name": {"it": "Martello da guerra +3, da lancio nanico", "en": "War hammer +3, dwarven thrower"}}
+    ]}
+  },
+  "armour_kinds": [
+    {"roll": [1, 2], "name": {"it": "di cuoio", "en": "leather"}},
+    {"roll": [3, 6], "name": {"it": "di maglia", "en": "chainmail"}},
+    {"roll": [7, 8], "name": {"it": "a piastre", "en": "plate mail"}}
+  ],
+  "hiding": {
+    "loose": [
+      {"it": "sotto una lastra del pavimento che si solleva", "en": "under a floor slab that lifts"},
+      {"it": "in un forziere chiuso a chiave", "en": "in a locked chest"},
+      {"it": "dentro una statua cava", "en": "inside a hollow statue"},
+      {"it": "in un sacco marcio dimenticato in un angolo", "en": "in a rotten sack forgotten in a corner"},
+      {"it": "in una nicchia murata", "en": "in a walled-up niche"},
+      {"it": "sparso tra le ossa di un avventuriero", "en": "scattered among the bones of an adventurer"},
+      {"it": "nel doppiofondo di un vecchio baule", "en": "in the false bottom of an old trunk"},
+      {"it": "dietro un mattone che si sfila", "en": "behind a loose brick"},
+      {"it": "sul fondo di una pozza d'acqua torbida", "en": "at the bottom of a pool of murky water"},
+      {"it": "in una cassetta appesa dentro una crepa del soffitto", "en": "in a box hanging inside a crack in the ceiling"},
+      {"it": "sotto un mucchio di macerie", "en": "under a heap of rubble"},
+      {"it": "in un'urna sigillata con la cera", "en": "in an urn sealed with wax"}
+    ],
+    "lair": [
+      {"it": "ammucchiato nella tana", "en": "heaped up in the lair"},
+      {"it": "nascosto sotto il giaciglio", "en": "hidden under the bedding"},
+      {"it": "in un forziere rubato", "en": "in a stolen chest"},
+      {"it": "sparso tra i rifiuti e le ossa", "en": "scattered among the refuse and the bones"},
+      {"it": "custodito dal più forte del gruppo", "en": "kept by the strongest of the group"},
+      {"it": "sepolto sotto il pavimento della tana", "en": "buried under the floor of the lair"}
+    ]
+  }
+}

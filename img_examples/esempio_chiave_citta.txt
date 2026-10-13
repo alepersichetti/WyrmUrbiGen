@@ -1,0 +1,351 @@
+WyrmUrbiGen v1.0.0 — Carpaia
+Seme: C9500-B-R-A2-K7Q2MB
+Città · Basso medioevo · Fiume
+Luogo d'avventura, pericolo 2 · 9.500 abitanti
+Scala: una riga di caratteri = 18,4 m, una colonna = metà
+
+STORIA
+  Carpaia nacque attorno al castello di Puccio di Spinello e se ne liberò con una lunga lotta e un
+  atto firmato dall'imperatore. Un eretico fu arso in piazza; sua figlia giurò vendetta e sparì. Un
+  assedio di tre mesi finì quando qualcuno aprì una postierla di notte: nessuno sa chi fu.
+
+LA MINACCIA: OCCUPATO DAI BRIGANTI
+  Una banda di briganti guidata da Lando Salimbeni ha preso il controllo di Carpaia: taglieggia gli
+  abitanti, tiene in ostaggio i notabili e usa n. 19 (Locanda del Mortaio) come quartier generale.
+  Chi c'è dietro: Lando Salimbeni, capo (Ladro 3 · CA 6 [13] · PF 5 · THAC0 19 [+0] · Mor 10 · AL
+  Caotico): pio, cita i santi a ogni frase; vuole scorta sicura per un carico prezioso; segreto: è
+  una spia di una città nemica.
+  Se nessuno interviene (un passo ogni 1d4 giorni)
+    1.  Giustiziano un notabile in piazza.
+    2.  Arrivano rinforzi: altri 2d6 briganti.
+    3.  Danno fuoco a una contrada e se ne vanno col bottino.
+  Mostri erranti (d6, ogni 2 turni di notte, ogni ora di giorno: 1 su d6)
+    1.  I briganti di Lando Salimbeni: la minaccia in persona, in giro per le strade.
+    2.  Ippogrifo (1d6) · pericolo 2, DV ~3-4: metà aquila e metà cavallo, nidifica nelle
+        torri abbandonate.
+    3.  Ragno gigante (1d6) · pericolo 2, DV ~3-4: ragni grandi come pony che tessono tele
+        tra le colonne.
+    4.  Uomini serpente (1d6) · pericolo 2, DV ~3-4: un'antica razza di serpenti dal corpo
+        umano, devota a dei dimenticati.
+    5.  Statua vivente (1d6) · pericolo 2, DV ~3-4: una statua di cristallo, ferro o pietra
+        che si anima per difendere un luogo.
+    6.  Gargoyle (1d6) · pericolo 2, DV ~3-4: una statua alata che prende vita quando
+        nessuno guarda.
+
+GOVERNO E FAZIONI
+  Isotta Geremei, il podestà forestiero (Guerriero 6 · CA 4 [15] · PF 22 · THAC0 17 [+2] · Mor 8 ·
+  AL Caotico): stanca e malata, tossisce sempre; vuole più clienti, a qualunque costo; segreto: ha
+  fatto un patto con qualcosa nel bosco. (risiede al n. 10)
+  · L'Arte dei Beccai: vuole abbassare le gabelle sulle merci. Guida: Bice da Todi, capo.
+  · I mercanti forestieri: vuole un fondaco tutto loro e le loro leggi. Guida: Iacopo di
+    Ubaldo, capo. Rivale: il capitolo dei canonici.
+  · Il capitolo dei canonici: vuole riavere le terre tolte al vescovo. Guida: Berta Varano,
+    capo.
+
+DEMOGRAFIA
+  9.500 abitanti su 52,8 ettari (180 per ettaro), in circa 3.167 abitazioni; sulla mappa 42 edifici
+  numerati: nei luoghi grandi ogni riquadro è un gruppo di case o un isolato.
+  Famiglie nobili: 48. Avvocati e notai: 15. Religiosi: 238, di cui sacerdoti: 8; luoghi di culto:
+  24. Guardie e birri: 32 (poche: la città è trascurata). Animali: 20.900, per due terzi pollame.
+  Botteghe e mestieri: calzolai 45, pellicciai 23, serve e domestici 27, sarti 21, barbieri 16,
+  orafi 13, osterie 15, rigattieri 18, pasticceri 14, muratori 14, falegnami 11, tessitori 12,
+  candelai 8, merciai 10, bottai 9, fornai 8, acquaioli 7, foderai 5, vinai 6, cappellai 7, sellai
+  6, pollaioli 8, borsai 6, beccai 5, pescivendoli 7, birrai 3, speziali 4, fabbri 3, pittori 3,
+  medici 5, fabbri di serrature 3, stufaioli 2, cordai 4, locande 3, conciatori 3, copisti 4,
+  scultori 3, sellai di finimenti 3, coltellinai 2, guantai 2, intagliatori 2, botteghe di magia 1,
+  legatori di libri 2, miniatori 1, librai 1.
+  Numeri da Medieval Demographics Made Easy di S. John Ross: le botteghe sono tutte in città, sulla
+  mappa ci sono le 42 più importanti.
+
+CONTADO ED ECONOMIA
+  Il contado è terra centrale, del tutto coltivata: nell'esagono di 6 miglia attorno vivono circa
+  2.500 contadini, in 10 villaggi.
+  Rendita netta del signore: 75 mo al mese (900 mo all'anno), già divisa per 2 per i tempi
+  difficili.
+  Proprietà in vendita
+    ·   Locanda (500 mo): 5 ma al mese di guadagno netto (6 mo l'anno). Con 4 servi. Vende:
+        Usanna Malanotte.
+    ·   Grande fattoria (500 mo): 12 mo al mese in un buon anno (quanto spende un
+        cavaliere). Con 3 affittuari. Vende: Novella da Messina.
+    ·   Grande maniero (10.000 mo): 75 mo al mese; +10 mo al mese per ogni villaggio
+        protetto. Con 8 famiglie di affittuari e 4d6 famiglie che ti rendono omaggio.
+        Vende: Tancia il Rosso.
+  Regole di Coins and Scrolls (OSR: Land and Investments): la terra di rado si vende, più spesso si
+  eredita, si dona o si conquista. In tempi di peste, guerra o carestia ogni rendita si dimezza; in
+  tempi di vero caos si divide per 10. Chi imbroglia sulle tasse tiene un altro 5% della rendita,
+  finché un signore attento non controlla i conti.
+  Voci (d8; V vera, F falsa: solo per il master)
+    1.  I briganti di Lando Salimbeni temono il fuoco più delle spade. [V]
+    2.  Basta l'acqua santa della pieve per scacciare ogni male da qui. [F]
+    3.  Mea Varano (n. 33) è in realtà un nobile in incognito. [F]
+    4.  I briganti di Lando Salimbeni sono solo una storia per spaventare i bambini. [F]
+    5.  Un cavaliere è partito un mese fa per la Rocca di Spolino e non è più tornato; la
+        sua spada valeva un castello. [V]
+    6.  Ippogrifo si aggira di notte vicino al cimitero. [V]
+    7.  Il signore sta per alzare le tasse per pagare una guerra. [V]
+    8.  Nel bosco a nord c'è una strega che compra capelli e denti. [V]
+  Eventi durante il soggiorno (d6)
+    1.  Un mercante offre una ricompensa per una lettera rubata.
+    2.  Un'esecuzione in piazza: il condannato giura di essere innocente e fa un nome.
+    3.  Fiera del santo patrono: mercanti da fuori, giocolieri, borseggiatori ovunque.
+    4.  Matrimonio tra due famiglie: tutti sono invitati, anche gli avventurieri.
+    5.  Allarme incendio di notte: tutti alle secchie, e qualcuno approfitta del caos.
+    6.  Una processione blocca le strade; chi non si inginocchia è guardato male.
+
+MURA, PORTE E SEGRETI
+  Mura di pietra, con un fossato pieno d'acqua.
+  · [A] Porta del Soccorso (sud)
+  · [B] Porta del Leone (ovest)
+  · [C] Porta del Soccorso (nord-est)
+  · Postierle segrete nelle mura: 2 ($ sulla mappa del master).
+  · Galleria segreta dal n. 10 (Rocca Malaspiniana) fino a oltre le mura (░ sulla mappa del
+    master).
+
+GLI EDIFICI
+
+  CONTRADA DI PORTA DEL SOCCORSO
+      1 Convento di San Biagio (convento, pietra)
+        Costruito sulle mura, dove la terra costava poco.
+        Lapo Mangiaferro, priore (Chierico 5 · CA 3 [16] · PF 13 · THAC0 17 [+2] · Mor 7 · AL
+        Neutrale · Incantesimi: luce, cura ferite leggere, benedizione, parlare con gli animali):
+        allegro e pettegolo; vuole sposare la figlia a un buon partito; segreto: ha avvelenato la
+        prima moglie. In casa vivono 9 persone.
+      2 Taverna del Montone (osteria, pietra)
+        Una cantina scavata nella roccia dove si gioca d'azzardo.
+        Gualtiero Pallavicino, oste (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 8 · AL
+        Neutrale): allegro e pettegolo; vuole rovinare un concorrente; segreto: nessuno, ma tutti
+        pensano il contrario.
+      3 Palazzo del Comune (palazzo comunale, pietra)
+        Merlato, con la torre civica, la campana del consiglio e la loggia per le sentenze.
+        Elisabetta Bellafronte, notaia e cancelliera (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor
+        6 · AL Caotico): sempre ubriaca dopo il vespro; vuole il favore del signore; segreto:
+        nasconde un eretico in cantina. In casa vivono 4 persone.
+      4 Bottega del cerusico Rosaspina (barbiere-cerusico, pietra)
+        La bacinella d'ottone appesa fuori, una sedia con le cinghie, seghe pulite (quasi).
+        Rosaspina di Dino, cerusica (Umano normale · CA 9 [10] · DV ½ (3 PF) · Mor 8 · AL
+        Neutrale): orgogliosa del proprio lignaggio; vuole andarsene da qui per sempre; segreto:
+        nessuno: è davvero una brava persona. In casa vivono 3 persone.
+      5 Casa dell'astrologo Emilia (casa dell'astrologo, pietra)
+        Un abbaino con il telescopio, fumi colorati dal camino.
+        Emilia Testadura, astrologa (Mago 7 · CA 9 [10] · PF 18 · THAC0 17 [+2] · Mor 8 · AL Legale
+        · Incantesimi: sonno, dardo incantato, leggere i linguaggi, ESP, invisibilità, dissolvi
+        magie, palla di fuoco): devota al signore fino alla morte; vuole notizie di un marito
+        partito per la guerra; segreto: di notte diventa qualcos'altro.
+      6 Palazzo dei Spinola (palazzo signorile, pietra)
+        Bugnato al piano terra, cortile con loggia, panche di pietra lungo la facciata.
+        Ubaldo di Donato, signore (Guerriero 2 · CA 3 [16] · PF 12 · THAC0 19 [+0] · Mor 8 · AL
+        Neutrale): pignolo con regole e contratti; vuole vendicare un fratello ucciso; segreto:
+        conosce un passaggio sotto le mura. In casa vivono 13 persone.
+      7 Pieve di Santa Giustina (chiesa, pietra)
+        Un portico dove si radunano i vecchi e si fanno i contratti.
+        Giannozzo Chiaramonte, pievano (Chierico 4 · CA 5 [14] · PF 19 · THAC0 19 [+0] · Mor 7 · AL
+        Neutrale · Incantesimi: individuazione del male, protezione dal male, blocca persone):
+        superstizioso, porta amuleti ovunque; vuole una reliquia autentica; segreto: è una spia di
+        una città nemica. In casa vivono 2 persone.
+      8 Banco dei Colonna (banco, pietra)
+        Un banco coperto di panno verde sotto un portico, guardie armate alla porta.
+        Neri il Rosso, banchiere (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 8 · AL Neutrale):
+        spaccone, racconta imprese inventate; vuole un libro proibito; segreto: è una spia di una
+        città nemica. In casa vivono 3 persone.
+        Mostri: Statua vivente (1d6) · pericolo 2, DV ~3-4.
+      9 Osteria del Mortaio (osteria, pietra)
+        Una cantina scavata nella roccia dove si gioca d'azzardo.
+        Nella Pallavicino, ostessa (Umano normale · CA 9 [10] · DV ½ (3 PF) · Mor 8 · AL Neutrale):
+        sempre ubriaca dopo il vespro; vuole notizie di un marito partito per la guerra; segreto:
+        nessuno, ma tutti pensano il contrario.
+        Indizio: un piedistallo vuoto (dal n. 8).
+      10 Rocca Malaspiniana (rocca, pietra)
+        Mastio quadrato, fossato interno e un ponte levatoio verso la piazza.
+        Corrado Spinola, castellano (Guerriero 4 · CA 4 [15] · PF 22 · THAC0 17 [+2] · Mor 10 · AL
+        Caotico): sognatore, vuole partire all'avventura; vuole il favore del signore; segreto: ama
+        segretamente un membro della famiglia rivale. In casa vivono 10 persone.
+        Qui risiede il podestà forestiero.
+        Da qui parte la galleria segreta che esce oltre le mura (░ sulla mappa del master).
+
+  CONTRADA DI PORTA DEL LEONE
+      11 Mulino di Dianora (mulino, pietra)
+        Il mugnaio pesa con una stadera che tutti dicono truccata.
+        Dianora Tizzoni, mugnaia (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor 6 · AL Legale):
+        ride di tutto, anche dei funerali; vuole una reliquia autentica; segreto: nessuno, ma tutti
+        pensano il contrario. In casa vivono 3 persone.
+      12 Torre dei Lambertazzi (torre gentilizia, pietra)
+        Buche pontaie per i ponti volanti verso le torri degli alleati.
+        Uberto Guidi, capofamiglia (Guerriero 4 · CA 3 [16] · PF 18 · THAC0 17 [+2] · Mor 10 · AL
+        Legale): cinico, ha visto troppe guerre; vuole sposare la figlia a un buon partito;
+        segreto: paga la gilda dei ladri per essere lasciato in pace. In casa vivono 8 persone.
+      13 Osteria della Sirena (osteria, pietra)
+        Bassa e fumosa, frasca appesa sulla porta, panche lunghe.
+        Usanna Orsini, ostessa (Umano normale · CA 9 [10] · DV ½ (2 PF) · Mor 8 · AL Neutrale):
+        stanca e malata, tossisce sempre; vuole ripagare un debito con il banco; segreto: nasconde
+        un eretico in cantina.
+        Indizio: un sacco di provviste rubate, mezzo vuoto (dal n. 16).
+      14 Taverna della Sirena (osteria, pietra)
+        Bassa e fumosa, frasca appesa sulla porta, panche lunghe.
+        Dino da Rimini, oste (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 8 · AL Caotico):
+        irascibile, mette mano al coltello; vuole ripagare un debito con il banco; segreto:
+        nessuno: è davvero una brava persona. In casa vivono 2 persone.
+      15 Palazzo dei Visconti (palazzo signorile, pietra)
+        Bugnato al piano terra, cortile con loggia, panche di pietra lungo la facciata.
+        Tano Correggio, signore (Guerriero 4 · CA 5 [14] · PF 22 · THAC0 17 [+2] · Mor 8 · AL
+        Neutrale): astuto contrattatore; vuole un libro proibito; segreto: è il figlio illegittimo
+        del signore. In casa vivono 8 persone.
+      16 Cattedrale di Santa Lucia (cattedrale, pietra)
+        Volte altissime, vetrate colorate e un tesoro custodito in sacrestia dietro tre serrature.
+        Novella di Ottaviano, badessa mitrata (Chierico 6 · CA 3 [16] · PF 18 · THAC0 17 [+2] · Mor
+        8 · AL Caotico · Incantesimi: cura ferite leggere, rimuovi paura, parlare con gli animali,
+        benedizione, trova oggetti): colta, parla latino ai clienti; vuole sposare la figlia a un
+        buon partito; segreto: è stata bandita da un'altra città. In casa vivono 8 persone.
+        Mostri: Uomini serpente (1d6) · pericolo 2, DV ~3-4.
+        Tesoro (5.900 mo): 4.000 mo, 2 gemme (100 mo, 500 mo), 1 gioiello (1.300 mo); in un
+        forziere rubato.
+      17 Chiesa di San Frediano (chiesa, pietra)
+        Una cripta bassa con le tombe dei fondatori, chiusa da un cancello arrugginito.
+        Maso Spadalunga, pievano (Chierico 2 · CA 5 [14] · PF 6 · THAC0 19 [+0] · Mor 9 · AL
+        Neutrale · Incantesimi: individuazione del male): sempre ubriaco dopo il vespro; vuole
+        sposare la figlia a un buon partito; segreto: di notte diventa qualcos'altro. In casa
+        vivono 2 persone.
+        Mostri: Ragno gigante (1d6) · pericolo 2, DV ~3-4.
+      18 Corpo di guardia (corpo di guardia, pietra)
+        Rastrelliera di lance, un registro di chi entra e chi esce, dadi sul tavolo.
+        Matilde Baglioni, capitana della guardia (Guerriero 2 · CA 2 [17] · PF 10 · THAC0 19 [+0] ·
+        Mor 9 · AL Neutrale): generoso con chi è in difficoltà; vuole un libro proibito; segreto:
+        ha fatto un patto con qualcosa nel bosco. In casa vivono 8 persone.
+
+  QUARTIERE DI SAN ROMUALDO
+      19 Locanda del Mortaio (locanda, pietra)
+        Cortile per i carri dei mercanti e un pozzo tutto suo.
+        Filippa Spadalunga, ostessa (Umano normale · CA 9 [10] · DV ½ (2 PF) · Mor 7 · AL Caotico):
+        ride di tutto, anche dei funerali; vuole vendicare un fratello ucciso; segreto: di notte
+        diventa qualcos'altro. In casa vivono 2 persone.
+        Covo: I briganti di Lando Salimbeni (3d6).
+      20 Spezieria del Sole (spezieria, pietra)
+        Vasi di maiolica con nomi latini, un coccodrillo impagliato appeso al soffitto.
+        Bice Visconti, speziale (Mago 3 · CA 9 [10] · PF 11 · THAC0 19 [+0] · Mor 10 · AL Neutrale
+        · Incantesimi: scudo, charme su persone, ESP): malinconica, vedova da poco; vuole che
+        nessuno scavi sotto casa sua; segreto: nessuno: è davvero una brava persona. In casa vivono
+        2 persone.
+        Indizio: una scia di piccoli fori nella polvere, come di molte zampe (dal n. 17).
+      21 Spezieria della Gru (spezieria, pietra)
+        Vasi di maiolica con nomi latini, un coccodrillo impagliato appeso al soffitto.
+        Agnese di Cecco, speziale (Mago 1 · CA 9 [10] · PF 1 · THAC0 19 [+0] · Mor 9 · AL Neutrale
+        · Incantesimi: charme su persone): astuta contrattatrice; vuole rovinare un concorrente;
+        segreto: falsifica le monete.
+        Indizio: i resti di un fuoco e un coltello dimenticato (dal n. 19).
+      22 Armeria (armeria, pietra)
+        Rastrelliere di picche, balestre, corazze ingrassate e appese.
+        Bice Testadura, maestra d'armi (Guerriero 4 · CA 5 [14] · PF 13 · THAC0 17 [+2] · Mor 9 ·
+        AL Neutrale): sognatrice, vuole partire all'avventura; vuole sapere chi gli ruba le
+        galline; segreto: è una spia di una città nemica.
+      23 Chiesa di San Giorgio (chiesa, pietra)
+        Affreschi del giudizio universale anneriti dalle candele.
+        Ottavia il Guercio, sacerdotessa (Chierico 3 · CA 3 [16] · PF 14 · THAC0 19 [+0] · Mor 8 ·
+        AL Legale · Incantesimi: rimuovi paura, protezione dal male): sempre ubriaca dopo il
+        vespro; vuole che nessuno scavi sotto casa sua; segreto: nessuno, ma tutti pensano il
+        contrario. In casa vivono 2 persone.
+      24 Studio Generale (Studio, pietra)
+        Aule intorno a un cortile, studenti forestieri divisi per nazioni, risse frequenti.
+        Ezzelino Varano, rettore dello Studio (Mago 4 · CA 9 [10] · PF 13 · THAC0 19 [+0] · Mor 8 ·
+        AL Neutrale · Incantesimi: individuazione del magico, sonno, levitazione, serratura
+        magica): sognatore, vuole partire all'avventura; vuole vendicare un fratello ucciso;
+        segreto: è una spia di una città nemica. In casa vivono 16 persone.
+      25 Sede dell'Arte dei Beccai (sede di un'Arte, pietra)
+        Lo stemma dell'Arte scolpito sopra la porta, una sala con gli statuti incatenati.
+        Gherardo di Castruccio, console dell'Arte (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor 6
+        · AL Neutrale): orgoglioso del proprio lignaggio; vuole vendicare un fratello ucciso;
+        segreto: di notte diventa qualcos'altro. In casa vivono 4 persone.
+        Indizio: piume, scaglie e peli che non appartengono a nessun animale noto (dal n. 31).
+      26 Ospedale di San Lorenzo (ospedale, pietra)
+        Ruota dei trovatelli sulla strada, farmacia nel retro.
+        Cecco Salimbeni, rettore (Chierico 1 · CA 4 [15] · PF 4 · THAC0 19 [+0] · Mor 7 · AL
+        Neutrale): irascibile, mette mano al coltello; vuole ritrovare un anello perduto; segreto:
+        ha avvelenato la prima moglie. In casa vivono 11 persone.
+      27 Torre dei Fieschi (torre gentilizia, pietra)
+        Buche pontaie per i ponti volanti verso le torri degli alleati.
+        Gemma Pico, capofamiglia (Guerriero 4 · CA 2 [17] · PF 10 · THAC0 17 [+2] · Mor 8 · AL
+        Neutrale): pignola con regole e contratti; vuole andarsene da qui per sempre; segreto: ha
+        una mappa di un tesoro che non sa leggere. In casa vivono 9 persone.
+      28 Palazzo dei Pepoli (palazzo signorile, pietra)
+        Bugnato al piano terra, cortile con loggia, panche di pietra lungo la facciata.
+        Ubaldo da Aquileia, signore (Guerriero 3 · CA 3 [16] · PF 8 · THAC0 19 [+0] · Mor 9 · AL
+        Legale): malinconico, vedovo da poco; vuole ripagare un debito con il banco; segreto:
+        falsifica le monete. In casa vivono 11 persone.
+      29 Locanda della Serpe (locanda, pietra)
+        Insegna di ferro battuto, grande camino, camerata sopra la stalla.
+        Zanobi di Folco, oste (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor 6 · AL Neutrale):
+        gentile ma terrorizzato da tutto; vuole andarsene da qui per sempre; segreto: conosce un
+        passaggio sotto le mura. In casa vivono 5 persone.
+      30 Locanda della Ruota (locanda, pietra)
+        Insegna di ferro battuto, grande camino, camerata sopra la stalla.
+        Rosaspina da Chioggia, ostessa (Umano normale · CA 9 [10] · DV ½ (2 PF) · Mor 6 · AL
+        Legale): orgogliosa del proprio lignaggio; vuole più clienti, a qualunque costo; segreto:
+        vende acqua del pozzo come acqua santa. In casa vivono 5 persone.
+      31 Torre dei Buondelmonti (torre gentilizia, pietra)
+        Alta e stretta, ingresso al primo piano con scala di legno che si ritira.
+        Simone Mangiaferro, capofamiglia (Guerriero 1 · CA 5 [14] · PF 3 · THAC0 19 [+0] · Mor 7 ·
+        AL Legale): timido, balbetta; vuole essere perdonato per un vecchio peccato; segreto: è
+        stato bandito da un'altra città. In casa vivono 2 persone.
+        Mostri: Ippogrifo (1d6) · pericolo 2, DV ~3-4.
+
+  FUORI LE MURA
+      32 Squero di Giannozzo (squero, legno)
+        Scafi in costruzione su scivoli di legno, odore di pece.
+        Giannozzo Scaligeri, maestro d'ascia (Umano normale · CA 9 [10] · DV ½ (2 PF) · Mor 8 · AL
+        Legale): cinico, ha visto troppe guerre; vuole un libro proibito; segreto: è il figlio
+        illegittimo del signore. In casa vivono 5 persone.
+      33 Squero di Mea (squero, legno)
+        Scafi in costruzione su scivoli di legno, odore di pece.
+        Mea Varano, maestra d'ascia (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 6 · AL Legale):
+        orgogliosa del proprio lignaggio; vuole ripagare un debito con il banco; segreto: nessuno,
+        ma tutti pensano il contrario. In casa vivono 7 persone.
+      34 Fondaco dei Chiaramonte (fondaco, pietra)
+        Balle di lana, botti d'olio, sale e un cane da guardia che non dorme mai.
+        Caterina di Ezzelino, fondachiera (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 7 · AL
+        Neutrale): astuta contrattatrice; vuole una reliquia autentica; segreto: è stata bandita da
+        un'altra città. In casa vivono 3 persone.
+      35 Stufa della Serpe (stufa, pietra)
+        Vapore, tinozze di legno, e più affari che pulizia.
+        Piccarda di Lando, stufaiola (Umano normale · CA 9 [10] · DV ½ (3 PF) · Mor 6 · AL Legale):
+        superstiziosa, porta amuleti ovunque; vuole un rimedio per il figlio malato; segreto: vende
+        acqua del pozzo come acqua santa. In casa vivono 6 persone.
+      36 Tintoria Fieschi (tintoria, pietra)
+        Le acque del fiume escono rosse, blu e gialle; teli stesi sui tetti.
+        Vanni Salimbeni, maestro tintore (Umano normale · CA 9 [10] · DV ½ (3 PF) · Mor 6 · AL
+        Legale): avaro fino all'ultimo denaro; vuole notizie di un marito partito per la guerra;
+        segreto: custodisce un oggetto magico che non sa usare. In casa vivono 5 persone.
+      37 Conceria di Caterina (conceria, legno)
+        Vasche di calce e di urina, un fetore che tiene lontani i curiosi.
+        Caterina Spadalunga, conciatrice (Umano normale · CA 9 [10] · DV ½ (3 PF) · Mor 6 · AL
+        Legale): pia, cita i santi a ogni frase; vuole ripagare un debito con il banco; segreto: ha
+        visto un omicidio e tace. In casa vivono 6 persone.
+      38 Pescheria (pescheria, pietra)
+        Banchi di marmo lavati ogni sera, gabbiani e gatti che litigano.
+        Lotario di Rinaldo, pescivendolo (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor 6 · AL
+        Legale): orgoglioso del proprio lignaggio; vuole scorta sicura per un carico prezioso;
+        segreto: paga la gilda dei ladri per essere lasciato in pace.
+      39 Casale di Lisa (casale, pietra)
+        Casa e stalla sotto lo stesso tetto, un pozzo con la carrucola.
+        Lisa Pio, massaia (Umano normale · CA 9 [10] · DV ½ (4 PF) · Mor 6 · AL Caotico):
+        ossessionata dalla pulizia; vuole un libro proibito; segreto: ama segretamente un membro
+        della famiglia rivale. In casa vivono 6 persone.
+      40 Casale di Lapo (casale, pietra)
+        Casa e stalla sotto lo stesso tetto, un pozzo con la carrucola.
+        Lapo di Ubaldo, massaro (Umano normale · CA 9 [10] · DV ½ (2 PF) · Mor 8 · AL Legale):
+        avaro fino all'ultimo denaro; vuole ripagare un debito con il banco; segreto: è indebitato
+        fino al collo. In casa vivono 3 persone.
+      41 Casale di Dianora (casale, pietra)
+        Casa e stalla sotto lo stesso tetto, un pozzo con la carrucola.
+        Dianora Beccaria, massaia (Umano normale · CA 9 [10] · DV ½ (1 PF) · Mor 7 · AL Neutrale):
+        ossessionata dalla pulizia; vuole una reliquia autentica; segreto: ha fatto un patto con
+        qualcosa nel bosco. In casa vivono 8 persone.
+      42 Abbazia di San Biagio (monastero, pietra)
+        Chiostro, scriptorium, cantina e un'infermeria con le erbe dell'orto.
+        Duccio da Lecce, abate (Chierico 7 · CA 3 [16] · PF 26 · THAC0 17 [+2] · Mor 10 · AL Legale
+        · Incantesimi: luce, protezione dal male, rimuovi paura, blocca persone, trova trappole,
+        luce perenne, trova oggetti): superstizioso, porta amuleti ovunque; vuole scorta sicura per
+        un carico prezioso; segreto: ha avvelenato la prima moglie. In casa vivono 10 persone.
+
+FONTI
+  Mostri, indizi e tesori vengono da WyrmDelve (tesori: Old-School Essentials SRD, Open Game
+  License 1.0a). Popolazione, densità e mestieri: S. John Ross, Medieval Demographics Made Easy.
+  Contado, rendite e proprietà: Skerples, OSR: Land and Investments (Coins and Scrolls). Di queste
+  fonti sono usati solo i numeri.

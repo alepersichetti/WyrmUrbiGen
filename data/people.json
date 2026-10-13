@@ -1,0 +1,1814 @@
+{
+ "first_names": {
+  "m": [
+   "Guido",
+   "Bertoldo",
+   "Ugolino",
+   "Lapo",
+   "Cecco",
+   "Gualtiero",
+   "Ildebrando",
+   "Sigismondo",
+   "Ranieri",
+   "Bindo",
+   "Corrado",
+   "Dino",
+   "Folco",
+   "Ghino",
+   "Iacopo",
+   "Manfredi",
+   "Nuccio",
+   "Oddone",
+   "Puccio",
+   "Rinaldo",
+   "Simone",
+   "Taddeo",
+   "Ubaldo",
+   "Vanni",
+   "Arrigo",
+   "Baldo",
+   "Cione",
+   "Duccio",
+   "Ezzelino",
+   "Filippo",
+   "Gherardo",
+   "Lando",
+   "Matteo",
+   "Neri",
+   "Orlando",
+   "Pandolfo",
+   "Rodolfo",
+   "Salimbene",
+   "Tedaldo",
+   "Uberto",
+   "Alberico",
+   "Brunetto",
+   "Castruccio",
+   "Donato",
+   "Ermanno",
+   "Fazio",
+   "Giannozzo",
+   "Lotario",
+   "Maso",
+   "Nanni",
+   "Ottaviano",
+   "Piero",
+   "Rustico",
+   "Spinello",
+   "Tano",
+   "Ugo",
+   "Zanobi",
+   "Agnolo",
+   "Bonaccorso",
+   "Federigo"
+  ],
+  "f": [
+   "Tessa",
+   "Bice",
+   "Lapa",
+   "Monna Ghita",
+   "Cia",
+   "Dianora",
+   "Emilia",
+   "Fiordaliso",
+   "Giovanna",
+   "Ilaria",
+   "Lisa",
+   "Mea",
+   "Nanna",
+   "Oretta",
+   "Piccarda",
+   "Sandra",
+   "Taddea",
+   "Usanna",
+   "Verdiana",
+   "Alda",
+   "Berta",
+   "Caterina",
+   "Drusiana",
+   "Elisabetta",
+   "Francesca",
+   "Gemma",
+   "Isotta",
+   "Lucrezia",
+   "Margherita",
+   "Nella",
+   "Ottavia",
+   "Pia",
+   "Rosaspina",
+   "Simona",
+   "Tancia",
+   "Ubaldina",
+   "Vanna",
+   "Zita",
+   "Agnese",
+   "Brigida",
+   "Costanza",
+   "Diamante",
+   "Ermellina",
+   "Filippa",
+   "Giuditta",
+   "Lena",
+   "Matilde",
+   "Novella",
+   "Orsola",
+   "Pellegrina"
+  ]
+ },
+ "families": [
+  "Ubaldini",
+  "Salimbeni",
+  "Tolomei",
+  "Gherardeschi",
+  "Malaspina",
+  "Della Torre",
+  "Visconti",
+  "Guidi",
+  "Alberti",
+  "Buondelmonti",
+  "Cerchi",
+  "Donati",
+  "Lambertazzi",
+  "Geremei",
+  "Pazzi",
+  "Strozzi",
+  "Baglioni",
+  "Oddi",
+  "Manfredi",
+  "Ordelaffi",
+  "Pepoli",
+  "Scaligeri",
+  "Caminesi",
+  "Trinci",
+  "Varano",
+  "Chiaramonte",
+  "Ventimiglia",
+  "Doria",
+  "Spinola",
+  "Fieschi",
+  "Grimaldi",
+  "Malatesta",
+  "Montefeltro",
+  "Orsini",
+  "Colonna",
+  "Savelli",
+  "Farnese",
+  "Gonzaga",
+  "Pico",
+  "Pio",
+  "Rangoni",
+  "Correggio",
+  "Rossi",
+  "Sanvitale",
+  "Pallavicino",
+  "Landi",
+  "Anguissola",
+  "Beccaria",
+  "Langosco",
+  "Tizzoni"
+ ],
+ "family_adj": {
+  "it": [
+   "Malaspiniana",
+   "Viscontea",
+   "Albornoziana",
+   "Estense",
+   "Sforzesca",
+   "Scaligera",
+   "Feltresca",
+   "Orsiniana",
+   "Gonzaghesca",
+   "Farnesiana"
+  ],
+  "en": [
+   "Malaspina",
+   "Visconti",
+   "Albornoz",
+   "Este",
+   "Sforza",
+   "Scaliger",
+   "Montefeltro",
+   "Orsini",
+   "Gonzaga",
+   "Farnese"
+  ]
+ },
+ "bynames": [
+  {
+   "it": "il Guercio",
+   "en": "the One-Eyed"
+  },
+  {
+   "it": "il Rosso",
+   "en": "the Red"
+  },
+  {
+   "it": "lo Zoppo",
+   "en": "the Lame"
+  },
+  {
+   "it": "il Pio",
+   "en": "the Pious"
+  },
+  {
+   "it": "Malanotte",
+   "en": "Badnight"
+  },
+  {
+   "it": "Testadura",
+   "en": "Hardhead"
+  },
+  {
+   "it": "il Muto",
+   "en": "the Mute"
+  },
+  {
+   "it": "Bellafronte",
+   "en": "Fairbrow"
+  },
+  {
+   "it": "Mangiaferro",
+   "en": "Ironeater"
+  },
+  {
+   "it": "il Vecchio",
+   "en": "the Elder"
+  },
+  {
+   "it": "il Giovane",
+   "en": "the Younger"
+  },
+  {
+   "it": "Spadalunga",
+   "en": "Longsword"
+  }
+ ],
+ "places": [
+  "Lucca",
+  "Siena",
+  "Arezzo",
+  "Pistoia",
+  "Volterra",
+  "Cortona",
+  "Spoleto",
+  "Gubbio",
+  "Todi",
+  "Orvieto",
+  "Ferrara",
+  "Mantova",
+  "Cremona",
+  "Lodi",
+  "Pavia",
+  "Asti",
+  "Ivrea",
+  "Aquileia",
+  "Ravenna",
+  "Rimini",
+  "Ascoli",
+  "Fermo",
+  "Sulmona",
+  "Amalfi",
+  "Trani",
+  "Lecce",
+  "Messina",
+  "Sassari",
+  "Chioggia",
+  "Brescia"
+ ],
+ "trades": [
+  {
+   "m": {
+    "it": "tessitore",
+    "en": "weaver"
+   },
+   "f": {
+    "it": "tessitrice",
+    "en": "weaver"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "calzolaio",
+    "en": "cobbler"
+   },
+   "f": {
+    "it": "calzolaia",
+    "en": "cobbler"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "sarto",
+    "en": "tailor"
+   },
+   "f": {
+    "it": "sarta",
+    "en": "seamstress"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "falegname",
+    "en": "carpenter"
+   },
+   "f": {
+    "it": "falegname",
+    "en": "carpenter"
+   },
+   "where": [
+    "town",
+    "city",
+    "village",
+    "castle"
+   ]
+  },
+  {
+   "m": {
+    "it": "bottaio",
+    "en": "cooper"
+   },
+   "f": {
+    "it": "bottaia",
+    "en": "cooper"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "vasaio",
+    "en": "potter"
+   },
+   "f": {
+    "it": "vasaia",
+    "en": "potter"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "cordaio",
+    "en": "ropemaker"
+   },
+   "f": {
+    "it": "cordaia",
+    "en": "ropemaker"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "candelaio",
+    "en": "chandler"
+   },
+   "f": {
+    "it": "candelaia",
+    "en": "chandler"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "orafo",
+    "en": "goldsmith"
+   },
+   "f": {
+    "it": "orafa",
+    "en": "goldsmith"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "pellicciaio",
+    "en": "furrier"
+   },
+   "f": {
+    "it": "pellicciaia",
+    "en": "furrier"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "sellaio",
+    "en": "saddler"
+   },
+   "f": {
+    "it": "sellaia",
+    "en": "saddler"
+   },
+   "where": [
+    "town",
+    "city",
+    "castle",
+    "fortress"
+   ]
+  },
+  {
+   "m": {
+    "it": "armaiolo",
+    "en": "armourer"
+   },
+   "f": {
+    "it": "armaiola",
+    "en": "armourer"
+   },
+   "where": [
+    "city",
+    "fortress",
+    "castle"
+   ]
+  },
+  {
+   "m": {
+    "it": "arcaio",
+    "en": "bowyer"
+   },
+   "f": {
+    "it": "arcaia",
+    "en": "bowyer"
+   },
+   "where": [
+    "town",
+    "city",
+    "castle",
+    "fortress"
+   ]
+  },
+  {
+   "m": {
+    "it": "muratore",
+    "en": "mason"
+   },
+   "f": {
+    "it": "muratrice",
+    "en": "mason"
+   },
+   "where": [
+    "town",
+    "city",
+    "castle",
+    "fortress"
+   ]
+  },
+  {
+   "m": {
+    "it": "notaio",
+    "en": "notary"
+   },
+   "f": {
+    "it": "notaia",
+    "en": "notary"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "mercante di stoffe",
+    "en": "cloth merchant"
+   },
+   "f": {
+    "it": "mercantessa di stoffe",
+    "en": "cloth merchant"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "merciaio",
+    "en": "haberdasher"
+   },
+   "f": {
+    "it": "merciaia",
+    "en": "haberdasher"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "lanaiolo",
+    "en": "wool worker"
+   },
+   "f": {
+    "it": "lanaiola",
+    "en": "wool worker"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "cardatore",
+    "en": "wool carder"
+   },
+   "f": {
+    "it": "cardatrice",
+    "en": "wool carder"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "vinaio",
+    "en": "vintner"
+   },
+   "f": {
+    "it": "vinaia",
+    "en": "vintner"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "pescatore",
+    "en": "fisher"
+   },
+   "f": {
+    "it": "pescatrice",
+    "en": "fisher"
+   },
+   "where": [
+    "village",
+    "town",
+    "city"
+   ],
+   "terrains": [
+    "coast",
+    "lake",
+    "river",
+    "swamp"
+   ]
+  },
+  {
+   "m": {
+    "it": "barcaiolo",
+    "en": "boatman"
+   },
+   "f": {
+    "it": "barcaiola",
+    "en": "boatwoman"
+   },
+   "where": [
+    "town",
+    "city"
+   ],
+   "terrains": [
+    "coast",
+    "lake",
+    "river"
+   ]
+  },
+  {
+   "m": {
+    "it": "carbonaio",
+    "en": "charcoal burner"
+   },
+   "f": {
+    "it": "carbonaia",
+    "en": "charcoal burner"
+   },
+   "where": [
+    "village"
+   ],
+   "terrains": [
+    "forest",
+    "mountains",
+    "hills"
+   ]
+  },
+  {
+   "m": {
+    "it": "boscaiolo",
+    "en": "woodcutter"
+   },
+   "f": {
+    "it": "boscaiola",
+    "en": "woodcutter"
+   },
+   "where": [
+    "village",
+    "town"
+   ],
+   "terrains": [
+    "forest",
+    "mountains",
+    "hills"
+   ]
+  },
+  {
+   "m": {
+    "it": "pastore",
+    "en": "shepherd"
+   },
+   "f": {
+    "it": "pastora",
+    "en": "shepherdess"
+   },
+   "where": [
+    "village"
+   ],
+   "terrains": [
+    "hills",
+    "mountains",
+    "plains"
+   ]
+  },
+  {
+   "m": {
+    "it": "minatore",
+    "en": "miner"
+   },
+   "f": {
+    "it": "minatrice",
+    "en": "miner"
+   },
+   "where": [
+    "village",
+    "town"
+   ],
+   "terrains": [
+    "mountains",
+    "hills"
+   ]
+  },
+  {
+   "m": {
+    "it": "salinaro",
+    "en": "salt maker"
+   },
+   "f": {
+    "it": "salinara",
+    "en": "salt maker"
+   },
+   "where": [
+    "village",
+    "town"
+   ],
+   "terrains": [
+    "coast",
+    "swamp"
+   ]
+  },
+  {
+   "m": {
+    "it": "contadino",
+    "en": "peasant"
+   },
+   "f": {
+    "it": "contadina",
+    "en": "peasant"
+   },
+   "where": [
+    "village",
+    "town"
+   ]
+  },
+  {
+   "m": {
+    "it": "bracciante",
+    "en": "day labourer"
+   },
+   "f": {
+    "it": "bracciante",
+    "en": "day labourer"
+   },
+   "where": [
+    "village",
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "vetturale",
+    "en": "carter"
+   },
+   "f": {
+    "it": "vetturale",
+    "en": "carter"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "cuoiaio",
+    "en": "leatherworker"
+   },
+   "f": {
+    "it": "cuoiaia",
+    "en": "leatherworker"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "fabbricante di pergamena",
+    "en": "parchment maker"
+   },
+   "f": {
+    "it": "fabbricante di pergamena",
+    "en": "parchment maker"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "cambiavalute",
+    "en": "money changer"
+   },
+   "f": {
+    "it": "cambiavalute",
+    "en": "money changer"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "pittore",
+    "en": "painter"
+   },
+   "f": {
+    "it": "pittrice",
+    "en": "painter"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "m": {
+    "it": "cantastorie",
+    "en": "storyteller"
+   },
+   "f": {
+    "it": "cantastorie",
+    "en": "storyteller"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "m": {
+    "it": "levatrice e guaritore",
+    "en": "midwife and healer"
+   },
+   "f": {
+    "it": "levatrice",
+    "en": "midwife"
+   },
+   "where": [
+    "village",
+    "town"
+   ]
+  },
+  {
+   "m": {
+    "it": "soldato in congedo",
+    "en": "discharged soldier"
+   },
+   "f": {
+    "it": "vivandiera",
+    "en": "camp follower"
+   },
+   "where": [
+    "castle",
+    "fortress",
+    "town"
+   ]
+  },
+  {
+   "m": {
+    "it": "stalliere",
+    "en": "groom"
+   },
+   "f": {
+    "it": "stalliera",
+    "en": "groom"
+   },
+   "where": [
+    "castle",
+    "fortress"
+   ]
+  },
+  {
+   "m": {
+    "it": "lavandaio",
+    "en": "launderer"
+   },
+   "f": {
+    "it": "lavandaia",
+    "en": "laundress"
+   },
+   "where": [
+    "castle",
+    "fortress",
+    "city",
+    "town"
+   ]
+  },
+  {
+   "m": {
+    "it": "fornitore dell'esercito",
+    "en": "army supplier"
+   },
+   "f": {
+    "it": "fornitrice dell'esercito",
+    "en": "army supplier"
+   },
+   "where": [
+    "fortress"
+   ]
+  }
+ ],
+ "traits": [
+  {
+   "it": "allegro e pettegolo",
+   "en": "cheerful and gossipy",
+   "it_f": "allegra e pettegola"
+  },
+  {
+   "it": "avaro fino all'ultimo denaro",
+   "en": "miserly to the last penny",
+   "it_f": "avara fino all'ultimo denaro"
+  },
+  {
+   "it": "pio, cita i santi a ogni frase",
+   "en": "devout, quotes saints in every sentence",
+   "it_f": "pia, cita i santi a ogni frase"
+  },
+  {
+   "it": "sospettoso coi forestieri",
+   "en": "suspicious of strangers",
+   "it_f": "sospettosa coi forestieri"
+  },
+  {
+   "it": "sempre ubriaco dopo il vespro",
+   "en": "always drunk after vespers",
+   "it_f": "sempre ubriaca dopo il vespro"
+  },
+  {
+   "it": "orgoglioso del proprio lignaggio",
+   "en": "proud of their lineage",
+   "it_f": "orgogliosa del proprio lignaggio"
+  },
+  {
+   "it": "gentile ma terrorizzato da tutto",
+   "en": "kind but terrified of everything",
+   "it_f": "gentile ma terrorizzata da tutto"
+  },
+  {
+   "it": "chiacchierone, non tiene un segreto",
+   "en": "a chatterbox who can't keep a secret",
+   "it_f": "chiacchierona, non tiene un segreto"
+  },
+  {
+   "it": "cinico, ha visto troppe guerre",
+   "en": "cynical, has seen too many wars",
+   "it_f": "cinica, ha visto troppe guerre"
+  },
+  {
+   "it": "ambizioso e calcolatore",
+   "en": "ambitious and calculating",
+   "it_f": "ambiziosa e calcolatrice"
+  },
+  {
+   "it": "superstizioso, porta amuleti ovunque",
+   "en": "superstitious, wears charms everywhere",
+   "it_f": "superstiziosa, porta amuleti ovunque"
+  },
+  {
+   "it": "brusco ma onesto",
+   "en": "gruff but honest"
+  },
+  {
+   "it": "sognatore, vuole partire all'avventura",
+   "en": "a dreamer who longs for adventure",
+   "it_f": "sognatrice, vuole partire all'avventura"
+  },
+  {
+   "it": "irascibile, mette mano al coltello",
+   "en": "hot-tempered, quick to the knife"
+  },
+  {
+   "it": "lusinghiero e falso",
+   "en": "flattering and false",
+   "it_f": "lusinghiera e falsa"
+  },
+  {
+   "it": "stanco e malato, tossisce sempre",
+   "en": "tired and ill, always coughing",
+   "it_f": "stanca e malata, tossisce sempre"
+  },
+  {
+   "it": "colto, parla latino ai clienti",
+   "en": "learned, speaks Latin to customers",
+   "it_f": "colta, parla latino ai clienti"
+  },
+  {
+   "it": "generoso con chi è in difficoltà",
+   "en": "generous to those in need"
+  },
+  {
+   "it": "pignolo con regole e contratti",
+   "en": "a stickler for rules and contracts",
+   "it_f": "pignola con regole e contratti"
+  },
+  {
+   "it": "malinconico, vedovo da poco",
+   "en": "melancholy, recently widowed",
+   "it_f": "malinconica, vedova da poco"
+  },
+  {
+   "it": "spaccone, racconta imprese inventate",
+   "en": "a braggart who tells made-up deeds",
+   "it_f": "spaccona, racconta imprese inventate"
+  },
+  {
+   "it": "curioso, fa troppe domande",
+   "en": "curious, asks too many questions",
+   "it_f": "curiosa, fa troppe domande"
+  },
+  {
+   "it": "devoto al signore fino alla morte",
+   "en": "loyal to the lord unto death",
+   "it_f": "devota al signore fino alla morte"
+  },
+  {
+   "it": "ride di tutto, anche dei funerali",
+   "en": "laughs at everything, even funerals"
+  },
+  {
+   "it": "timido, balbetta",
+   "en": "shy, stammers"
+  },
+  {
+   "it": "astuto contrattatore",
+   "en": "a shrewd haggler",
+   "it_f": "astuta contrattatrice"
+  },
+  {
+   "it": "nostalgico dei bei tempi andati",
+   "en": "nostalgic for the good old days",
+   "it_f": "nostalgica dei bei tempi andati"
+  },
+  {
+   "it": "ossessionato dalla pulizia",
+   "en": "obsessed with cleanliness",
+   "it_f": "ossessionata dalla pulizia"
+  }
+ ],
+ "wants": [
+  {
+   "it": "sposare la figlia a un buon partito",
+   "en": "to marry their daughter well"
+  },
+  {
+   "it": "vendicare un fratello ucciso",
+   "en": "to avenge a murdered brother"
+  },
+  {
+   "it": "ripagare un debito con il banco",
+   "en": "to pay off a debt to the bank"
+  },
+  {
+   "it": "entrare nel consiglio cittadino",
+   "en": "to get a seat on the council"
+  },
+  {
+   "it": "ritrovare un anello perduto",
+   "en": "to find a lost ring"
+  },
+  {
+   "it": "andarsene da qui per sempre",
+   "en": "to leave this place for good"
+  },
+  {
+   "it": "rovinare un concorrente",
+   "en": "to ruin a rival"
+  },
+  {
+   "it": "un rimedio per il figlio malato",
+   "en": "a cure for a sick child"
+  },
+  {
+   "it": "notizie di un marito partito per la guerra",
+   "en": "news of a spouse gone to war"
+  },
+  {
+   "it": "una reliquia autentica",
+   "en": "a genuine relic"
+  },
+  {
+   "it": "scorta sicura per un carico prezioso",
+   "en": "a safe escort for a precious load"
+  },
+  {
+   "it": "un libro proibito",
+   "en": "a forbidden book"
+  },
+  {
+   "it": "essere perdonato per un vecchio peccato",
+   "en": "forgiveness for an old sin"
+  },
+  {
+   "it": "il favore del signore",
+   "en": "the lord's favour"
+  },
+  {
+   "it": "più clienti, a qualunque costo",
+   "en": "more customers, at any cost"
+  },
+  {
+   "it": "che nessuno scavi sotto casa sua",
+   "en": "that nobody digs under their house"
+  },
+  {
+   "it": "sapere chi gli ruba le galline",
+   "en": "to know who steals their hens"
+  },
+  {
+   "it": "pace con la famiglia rivale",
+   "en": "peace with the rival family"
+  },
+  {
+   "it": "un apprendista che non sia uno scansafatiche",
+   "en": "an apprentice who isn't a layabout"
+  },
+  {
+   "it": "vedere il mare prima di morire",
+   "en": "to see the sea before dying"
+  }
+ ],
+ "secrets": [
+  {
+   "it": "è una spia di una città nemica",
+   "en": "is a spy for an enemy town"
+  },
+  {
+   "it": "ha avvelenato la prima moglie",
+   "en": "poisoned his first wife",
+   "it_f": "ha avvelenato il primo marito",
+   "en_f": "poisoned their first spouse"
+  },
+  {
+   "it": "nasconde un eretico in cantina",
+   "en": "hides a heretic in the cellar"
+  },
+  {
+   "it": "falsifica le monete",
+   "en": "forges coins"
+  },
+  {
+   "it": "è il figlio illegittimo del signore",
+   "en": "is the lord's illegitimate child",
+   "it_f": "è la figlia illegittima del signore",
+   "en_f": "is the lord's illegitimate daughter"
+  },
+  {
+   "it": "paga la gilda dei ladri per essere lasciato in pace",
+   "en": "pays the thieves' guild to be left alone"
+  },
+  {
+   "it": "ha una mappa di un tesoro che non sa leggere",
+   "en": "owns a treasure map they can't read"
+  },
+  {
+   "it": "di notte diventa qualcos'altro",
+   "en": "becomes something else at night"
+  },
+  {
+   "it": "è indebitato fino al collo",
+   "en": "is in debt up to the neck",
+   "it_f": "è indebitata fino al collo"
+  },
+  {
+   "it": "conosce un passaggio sotto le mura",
+   "en": "knows a passage under the walls"
+  },
+  {
+   "it": "ha visto un omicidio e tace",
+   "en": "witnessed a murder and keeps quiet"
+  },
+  {
+   "it": "vende acqua del pozzo come acqua santa",
+   "en": "sells well water as holy water"
+  },
+  {
+   "it": "è stato bandito da un'altra città",
+   "en": "was banished from another town",
+   "it_f": "è stata bandita da un'altra città"
+  },
+  {
+   "it": "ama segretamente un membro della famiglia rivale",
+   "en": "secretly loves a member of the rival family"
+  },
+  {
+   "it": "ha rubato le decime della pieve",
+   "en": "stole the parish tithes"
+  },
+  {
+   "it": "custodisce un oggetto magico che non sa usare",
+   "en": "keeps a magic item they don't know how to use"
+  },
+  {
+   "it": "corrompe il gabelliere",
+   "en": "bribes the toll keeper"
+  },
+  {
+   "it": "nessuno: è davvero una brava persona",
+   "en": "none: they really are a good person"
+  },
+  {
+   "it": "nessuno, ma tutti pensano il contrario",
+   "en": "none, but everyone thinks otherwise"
+  },
+  {
+   "it": "ha fatto un patto con qualcosa nel bosco",
+   "en": "made a pact with something in the woods"
+  }
+ ],
+ "rulers": {
+  "village": {
+   "early": [
+    {
+     "it": "il gastaldo",
+     "en": "the steward"
+    }
+   ],
+   "late": [
+    {
+     "it": "il massaro del comune rurale",
+     "en": "the headman of the rural commune"
+    }
+   ],
+   "renaissance": [
+    {
+     "it": "il fattore dei signori",
+     "en": "the lords' estate manager"
+    }
+   ]
+  },
+  "town": {
+   "early": [
+    {
+     "it": "il visconte",
+     "en": "the viscount"
+    }
+   ],
+   "late": [
+    {
+     "it": "i consoli del borgo",
+     "en": "the borough consuls"
+    }
+   ],
+   "renaissance": [
+    {
+     "it": "il podestà mandato dalla città",
+     "en": "the podestà sent by the city"
+    }
+   ]
+  },
+  "city": {
+   "early": [
+    {
+     "it": "il vescovo-conte",
+     "en": "the bishop-count"
+    }
+   ],
+   "late": [
+    {
+     "it": "il podestà forestiero",
+     "en": "the foreign podestà"
+    },
+    {
+     "it": "il capitano del popolo",
+     "en": "the captain of the people"
+    }
+   ],
+   "renaissance": [
+    {
+     "it": "il signore della città",
+     "en": "the lord of the city"
+    },
+    {
+     "it": "il governatore del duca",
+     "en": "the duke's governor"
+    }
+   ]
+  },
+  "castle": {
+   "early": [
+    {
+     "it": "il signore del castello",
+     "en": "the lord of the castle"
+    }
+   ],
+   "late": [
+    {
+     "it": "il castellano",
+     "en": "the castellan"
+    }
+   ],
+   "renaissance": [
+    {
+     "it": "il signore",
+     "en": "the lord"
+    }
+   ]
+  },
+  "fortress": {
+   "early": [
+    {
+     "it": "il comandante del presidio",
+     "en": "the garrison commander"
+    }
+   ],
+   "late": [
+    {
+     "it": "il capitano della fortezza",
+     "en": "the captain of the fortress"
+    }
+   ],
+   "renaissance": [
+    {
+     "it": "il governatore della piazzaforte",
+     "en": "the governor of the stronghold"
+    }
+   ]
+  }
+ },
+ "factions": [
+  {
+   "name": {
+    "it": "la famiglia dei {family}",
+    "en": "the {family} family"
+   },
+   "goal": {
+    "it": "prendersi il governo",
+    "en": "to seize the government"
+   },
+   "where": [
+    "town",
+    "city"
+   ]
+  },
+  {
+   "name": {
+    "it": "l'Arte {guild}",
+    "en": "the {guild} guild"
+   },
+   "goal": {
+    "it": "abbassare le gabelle sulle merci",
+    "en": "to lower the tolls on goods"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "name": {
+    "it": "la confraternita di {saint}",
+    "en": "the confraternity of {saint}"
+   },
+   "goal": {
+    "it": "costruire un nuovo ospedale per i poveri",
+    "en": "to build a new hospital for the poor"
+   },
+   "where": [
+    "town",
+    "city",
+    "village"
+   ]
+  },
+  {
+   "name": {
+    "it": "il popolo minuto",
+    "en": "the common folk"
+   },
+   "goal": {
+    "it": "pane a buon prezzo e voce nel consiglio",
+    "en": "cheap bread and a voice on the council"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "name": {
+    "it": "i fuoriusciti",
+    "en": "the exiles"
+   },
+   "goal": {
+    "it": "rientrare in città con le armi",
+    "en": "to return to town by force of arms"
+   },
+   "where": [
+    "city",
+    "town"
+   ]
+  },
+  {
+   "name": {
+    "it": "la gilda dei ladri",
+    "en": "the thieves' guild"
+   },
+   "goal": {
+    "it": "controllare le porte e le gabelle",
+    "en": "to control the gates and the tolls"
+   },
+   "where": [
+    "city",
+    "town"
+   ]
+  },
+  {
+   "name": {
+    "it": "il capitolo dei canonici",
+    "en": "the cathedral chapter"
+   },
+   "goal": {
+    "it": "riavere le terre tolte al vescovo",
+    "en": "to recover the lands taken from the bishop"
+   },
+   "where": [
+    "city"
+   ]
+  },
+  {
+   "name": {
+    "it": "i pastori della montagna",
+    "en": "the mountain herders"
+   },
+   "goal": {
+    "it": "il diritto di pascolo nei boschi del signore",
+    "en": "grazing rights in the lord's woods"
+   },
+   "where": [
+    "village"
+   ]
+  },
+  {
+   "name": {
+    "it": "gli anziani del villaggio",
+    "en": "the village elders"
+   },
+   "goal": {
+    "it": "che nulla cambi",
+    "en": "that nothing ever changes"
+   },
+   "where": [
+    "village"
+   ]
+  },
+  {
+   "name": {
+    "it": "i giovani del villaggio",
+    "en": "the village youth"
+   },
+   "goal": {
+    "it": "una festa, un ballo e un po' di libertà",
+    "en": "a feast, a dance and some freedom"
+   },
+   "where": [
+    "village",
+    "town"
+   ]
+  },
+  {
+   "name": {
+    "it": "i cavalieri del signore",
+    "en": "the lord's knights"
+   },
+   "goal": {
+    "it": "una guerra per guadagnare terre",
+    "en": "a war to win lands"
+   },
+   "where": [
+    "castle",
+    "town"
+   ]
+  },
+  {
+   "name": {
+    "it": "la servitù del castello",
+    "en": "the castle servants"
+   },
+   "goal": {
+    "it": "paga arretrata e meno frustate",
+    "en": "back pay and fewer floggings"
+   },
+   "where": [
+    "castle"
+   ]
+  },
+  {
+   "name": {
+    "it": "i veterani della guarnigione",
+    "en": "the garrison veterans"
+   },
+   "goal": {
+    "it": "la paga, che non arriva da tre mesi",
+    "en": "their pay, three months overdue"
+   },
+   "where": [
+    "fortress",
+    "castle"
+   ]
+  },
+  {
+   "name": {
+    "it": "gli ufficiali giovani",
+    "en": "the young officers"
+   },
+   "goal": {
+    "it": "una sortita gloriosa",
+    "en": "a glorious sally"
+   },
+   "where": [
+    "fortress"
+   ]
+  },
+  {
+   "name": {
+    "it": "i mercanti forestieri",
+    "en": "the foreign merchants"
+   },
+   "goal": {
+    "it": "un fondaco tutto loro e le loro leggi",
+    "en": "a warehouse of their own and their own laws"
+   },
+   "where": [
+    "city",
+    "town"
+   ]
+  }
+ ],
+ "guilds": [
+  {
+   "it": "della Lana",
+   "en": "Wool"
+  },
+  {
+   "it": "di Calimala",
+   "en": "Cloth Finishers'"
+  },
+  {
+   "it": "del Cambio",
+   "en": "Bankers'"
+  },
+  {
+   "it": "della Seta",
+   "en": "Silk"
+  },
+  {
+   "it": "dei Medici e Speziali",
+   "en": "Physicians' and Apothecaries'"
+  },
+  {
+   "it": "dei Fabbri",
+   "en": "Smiths'"
+  },
+  {
+   "it": "dei Beccai",
+   "en": "Butchers'"
+  },
+  {
+   "it": "dei Giudici e Notai",
+   "en": "Judges' and Notaries'"
+  },
+  {
+   "it": "dei Vinattieri",
+   "en": "Vintners'"
+  }
+ ],
+ "classes": {
+  "normal": {
+   "it": "Umano normale",
+   "en": "Normal human"
+  },
+  "fighter": {
+   "it": "Guerriero",
+   "en": "Fighter"
+  },
+  "cleric": {
+   "it": "Chierico",
+   "en": "Cleric"
+  },
+  "mu": {
+   "it": "Mago",
+   "en": "Magic-user"
+  },
+  "thief": {
+   "it": "Ladro",
+   "en": "Thief"
+  },
+  "dwarf": {
+   "it": "Nano",
+   "en": "Dwarf"
+  },
+  "elf": {
+   "it": "Elfo",
+   "en": "Elf"
+  },
+  "halfling": {
+   "it": "Halfling",
+   "en": "Halfling"
+  }
+ },
+ "spells": {
+  "cleric": [
+   [
+    {
+     "it": "cura ferite leggere",
+     "en": "cure light wounds"
+    },
+    {
+     "it": "individuazione del male",
+     "en": "detect evil"
+    },
+    {
+     "it": "luce",
+     "en": "light"
+    },
+    {
+     "it": "protezione dal male",
+     "en": "protection from evil"
+    },
+    {
+     "it": "rimuovi paura",
+     "en": "remove fear"
+    }
+   ],
+   [
+    {
+     "it": "benedizione",
+     "en": "bless"
+    },
+    {
+     "it": "blocca persone",
+     "en": "hold person"
+    },
+    {
+     "it": "trova trappole",
+     "en": "find traps"
+    },
+    {
+     "it": "silenzio nel raggio di 4,5 m",
+     "en": "silence 15' radius"
+    },
+    {
+     "it": "parlare con gli animali",
+     "en": "speak with animals"
+    }
+   ],
+   [
+    {
+     "it": "cura malattie",
+     "en": "cure disease"
+    },
+    {
+     "it": "rimuovi maledizione",
+     "en": "remove curse"
+    },
+    {
+     "it": "luce perenne",
+     "en": "continual light"
+    },
+    {
+     "it": "trova oggetti",
+     "en": "locate object"
+    }
+   ]
+  ],
+  "mu": [
+   [
+    {
+     "it": "charme su persone",
+     "en": "charm person"
+    },
+    {
+     "it": "sonno",
+     "en": "sleep"
+    },
+    {
+     "it": "dardo incantato",
+     "en": "magic missile"
+    },
+    {
+     "it": "individuazione del magico",
+     "en": "detect magic"
+    },
+    {
+     "it": "leggere i linguaggi",
+     "en": "read languages"
+    },
+    {
+     "it": "scudo",
+     "en": "shield"
+    }
+   ],
+   [
+    {
+     "it": "invisibilità",
+     "en": "invisibility"
+    },
+    {
+     "it": "ragnatela",
+     "en": "web"
+    },
+    {
+     "it": "ESP",
+     "en": "ESP"
+    },
+    {
+     "it": "serratura magica",
+     "en": "wizard lock"
+    },
+    {
+     "it": "levitazione",
+     "en": "levitate"
+    }
+   ],
+   [
+    {
+     "it": "palla di fuoco",
+     "en": "fireball"
+    },
+    {
+     "it": "volare",
+     "en": "fly"
+    },
+    {
+     "it": "dissolvi magie",
+     "en": "dispel magic"
+    },
+    {
+     "it": "chiaroveggenza",
+     "en": "clairvoyance"
+    }
+   ]
+  ]
+ },
+ "retainers": [
+  {
+   "name": {
+    "it": "fante leggero",
+    "en": "light footman"
+   },
+   "wage": 2,
+   "stats": {
+    "it": "CA 7 [12], DV 1, lancia, Mor 7",
+    "en": "AC 7 [12], HD 1, spear, ML 7"
+   }
+  },
+  {
+   "name": {
+    "it": "fante pesante",
+    "en": "heavy footman"
+   },
+   "wage": 3,
+   "stats": {
+    "it": "CA 4 [15], DV 1, spada e scudo, Mor 8",
+    "en": "AC 4 [15], HD 1, sword and shield, ML 8"
+   }
+  },
+  {
+   "name": {
+    "it": "arciere",
+    "en": "archer"
+   },
+   "wage": 5,
+   "stats": {
+    "it": "CA 6 [13], DV 1, arco corto, Mor 7",
+    "en": "AC 6 [13], HD 1, shortbow, ML 7"
+   }
+  },
+  {
+   "name": {
+    "it": "balestriere",
+    "en": "crossbowman"
+   },
+   "wage": 4,
+   "stats": {
+    "it": "CA 5 [14], DV 1, balestra, Mor 8",
+    "en": "AC 5 [14], HD 1, crossbow, ML 8"
+   }
+  },
+  {
+   "name": {
+    "it": "cavaliere leggero",
+    "en": "light horseman"
+   },
+   "wage": 10,
+   "stats": {
+    "it": "CA 7 [12], DV 1, lancia e cavallo, Mor 8",
+    "en": "AC 7 [12], HD 1, lance and horse, ML 8"
+   }
+  },
+  {
+   "name": {
+    "it": "cavaliere pesante",
+    "en": "heavy horseman"
+   },
+   "wage": 20,
+   "stats": {
+    "it": "CA 3 [16], DV 1, lancia, spada e destriero, Mor 9",
+    "en": "AC 3 [16], HD 1, lance, sword and charger, ML 9"
+   }
+  },
+  {
+   "name": {
+    "it": "portatore di torce",
+    "en": "torchbearer"
+   },
+   "wage": 1,
+   "stats": {
+    "it": "CA 9 [10], DV ½, bastone, Mor 6",
+    "en": "AC 9 [10], HD ½, staff, ML 6"
+   }
+  },
+  {
+   "name": {
+    "it": "guida del luogo",
+    "en": "local guide"
+   },
+   "wage": 3,
+   "stats": {
+    "it": "CA 8 [11], DV 1, pugnale, conosce i sentieri, Mor 7",
+    "en": "AC 8 [11], HD 1, dagger, knows the paths, ML 7"
+   }
+  },
+  {
+   "name": {
+    "it": "mulattiere con due muli",
+    "en": "muleteer with two mules"
+   },
+   "wage": 4,
+   "stats": {
+    "it": "CA 9 [10], DV ½, bastone, Mor 6",
+    "en": "AC 9 [10], HD ½, staff, ML 6"
+   }
+  }
+ ]
+}
