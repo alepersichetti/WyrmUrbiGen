@@ -149,7 +149,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
    - **i nomi delle persone**: come i luoghi (la stessa lingua), **fantasy** (desinenze mescolate da tutte le lingue) oppure una lingua a scelta.
-4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero, oppure **a colori**, come in WyrmHex, su bianco o su nero: ogni simbolo nel suo colore (acqua blu, boschi verdi, mura grigio pietra, legno marrone, porte rosse, segreti magenta) e, su bianco, fondi chiari sotto acqua, strade ed edifici.
+4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero, oppure **a colori**, come in WyrmHex, su bianco o su nero: ogni simbolo nel suo colore (acqua blu, boschi verdi, mura grigio pietra, legno marrone, porte rosse, segreti magenta) e, su bianco, fondi chiari sotto acqua, strade ed edifici (vedi [A colori](#a-colori) nella galleria).
 5. **Simboli**: quelli di WyrmDelve (`▓ █ ≈ ♣ ╔═╗`) oppure **solo i caratteri della tastiera**, come in WyrmHex.
 6. **Nome sulla mappa**: quello generato, uno tuo, oppure nessuno.
 7. **Cosa vuoi nella chiave**: storia, abitanti e (in un luogo d'avventura) mostri e tesori; Spazio segna e toglie.
@@ -307,6 +307,34 @@ Mappe dell'arbitro ridotte (gli originali sono a 600 dpi). Un esempio di chiave 
 **Fortezza stellata, solo tastiera**
 
 <a href="img_examples/thumbs/fortezza_stellata_solo_ascii.png"><img src="img_examples/thumbs/fortezza_stellata_solo_ascii.png" alt="Fortezza stellata, solo tastiera" width="100%"></a>
+
+### A colori
+
+I due schemi a colori, `--colori 4` (su bianco) e `--colori 5` (su nero): ogni simbolo nel suo colore, i segreti in magenta, e nomi di luoghi e persone nella lingua scelta.
+
+**Paese, basso medioevo, fiume (avventura), a colori su bianco · nomi italiani**
+
+<a href="img_examples/thumbs/paese_a_colori_su_bianco.png"><img src="img_examples/thumbs/paese_a_colori_su_bianco.png" alt="Paese a colori su bianco" width="100%"></a>
+
+**Lo stesso paese a colori su nero**
+
+<a href="img_examples/thumbs/paese_a_colori_su_nero.png"><img src="img_examples/thumbs/paese_a_colori_su_nero.png" alt="Paese a colori su nero" width="100%"></a>
+
+**Villaggio, alto medioevo, collina, a colori su bianco · nomi danesi e svedesi · mappa dei giocatori**
+
+<a href="img_examples/thumbs/villaggio_nordico_a_colori_su_bianco_giocatori.png"><img src="img_examples/thumbs/villaggio_nordico_a_colori_su_bianco_giocatori.png" alt="Villaggio nordico a colori su bianco, mappa dei giocatori" width="100%"></a>
+
+**Città, Rinascimento, costa (avventura), a colori su nero · nomi italiani**
+
+<a href="img_examples/thumbs/citta_costa_a_colori_su_nero.png"><img src="img_examples/thumbs/citta_costa_a_colori_su_nero.png" alt="Città di costa a colori su nero" width="100%"></a>
+
+**Castello, Rinascimento, foresta (avventura), a colori su nero · nomi gaelici**
+
+<a href="img_examples/thumbs/castello_gaelico_a_colori_su_nero.png"><img src="img_examples/thumbs/castello_gaelico_a_colori_su_nero.png" alt="Castello gaelico a colori su nero" width="100%"></a>
+
+**Fortezza, Rinascimento, pianura (avventura), solo tastiera a colori su bianco · nomi francesi**
+
+<a href="img_examples/thumbs/fortezza_solo_tastiera_a_colori_su_bianco.png"><img src="img_examples/thumbs/fortezza_solo_tastiera_a_colori_su_bianco.png" alt="Fortezza, solo tastiera, a colori su bianco" width="100%"></a>
 
 ## Fonti e licenze
 
