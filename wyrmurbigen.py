@@ -238,6 +238,12 @@ TEXTS = {
     "color_name_4": ("a colori su bianco", "colour on white"),
     "color_name_5": ("a colori su nero (per lo schermo)", "colour on black (for screens)"),
     "ascii_intro": ("Simboli della mappa:", "Map symbols:"),
+    "again_q": ("Vuoi generare lo stesso insediamento anche con altri colori o stili?",
+                "Make the same settlement again in other colours or styles?"),
+    "again_no": ("no, ho finito", "no, I'm done"),
+    "again_yes": ("sì: scelgo colori, simboli, formato e file", "yes: I'll choose colours, symbols, paper and files"),
+    "info_again": ("Stesso seme {s}: le mappe nuove hanno {t} nel nome, quelle di prima restano",
+                   "Same seed {s}: the new maps have {t} in their names, the earlier ones stay"),
     "ascii_no": ("simboli come ▓ █ ≈ ♣ ╔═╗ (consigliato)", "symbols such as ▓ █ ≈ ♣ ╔═╗ (suggested)"),
     "ascii_yes": ("solo i caratteri base della tastiera, come WyrmHex (# @ ~ T)", "keyboard characters only, like WyrmHex (# @ ~ T)"),
     "name_intro": ("Nome sulla mappa:", "Name on the map:"),
@@ -5135,6 +5141,32 @@ def settings_from_options(argv):
 def main():
     interactive = len(sys.argv) == 1
     params = ask_settings() if interactive else settings_from_options(sys.argv[1:])
+    make(params, interactive)
+    while interactive and ask_again():
+        restyle(params)
+        make(params, interactive, again=True)
+
+
+def ask_again():
+    """At the end: the same settlement again, in other colours and styles?"""
+    print()
+    try:
+        return menu(tr("again_q"), [tr("again_no"), tr("again_yes")], 0) == 1
+    except EOFError:
+        return False
+
+
+def restyle(p):
+    """The look of the next print: colours, symbols, paper and files; the seed stays."""
+    p["colors"] = ask_colors()
+    p["ascii_only"] = menu(tr("ascii_intro"), [tr("ascii_no"), tr("ascii_yes")], 0) == 1
+    p["paper"], p["files"], p["ask_paper"] = None, None, sys.stdin.isatty()
+
+
+def make(params, interactive, again=False):
+    """One settlement, maps and key. again: a reprint of the same seed in another
+    look; its maps and PDF file get the paper and style in their names
+    (<seed>_referee_A3_c5.png), so the earlier ones stay."""
     log = Log(6)
     log.step(tr("step_settings"))
     seed = make_seed(params)
@@ -5231,6 +5263,9 @@ def main():
     log.step(tr("step_maps", paper=paper, dpi=DPI))
     pl_title = tr("players_title", t=title) if title else tr("players_title_plain")
     pl_layout = page_layout(G, False, pl_title, side)
+    tag = f"_{paper}_c{p['colors']}" + ("_ascii" if p["ascii_only"] else "") if again else ""
+    if again:
+        log.info(tr("info_again", s=seed, t=tag))
     pages = [("referee", compose_page(ref_layout), pixels, compose_page(page_layout(plain, True, title, side))),
              ("players", compose_page(pl_layout), pixel_layout(pl_layout, paper, orientation, char_mm, fonts),
               compose_page(page_layout(plain, False, pl_title, side)))]
@@ -5240,15 +5275,15 @@ def main():
         write_text(f"{base}_{name}.txt", text)
         img, live = draw_sheet(canvas, px, p["colors"])
         if files == "png":
-            save_png(img, f"{base}_{name}.png", settings)
+            save_png(img, f"{base}_{name}{tag}.png", settings)
             live.finish()
-            log.info(tr("saved", a=short_path(f"{base}_{name}.png"), b=short_path(f"{base}_{name}.txt")))
+            log.info(tr("saved", a=short_path(f"{base}_{name}{tag}.png"), b=short_path(f"{base}_{name}.txt")))
         elif files == "pdf":
-            doc = PdfFile(f"{base}_{name}.pdf", settings)
+            doc = PdfFile(f"{base}_{name}{tag}.pdf", settings)
             doc.add_page(img)
             doc.close()
             live.finish()
-            log.info(tr("saved", a=short_path(f"{base}_{name}.pdf"), b=short_path(f"{base}_{name}.txt")))
+            log.info(tr("saved", a=short_path(f"{base}_{name}{tag}.pdf"), b=short_path(f"{base}_{name}.txt")))
         else:
             live.finish()
             images.append((name, img.convert("RGB") if img.mode == "P" else img, paper, orientation))
@@ -5262,7 +5297,7 @@ def main():
     write_key(blocks, f"{base}_key.txt")
     log.info(tr("saved_key", a=short_path(f"{base}_key.txt")))
     if not problem:
-        pdf_path = f"{base}_key.pdf"
+        pdf_path = f"{base}_key{tag}.pdf"
         try:
             write_pdf(blocks, pdf_path, settings, maps=images)
             log.info(tr("saved_pdf_maps" if images else "saved_pdf", a=short_path(pdf_path)))
@@ -5270,7 +5305,7 @@ def main():
             log.error(tr("err_pdf", e=f"{type(e).__name__}: {e}"))
     elif images:
         for name, img, _, _ in images:
-            save_png(img, f"{base}_{name}.png", settings)
+            save_png(img, f"{base}_{name}{tag}.png", settings)
     if G.missing:
         log.warn(tr("warn_missing_glyphs", g=" ".join(sorted(G.missing))))
     log.done()

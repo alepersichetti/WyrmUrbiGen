@@ -156,6 +156,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
 8. **Unità**: metri o piedi.
 9. **Formato di stampa**: A4, A3, A2 o A1, con quello consigliato già evidenziato.
 10. **Che file vuoi**: mappe in **PNG** e libro PDF separati, mappe in **PDF** e libro PDF separati, oppure **un unico PDF** con le due mappe e poi il libro.
+11. **Di nuovo, con un altro aspetto?** Alla fine puoi rifare lo stesso insediamento con altri colori, simboli, formato e file, quante volte vuoi: le mappe nuove non cancellano quelle di prima e hanno nel nome il formato e lo stile (`<seme>_referee_A3_c5.png`, `_c4_ascii`).
 
 ## 4. Il seme
 

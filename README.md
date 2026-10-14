@@ -156,6 +156,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
 8. **Units**: metres or feet.
 9. **Print format**: A4, A3, A2 or A1, with the suggested one already highlighted.
 10. **Which files**: **PNG** maps and a PDF book apart, **PDF** maps and a PDF book apart, or **one single PDF** with the two maps and then the book.
+11. **Again, in another look?** At the end you can make the same settlement again with other colours, symbols, paper and files, as many times as you like: the new maps keep the earlier ones and have the paper and style in their names (`<seed>_referee_A3_c5.png`, `_c4_ascii`).
 
 ## 4. The seed
 
