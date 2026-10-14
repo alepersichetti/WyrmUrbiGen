@@ -174,6 +174,8 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2-DE4-K7Q2MB`: tipo e abitant
 
 I nomi dell'insediamento, del dungeon vicino e delle botteghe che portano il nome di un luogo sono fatti con le **radici** di `data/names.json`: per ogni lingua, sillabe ed elementi per l'inizio, il mezzo e la fine di una parola, più parole intere che vanno prima (*Saint-*, *Borgo*, *Dar al-*) e dopo (*-le-Grand*, *Magna*, *am Berg*). Ogni tono ha radici sue, mescolate a quelle comuni. Ogni lingua con ogni tono dà **da 11 a 14 milioni di nomi**; la mescolanza di tutte, centinaia di miliardi.
 
+Anche **i nomi delle persone** seguono la stessa lingua: nomi, cognomi e il modo di comporli (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), e così le famiglie nei nomi degli edifici e delle fazioni e le città da cui vengono le persone. Anche queste radici stanno in `data/names.json`.
+
 | Tono | | Tedesco | Inglese antico |
 |---|---|---|---|
 | luminoso | gentile, fiorito, accogliente | Lerchenruh, Apfelsee am Lindenquell | Rosemead, Leofhaven |
@@ -264,7 +266,7 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 
 | File | Cosa contiene |
 |---|---|
-| `names.json` | le radici dei nomi dei luoghi: lingue, toni e come si compone un nome |
+| `names.json` | le radici dei nomi di luoghi e persone: lingue, toni e come si compone un nome |
 | `settlements.json` | tipi di insediamento, epoche, terreni, santi, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci |
 | `buildings.json` | gli edifici: nome, tipi ed epoche in cui compaiono, quanti (`sv`: uno ogni tanti abitanti; oppure `count`), dimensioni, pietra o legno, dove stanno (piazza, strada maestra, porta, mura, fiume, fuori), chi ci vive, servizi e prezzi, descrizioni |
 | `people.json` | nomi, famiglie, mestieri, caratteri, desideri, segreti, governanti, fazioni, classi, incantesimi, mercenari |

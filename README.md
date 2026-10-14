@@ -174,6 +174,8 @@ Every settlement has a **seed**, like `C9500-B-R-A2-DE4-K7Q2MB`: type and people
 
 The names of the settlement, of the dungeon nearby and of the shops named after a place are built from the **roots** in `data/names.json`: for every language, syllables and name elements for the start, the middle and the end of a word, plus whole words that go before (*Saint-*, *Borgo*, *Dar al-*) and after (*-le-Grand*, *Magna*, *am Berg*). Every tone has roots of its own, mixed with the common ones. Each language and tone can make **11 to 14 million names**; the mix of them all, hundreds of billions.
 
+**People's names** follow the same language: first names, family names and the way they are put together (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), and so do the families in the names of buildings and factions and the towns people come from. The roots are in `data/names.json` too.
+
 | Tone | | German | Old English |
 |---|---|---|---|
 | fair | gentle, blooming, welcoming | Lerchenruh, Apfelsee am Lindenquell | Rosemead, Leofhaven |
@@ -264,7 +266,7 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 
 | File | What it holds |
 |---|---|
-| `names.json` | the roots of the place names: languages, tones and how a name is put together |
+| `names.json` | the roots of the names of places and people: languages, tones and how a name is put together |
 | `settlements.json` | settlement types, eras, terrains, saints, inn signs, gates, quarters, history sentences, threats, rumours, events, hooks |
 | `buildings.json` | the buildings: name, the types and eras they appear in, how many (`sv`: one every so many people; or `count`), size, stone or timber, where they stand (square, main street, gate, walls, river, outside), who lives there, services and prices, descriptions |
 | `people.json` | names, families, trades, traits, wants, secrets, rulers, factions, classes, spells, mercenaries |
