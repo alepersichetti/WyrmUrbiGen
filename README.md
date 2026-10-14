@@ -149,7 +149,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
    - **people's names**: like the places (the same language), **fantasy** (endings mixed from all the languages), or one language of your choice.
-4. **Colours**: black on white (for printing), white on light blue, white on black, or **in full colour**, as in WyrmHex, on white or on black: every symbol in its own colour (water blue, woods green, walls stone grey, timber brown, gates red, secrets magenta), and on white pale fills under water, streets and buildings.
+4. **Colours**: black on white (for printing), white on light blue, white on black, or **in full colour**, as in WyrmHex, on white or on black: every symbol in its own colour (water blue, woods green, walls stone grey, timber brown, gates red, secrets magenta), and on white pale fills under water, streets and buildings (see [In colour](#in-colour) in the gallery).
 5. **Symbols**: WyrmDelve's (`▓ █ ≈ ♣ ╔═╗`) or **keyboard characters only**, as in WyrmHex.
 6. **Name on the map**: the generated one, one of yours, or none.
 7. **What goes in the key**: story, people and (in a place of adventure) monsters and treasure; Space ticks and unticks.
@@ -307,6 +307,34 @@ Referee's maps, scaled down (the originals are 600 dpi). A sample key and book: 
 **Star fort, keyboard characters only**
 
 <a href="img_examples/thumbs/en/star_fort_keyboard_only.png"><img src="img_examples/thumbs/en/star_fort_keyboard_only.png" alt="Star fort, keyboard characters only" width="100%"></a>
+
+### In colour
+
+The two colour schemes, `--colors 4` (on white) and `--colors 5` (on black): every symbol in its own colour, the secrets in magenta, and place and people's names in the chosen language.
+
+**Town, Renaissance, coast (adventure), colour on white · Renaissance English names**
+
+<a href="img_examples/thumbs/en/town_colour_on_white.png"><img src="img_examples/thumbs/en/town_colour_on_white.png" alt="Town in colour on white" width="100%"></a>
+
+**The same town in colour on black**
+
+<a href="img_examples/thumbs/en/town_colour_on_black.png"><img src="img_examples/thumbs/en/town_colour_on_black.png" alt="Town in colour on black" width="100%"></a>
+
+**Village, Early Middle Ages, hills, colour on white · Danish and Swedish names · players' map**
+
+<a href="img_examples/thumbs/en/norse_village_colour_on_white_players.png"><img src="img_examples/thumbs/en/norse_village_colour_on_white_players.png" alt="Norse village in colour on white, players' map" width="100%"></a>
+
+**City, Renaissance, coast (adventure), colour on black · Italian names**
+
+<a href="img_examples/thumbs/en/coastal_city_colour_on_black.png"><img src="img_examples/thumbs/en/coastal_city_colour_on_black.png" alt="Coastal city in colour on black" width="100%"></a>
+
+**Castle, Renaissance, forest (adventure), colour on black · Gaelic names**
+
+<a href="img_examples/thumbs/en/gaelic_castle_colour_on_black.png"><img src="img_examples/thumbs/en/gaelic_castle_colour_on_black.png" alt="Gaelic castle in colour on black" width="100%"></a>
+
+**Fortress, Renaissance, plains (adventure), keyboard characters only in colour on white · French names**
+
+<a href="img_examples/thumbs/en/fortress_keyboard_only_colour_on_white.png"><img src="img_examples/thumbs/en/fortress_keyboard_only_colour_on_white.png" alt="Fortress, keyboard characters only, in colour on white" width="100%"></a>
 
 ## Sources and licences
 
