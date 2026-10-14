@@ -29,7 +29,8 @@ Every settlement sits on plains, hills, mountains, in a forest, a swamp, on the
 coast, on a river or on a lake, and the land shapes walls, streets and trades.
 
 Prints on A4, A3, A2 or A1 at 600 dpi (PNG or PDF); the best paper is
-suggested. Three colour schemes. --ascii-only uses keyboard characters only,
+suggested. Five colour schemes, two of them in full colour on white or black,
+like WyrmHex. --ascii-only uses keyboard characters only,
 like WyrmHex; the .txt maps always do.
 
 Output goes to settlements_generated/<seed>/ next to this file (or --output):
@@ -112,6 +113,35 @@ COLOR_SCHEMES = {
     1: ((0, 0, 0), (255, 255, 255)),          # black symbols on white
     2: ((255, 255, 255), (72, 156, 214)),     # white symbols on light blue
     3: ((255, 255, 255), (0, 0, 0)),          # white symbols on black
+}
+# Colour maps, as in WyrmHex: 4 on white, 5 on black. Keys are canvas tags (what
+# a symbol is) and "bg:" fills (the ground under it); anything without its own
+# colour is drawn in "ink". The one-colour schemes above are drawn in grayscale.
+MONO = {"mode": "L", "paper": 255, "ink": 0}
+PALETTES = {
+    4: {"mode": "RGB", "paper": (255, 255, 255), "ink": (25, 25, 25),
+        "stone": (70, 72, 82), "wood": (125, 80, 35), "door": (25, 25, 25), "number": (160, 30, 30),
+        "rubble": (125, 115, 105), "wall": (100, 96, 92), "tower": (60, 56, 52), "palisade": (125, 85, 40),
+        "gate": (190, 35, 35), "entrance": (190, 35, 35), "ditch": (150, 120, 80), "water": (30, 100, 200),
+        "bridge": (120, 80, 40), "mound": (130, 85, 25), "street": (130, 130, 130), "road": (150, 110, 60),
+        "garden": (60, 150, 60), "grave": (110, 110, 110), "well": (30, 100, 200), "fountain": (30, 100, 200),
+        "stall": (180, 125, 25), "plough": (150, 110, 50), "sown": (175, 150, 30), "pasture": (90, 160, 70),
+        "orchard": (40, 130, 60), "forest": (25, 125, 45), "tree": (25, 125, 45), "hill": (130, 85, 25), "mount": (105, 90, 80),
+        "reed": (118, 30, 95), "secret": (200, 0, 130),
+        # fills, light enough for the symbols on top
+        "bg:water": (180, 211, 236), "bg:street": (242, 238, 228), "bg:stone": (222, 222, 226),
+        "bg:wood": (242, 226, 196)},
+    5: {"mode": "RGB", "paper": (12, 12, 16), "ink": (230, 230, 225),
+        "stone": (190, 195, 210), "wood": (215, 160, 95), "door": (230, 230, 225), "number": (255, 120, 100),
+        "rubble": (150, 140, 130), "wall": (165, 160, 155), "tower": (215, 210, 205), "palisade": (200, 140, 75),
+        "gate": (235, 75, 65), "entrance": (235, 75, 65), "ditch": (170, 140, 95), "water": (80, 150, 255),
+        "bridge": (200, 145, 85), "mound": (215, 165, 80), "street": (120, 120, 125), "road": (190, 145, 90),
+        "garden": (90, 200, 100), "grave": (160, 160, 165), "well": (80, 150, 255), "fountain": (80, 150, 255),
+        "stall": (235, 195, 95), "plough": (205, 160, 85), "sown": (225, 200, 80), "pasture": (120, 200, 100),
+        "orchard": (70, 190, 90), "forest": (60, 190, 80), "tree": (60, 190, 80), "hill": (215, 165, 80), "mount": (195, 180, 165),
+        "reed": (195, 105, 165), "secret": (255, 80, 200),
+        # only the water is filled, as WyrmHex's sea on black
+        "bg:water": (18, 42, 82)},
 }
 
 MONO_FONTS = [
@@ -201,6 +231,8 @@ TEXTS = {
     "color_name_1": ("nero su bianco (per stampare)", "black on white (for printing)"),
     "color_name_2": ("bianco su celeste", "white on light blue"),
     "color_name_3": ("bianco su nero (per lo schermo)", "white on black (for screens)"),
+    "color_name_4": ("a colori su bianco", "colour on white"),
+    "color_name_5": ("a colori su nero (per lo schermo)", "colour on black (for screens)"),
     "ascii_intro": ("Simboli della mappa:", "Map symbols:"),
     "ascii_no": ("simboli come ▓ █ ≈ ♣ ╔═╗ (consigliato)", "symbols such as ▓ █ ≈ ♣ ╔═╗ (suggested)"),
     "ascii_yes": ("solo i caratteri base della tastiera, come WyrmHex (# @ ~ T)", "keyboard characters only, like WyrmHex (# @ ~ T)"),
@@ -471,7 +503,8 @@ TEXTS = {
                "tone of the names: fair, homely, stately, grim, eerie (or 1-5)"),
     "h_seed": ("seme completo (es. C9500-B-R-A2-DE4-K7Q2MB) per rifare un insediamento",
                "full seed (e.g. C9500-B-R-A2-DE4-K7Q2MB) to rebuild a settlement"),
-    "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero", "1 black on white (default), 2 white on light blue, 3 white on black"),
+    "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero, 4 a colori su bianco, 5 a colori su nero",
+                 "1 black on white (default), 2 white on light blue, 3 white on black, 4 colour on white, 5 colour on black"),
     "h_format": ("formato di stampa; senza, viene suggerito e chiesto", "print format; without it, it is suggested and asked"),
     "h_png": ("mappe in PNG e chiave in un file PDF a parte (di base)", "PNG maps and the key in a separate PDF file (the default)"),
     "h_pdf": ("mappe in PDF e chiave in un file PDF a parte", "PDF maps and the key in a separate PDF file"),
@@ -3412,26 +3445,38 @@ class Glyphs:
 
 
 class Canvas:
-    """Grid of characters, each with a style: n normal, b bold, i white on black."""
+    """Grid of characters, each with a style (n normal, b bold, i white on
+    black), a tag (what it is: its colour on a colour map) and a fill (the
+    colour of the ground under it, ditto)."""
 
     def __init__(self, width, height):
         self.width, self.height = width, height
         self.chars = [[" "] * width for _ in range(height)]
         self.styles = [["n"] * width for _ in range(height)]
+        self.tags = [[None] * width for _ in range(height)]
+        self.fills = [[None] * width for _ in range(height)]
 
-    def put(self, x, y, ch, style="n"):
+    def put(self, x, y, ch, style="n", tag=None):
         if 0 <= x < self.width and 0 <= y < self.height:
-            self.chars[y][x], self.styles[y][x] = ch, style
+            self.chars[y][x], self.styles[y][x], self.tags[y][x] = ch, style, tag
 
-    def write(self, x, y, text, style="n"):
+    def fill(self, x, y, key):
+        if 0 <= x < self.width and 0 <= y < self.height:
+            self.fills[y][x] = key
+
+    def write(self, x, y, text, style="n", tag=None, fill=None):
         for i, c in enumerate(text):
-            self.put(x + i, y, c, style)
+            self.put(x + i, y, c, style, tag)
+            if fill:
+                self.fill(x + i, y, fill)
 
     def paste(self, other, ox, oy):
         for y in range(other.height):
             for x in range(other.width):
+                if other.fills[y][x]:
+                    self.fill(ox + x, oy + y, other.fills[y][x])
                 if other.chars[y][x] != " " or other.styles[y][x] != "n":
-                    self.put(ox + x, oy + y, other.chars[y][x], other.styles[y][x])
+                    self.put(ox + x, oy + y, other.chars[y][x], other.styles[y][x], other.tags[y][x])
 
     def lines(self):
         return ["".join(row).rstrip() for row in self.chars]
@@ -3452,6 +3497,14 @@ SYMBOLS = {
 # look like the town walls (#) and towers (@)
 DOUBLE = {"h": ("═", "="), "v": ("║", "H"), "tl": ("╔", "="), "tr": ("╗", "="), "bl": ("╚", "="), "br": ("╝", "=")}
 SINGLE = {"h": ("─", "-"), "v": ("│", "|"), "tl": ("┌", "-"), "tr": ("┐", "-"), "bl": ("└", "-"), "br": ("┘", "-")}
+
+
+GROUND_TAGS = {"water": "water", "tree": "forest", "hill": "hill", "mount": "mount", "reed": "reed"}
+
+
+def ground_tag(g):
+    """The colour tag of a ground: forest, hill... or the field's kind."""
+    return g[6:] if g.startswith("field:") else GROUND_TAGS.get(g)
 
 
 def ground_char(plan, x, y, G):
@@ -3489,47 +3542,53 @@ def map_canvas(plan, referee, G, labels=True, secrets=None):
     for y in range(H):
         for x in range(W):
             cell = plan.cell[y][x]
+            if cell in (STREET, SQUARE, YARD):
+                c.fill(x, y, "bg:street")
+            elif cell == MOAT or (cell is None and plan.ground[y][x] == "water"):
+                c.fill(x, y, "bg:water")
             if (x, y) in plan.feat and cell not in (BLDG,) + tuple(FORT):
-                c.put(x, y, G(*SYMBOLS[plan.feat[(x, y)]]), "b" if plan.feat[(x, y)] in ("well", "fountain") else "n")
+                feat = plan.feat[(x, y)]
+                c.put(x, y, G(*SYMBOLS[feat]), "b" if feat in ("well", "fountain") else "n", feat)
                 continue
             if cell is None:
-                c.put(x, y, ground_char(plan, x, y, G))
+                c.put(x, y, ground_char(plan, x, y, G), "n", ground_tag(plan.ground[y][x]))
             elif cell in (WALL, TOWER, PALISADE, DITCH, BRIDGE, MOUND):
-                c.put(x, y, G(*SYMBOLS[cell]), "b" if cell == BRIDGE else "n")
+                c.put(x, y, G(*SYMBOLS[cell]), "b" if cell == BRIDGE else "n", cell)
             elif cell == MOAT:
-                c.put(x, y, G(*SYMBOLS["water"]))
+                c.put(x, y, G(*SYMBOLS["water"]), "n", "water")
             elif cell == GATE:
-                c.put(x, y, "+", "b")
+                c.put(x, y, "+", "b", "gate")
             elif cell == PIER:
-                c.put(x, y, "=", "b")
+                c.put(x, y, "=", "b", "bridge")
             elif cell in (STREET, SQUARE, YARD):
-                c.put(x, y, ".")
+                c.put(x, y, ".", "n", "street")
             elif cell == ROAD:
-                c.put(x, y, G(*SYMBOLS["road"]))
+                c.put(x, y, G(*SYMBOLS["road"]), "n", "road")
             elif cell == GARDEN:
-                c.put(x, y, G(*SYMBOLS["garden"]) if plan.tex[y][x] < 0.16 else " ")
+                c.put(x, y, G(*SYMBOLS["garden"]) if plan.tex[y][x] < 0.16 else " ", "n", "garden")
             elif cell == GRAVE:
-                c.put(x, y, G(*SYMBOLS["grave"]) if x % 2 == 0 else " ")
+                c.put(x, y, G(*SYMBOLS["grave"]) if x % 2 == 0 else " ", "n", "grave")
     for b in plan.buildings:
         draw_building(c, b, G, referee and labels)
     if secrets:
         for x, y in plan.tunnel:
             if plan.bmap[y][x] < 0 and plan.cell[y][x] not in FORT:
-                c.put(x, y, G(*SYMBOLS["tunnel"]), "n")
+                c.put(x, y, G(*SYMBOLS["tunnel"]), "n", "secret")
         for x, y in plan.secret:
-            c.put(x, y, "$", "b")
+            c.put(x, y, "$", "b", "secret")
     # gate letters on the road just outside, as WyrmDelve's [A] entrances
     for g in plan.gates:
         if g.get("letter") and g.get("outer"):
             x, y = g["outer"]
             dx, dy = round(math.cos(g["angle"]) * 2), round(math.sin(g["angle"]))
             x, y = x + dx, y + dy
-            c.write(x - 1, y, f"[{g['letter']}]", "i")
+            c.write(x - 1, y, f"[{g['letter']}]", "i", "entrance")
     return c
 
 
 def draw_building(c, b, G, numbered):
     t = DOUBLE if b.stone else SINGLE
+    tag = "stone" if b.stone else "wood"
     x0, y0, x1, y1 = b.x0, b.y0, b.x0 + b.w - 1, b.y0 + b.h - 1
     for y in range(y0, y1 + 1):
         for x in range(x0, x1 + 1):
@@ -3546,22 +3605,24 @@ def draw_building(c, b, G, numbered):
                 edge = "h"
             elif x in (x0, x1):
                 edge = "v"
+            if not b.ruined:
+                c.fill(x, y, "bg:" + tag)
             if edge is None:
                 ch = " "
                 if b.ruined and ((x * 7 + y * 13) % 5 == 0):
                     ch = G(*SYMBOLS["rubble"])
-                c.put(x, y, ch)
+                c.put(x, y, ch, "n", "rubble")
             elif b.ruined and ((x * 11 + y * 5) % 4 == 0):
-                c.put(x, y, G(*SYMBOLS["rubble"]))
+                c.put(x, y, G(*SYMBOLS["rubble"]), "n", "rubble")
             else:
-                c.put(x, y, G(*t[edge]))
+                c.put(x, y, G(*t[edge]), "n", tag)
     if b.door and not b.ruined:
-        c.put(b.door[0], b.door[1], "+")
+        c.put(b.door[0], b.door[1], "+", "n", "door")
     if numbered:
         label = str(b.number)
         lx = x0 + (b.w - len(label)) // 2
         ly = y0 + b.h // 2
-        c.write(lx, ly, label, "b")
+        c.write(lx, ly, label, "b", "number")
 
 
 # --- legend and page ---
@@ -3587,52 +3648,52 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
             used.add(plan.ground[y][x])
     out = []
     if any(b.stone for b in plan.buildings):
-        out.append([(G("╔═╗", "=H="), "n"), (" " + tr("lg_stone"), "n")])
+        out.append([(G("╔═╗", "=H="), "n", "stone", "bg:stone"), (" " + tr("lg_stone"), "n")])
     if any(not b.stone for b in plan.buildings):
-        out.append([(G("┌─┐", "-|-"), "n"), (" " + tr("lg_wood"), "n")])
-    out.append([("+", "n"), (" " + tr("lg_door"), "n")])
+        out.append([(G("┌─┐", "-|-"), "n", "wood", "bg:wood"), (" " + tr("lg_wood"), "n")])
+    out.append([("+", "n", "door"), (" " + tr("lg_door"), "n")])
     if referee:
-        out.append([("12", "b"), (" " + tr("lg_number"), "n")])
+        out.append([("12", "b", "number"), (" " + tr("lg_number"), "n")])
     if any(b.ruined for b in plan.buildings):
-        out.append([(G(*SYMBOLS["rubble"]), "n"), (" " + tr("lg_ruin"), "n")])
+        out.append([(G(*SYMBOLS["rubble"]), "n", "rubble"), (" " + tr("lg_ruin"), "n")])
     for key, label in ((WALL, "lg_wall"), (TOWER, "lg_tower"), (PALISADE, "lg_palisade")):
         if key in used:
-            out.append([(G(*SYMBOLS[key]), "n"), (" " + tr(label), "n")])
+            out.append([(G(*SYMBOLS[key]), "n", key), (" " + tr(label), "n")])
     if GATE in used:
-        out.append([("+", "b"), (" " + tr("lg_gate"), "n")])
+        out.append([("+", "b", "gate"), (" " + tr("lg_gate"), "n")])
     if any(g.get("letter") for g in plan.gates):
-        out.append([("[A]", "i"), (" " + tr("lg_gate_tag"), "n")])
+        out.append([("[A]", "i", "entrance"), (" " + tr("lg_gate_tag"), "n")])
     if DITCH in used:
-        out.append([(G(*SYMBOLS["ditch"]), "n"), (" " + tr("lg_ditch"), "n")])
+        out.append([(G(*SYMBOLS["ditch"]), "n", "ditch"), (" " + tr("lg_ditch"), "n")])
     if MOAT in used or "water" in used:
-        out.append([(G(*SYMBOLS["water"]), "n"), (" " + tr("lg_water"), "n")])
+        out.append([(G(*SYMBOLS["water"]), "n", "water", "bg:water"), (" " + tr("lg_water"), "n")])
     if BRIDGE in used or PIER in used:
-        out.append([("=", "b"), (" " + tr("lg_bridge"), "n")])
+        out.append([("=", "b", "bridge"), (" " + tr("lg_bridge"), "n")])
     if MOUND in used:
-        out.append([(G(*SYMBOLS["mound"]), "n"), (" " + tr("lg_mound"), "n")])
-    out.append([(".", "n"), (" " + tr("lg_street"), "n")])
+        out.append([(G(*SYMBOLS["mound"]), "n", "mound"), (" " + tr("lg_mound"), "n")])
+    out.append([(".", "n", "street", "bg:street"), (" " + tr("lg_street"), "n")])
     if ROAD in used:
-        out.append([(G(*SYMBOLS["road"]), "n"), (" " + tr("lg_road"), "n")])
+        out.append([(G(*SYMBOLS["road"]), "n", "road"), (" " + tr("lg_road"), "n")])
     if GARDEN in used:
-        out.append([(G(*SYMBOLS["garden"]), "n"), (" " + tr("lg_garden"), "n")])
+        out.append([(G(*SYMBOLS["garden"]), "n", "garden"), (" " + tr("lg_garden"), "n")])
     if GRAVE in used:
-        out.append([(G(*SYMBOLS["grave"]), "n"), (" " + tr("lg_grave"), "n")])
+        out.append([(G(*SYMBOLS["grave"]), "n", "grave"), (" " + tr("lg_grave"), "n")])
     feats = set(plan.feat.values())
     for key in ("well", "fountain", "stall"):
         if key in feats:
-            out.append([(G(*SYMBOLS[key]), "b" if key != "stall" else "n"), (" " + tr("lg_" + key), "n")])
+            out.append([(G(*SYMBOLS[key]), "b" if key != "stall" else "n", key), (" " + tr("lg_" + key), "n")])
     fields_used = {g[6:] for g in used if isinstance(g, str) and g.startswith("field:")}
     for key in ("plough", "sown", "pasture", "orchard"):
         if key in fields_used:
-            out.append([(G(*SYMBOLS[key]), "n"), (" " + tr("lg_" + key), "n")])
+            out.append([(G(*SYMBOLS[key]), "n", key), (" " + tr("lg_" + key), "n")])
     for key, sym, label in (("tree", "forest1", "lg_forest"), ("hill", "hill", "lg_hill"), ("mount", "mount", "lg_mount"),
                             ("reed", "reed1", "lg_reed")):
         if key in used:
-            out.append([(G(*SYMBOLS[sym]), "n"), (" " + tr(label), "n")])
+            out.append([(G(*SYMBOLS[sym]), "n", ground_tag(key)), (" " + tr(label), "n")])
     if secrets and plan.secret:
-        out.append([("$", "b"), (" " + tr("lg_secret"), "n")])
+        out.append([("$", "b", "secret"), (" " + tr("lg_secret"), "n")])
     if secrets and plan.tunnel:
-        out.append([(G(*SYMBOLS["tunnel"]), "n"), (" " + tr("lg_tunnel"), "n")])
+        out.append([(G(*SYMBOLS["tunnel"]), "n", "secret"), (" " + tr("lg_tunnel"), "n")])
     n, length, unit, row = scale_bar(plan, units)
     bar_text = G("├" + "─" * (n - 2) + "┤", "|" + "-" * (n - 2) + "|")
     out.append([(tr("lg_scale"), "b"), (" " + bar_text + f" {number(length)} {unit}", "n"),
@@ -3665,7 +3726,7 @@ def building_secrets(s):
 def pack_legend(entries, width):
     lines, line, used = [], [], 0
     for entry in entries:
-        w = sum(len(t) for t, _ in entry)
+        w = sum(len(item[0]) for item in entry)
         extra = w + (4 if line else 0)
         if line and used + extra > width:
             lines.append(line)
@@ -3679,7 +3740,7 @@ def pack_legend(entries, width):
 
 
 def legend_width(line):
-    return sum(len(t) for entry in line for t, _ in entry) + 4 * (len(line) - 1)
+    return sum(len(item[0]) for entry in line for item in entry) + 4 * (len(line) - 1)
 
 
 INDEX_GAP = 3           # letters between two columns of the building index
@@ -3711,7 +3772,7 @@ class Layout:
             self.index_rows = [self.index[r::nrows] for r in range(nrows)]
         self.legend = pack_legend(legend, inner)
         # the referee's secrets, one line or more under the legend
-        notes = [[(tr("ix_secrets"), "b")]] + [[(t, "n")] for t in secrets] if secrets else []
+        notes = [[(tr("ix_secrets"), "b", "secret")]] + [[(t, "n")] for t in secrets] if secrets else []
         self.secrets = pack_legend(notes, inner)
         self.title, self.subtitle, self.motto = title, subtitle, motto
         self.cols = inner + 4
@@ -3737,8 +3798,8 @@ def compose_page(layout):
         for n, entry in enumerate(line):
             if n:
                 x += 4
-            for text, style in entry:
-                page.write(x, y, text, style)
+            for text, style, *colour in entry:
+                page.write(x, y, text, style, *colour)
                 x += len(text)
         y += 1
     if layout.index_rows:
@@ -3755,7 +3816,7 @@ def compose_page(layout):
                 x = x0 + k * (width + INDEX_GAP)
                 room = width - digits - 1
                 text = title if len(title) <= room else title[:room - 1].rstrip() + "."
-                page.write(x, y0 + 2 + r, f"{n:>{digits}}", "b")
+                page.write(x, y0 + 2 + r, f"{n:>{digits}}", "b", "number")
                 page.write(x + digits + 1, y0 + 2 + r, text)
         if not layout.side:
             y = y0 + 2 + len(layout.index_rows) + 1
@@ -3764,8 +3825,8 @@ def compose_page(layout):
         for n, entry in enumerate(line):
             if n:
                 x += 4
-            for text, style in entry:
-                page.write(x, y, text, style)
+            for text, style, *colour in entry:
+                page.write(x, y, text, style, *colour)
                 x += len(text)
         y += 1
     return page
@@ -3868,47 +3929,60 @@ def pixel_layout(layout, paper, orientation, char_mm, fonts, dpi=DPI):
     return regular, bold, char_w, char_h, size, width, height, ox, oy
 
 
-def render(canvas, regular, bold, char_w, char_h, size, width, height, ox, oy, progress=None):
-    """Rasterise in grayscale: 0 = ink, 255 = paper (colours come later)."""
-    img = Image.new("L", (width, height), 255)
+def render(canvas, regular, bold, char_w, char_h, size, width, height, ox, oy, progress=None, palette=MONO):
+    """Rasterise. With MONO in grayscale, 0 = ink, 255 = paper (colorize gives
+    the one-colour schemes); with a colour palette in RGB, every symbol in the
+    colour of its tag, on the fill of its cell."""
+    img = Image.new(palette["mode"], (width, height), palette["paper"])
     d = ImageDraw.Draw(img)
+    ink_colour, paper = palette["ink"], palette["paper"]
+
+    def ink(tag):
+        return palette.get(tag, ink_colour)
+    if len(palette) > 3:            # the fills first, so no symbol is covered
+        for y in range(canvas.height):
+            for x in range(canvas.width):
+                key = canvas.fills[y][x]
+                if key in palette:
+                    px, py = ox + x * char_w, oy + y * char_h
+                    d.rectangle([px, py, px + char_w + 0.5, py + char_h + 0.5], fill=palette[key])
     thicken = max(1, size // 22)
     real_bold = bold is not None
     probe = bold.font_variant(size=40) if real_bold else None
     bold_can_draw = {}
 
-    def draw_bold(px, py, ch):
+    def draw_bold(px, py, ch, fill):
         if real_bold:
             if ch not in bold_can_draw:
                 bold_can_draw[ch] = ch.isascii() or font_has_glyph(probe, ch)
             if bold_can_draw[ch]:
-                d.text((px, py), ch, font=bold, fill=0, anchor="la")
+                d.text((px, py), ch, font=bold, fill=fill, anchor="la")
                 return
-        d.text((px, py), ch, font=regular, fill=0, anchor="la")
-        d.text((px + thicken, py), ch, font=regular, fill=0, anchor="la")
+        d.text((px, py), ch, font=regular, fill=fill, anchor="la")
+        d.text((px + thicken, py), ch, font=regular, fill=fill, anchor="la")
 
     for y in range(canvas.height):
         py = oy + y * char_h
         for x in range(canvas.width):
-            ch, style = canvas.chars[y][x], canvas.styles[y][x]
+            ch, style, tag = canvas.chars[y][x], canvas.styles[y][x], canvas.tags[y][x]
             if ch == " " and style != "i":
                 continue
             px = ox + x * char_w
             if style == "i":
-                d.rectangle([px, py, px + char_w + 0.5, py + char_h + 0.5], fill=0)
+                d.rectangle([px, py, px + char_w + 0.5, py + char_h + 0.5], fill=ink(tag))
                 if ch not in "[] ":
-                    d.text((px, py), ch, font=bold or regular, fill=255, anchor="la")
+                    d.text((px, py), ch, font=bold or regular, fill=paper, anchor="la")
             elif style == "b":
-                draw_bold(px, py, ch)
+                draw_bold(px, py, ch, ink(tag))
             else:
-                d.text((px, py), ch, font=regular, fill=0, anchor="la")
+                d.text((px, py), ch, font=regular, fill=ink(tag), anchor="la")
         if progress:
             progress((y + 1) / canvas.height)
     return img
 
 
 def colorize(img, scheme):
-    if scheme == 1:
+    if scheme == 1 or scheme in PALETTES:
         return img
     ink, paper = COLOR_SCHEMES[scheme]
     palette = []
@@ -3966,6 +4040,8 @@ class PdfFile:
         if img.mode == "P":
             palette = bytes(img.getpalette()[:768]).ljust(768, b"\0")
             space = f"[/Indexed /DeviceRGB 255 <{palette.hex().upper()}>]"
+        elif img.mode == "RGB":
+            space = "/DeviceRGB"
         else:
             img = img.convert("L")
             space = "/DeviceGray"
@@ -4009,7 +4085,8 @@ class PdfFile:
 def draw_sheet(canvas, pixels, scheme):
     live = LiveBar()
     drawing = tr("pb_drawing")
-    img = render(canvas, *pixels, progress=lambda done: live.update(0.85 * done, drawing))
+    img = render(canvas, *pixels, progress=lambda done: live.update(0.85 * done, drawing),
+                 palette=PALETTES.get(scheme, MONO))
     live.update(0.85, tr("pb_saving"))
     return colorize(img, scheme), live
 
@@ -4663,7 +4740,7 @@ def ask_params():
 
 
 def ask_colors():
-    return menu(tr("colors_intro"), [tr("color_name_1"), tr("color_name_2"), tr("color_name_3")], 0) + 1
+    return menu(tr("colors_intro"), [tr(f"color_name_{n}") for n in range(1, 6)], 0) + 1
 
 
 def ask_name():
@@ -4780,7 +4857,7 @@ def settings_from_options(argv):
     ap.add_argument(*names("tono", "tone"), dest="tone", type=read_choice(NAME_TONES, "tono"), default=None,
                     help=tr("h_tone"))
     ap.add_argument(*names("seme", "seed"), dest="seed", default=None, help=tr("h_seed"))
-    ap.add_argument(*names("colori", "colors"), dest="colors", type=int, choices=(1, 2, 3), default=1, help=tr("h_colors"))
+    ap.add_argument(*names("colori", "colors"), dest="colors", type=int, choices=(1, 2, 3, 4, 5), default=1, help=tr("h_colors"))
     ap.add_argument(*names("formato", "format"), dest="paper", type=str.upper, choices=list(PAPERS), default=None,
                     help=tr("h_format"))
     files = ap.add_mutually_exclusive_group()

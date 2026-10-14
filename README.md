@@ -148,7 +148,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
    - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up);
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names)).
-4. **Colours**: black on white (for printing), white on light blue, white on black.
+4. **Colours**: black on white (for printing), white on light blue, white on black, or **in full colour**, as in WyrmHex, on white or on black: every symbol in its own colour (water blue, woods green, walls stone grey, timber brown, gates red, secrets magenta), and on white pale fills under water, streets and buildings.
 5. **Symbols**: WyrmDelve's (`▓ █ ≈ ♣ ╔═╗`) or **keyboard characters only**, as in WyrmHex.
 6. **Name on the map**: the generated one, one of yours, or none.
 7. **What goes in the key**: story, people and (in a place of adventure) monsters and treasure; Space ticks and unticks.
@@ -246,7 +246,7 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--names` / `--nomi` | `italian`, `old english`, `renaissance`, `gaelic`, `tolkien`, `persian`, `byzantine`, `german`, `french`, `danish`, `russian`, `mixed` (or 1 to 12) |
 | `--tone` / `--tono` | `fair`, `homely`, `stately`, `grim`, `eerie` (or 1 to 5) |
 | `--seed` / `--seme` | rebuilds the settlement of that seed |
-| `--colors` / `--colori` | 1 black on white, 2 white on light blue, 3 white on black |
+| `--colors` / `--colori` | 1 black on white, 2 white on light blue, 3 white on black, 4 colour on white, 5 colour on black |
 | `--format` / `--formato` | `A4`, `A3`, `A2`, `A1` |
 | `--png`, `--pdf`, `--single-pdf` / `--pdf-unico` | PNG maps and book, PDF maps and book, or one single PDF |
 | `--title` / `--titolo`, `--no-title` / `--senza-titolo` | name on the map |
