@@ -3794,9 +3794,9 @@ def hoard_text(hoard):
 # unguarded treasure of a dungeon level as dangerous as the place. About
 # 750-2,000 gp in all at danger 1, 3,000-7,500 at 2, 10,000-20,000 at 3,
 # 25,000-50,000 at 4 (cities nearer the top, villages nearer the bottom).
-LAIR_GOLD = {1: 1000, 2: 3500, 3: 10000, 4: 22000}
+LAIR_GOLD = {1: 1200, 2: 3500, 3: 10000, 4: 22000}
 LAIR_SIZE = {"village": 0.9, "town": 1, "castle": 1, "fortress": 1, "city": 1.15, "bigcity": 1.15}
-LAIR_ROLLS = (3, 10)        # the threat's hoard: at least 3 rolls of its type, at most 10
+LAIR_ROLLS = (6, 10)        # the threat's hoard: at least 6 rolls of its type, at most 10
 LOOSE_BUILDINGS = 8         # empty buildings that may hide something, at most
 
 
