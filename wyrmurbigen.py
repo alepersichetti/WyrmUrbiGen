@@ -12,10 +12,16 @@ OSR stats, rumours and events, and:
 
   * a place of rest for adventurers: inns, healers, smiths, horses, retainers
     and mercenaries for hire, prices in gold pieces;
-  * a place of adventure: a threat (brigands, a cult, plague, a curse, orcs, a
-    beast, ruins, a necromancer, something from the water, a dragon, a mine, a
-    feud), wandering monsters, monsters and clues in the buildings and treasure,
-    using WyrmDelve's bestiary and its Old-School Essentials treasure tables.
+  * a place of adventure, in ruins (long abandoned, full of monsters, with a
+    layered history: founding, height, fall and the stories after it) or
+    inhabited and threatened (brigands, a cult, plague, a curse, orcs, a beast,
+    a necromancer, something from the water, a dragon, a mine, a feud), with
+    wandering monsters, monsters and clues in the buildings and treasure, using
+    WyrmDelve's bestiary and its Old-School Essentials treasure tables.
+
+It is a fantasy generator: no real places, families, saints or religions.
+Names of places, people and gods are built from real particles of eleven
+languages, and every settlement worships five gods of its own.
 
 The plan follows real medieval and Renaissance town planning:
   Early Middle Ages  patched walls and palisades, motte-and-bailey castles,
@@ -46,8 +52,8 @@ Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic) or a
 mix of them all, in one of five tones (fair, homely, stately, grim, eerie):
 millions of names for each, from the roots in data/names.json.
 
-The seed (e.g. C2-B-R-A2-DE4-K7Q2MB = type+size, era, terrain,
-purpose+danger, names+tone, code) holds the whole settlement: the same seed
+The seed (e.g. C2-B-R-A2R-DE4-K7Q2MB = type+size, era, terrain,
+purpose+danger+state, names+tone, code) holds the whole settlement: the same seed
 always gives the same one. Seeds without names+tone, made by older versions,
 still work and keep their medieval Italian names.
 
@@ -58,7 +64,7 @@ Usage. Every option has an Italian and an English name, use whichever:
   python wyrmurbigen.py --scopo avventura --pericolo 3   / --purpose adventure --danger 3
   python wyrmurbigen.py --dimensione 3               / --size 3
   python wyrmurbigen.py --nomi tedesco --tono cupo    / --names german --tone grim
-  python wyrmurbigen.py --seme C2-B-R-A2-DE4-K7Q2MB  / --seed C2-B-R-A2-DE4-K7Q2MB
+  python wyrmurbigen.py --seme C2-B-R-A2R-DE4-K7Q2MB / --seed C2-B-R-A2R-DE4-K7Q2MB
   python wyrmurbigen.py --solo-ascii --formato A3 --pdf
   python wyrmurbigen.py --help
 Parameters you leave out are chosen at random.
@@ -244,6 +250,13 @@ TEXTS = {
     "people_fantasy": ("fantasy: desinenze mescolate da tutte le lingue", "fantasy: endings mixed from all languages"),
     "people_places_hint": ("nomi e cognomi nella lingua dei nomi dei luoghi", "first and family names in the place names' language"),
     "q_danger": ("Quanto è pericoloso?", "How dangerous is it?"),
+    "q_state": ("In che stato è?", "What state is it in?"),
+    "state_ruin_menu": ("In rovina", "In ruins"),
+    "state_ruin_hint": ("abbandonato da tempo, popolato da mostri, con una storia a strati",
+                        "long abandoned, full of monsters, with a layered history"),
+    "state_threat_menu": ("Abitato e minacciato", "Inhabited and threatened"),
+    "state_threat_hint": ("la gente vive ancora qui: briganti, culti, peste, faide, un drago...",
+                          "people still live here: brigands, cults, plague, feuds, a dragon..."),
     "danger_1": ("1 · per personaggi di livello 1-2", "1 · for characters of level 1-2"),
     "danger_2": ("2 · per personaggi di livello 3-4", "2 · for characters of level 3-4"),
     "danger_3": ("3 · per personaggi di livello 5-7", "3 · for characters of level 5-7"),
@@ -374,6 +387,7 @@ TEXTS = {
     "ix_tunnel": ("qui comincia la galleria segreta", "the secret tunnel starts here"),
     "ix_secrets": ("Segreti:", "Secrets:"),
     "lg_ruin": ("macerie", "rubble"),
+    "lg_brambles": ("rovi ed erbacce", "brambles and weeds"),
     "lg_wall": ("mura", "walls"),
     "lg_tower": ("torre o bastione", "tower or bastion"),
     "lg_palisade": ("palizzata", "palisade"),
@@ -410,9 +424,19 @@ TEXTS = {
     "key_scale": ("Scala: una riga di caratteri = {r} {u}, una colonna = metà", "Scale: one row of letters = {r} {u}, one column = half"),
     "purpose_rest": ("Luogo di riposo per gli avventurieri", "Place of rest for adventurers"),
     "purpose_adventure": ("Luogo d'avventura, pericolo {d}", "Place of adventure, danger {d}"),
+    "state_ruin": ("in rovina", "in ruins"),
+    "state_threat": ("abitato e minacciato", "inhabited and threatened"),
+    "key_pop_ruin": ("{n} abitanti all'apogeo, oggi nessuno", "{n} inhabitants at its height, none today"),
+    "gods": ("Vi si venerano {g}.", "Its people worship {g}."),
+    "gods_ruin": ("Vi si veneravano {g}.", "Its people worshipped {g}."),
+    "events_ruin": ("Eventi tra le rovine (d6)", "Events in the ruins (d6)"),
+    "hooks_ruin": ("Agganci: chi manda i personaggi (d4)", "Hooks: who sends the characters (d4)"),
+    "trace": ("Traccia del passato: {t}.", "A trace of the past: {t}."),
     "h_history": ("Storia", "History"),
     "h_threat": ("La minaccia: {t}", "The threat: {t}"),
     "threat_villain": ("Chi c'è dietro: {v}", "Who is behind it: {v}"),
+    "threat_boss": ("Chi comanda: {b} Usa le statistiche del mostro più forte dei mostri erranti, con il doppio dei "
+                    "PF.", "Who rules here: {b} Use the stats of the strongest wandering monster, with double hp."),
     "clock_title": ("Se nessuno interviene (un passo ogni 1d4 giorni)", "If nobody steps in (one step every 1d4 days)"),
     "key_wander": ("Mostri erranti (d6, ogni 2 turni di notte, ogni ora di giorno: 1 su d6)",
                    "Wandering monsters (d6; every 2 turns at night, every hour by day: 1 in 6)"),
@@ -527,6 +551,9 @@ TEXTS = {
                   "plains, hills, mountains, forest, swamp, coast, river, lake (or 1-8)"),
     "h_purpose": ("riposo o avventura", "rest or adventure"),
     "h_danger": ("pericolo del luogo d'avventura, da 1 a 4", "danger of the place of adventure, 1 to 4"),
+    "h_state": ("stato del luogo d'avventura: rovina (in rovina, mostri e storia a strati) o abitato (abitato e "
+                "minacciato)", "state of the place of adventure: ruin (in ruins, monsters and a layered history) or "
+                "inhabited (inhabited and threatened)"),
     "h_names": ("lingua dei nomi dei luoghi: italiano, antico (Old English), rinascimentale, gaelico, tolkien, "
                 "persiano, bizantino, tedesco, francese, danese, russo, misto (o 1-12)",
                 "language of the place names: italian, old english, renaissance, gaelic, tolkien, persian, byzantine, "
@@ -539,8 +566,8 @@ TEXTS = {
                  "people's names: places (like the place names), fantasy (endings mixed from all languages) or a "
                  "language: italian, old english, renaissance, gaelic, tolkien, persian, byzantine, german, french, "
                  "danish, russian, mixed"),
-    "h_seed": ("seme completo (es. C9500-B-R-A2-DE4-K7Q2MB) per rifare un insediamento",
-               "full seed (e.g. C9500-B-R-A2-DE4-K7Q2MB) to rebuild a settlement"),
+    "h_seed": ("seme completo (es. C9500-B-R-A2R-DE4-K7Q2MB) per rifare un insediamento",
+               "full seed (e.g. C9500-B-R-A2R-DE4-K7Q2MB) to rebuild a settlement"),
     "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero, 4 a colori su bianco, 5 a colori su nero",
                  "1 black on white (default), 2 white on light blue, 3 white on black, 4 colour on white, 5 colour on black"),
     "h_format": ("formato di stampa; senza, viene suggerito e chiesto", "print format; without it, it is suggested and asked"),
@@ -575,14 +602,33 @@ def pick(pair):
 
 
 def fmt(pair, **values):
-    """Fill in both halves of an (it, en) pair: tuple values give each language its own word."""
-    return tuple(t.format(**{k: (v[i] if isinstance(v, tuple) else v) for k, v in values.items()})
-                 for i, t in enumerate(pair))
+    """Fill in both halves of an (it, en) pair: tuple values give each language its own word; the Italian half gets
+    its prepositions and articles right around the names (contract_it)."""
+    out = tuple(t.format(**{k: (v[i] if isinstance(v, tuple) else v) for k, v in values.items()})
+                for i, t in enumerate(pair))
+    return (contract_it(out[0]),) + out[1:]
 
 
 def capitalized(text):
     """The text with its first letter in upper case (the rest untouched, unlike str.capitalize)."""
     return text[:1].upper() + text[1:] if text else text
+
+
+ARTICLES = {"la": "lla", "le": "lle", "il": "l", "lo": "llo", "i": "i", "gli": "gli", "l'": "ll'"}
+PREPOSITIONS = {"da": "da", "di": "de", "a": "a", "in": "ne", "su": "su"}
+
+
+def contract_it(text):
+    """Italian grammar around a filled-in name: a preposition glued to the article after it ("da la Torre" ->
+    "dalla Torre"), and "gli" before s + consonant, z, x, gn, ps or a vowel ("dei Schneider" -> "degli
+    Schneider")."""
+    def glue(m):
+        """One preposition and article, glued, keeping a capital letter."""
+        word = PREPOSITIONS[m.group(1).lower()] + ARTICLES[m.group(2)]
+        return (capitalized(word) if m.group(1)[0].isupper() else word) + m.group(3)
+    text = re.sub(r"\b(da|di|a|in|su|Da|Di|A|In|Su) (la|le|il|lo|gli|i|l')( |(?<=')|$)", glue, text)
+    return re.sub(r"\b(de|ne|a|da|su|De|Ne|A|Da|Su)i (?=[Ss][^aeiouyAEIOUY ]|[ZzXx]|Gn|Ps|[AEIOUaeiouÆØÅ])", r"\1gli ",
+                  text)
 
 
 def normalize_language(value):
@@ -677,11 +723,11 @@ class Log:
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OPTIONAL_DATA = ("monsters.json", "clues.json", "treasure.json")    # from WyrmDelve: without them, no monsters or treasure
-REQUIRED = ("settlement_types", "eras", "terrains", "name_styles", "name_tones", "name_forms", "saints", "signs", "gates",
-            "quarters", "history",
-            "situations", "rumors", "adventure_rumors", "events", "hooks", "dungeons", "buildings", "first_names",
-            "families", "family_adj", "bynames", "places", "trades", "traits", "wants", "secrets", "rulers",
-            "factions", "guilds", "classes", "spells", "retainers", "demographics", "economy")
+REQUIRED = ("settlement_types", "eras", "terrains", "name_styles", "name_tones", "name_forms", "god_roots",
+            "god_domains", "god_titles", "signs", "gates", "quarters", "history", "situations", "rumors",
+            "adventure_rumors", "events", "hooks", "dungeons", "ruin_history", "ruin_rumors", "ruin_events",
+            "ruin_hooks", "buildings", "bynames", "trades", "traits", "wants", "secrets", "rulers", "factions",
+            "guilds", "classes", "spells", "retainers", "demographics", "economy")
 
 
 def from_json(value):
@@ -801,16 +847,19 @@ def span(text):
 
 
 # --- seed ---
-# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER-NAMES+TONE[+PEOPLE]-CODE, e.g.
-# C9500-B-R-A2-DE4-K7Q2MB: a city of 9,500 people, Late Middle Ages, on a river,
-# a place of adventure of danger 2, grim German names. PEOPLE: none for people
-# named like the places, X for fantasy names (mixed endings), or the code of
-# another language (DE4NO: Danish and Swedish people). CODE = 6 symbols, 30
-# random bits. Older seeds have no NAMES+TONE part: their names are the
-# medieval Italian ones of old, made exactly as before.
+# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER[+STATE]-NAMES+TONE[+PEOPLE]-CODE, e.g.
+# C9500-B-R-A2R-DE4-K7Q2MB: a city of 9,500 people, Late Middle Ages, on a river,
+# a place of adventure of danger 2, in ruins (R; T: inhabited and threatened),
+# grim German names. PEOPLE: none for people named like the places, X for
+# fantasy names (mixed endings), or the code of another language (DE4NO: Danish
+# and Swedish people). CODE = 6 symbols, 30 random bits. Older seeds have no
+# STATE (any threat, ruins included) and may have no NAMES+TONE part: their place
+# names are the medieval Italian ones of old, their people's names Italian too.
 SEED_SYMBOLS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"   # no I, L, O, U: too easy to misread
 CODE_LENGTH = 6
 PURPOSES = ("rest", "adventure")
+STATES = ("ruin", "threat")     # a place of adventure: in ruins and full of monsters, or inhabited and threatened
+STATE_CODES = {"ruin": "R", "threat": "T"}
 
 
 def new_number():
@@ -839,13 +888,14 @@ def from_code(text):
 
 
 def make_seed(p):
-    """The seed text of a settlement: TYPE+POP-ERA-TERRAIN-PURPOSE+DANGER[-NAMES+TONE[+PEOPLE]]-CODE."""
+    """The seed text of a settlement: TYPE+POP-ERA-TERRAIN-PURPOSE+DANGER[+STATE][-NAMES+TONE[+PEOPLE]]-CODE."""
     purpose = "A" if p["purpose"] == "adventure" else "R"
+    state = STATE_CODES.get(p.get("state"), "")
     people = p.get("people") or "places"
     people = "" if people == "places" else "X" if people == "fantasy" else NAME_STYLE[people]["code"]
     names = f"{NAME_STYLE[p['names']]['code']}{NAME_TONE[p['tone']]['code']}{people}-" if p.get("names") else ""
     return (f"{TYPE[p['type']]['code']}{p['pop']}-{ERA[p['era']]['code']}-{TERRAIN[p['terrain']]['code']}-"
-            f"{purpose}{p['danger']}-{names}{to_code(p['number'])}")
+            f"{purpose}{p['danger']}{state}-{names}{to_code(p['number'])}")
 
 
 def read_seed(text):
@@ -862,7 +912,10 @@ def read_seed(text):
         if None in (names, tone, people):
             return None
         del parts[4]
-    if len(parts) != 5 or len(parts[0]) < 2 or len(parts[3]) != 2:
+    if len(parts) != 5 or len(parts[0]) < 2 or len(parts[3]) not in (2, 3):
+        return None
+    state = {"R": "ruin", "T": "threat", "": None}.get(parts[3][2:])
+    if parts[3][2:] and (state is None or parts[3][0] != "A"):
         return None
     kind, era, terrain = TYPE_BY_CODE.get(parts[0][0]), ERA_BY_CODE.get(parts[1]), TERRAIN_BY_CODE.get(parts[2])
     purpose = {"A": "adventure", "R": "rest"}.get(parts[3][0])
@@ -870,13 +923,13 @@ def read_seed(text):
     if None in (kind, era, terrain, purpose, n) or not parts[0][1:].isdigit() or not parts[3][1].isdigit():
         return None
     p = {"type": kind, "pop": int(parts[0][1:]), "era": era, "terrain": terrain, "purpose": purpose,
-         "danger": int(parts[3][1]), "names": names, "tone": tone, "people": people, "number": n}
+         "danger": int(parts[3][1]), "state": state, "names": names, "tone": tone, "people": people, "number": n}
     return None if check_params(p) else p
 
 
 def example_seed():
     """A seed shown in questions and help as an example."""
-    return "C9500-B-R-A2-DE4-K7Q2MB"
+    return "C9500-B-R-A2R-DE4-K7Q2MB"
 
 
 def check_params(p):
@@ -920,6 +973,11 @@ def random_params(n, fixed=None):
     p["names"] = fixed.get("names") or r.choice([n["id"] for n in NAME_STYLES])
     p["tone"] = fixed.get("tone") or r.choice([t["id"] for t in NAME_TONES])
     p["people"] = fixed.get("people") or r.choices(PEOPLE_MODES, weights=[3, 1])[0]
+    # a city of adventure is a ruin; a smaller place is one a third of the time, else inhabited and threatened
+    p["state"] = None
+    if p["purpose"] == "adventure":
+        p["state"] = fixed.get("state") or ("ruin" if p["type"] in ("city", "bigcity") or r.random() < 1 / 3
+                                            else "threat")
     p["number"] = n
     return p
 
@@ -1032,14 +1090,17 @@ def name_examples(names, tone, count=3):
 
 
 # People's names follow the place names' language (or another, or a fantasy mix
-# of endings: the "people" setting). The random draws are always those of the
-# medieval Italian names (an index into the Italian tables), so a seed gives the
-# same settlement whatever its names; the name itself comes from a random
-# generator of its own, keyed by the settlement and by the person's turn. Names
-# are a real name of the language or a beginning plus an ending of it: about a
-# thousand first names and a thousand family names per language.
-PEOPLE_REAL = 0.35          # how often a name is a real one rather than built from roots
+# of endings: the "people" setting). They are all made up, like the places: a
+# beginning plus an ending from the roots of a language, real particles that
+# make a real name only by chance (about a thousand first names and a thousand
+# family names per language). The settlement's generator draws the kind of name
+# (with a father's name, a family, a home town, a byname); the name itself
+# comes from a generator of its own, keyed by the settlement and by the person's
+# turn. A settlement has a dozen families and a dozen towns around it, so the
+# same ones come back in its buildings, factions, history and rumours.
 PEOPLE_MODES = ("places", "fantasy")
+FAMILIES_PER_PLACE = 12
+TOWNS_NEARBY = 12
 
 
 class NameBook(set):
@@ -1053,20 +1114,18 @@ class NameBook(set):
         self.p, self.count = p, 0
 
 
+def name_style(p):
+    """(style, tone) of a settlement's names; older seeds without them: medieval Italian, homely."""
+    return p.get("names") or "italian", p.get("tone") or "homely"
+
+
 def people_style(p, r):
     """(style, fantasy): whose people's names to use; for the mix, one drawn by r."""
     people = p.get("people") or "places"
-    style = NAME_STYLE[p["names"] if people in PEOPLE_MODES else people]
+    style = NAME_STYLE[name_style(p)[0] if people in PEOPLE_MODES else people]
     if style.get("mix"):
         style = r.choice([n for n in NAME_STYLES if not n.get("mix")])
     return style, people == "fantasy"
-
-
-def real_names(style, key):
-    """The real names of a style: first names m/f or families (Italian: people.json)."""
-    if style["id"] == "italian":
-        return TABLES["families"] if key == "families" else TABLES["first_names"][key]
-    return style["people"][key]
 
 
 def built_name(r, style, part, fantasy):
@@ -1078,14 +1137,6 @@ def built_name(r, style, part, fantasy):
                 if VOWELS & set(e.lower())]
     name = re.sub(r"(.)\1\1+", r"\1\1", join_roots(start, r.choice(ends)))
     return name if name.startswith("al-") else name[:1].upper() + name[1:]
-
-
-def given_name(r, style, gender, fantasy):
-    """A first name: a real one of the style PEOPLE_REAL of the time, else one built from its roots (fantasy: always
-    built, with endings of any language)."""
-    if not fantasy and r.random() < PEOPLE_REAL:
-        return r.choice(real_names(style, gender))
-    return built_name(r, style, gender, fantasy)
 
 
 def feminine(style, family):
@@ -1107,11 +1158,7 @@ def feminine(style, family):
 
 
 def family_of(r, style, gender, fantasy):
-    """A family name: a real one PEOPLE_REAL of the time, else one built from the style's roots; for a woman in its
-    feminine form."""
-    if not fantasy and r.random() < PEOPLE_REAL:
-        family = r.choice(real_names(style, "families"))
-        return family if isinstance(family, str) else family[gender == "f"]
+    """A family name built from the style's roots; for a woman in its feminine form."""
     family = built_name(r, style, "fam", fantasy)
     return feminine(style, family) if gender == "f" else family
 
@@ -1128,23 +1175,22 @@ def patronymic(father, gender):
 
 
 def styled_person(book, gender, kind, j):
-    """(it, en): a person's name in the settlement's way, for an Italian draw of
-    kind father/family/place/by (j: the byname's index)."""
+    """(it, en): a person's name in the settlement's way, of kind father/family/place/by (j: the byname's index)."""
     p = book.p
     r = random.Random(f"wyrmurbigen-person-{p['number']}-{book.count}")
     style, fantasy = people_style(p, r)
-    first = given_name(r, style, gender, fantasy)
+    first = built_name(r, style, gender, fantasy)
     if kind == "by":
         by = TABLES["bynames"][j]
         return f"{first} {by[0]}", f"{first} {by[1]}"
     form = style["people"]["forms"][kind]
     form = form[gender] if isinstance(form, dict) else form
     form = form if isinstance(form, tuple) else (form, form)
-    father = given_name(r, style, "m", fantasy)
+    father = built_name(r, style, "m", fantasy)
     values = {"first": first, "father": father, "family": family_of(r, style, gender, fantasy),
               "patronymic": patronymic(father, gender)}
     if "{place}" in form[0]:
-        values["place"] = styled_name(r, p["names"], p["tone"], simple=True)
+        values["place"] = styled_name(r, *name_style(p), simple=True)
     out = []
     for text in fmt(form, **values):
         text = re.sub(r"(.)\1\1+", r"\1\1", text)              # Magnus + sson -> Magnusson
@@ -1154,71 +1200,51 @@ def styled_person(book, gender, kind, j):
     return tuple(out)
 
 
-def person_name(rng, gender, used=None):
-    """(it, en): first name and a surname, a father's name, a home town or a byname."""
-    used = used if used is not None else set()
-    firsts, families, places, bynames = TABLES["first_names"], TABLES["families"], TABLES["places"], TABLES["bynames"]
+def person_name(rng, gender, used):
+    """(it, en): a first name and a father's name, a family, a home town or a byname, made up in the settlement's
+    way; `used` is the settlement's NameBook, so nobody gets a name already given."""
     for _ in range(50):
-        i = rng.randrange(len(firsts[gender]))      # the same draws as rng.choice
-        first = firsts[gender][i]
         style = rng.random()
-        if style < 0.3:
-            kind, j = "father", rng.randrange(len(firsts["m"]))
-            name = (f"{first} di {firsts['m'][j]}",) * 2
-        elif style < 0.6:
-            kind, j = "family", rng.randrange(len(families))
-            name = (f"{first} {families[j]}",) * 2
-        elif style < 0.8:
-            kind, j = "place", rng.randrange(len(places))
-            name = (f"{first} da {places[j]}",) * 2
-        else:
-            kind, j = "by", rng.randrange(len(bynames))
-            by = bynames[j]
-            name = (f"{first} {by[0]}", f"{first} {by[1]}")
-        if name[0] not in used:
-            used.add(name[0])
-            break
-    if isinstance(used, NameBook) and used.p.get("names"):
+        kind = "father" if style < 0.3 else "family" if style < 0.6 else "place" if style < 0.8 else "by"
+        j = rng.randrange(len(TABLES["bynames"])) if kind == "by" else None
         used.count += 1
-        return styled_person(used, gender, kind, j)
+        name = styled_person(used, gender, kind, j)
+        if name[0] not in used:
+            break
+    used.add(name[0])
     return name
 
 
 def family_name(rng, p, key="family"):
-    """A family of the settlement's people (the draw of an Italian one)."""
-    j = rng.randrange(len(TABLES["families"]))
-    if not p.get("names"):
-        return TABLES["families"][j]
+    """One of the settlement's FAMILIES_PER_PLACE families, made up in its people's way."""
+    j = rng.randrange(FAMILIES_PER_PLACE)
     r = random.Random(f"wyrmurbigen-{key}-{p['number']}-{j}")
     style, fantasy = people_style(p, r)
     return family_of(r, style, "m", fantasy)
 
 
 def town_name(rng, p):
-    """Another town (a home town, a gate's destination) in the settlement's language."""
-    j = rng.randrange(len(TABLES["places"]))
-    if not p.get("names"):
-        return TABLES["places"][j]
-    return styled_name(random.Random(f"wyrmurbigen-town-{p['number']}-{j}"), p["names"], p["tone"], simple=True)
+    """One of the TOWNS_NEARBY towns around (a home town, a gate's destination), in the settlement's language."""
+    j = rng.randrange(TOWNS_NEARBY)
+    return styled_name(random.Random(f"wyrmurbigen-town-{p['number']}-{j}"), *name_style(p), simple=True)
 
 
 def people_counts(p):
     """About how many first names (m, f) and families the people's names can have."""
     styles = [n for n in NAME_STYLES if n.get("people")]
     people = p.get("people") or "places"
-    sid = p["names"] if people in PEOPLE_MODES else people
+    sid = name_style(p)[0] if people in PEOPLE_MODES else people
     chosen = styles if NAME_STYLE[sid].get("mix") else [NAME_STYLE[sid]]
 
-    def count(part, real):
-        """First or family names of one kind: beginnings x endings, plus the real ones."""
+    def count(part):
+        """First or family names of one kind: beginnings x endings."""
         total = 0
         for style in chosen:
             ends = sum(len(n["people"]["roots"][part + "_end"]) for n in styles) if people == "fantasy" else \
                 len(style["people"]["roots"][part + "_end"])
-            total += len(style["people"]["roots"][part + "_start"]) * ends + \
-                (0 if people == "fantasy" else len(real_names(style, real)))
+            total += len(style["people"]["roots"][part + "_start"]) * ends
         return total
-    return count("m", "m"), count("f", "f"), count("fam", "families")
+    return count("m"), count("f"), count("fam")
 
 
 def people_words(p):
@@ -1234,6 +1260,52 @@ def people_examples(p, count=3):
     book = NameBook(dict(p, number=f"examples-{p.get('people')}"))
     rng = random.Random(f"wyrmurbigen-people-examples-{p.get('people')}")
     return [pick(person_name(rng, g, book)) for g in "mfm"[:count]]
+
+
+# The gods: no real religion, but a small pantheon of made-up gods for every
+# settlement, the same for a seed. Their names are built from the divine roots
+# of data/names.json; each is a god or goddess of a domain (data/settlements.json),
+# one of them of the land around when it has one (the sea on the coast...).
+GODS_PER_PLACE = 5
+_PANTHEONS = {}
+
+
+def pantheon(p):
+    """The gods of a settlement: [{"name", "gender", "domain"}], the patron first."""
+    key = (p["number"], p["terrain"])
+    if key not in _PANTHEONS:
+        r = random.Random(f"wyrmurbigen-gods-{p['number']}")
+        roots = TABLES["god_roots"]
+        local = [d for d in TABLES["god_domains"] if p["terrain"] in d.get("terrains", ())]
+        common = [d for d in TABLES["god_domains"] if not d.get("terrains")]
+        domains = ([r.choice(local)] if local else []) + r.sample(common, GODS_PER_PLACE - (1 if local else 0))
+        r.shuffle(domains)
+        gods, names = [], set()
+        for d in domains:
+            while True:
+                gender = r.choice("mf")
+                name = join_roots(r.choice(roots["start"]), r.choice(roots[gender + "_end"])).capitalize()
+                if name not in names:
+                    break
+            names.add(name)
+            gods.append({"name": name, "gender": gender, "domain": d["name"]})
+        _PANTHEONS[key] = gods
+    return _PANTHEONS[key]
+
+
+def god_name(rng, p):
+    """(it, en): one of the settlement's gods, for a temple, a gate, a confraternity..."""
+    god = pantheon(p)[rng.randrange(GODS_PER_PLACE)]
+    return god["name"], god["name"]
+
+
+def gods_text(p):
+    """(it, en): the pantheon in words: Orsaldra, goddess of the harvest; Velmor, god of storms..."""
+    out = []
+    for lang in (0, 1):
+        out.append("; ".join(f"{g['name']}, {TABLES['god_titles'][g['gender']][lang]} {g['domain'][lang]}"
+                             for g in pantheon(p)))
+    return tuple(out)
 
 
 class Deck:
@@ -3223,17 +3295,10 @@ class Settlement:
 
 
 def fill_title(rng, kind, npc, s):
-    """A building's name from its kind's templates: signs, saints, families, guilds, the owner."""
+    """A building's name from its kind's templates: signs, gods, families, guilds, the owner."""
     title = rng.choice(kind.get("title") or [kind["name"]])
-    adj_it, adj_en = TABLES["family_adj"]
-    k = rng.randrange(len(adj_it))
-    family_adj = (adj_it[k], adj_en[k])
-    if s.p.get("names"):
-        r = random.Random(f"wyrmurbigen-family-adj-{s.p['number']}-{k}")
-        style, fantasy = people_style(s.p, r)
-        family_adj = (family_of(r, style, "m", fantasy),) * 2
-    values = {"sign": rng.choice(TABLES["signs"]), "saint": rng.choice(TABLES["saints"]),
-              "family": (family_name(rng, s.p),) * 2, "family_adj": family_adj,
+    values = {"sign": rng.choice(TABLES["signs"]), "god": god_name(rng, s.p),
+              "family": (family_name(rng, s.p),) * 2,
               "guild": rng.choice(TABLES["guilds"]),
               "owner": (npc["first"], npc["first"]) if npc else (place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2}
     return fmt(title, **values)
@@ -3275,7 +3340,7 @@ def make_settlement(p, plan, seed):
     # gates and quarters
     gates = [g for g in plan.gates if not g.get("inner_ward") and not g.get("road_only")]
     letters = "ABCDEFGHJKLMNP"
-    # every gate a letter and a name: towards the sea or the lake, a bridge, or a saint or another town
+    # every gate a letter and a name: towards the sea or the lake, a bridge, or a god or another town
     for k, g in enumerate(gates):
         g["letter"] = letters[k % len(letters)]
         toward_water = False
@@ -3290,7 +3355,7 @@ def make_settlement(p, plan, seed):
         elif toward_water:
             g["name"] = ("Porta del Ponte", "Bridge Gate")
         else:
-            g["name"] = fmt(rng.choice(TABLES["gates"]), saint=rng.choice(TABLES["saints"]),
+            g["name"] = fmt(rng.choice(TABLES["gates"]), god=god_name(rng, p),
                             place=(town_name(rng, p),) * 2)
         g["dir"] = compass(g["angle"])
     s.gates = gates
@@ -3302,7 +3367,7 @@ def make_settlement(p, plan, seed):
         for k in range(len(angles)):
             g = ordered[k]
             q = rng.choice([q for q in TABLES["quarters"] if "{trade}" not in q[0]])
-            s.quarter_names.append(fmt(q, gate=g["name"], saint=rng.choice(TABLES["saints"]),
+            s.quarter_names.append(fmt(q, gate=g["name"], god=god_name(rng, p),
                                        trade=(rng.choice(trades)["m"][0] + "i", rng.choice(trades)["m"][1] + "s")))
     s.quarter_names = [fix_trade_quarter(q) for q in s.quarter_names]
     # people in the buildings
@@ -3348,7 +3413,7 @@ def make_settlement(p, plan, seed):
     # government
     rulers = TABLES["rulers"][kind if kind in TABLES["rulers"] else building_type(kind)][p["era"]]
     title = rng.choice(rulers)
-    cls = "cleric" if "vescovo" in title[0] else "fighter"
+    cls = "cleric" if "sacerdote" in title[0] else "fighter"
     lv_range = {"village": (1, 3), "town": (2, 4), "city": (4, 6), "bigcity": (5, 8), "castle": (3, 7),
                 "fortress": (4, 8)}[kind]
     s.ruler = make_npc(rng, used_names, title, None, cls, rng.randint(*lv_range), align=rng.choice((0, 0, 1, 2)))
@@ -3361,7 +3426,7 @@ def make_settlement(p, plan, seed):
     s.factions = []
     for f in pool[:rng.randint(2, 3) if kind != "village" else 2]:
         name = fmt(f["name"], family=(family_name(rng, p),) * 2, guild=rng.choice(TABLES["guilds"]),
-                   saint=rng.choice(TABLES["saints"]))
+                   god=god_name(rng, p))
         leader = make_npc(rng, used_names, ("capo", "leader"), None,
                           rng.choice(("normal", "fighter", "thief", "cleric")), rng.randint(1, 4))
         s.factions.append({"name": name, "goal": f["goal"], "leader": leader})
@@ -3371,10 +3436,9 @@ def make_settlement(p, plan, seed):
     founder = rng.choice([(f"{pick(person_name(rng, 'm', used_names))}",) * 2,
                           fmt(("la famiglia {f}", "the {f} family"), f=(family_name(rng, p),) * 2)])
     founded = TABLES["history"]["founded_ward" if kind in ("castle", "fortress") else "founded"][p["era"]]
-    parts = [fmt(rng.choice(founded), n=s.name_pair, founder=founder,
-                 saint=rng.choice(TABLES["saints"]))]
+    parts = [fmt(rng.choice(founded), n=s.name_pair, founder=founder, god=god_name(rng, p))]
     for e in rng.sample(TABLES["history"]["events"], 2):
-        parts.append(fmt(e, saint=rng.choice(TABLES["saints"]), family=(family_name(rng, p),) * 2))
+        parts.append(fmt(e, god=god_name(rng, p), family=(family_name(rng, p),) * 2))
     s.history = parts
     s.present = fmt(rng.choice(TABLES["history"]["present_rest"]), n=s.name_pair)
     # the numbers: demography and economy
@@ -3485,8 +3549,11 @@ def plan_threat(s):
     text that tells it."""
     p, plan = s.p, s.plan
     rng = random.Random(f"wyrmurbigen-threat-{s.seed}")
+    # in ruins: only the threats of a ruin; inhabited: the others; older seeds: any
+    state = p.get("state")
     pool = [x for x in SITUATIONS if x.get("min_danger", 1) <= p["danger"]
-            and (not x.get("terrains") or p["terrain"] in x["terrains"])]
+            and (not x.get("terrains") or p["terrain"] in x["terrains"])
+            and (state is None or (x["life"] == "ruin") == (state == "ruin"))]
     sit = rng.choice(pool)
     s.situation = sit
     lairs = [b for b in plan.buildings if b.kind.get("dungeon") in sit["lairs"] and not b.outside]
@@ -3500,20 +3567,50 @@ def plan_threat(s):
     values = dict(n=s.name_pair, person=villain["name"], family=(family_name(rng, s.p),) * 2,
                   family2=(fam2,) * 2, lair=(f"n. {s.lair.number} ({s.lair.title[0]})", f"no. {s.lair.number} ({s.lair.title[1]})"))
     s.dwellers = fmt(sit["dwellers"], **values)
+    s.boss = None
+    if sit.get("boss"):         # who rules a ruin is a monster: a made-up name and a sketch, the stats of the table
+        roots = TABLES["god_roots"]
+        name = join_roots(rng.choice(roots["start"]), rng.choice(roots["m_end"] + roots["f_end"])).capitalize()
+        s.boss = fmt(sit["boss"], name=name, lair=values["lair"])
     s.threat = fmt(sit["text"], **values)
     s.clock = sit["clock"]
     life = sit["life"]
+    plan.ruin = life == "ruin"
     # abandoned and ruined buildings
     s.abandoned = set()
     if life == "ruin":
         for b in plan.buildings:
             b.ruined = rng.random() < 0.75
             s.abandoned.add(b.uid)
+        ruin_layers(s, rng, values)
     elif life == "half":
         for b in plan.buildings:
             if rng.random() < 0.35 and b is not s.lair:
                 s.abandoned.add(b.uid)
                 b.ruined = rng.random() < 0.5
+
+
+def ruin_layers(s, rng, values):
+    """The layered history of a ruin: its founding, its height, its fall (the threat's own or a common one) and one
+    or two later stories, each of which left a trace in a building. Sets s.layers, [(label, text)], and s.traces,
+    {building uid: text}."""
+    h, p = TABLES["ruin_history"], s.p
+    pop = (f"{p['pop']:,}".replace(",", "."), f"{p['pop']:,}")
+    values = dict(values, god=god_name(rng, p), pop=pop)
+    labels = h["labels"]
+    falls = s.situation.get("fall") if s.situation.get("fall") and rng.random() < 0.7 else h["fall"]
+    years = rng.choice((30, 50, 70, 100, 150, 200, 300))
+    s.layers = [(labels["founded"], s.history[0]),
+                (labels["height"], fmt(rng.choice(h["height"]), **values)),
+                (fmt(labels["fall"], y=str(years)), fmt(rng.choice(falls), **values))]
+    s.traces = {}
+    spots = [b for b in s.plan.buildings if b is not s.lair]
+    rng.shuffle(spots)
+    for later in rng.sample(h["after"], rng.randint(1, 2)):
+        values["person"] = person_name(rng, rng.choice("mf"), s.used_names)
+        s.layers.append((labels["after"], fmt(later["text"], **values)))
+        if spots:
+            s.traces[spots.pop().uid] = fmt(later["trace"], **values)
 
 
 def fits_monster(m, where):
@@ -3739,7 +3836,7 @@ def plan_lore(s):
     dungeon_name = fmt(rng.choice(TABLES["dungeons"]), x=(place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2)
 
     def fill(entry):
-        """Fill a text template with a random person, building, place, family, saint, dungeon..."""
+        """Fill a text template with a random person, building, place, family, god, dungeon..."""
         b = rng.choice(npcs) if npcs else None
         other = rng.choice(s.plan.buildings) if s.plan.buildings else None
         values = {"npc": (f"{b.npc['name'][0]} ({tr_pair('ref_no')[0]} {b.number})",
@@ -3748,10 +3845,11 @@ def plan_lore(s):
                                f"{other.title[1]} ({tr_pair('ref_no')[1]} {other.number})") if other else ("", ""),
                   "dungeon": dungeon_name, "Dungeon": (capitalized(dungeon_name[0]), capitalized(dungeon_name[1])),
                   "place": (town_name(rng, s.p),) * 2, "family": (family_name(rng, s.p),) * 2,
-                  "saint": rng.choice(TABLES["saints"]),
+                  "god": god_name(rng, s.p), "n": s.name_pair,
                   "person": person_name(rng, rng.choice("mf"), s.used_names)}
         if getattr(s, "situation", None):
-            values["dwellers"] = (capitalized(s.dwellers[0]), capitalized(s.dwellers[1]))
+            values["dwellers"] = s.dwellers
+            values["Dwellers"] = (capitalized(s.dwellers[0]), capitalized(s.dwellers[1]))
             values["lair"] = (f"{tr_pair('ref_no')[0]} {s.lair.number}", f"{tr_pair('ref_no')[1]} {s.lair.number}")
             values["monster"] = (getattr(s, "monster_names", ["?"]) or ["?"])[0], \
                 (getattr(s, "monster_names", ["?"]) or ["?"])[0]
@@ -3760,7 +3858,8 @@ def plan_lore(s):
         return pick(fmt((entry["it"], entry["en"]), **values)), entry.get("true", True)
 
     # eight rumours (true or false): up to four about the threat, the rest general
-    general = list(TABLES["rumors"])
+    ruin = hasattr(s, "layers")
+    general = list(TABLES["ruin_rumors" if ruin else "rumors"])
     rng.shuffle(general)
     rumours = []
     if getattr(s, "situation", None):
@@ -3773,8 +3872,8 @@ def plan_lore(s):
     rng.shuffle(rumours)
     s.rumours = rumours
     # six events and four adventure hooks
-    s.events = [fill(e)[0] for e in rng.sample(TABLES["events"], 6)]
-    s.hooks = [fill(h)[0] for h in rng.sample(TABLES["hooks"], 4)]
+    s.events = [fill(e)[0] for e in rng.sample(TABLES["ruin_events" if ruin else "events"], 6)]
+    s.hooks = [fill(h)[0] for h in rng.sample(TABLES["ruin_hooks" if ruin else "hooks"], 4)]
     s.dungeon_name = dungeon_name
     # retainers and mercenaries for hire
     rows = []
@@ -3926,8 +4025,8 @@ class Canvas:
 SYMBOLS = {
     "wall": ("▓", "#"), "tower": ("█", "@"), "gate": ("+", "+"), "palisade": ("▒", "%"),
     "ditch": ("░", ":"), "water": ("≈", "~"), "bridge": ("=", "="), "street": (".", "."), "road": ("·", "."),
-    "garden": ("τ", "v"), "grave": ("†", "t"), "mound": ("∩", "n"), "rubble": ("∴", "*"),
-    "secret": ("$", "$"), "tunnel": ("░", ":"),
+    "garden": ("τ", "v"), "grave": ("Ω", "i"), "mound": ("∩", "n"), "rubble": ("∴", "*"),
+    "secret": ("$", "$"), "tunnel": ("░", ":"), "brambles": ("ψ", "&"),
     "well": ("○", "o"), "fountain": ("Θ", "O"), "stall": ("π", "h"), "tree": ("♣", "T"),
     "forest1": ("♣", "T"), "forest2": ("♠", "Y"), "hill": ("∩", "n"), "mount": ("▲", "^"),
     "reed1": ("⌠", ","), "reed2": ('"', ";"),
@@ -3975,10 +4074,14 @@ def ground_char(plan, x, y, G):
     return " "
 
 
+RUIN_BREACH, RUIN_BRAMBLES = 0.15, 0.6      # ruins: walls below this texture fall, streets above it grow wild
+
+
 def map_canvas(plan, referee, G, labels=True, secrets=None):
     """The map as letters. referee: building numbers and (unless `secrets` is
     False) the secret posterns and tunnel."""
     secrets = referee if secrets is None else secrets
+    ruin = getattr(plan, "ruin", False)
     W, H = plan.W, plan.H
     c = Canvas(W, H)
     # every cell: its background fill (colour maps), then its symbol: a feature, the bare ground, or what is built
@@ -3996,6 +4099,8 @@ def map_canvas(plan, referee, G, labels=True, secrets=None):
                 continue
             if cell is None:
                 c.put(x, y, ground_char(plan, x, y, G), "n", ground_tag(plan.ground[y][x]))
+            elif ruin and cell in (WALL, TOWER, PALISADE) and plan.tex[y][x] < RUIN_BREACH:
+                c.put(x, y, G(*SYMBOLS["rubble"]), "n", "rubble")         # a breach in the walls of a ruin
             elif cell in (WALL, TOWER, PALISADE, DITCH, BRIDGE, MOUND):
                 c.put(x, y, G(*SYMBOLS[cell]), "b" if cell == BRIDGE else "n", cell)
             elif cell == MOAT:
@@ -4005,7 +4110,8 @@ def map_canvas(plan, referee, G, labels=True, secrets=None):
             elif cell == PIER:
                 c.put(x, y, "=", "b", "bridge")
             elif cell in (STREET, SQUARE, YARD):
-                c.put(x, y, ".", "n", "street")
+                bramble = ruin and plan.tex[y][x] > RUIN_BRAMBLES
+                c.put(x, y, G(*SYMBOLS["brambles"]) if bramble else ".", "n", "garden" if bramble else "street")
             elif cell == ROAD:
                 c.put(x, y, G(*SYMBOLS["road"]), "n", "road")
             elif cell == GARDEN:
@@ -4106,7 +4212,7 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     out.append([("+", "n", "door"), (" " + tr("lg_door"), "n")])
     if referee:
         out.append([("12", "b", "number"), (" " + tr("lg_number"), "n")])
-    if any(b.ruined for b in plan.buildings):
+    if any(b.ruined for b in plan.buildings) or getattr(plan, "ruin", False):
         out.append([(G(*SYMBOLS["rubble"]), "n", "rubble"), (" " + tr("lg_ruin"), "n")])
     for key, label in ((WALL, "lg_wall"), (TOWER, "lg_tower"), (PALISADE, "lg_palisade")):
         if key in used:
@@ -4124,6 +4230,8 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     if MOUND in used:
         out.append([(G(*SYMBOLS["mound"]), "n", "mound"), (" " + tr("lg_mound"), "n")])
     out.append([(".", "n", "street", "bg:street"), (" " + tr("lg_street"), "n")])
+    if getattr(plan, "ruin", False):
+        out.append([(G(*SYMBOLS["brambles"]), "n", "garden"), (" " + tr("lg_brambles"), "n")])
     if ROAD in used:
         out.append([(G(*SYMBOLS["road"]), "n", "road"), (" " + tr("lg_road"), "n")])
     if GARDEN in used:
@@ -4597,7 +4705,15 @@ def building_lines(s, b, people_on, monsters_on, treasure_on):
     """The lines of the key under a building: description, people, services, monsters, clues and treasure (as
     asked)."""
     lines = []
-    if b.kind.get("filler") and getattr(b, "dwellings", 1) > 1 and b.people > 9:
+    ruin = hasattr(s, "layers")         # nobody lives in a ruin: what is left, and the traces of the past
+    if ruin:
+        if b.text:
+            lines.append(capitalized(pick(b.text)) + ".")
+        if b.kind.get("secret"):
+            lines.append(tr("secret_use", x=pick(b.kind["secret"])))
+        if b.uid in s.traces:
+            lines.append(tr("trace", t=pick(s.traces[b.uid])))
+    elif b.kind.get("filler") and getattr(b, "dwellings", 1) > 1 and b.people > 9:
         trades = pick(join_pairs(b.trades[:3]))
         lines.append(tr("block_line", p=number(b.people), d=b.dwellings, t=trades))
         if people_on and b.npc:
@@ -4612,7 +4728,7 @@ def building_lines(s, b, people_on, monsters_on, treasure_on):
             lines.append(npc_line(b.npc, full=True) + household)
         elif b.npc:
             lines.append(npc_line(b.npc, full=False))
-    if s.ruler_seat is b:
+    if s.ruler_seat is b and not ruin:
         lines.append(tr("seat_of", r=pick(s.ruler["role"])))
     if b.kind.get("services") and s.p["purpose"] == "rest":
         lines.append(tr("services") + "; ".join(pick(x) for x in b.kind["services"]) + ".")
@@ -4628,6 +4744,17 @@ def building_lines(s, b, people_on, monsters_on, treasure_on):
     return lines
 
 
+def adventure_words(p, s=None):
+    """The purpose in words: a place of rest, or of adventure with its danger and state (in ruins, inhabited and
+    threatened); with the settlement `s`, the state of its threat (older seeds have none of their own)."""
+    if p["purpose"] == "rest":
+        return tr("purpose_rest")
+    state = p.get("state")
+    if s is not None and getattr(s, "situation", None):
+        state = "ruin" if s.situation["life"] == "ruin" else "threat"
+    return tr("purpose_adventure", d=p["danger"]) + (", " + tr("state_" + state) if state else "")
+
+
 def key_blocks(s, title, units, content):
     """The whole key as a list of blocks (title, meta, h, p, item, table, quarter, building...), which write_key and
     write_pdf both turn into text."""
@@ -4635,11 +4762,12 @@ def key_blocks(s, title, units, content):
     p, plan = s.p, s.plan
     # title, then the meta lines: seed, type, era, terrain, purpose, population, names and scale
     blocks = [("title", title)]
-    purpose = tr("purpose_rest") if p["purpose"] == "rest" else tr("purpose_adventure", d=p["danger"])
+    ruin = hasattr(s, "layers")
+    purpose = adventure_words(p, s)
     blocks += [("meta", f"{tr('key_seed')}: {s.seed}"),
                ("meta", f"{capitalized(type_name(p['type']))} · {capitalized(pick(ERA[p['era']]['name']))} · "
                         f"{capitalized(pick(TERRAIN[p['terrain']]['name']))}"),
-               ("meta", f"{purpose} · {tr('key_pop', n=number(p['pop']))}")]
+               ("meta", f"{purpose} · {tr('key_pop_ruin' if ruin else 'key_pop', n=number(p['pop']))}")]
     if p.get("names"):
         blocks.append(("meta", tr("key_names", s=pick(NAME_STYLE[p["names"]]["name"]),
                                   t=pick(NAME_TONE[p["tone"]]["name"]))))
@@ -4647,31 +4775,40 @@ def key_blocks(s, title, units, content):
             blocks.append(("meta", tr("key_people", w=people_words(p))))
     n, length, unit, row = scale_bar(plan, units)
     blocks.append(("meta", tr("key_scale", r=f"{row:.1f}".replace(".", "," if LANG == "it" else "."), u=unit)))
-    if story_on:
+    if story_on and ruin:           # a ruin's history in layers, from its founding to the stories after its fall
+        blocks.append(("h", tr("h_history")))
+        blocks += [("item", f"{pick(label)}. {capitalized(pick(text))}") for label, text in s.layers]
+        blocks.append(("p", tr("gods_ruin", g=pick(gods_text(p)))))
+    elif story_on:
         # history (and the present day, in a place of rest)
-        blocks += [("h", tr("h_history"))] + [("p", " ".join(pick(x) for x in s.history))]
+        blocks += [("h", tr("h_history"))] + [("p", " ".join(capitalized(pick(x)) for x in s.history))]
         if p["purpose"] == "rest":
             blocks.append(("p", pick(s.present)))
+        blocks.append(("p", tr("gods", g=pick(gods_text(p)))))
     # an adventure: the threat, its villain, its clock and the wandering monsters
     if p["purpose"] == "adventure":
         sit = s.situation
         blocks += [("h", tr("h_threat", t=pick(sit["name"]))), ("p", pick(s.threat))]
-        blocks.append(("p", tr("threat_villain", v=npc_line(s.villain, full=True))))
+        if s.boss:
+            blocks.append(("p", tr("threat_boss", b=pick(s.boss))))
+        else:
+            blocks.append(("p", tr("threat_villain", v=npc_line(s.villain, full=True))))
         blocks.append(("table", tr("clock_title"), [(k + 1, capitalized(pick(c)) + ".") for k, c in enumerate(s.clock)]))
         if monsters_on:
             blocks.append(("table", tr("key_wander"), [(k + 1, f"{name}: {text}.") for k, (name, text) in enumerate(s.wander)]))
-    # government, factions, demography and economy
-    blocks.append(("h", tr("h_government")))
-    seat = f" ({tr('lives_in', n=s.ruler_seat.number)})" if s.ruler_seat else ""
-    blocks.append(("p", capitalized(npc_line(s.ruler, full=people_on)) + seat))
-    if story_on:
-        for f in s.factions:
-            rival = tr("faction_rival", r=pick(f["rival"])) if f.get("rival") else ""
-            blocks.append(("item", tr("faction", n=capitalized(pick(f["name"])), g=pick(f["goal"]),
-                                      l=npc_line(f["leader"], full=False)) + rival))
-    blocks += demography_blocks(s)
-    if story_on:
-        blocks += economy_blocks(s)
+    # government, factions, demography and economy: none left in a ruin
+    if not ruin:
+        blocks.append(("h", tr("h_government")))
+        seat = f" ({tr('lives_in', n=s.ruler_seat.number)})" if s.ruler_seat else ""
+        blocks.append(("p", capitalized(npc_line(s.ruler, full=people_on)) + seat))
+        if story_on:
+            for f in s.factions:
+                rival = tr("faction_rival", r=pick(f["rival"])) if f.get("rival") else ""
+                blocks.append(("item", tr("faction", n=capitalized(pick(f["name"])), g=pick(f["goal"]),
+                                          l=npc_line(f["leader"], full=False)) + rival))
+        blocks += demography_blocks(s)
+        if story_on:
+            blocks += economy_blocks(s)
     if p["purpose"] == "rest":
         # a place of rest: services, mercenaries, hirelings and hooks
         blocks.append(("h", tr("h_services")))
@@ -4690,7 +4827,9 @@ def key_blocks(s, title, units, content):
         blocks.append(("h", tr("h_lore")))
         blocks.append(("table", tr("rumours"), [(k + 1, f"{text} [{tr('true') if ok else tr('false')}]")
                                                 for k, (text, ok) in enumerate(s.rumours)]))
-        blocks.append(("table", tr("events"), [(k + 1, e) for k, e in enumerate(s.events)]))
+        blocks.append(("table", tr("events_ruin" if ruin else "events"), [(k + 1, e) for k, e in enumerate(s.events)]))
+        if ruin:
+            blocks.append(("table", tr("hooks_ruin"), [(k + 1, h) for k, h in enumerate(s.hooks)]))
     # the walls, then every building, under the name of its quarter
     blocks += walls_blocks(s)
     blocks.append(("h", tr("h_buildings")))
@@ -5273,6 +5412,11 @@ def ask_params():
         danger = ask_choice(tr("q_danger"), list(DANGERS), [tr(f"danger_{d}") for d in DANGERS])
         if danger:
             fixed["danger"] = danger
+        # in ruins (the usual for a city) or still inhabited
+        state = ask_choice(tr("q_state"), list(STATES), [tr("state_ruin_menu"), tr("state_threat_menu")],
+                           [tr("state_ruin_hint"), tr("state_threat_hint")])
+        if state:
+            fixed["state"] = state
     return fixed
 
 
@@ -5392,6 +5536,13 @@ def settings_from_options(argv):
         """An option's two names, the current language's first (it shows in the help)."""
         return (f"--{italian}", f"--{english}") if LANG == "it" else (f"--{english}", f"--{italian}")
     # every option in both languages
+    def read_state(text):
+        """The --state option: in ruins or inhabited, in either language."""
+        state = {"rovina": "ruin", "rovine": "ruin", "ruin": "ruin", "ruins": "ruin", "abitato": "threat",
+                 "minacciato": "threat", "inhabited": "threat", "threatened": "threat"}.get(text.strip().lower())
+        if not state:
+            raise argparse.ArgumentTypeError(tr("err_choice", s=text, w="stato" if LANG == "it" else "state"))
+        return state
     ap = argparse.ArgumentParser(description=tr("h_description"), epilog=tr("h_epilog"))
     ap.add_argument(*names("lingua", "language"), dest="language", default=LANG, metavar="{it,en}", help=tr("h_language"))
     ap.add_argument(*names("tipo", "type"), dest="type", type=read_choice(TYPES, "tipo"), default=None,
@@ -5403,6 +5554,8 @@ def settings_from_options(argv):
     ap.add_argument(*names("scopo", "purpose"), dest="purpose", default=None, help=tr("h_purpose"))
     ap.add_argument(*names("pericolo", "danger"), dest="danger", type=int, choices=DANGERS, default=None,
                     help=tr("h_danger"))
+    ap.add_argument(*names("stato", "state"), dest="state", type=read_state, default=None,
+                    metavar="{rovina,abitato}" if LANG == "it" else "{ruin,inhabited}", help=tr("h_state"))
     ap.add_argument(*names("nomi", "names"), dest="names", type=read_choice(NAME_STYLES, "nomi"), default=None,
                     help=tr("h_names"))
     ap.add_argument(*names("tono", "tone"), dest="tone", type=read_choice(NAME_TONES, "tono"), default=None,
@@ -5443,7 +5596,7 @@ def settings_from_options(argv):
          "colors": a.colors, "files": a.files, "content": a.content or (True,) * 4,
          "units": {"imperiale": "imperial", "metrica": "metric"}.get(a.units, a.units)}
     fixed = {k: v for k, v in (("type", a.type), ("era", a.era), ("terrain", a.terrain), ("pop", a.pop),
-                                ("danger", a.danger), ("names", a.names), ("tone", a.tone),
+                                ("danger", a.danger), ("state", a.state), ("names", a.names), ("tone", a.tone),
                                 ("people", a.people)) if v is not None}
     if a.purpose:
         purpose = {"riposo": "rest", "rest": "rest", "avventura": "adventure", "adventure": "adventure"}.get(
@@ -5452,7 +5605,7 @@ def settings_from_options(argv):
             ap.error(tr("err_choice", s=a.purpose, w="scopo"))
         fixed["purpose"] = purpose
     # a danger means an adventure; a population alone picks the type that fits it
-    if "danger" in fixed:
+    if "danger" in fixed or "state" in fixed:
         fixed.setdefault("purpose", "adventure")
     if "pop" in fixed and "type" not in fixed:
         fixed["type"] = next((t["id"] for t in TYPES if t["id"] not in ("castle", "fortress")
@@ -5512,7 +5665,7 @@ def make(params, interactive, again=False):
     p = params
     log.info(tr("info_what", t=type_name(p["type"]), n=number(p["pop"]), e=pick(ERA[p["era"]]["name"]),
                 g=pick(TERRAIN[p["terrain"]]["name"])))
-    log.info(tr("purpose_rest") if p["purpose"] == "rest" else tr("purpose_adventure", d=p["danger"]))
+    log.info(adventure_words(p))
     if p.get("names"):
         log.info(tr("info_names", s=pick(NAME_STYLE[p["names"]]["name"]), t=pick(NAME_TONE[p["tone"]]["name"]),
                     m=round_millions(name_combinations(p["names"], p["tone"]))))

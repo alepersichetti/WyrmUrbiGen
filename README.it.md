@@ -62,7 +62,7 @@ Compatibile con qualunque gioco di ruolo analogico "OSR". Fratello di [WyrmHex](
 All'avvio il programma chiede se l'insediamento è:
 
 - un **luogo di riposo** per gli avventurieri: locande, guaritori, fabbri, cavalli, mercenari e seguaci da assoldare, prezzi in monete d'oro, lavori e agganci;
-- un **luogo d'avventura**: una minaccia (briganti, un culto, la peste, una maledizione, un assedio di orchi, una bestia notturna, rovine infestate, un signore negromante, qualcosa che sale dall'acqua, un drago, una miniera crollata, una faida), con un orologio di quello che succede se nessuno interviene, **mostri erranti, mostri e indizi negli edifici e tesori** presi dalle tabelle di WyrmDelve (bestiario e tesori di *Old-School Essentials*).
+- un **luogo d'avventura**, **in rovina** oppure **abitato e minacciato**. In rovina (la scelta normale per una città): abbandonato da decenni o secoli, con brecce nelle mura e rovi nelle strade, popolato da mostri (la città dei morti, la tana dei goblin, il nido di una bestia, il drago addormentato, i fedeli del dio senza nome, la città sommersa, il giardino di funghi, la corte dei fantasmi, la roccaforte degli orchi), con **una storia a strati** (fondazione, splendore, caduta, e chi è venuto dopo, lasciando tracce negli edifici), chi comanda tra le rovine, voci, eventi e agganci per chi ci va. Abitato: una minaccia (briganti, un culto, la peste, una maledizione, un assedio di orchi, una bestia notturna, un signore negromante, qualcosa che sale dall'acqua, un drago, una miniera crollata, una faida). In tutti e due i casi, con un orologio di quello che succede se nessuno interviene, **mostri erranti, mostri e indizi negli edifici e tesori** presi dalle tabelle di WyrmDelve (bestiario e tesori di *Old-School Essentials*).
 
 #### Tipi e popolazione
 
@@ -145,7 +145,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - **tipo** (villaggio, paese, città, grande città, castello, fortezza) e **numero di abitanti**;
    - **epoca** (alto medioevo, basso medioevo, Rinascimento);
    - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago);
-   - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre);
+   - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre) e lo **stato**: **in rovina** (mostri e storia a strati) o **abitato e minacciato**; a caso, una città è sempre in rovina, gli altri insediamenti una volta su tre;
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
    - **i nomi delle persone**: come i luoghi (la stessa lingua), **fantasy** (desinenze mescolate da tutte le lingue) oppure una lingua a scelta.
@@ -160,23 +160,27 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
 
 ## 4. Il seme
 
-Ogni insediamento ha un **seme**, come `C9500-B-R-A2-DE4-K7Q2MB`: tipo e abitanti, epoca, terreno, scopo e pericolo, nomi e tono, codice.
+Ogni insediamento ha un **seme**, come `C9500-B-R-A2R-DE4-K7Q2MB`: tipo e abitanti, epoca, terreno, scopo, pericolo e stato, nomi e tono, codice.
 
 | Parte | Valori |
 |---|---|
 | Tipo | `V` villaggio, `B` paese, `C` città, `G` grande città, `K` castello, `F` fortezza, seguito dagli abitanti |
 | Epoca | `A` alto medioevo, `B` basso medioevo, `R` Rinascimento |
 | Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago |
-| Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo |
+| Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo, seguito dallo stato: `R` in rovina, `T` abitato e minacciato |
 | Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano; poi, se le persone non hanno i nomi dei luoghi, `X` (fantasy) o il codice della loro lingua (`DE4NO`: luoghi tedeschi, persone danesi e svedesi) |
 
-**Lo stesso seme dà sempre lo stesso insediamento**: mappa, abitanti, mostri e tesori. Il seme è anche il nome della cartella dentro `settlements_generated`. I semi delle versioni precedenti, senza la parte dei nomi (come `C9500-B-R-A2-K7Q2MB`), funzionano ancora e danno lo stesso insediamento di prima, con i suoi nomi italiani medievali.
+**Lo stesso seme dà sempre lo stesso insediamento**: mappa, abitanti, mostri e tesori. Il seme è anche il nome della cartella dentro `settlements_generated`. I semi delle versioni precedenti funzionano ancora e danno la stessa mappa: senza lo stato (come `C9500-B-R-A2-DE4-K7Q2MB`) la minaccia può essere una qualsiasi, rovine comprese; senza la parte dei nomi (come `C9500-B-R-A2-K7Q2MB`) i luoghi hanno i nomi italiani medievali di prima. Le persone, le famiglie, le città vicine e gli dei hanno però nomi inventati, come in tutti i semi nuovi.
 
 ### I nomi dei luoghi
 
-I nomi dell'insediamento, del dungeon vicino e delle botteghe che portano il nome di un luogo sono fatti con le **radici** di `data/names.json`: per ogni lingua, sillabe ed elementi per l'inizio, il mezzo e la fine di una parola, più parole intere che vanno prima (*Saint-*, *Borgo*, *Dar al-*) e dopo (*-le-Grand*, *Magna*, *am Berg*). Ogni tono ha radici sue, mescolate a quelle comuni. Ogni lingua con ogni tono dà **da 11 a 14 milioni di nomi**; la mescolanza di tutte, centinaia di miliardi.
+WyrmUrbiGen è un generatore fantasy: non nomina luoghi, famiglie, santi o religioni del mondo reale. Parte da particelle reali di undici lingue per inventare nomi che *suonano* in quelle lingue, ma non esistono.
 
-Anche **i nomi delle persone** seguono la stessa lingua: nomi, cognomi e il modo di comporli (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), e così le famiglie nei nomi degli edifici e delle fazioni; le città da cui vengono le persone sono città della stessa terra. Un nome è uno vero di quella lingua oppure un inizio e una desinenza (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): circa **1.100 nomi maschili, 1.100 femminili e 1.100 cognomi per lingua**. Con `--persone` / `--people` puoi dare alle persone i nomi di **un'altra lingua** rispetto ai luoghi, oppure nomi **fantasy**: un inizio della lingua con una desinenza di una lingua qualsiasi (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), circa 11.500 nomi per tipo. Anche queste radici stanno in `data/names.json`.
+I nomi dell'insediamento, del dungeon vicino e delle botteghe che portano il nome di un luogo sono fatti con le **radici** di `data/names.json`: per ogni lingua, sillabe ed elementi per l'inizio, il mezzo e la fine di una parola, più parole intere che vanno prima (*Belle-*, *Borgo*, *Dar al-*) e dopo (*-le-Grand*, *Magna*, *am Berg*). Ogni tono ha radici sue, mescolate a quelle comuni. Ogni lingua con ogni tono dà **da 11 a 14 milioni di nomi**; la mescolanza di tutte, centinaia di miliardi.
+
+Anche **i nomi delle persone** seguono la stessa lingua: nomi, cognomi e il modo di comporli (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), e così le famiglie nei nomi degli edifici e delle fazioni; le città da cui vengono le persone sono città della stessa terra. Ogni nome è un inizio e una desinenza della lingua (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): particelle vere, nomi inventati, circa **1.050 nomi maschili, 1.050 femminili e 1.050 cognomi per lingua**. Ogni insediamento ha una dozzina di famiglie e una dozzina di città vicine, che tornano negli edifici, nelle fazioni, nella storia e nelle voci. Con `--persone` / `--people` puoi dare alle persone i nomi di **un'altra lingua** rispetto ai luoghi, oppure nomi **fantasy**: un inizio della lingua con una desinenza di una lingua qualsiasi (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), circa 11.500 nomi per tipo. Anche queste radici stanno in `data/names.json`.
+
+**Gli dei** sono inventati anche loro: ogni insediamento ne venera cinque, ognuno dio o dea di qualcosa (il raccolto, le tempeste, i morti, il mare sulla costa, la caccia nella foresta...), con nomi fatti da radici apposite (*Orsaldra*, *Velmor*, *Ilyra*). Templi, santuari, chiostri, monasteri, porte e quartieri portano i loro nomi; le chiese diventano templi, i vescovi gran sacerdoti, e sulla mappa le tombe sono `Ω` invece della croce.
 
 | Tono | | Tedesco | Inglese antico |
 |---|---|---|---|
@@ -231,10 +235,10 @@ Tutto va in `settlements_generated/<seme>/`:
 ## 6. Per chi ha fretta: le opzioni
 
 ```
-python wyrmurbigen.py --tipo citta --epoca basso --terreno fiume --scopo avventura --pericolo 2
+python wyrmurbigen.py --tipo citta --epoca basso --terreno fiume --scopo avventura --pericolo 2 --stato rovina
 python wyrmurbigen.py --popolazione 30000 --epoca rinascimento --terreno costa --pdf-unico
 python wyrmurbigen.py --nomi gaelico --tono arcano --tipo castello
-python wyrmurbigen.py --seme C9500-B-R-A2-DE4-K7Q2MB --formato A3 --solo-ascii
+python wyrmurbigen.py --seme C9500-B-R-A2R-DE4-K7Q2MB --formato A3 --solo-ascii
 python wyrmurbigen.py --language en --type castle --purpose rest --png
 ```
 
@@ -247,6 +251,7 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--terreno` / `--terrain` | `pianura`, `collina`, `montagna`, `foresta`, `palude`, `costa`, `fiume`, `lago` |
 | `--scopo` / `--purpose` | `riposo` o `avventura` |
 | `--pericolo` / `--danger` | da 1 a 4 (solo luogo d'avventura) |
+| `--stato` / `--state` | `rovina` (in rovina, mostri e storia a strati) o `abitato` (abitato e minacciato); solo luogo d'avventura |
 | `--nomi` / `--names` | `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` (o da 1 a 12) |
 | `--tono` / `--tone` | `luminoso`, `rustico`, `solenne`, `cupo`, `arcano` (o da 1 a 5) |
 | `--persone` / `--people` | `luoghi` (come i nomi dei luoghi), `fantasy` (desinenze mescolate), oppure una lingua: `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` |
@@ -269,10 +274,10 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 
 | File | Cosa contiene |
 |---|---|
-| `names.json` | le radici dei nomi di luoghi e persone: lingue, toni e come si compone un nome |
-| `settlements.json` | tipi di insediamento, epoche, terreni, santi, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci |
+| `names.json` | le radici dei nomi di luoghi, persone e dei: lingue, toni e come si compone un nome |
+| `settlements.json` | tipi di insediamento, epoche, terreni, domini degli dei, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci, e per le rovine la storia a strati, le voci, gli eventi e gli agganci |
 | `buildings.json` | gli edifici: nome, tipi ed epoche in cui compaiono, quanti (`sv`: uno ogni tanti abitanti; oppure `count`), dimensioni, pietra o legno, dove stanno (piazza, strada maestra, porta, mura, fiume, fuori), chi ci vive, servizi e prezzi, descrizioni |
-| `people.json` | nomi, famiglie, mestieri, caratteri, desideri, segreti, governanti, fazioni, classi, incantesimi, mercenari |
+| `people.json` | soprannomi, mestieri, caratteri, desideri, segreti, governanti, fazioni, arti, classi, incantesimi, mercenari |
 | `demographics.json` | i numeri di *Medieval Demographics Made Easy* |
 | `economy.json` | i numeri di *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | da WyrmDelve: bestiario, indizi, tesori di *Old-School Essentials* |
