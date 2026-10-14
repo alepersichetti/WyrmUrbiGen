@@ -147,7 +147,8 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago);
    - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre);
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
-   - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi)).
+   - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
+   - **i nomi delle persone**: come i luoghi (la stessa lingua), **fantasy** (desinenze mescolate da tutte le lingue) oppure una lingua a scelta.
 4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero, oppure **a colori**, come in WyrmHex, su bianco o su nero: ogni simbolo nel suo colore (acqua blu, boschi verdi, mura grigio pietra, legno marrone, porte rosse, segreti magenta) e, su bianco, fondi chiari sotto acqua, strade ed edifici.
 5. **Simboli**: quelli di WyrmDelve (`▓ █ ≈ ♣ ╔═╗`) oppure **solo i caratteri della tastiera**, come in WyrmHex.
 6. **Nome sulla mappa**: quello generato, uno tuo, oppure nessuno.
@@ -166,7 +167,7 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2-DE4-K7Q2MB`: tipo e abitant
 | Epoca | `A` alto medioevo, `B` basso medioevo, `R` Rinascimento |
 | Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago |
 | Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo |
-| Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano |
+| Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano; poi, se le persone non hanno i nomi dei luoghi, `X` (fantasy) o il codice della loro lingua (`DE4NO`: luoghi tedeschi, persone danesi e svedesi) |
 
 **Lo stesso seme dà sempre lo stesso insediamento**: mappa, abitanti, mostri e tesori. Il seme è anche il nome della cartella dentro `settlements_generated`. I semi delle versioni precedenti, senza la parte dei nomi (come `C9500-B-R-A2-K7Q2MB`), funzionano ancora e danno lo stesso insediamento di prima, con i suoi nomi italiani medievali.
 
@@ -174,7 +175,7 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2-DE4-K7Q2MB`: tipo e abitant
 
 I nomi dell'insediamento, del dungeon vicino e delle botteghe che portano il nome di un luogo sono fatti con le **radici** di `data/names.json`: per ogni lingua, sillabe ed elementi per l'inizio, il mezzo e la fine di una parola, più parole intere che vanno prima (*Saint-*, *Borgo*, *Dar al-*) e dopo (*-le-Grand*, *Magna*, *am Berg*). Ogni tono ha radici sue, mescolate a quelle comuni. Ogni lingua con ogni tono dà **da 11 a 14 milioni di nomi**; la mescolanza di tutte, centinaia di miliardi.
 
-Anche **i nomi delle persone** seguono la stessa lingua: nomi, cognomi e il modo di comporli (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), e così le famiglie nei nomi degli edifici e delle fazioni e le città da cui vengono le persone. Anche queste radici stanno in `data/names.json`.
+Anche **i nomi delle persone** seguono la stessa lingua: nomi, cognomi e il modo di comporli (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), e così le famiglie nei nomi degli edifici e delle fazioni; le città da cui vengono le persone sono città della stessa terra. Un nome è uno vero di quella lingua oppure un inizio e una desinenza (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): circa **1.100 nomi maschili, 1.100 femminili e 1.100 cognomi per lingua**. Con `--persone` / `--people` puoi dare alle persone i nomi di **un'altra lingua** rispetto ai luoghi, oppure nomi **fantasy**: un inizio della lingua con una desinenza di una lingua qualsiasi (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), circa 11.500 nomi per tipo. Anche queste radici stanno in `data/names.json`.
 
 | Tono | | Tedesco | Inglese antico |
 |---|---|---|---|
@@ -247,6 +248,7 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--pericolo` / `--danger` | da 1 a 4 (solo luogo d'avventura) |
 | `--nomi` / `--names` | `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` (o da 1 a 12) |
 | `--tono` / `--tone` | `luminoso`, `rustico`, `solenne`, `cupo`, `arcano` (o da 1 a 5) |
+| `--persone` / `--people` | `luoghi` (come i nomi dei luoghi), `fantasy` (desinenze mescolate), oppure una lingua: `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` |
 | `--seme` / `--seed` | rifà l'insediamento di quel seme |
 | `--colori` / `--colors` | 1 nero su bianco, 2 bianco su celeste, 3 bianco su nero, 4 a colori su bianco, 5 a colori su nero |
 | `--formato` / `--format` | `A4`, `A3`, `A2`, `A1` |
