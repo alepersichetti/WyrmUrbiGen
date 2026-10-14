@@ -148,7 +148,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre);
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi)).
-4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero.
+4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero, oppure **a colori**, come in WyrmHex, su bianco o su nero: ogni simbolo nel suo colore (acqua blu, boschi verdi, mura grigio pietra, legno marrone, porte rosse, segreti magenta) e, su bianco, fondi chiari sotto acqua, strade ed edifici.
 5. **Simboli**: quelli di WyrmDelve (`▓ █ ≈ ♣ ╔═╗`) oppure **solo i caratteri della tastiera**, come in WyrmHex.
 6. **Nome sulla mappa**: quello generato, uno tuo, oppure nessuno.
 7. **Cosa vuoi nella chiave**: storia, abitanti e (in un luogo d'avventura) mostri e tesori; Spazio segna e toglie.
@@ -246,7 +246,7 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--nomi` / `--names` | `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` (o da 1 a 12) |
 | `--tono` / `--tone` | `luminoso`, `rustico`, `solenne`, `cupo`, `arcano` (o da 1 a 5) |
 | `--seme` / `--seed` | rifà l'insediamento di quel seme |
-| `--colori` / `--colors` | 1 nero su bianco, 2 bianco su celeste, 3 bianco su nero |
+| `--colori` / `--colors` | 1 nero su bianco, 2 bianco su celeste, 3 bianco su nero, 4 a colori su bianco, 5 a colori su nero |
 | `--formato` / `--format` | `A4`, `A3`, `A2`, `A1` |
 | `--png`, `--pdf`, `--pdf-unico` / `--single-pdf` | mappe PNG e libro, mappe PDF e libro, oppure un unico PDF |
 | `--titolo` / `--title`, `--senza-titolo` / `--no-title` | nome sulla mappa |
