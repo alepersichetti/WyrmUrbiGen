@@ -3786,38 +3786,78 @@ def hoard_text(hoard):
     return ", ".join(parts)
 
 
+# Treasure, kept within the means of a place of adventure: the Old-School
+# Essentials lair hoards (types A-O) are for a whole lair at full strength, so
+# only the threat has one, in its lair, scaled (down, or up for a poor type in
+# a dangerous place) to be worth about LAIR_GOLD on average for its danger and
+# the size of the place; any other monster, and now and then an empty building, has the
+# unguarded treasure of a dungeon level as dangerous as the place. About
+# 750-2,000 gp in all at danger 1, 3,000-7,500 at 2, 10,000-20,000 at 3,
+# 25,000-50,000 at 4 (cities nearer the top, villages nearer the bottom).
+LAIR_GOLD = {1: 1000, 2: 3500, 3: 10000, 4: 22000}
+LAIR_SIZE = {"village": 0.9, "town": 1, "castle": 1, "fortress": 1, "city": 1.15, "bigcity": 1.15}
+LAIR_ROLLS = (3, 10)        # the threat's hoard: at least 3 rolls of its type, at most 10
+LOOSE_BUILDINGS = 8         # empty buildings that may hide something, at most
+
+
+def scaled(hoard, share, rng):
+    """A hoard made richer or poorer by `share`: the coins multiplied, each gem and jewel there int(share) times
+    and once more with the chance of what is left; each magic item kept with the chance `share` (never more than
+    one of each)."""
+    out = {"coins": {c: round(n * share) for c, n in hoard["coins"].items() if round(n * share)}}
+    for what in ("gems", "jewellery"):
+        out[what] = [x for x in hoard[what] for _ in range(int(share) + (rng.random() < share % 1))]
+    out["magic"] = [x for x in hoard["magic"] if rng.random() < share]
+    return out
+
+
 def plan_treasure(s):
-    """The Old-School Essentials stocking rules, as in WyrmDelve: a building
-    with monsters has treasure 3 times in 6 (their treasure type), an
-    abandoned one 1 in 6 (the unguarded treasure of a dungeon level as
-    dangerous as the place); lived-in houses keep their owners' savings."""
+    """The threat's hoard in its lair (its treasure type, worth about LAIR_GOLD); in a building with
+    monsters, treasure 3 times in 6, and in up to LOOSE_BUILDINGS empty ones 1 in 6: the unguarded treasure of a
+    dungeon level as dangerous as the place. Lived-in houses keep their owners' savings."""
     rng = random.Random(f"wyrmurbigen-treasure-{s.seed}")
-    level = DANGER_LEVEL[s.p["danger"]]
+    danger = s.p["danger"]
+    level = DANGER_LEVEL[danger]
     expert = level >= 4
+    loose = next(t["items"] for t in TREASURE["unguarded"] if in_range(level, t["levels"]))
     found = {}
-    for b in s.plan.buildings:
-        who = s.occupants.get(b.uid)
-        if not who and b.uid not in s.abandoned:
-            continue
-        content = "monster" if who else "empty"
-        chance = rng.randint(1, 6)
-        where = rng.choice(TREASURE["hiding"]["lair" if who else "loose"])
-        if chance > TREASURE["room_chance"][content]:
-            continue
-        if who:
-            letter = (s.situation.get("treasure") or TREASURE.get("dwellers_type", "")) if who[0] == "dwellers" \
-                else MONSTERS[who[1]].get("treasure", "")
-            table = TREASURE["types"].get(letter or "-")
-            if not table:
-                continue
-            items = table["items"]
-        else:
-            items = next(t["items"] for t in TREASURE["unguarded"] if in_range(level, t["levels"]))
-        hoard = roll_hoard(items, expert, rng)
+
+    def keep(b, hoard, where):
+        """Note a hoard in a building, if there is anything in it."""
         text = hoard_text(hoard)
         if text:
             found[b.uid] = {"text": text, "value": hoard_value(hoard), "magic": len(hoard["magic"]),
                             "where": pick(where)}
+
+    # the threat's own hoard, always there
+    letter = s.situation.get("treasure") or TREASURE.get("dwellers_type", "")
+    table = TREASURE["types"].get(letter or "-")
+    if table:
+        # several rolls of its type put together and scaled to LAIR_GOLD: the same worth on average, fewer
+        # empty or enormous hoards
+        share = LAIR_GOLD[danger] * LAIR_SIZE.get(s.p["type"], 1) / (table.get("average") or 1)
+        rolls = min(LAIR_ROLLS[1], max(LAIR_ROLLS[0], math.ceil(share)))
+        hoard = {"coins": {}, "gems": [], "jewellery": [], "magic": []}
+        for _ in range(rolls):
+            part = roll_hoard(table["items"], expert, rng)
+            for c, n in part["coins"].items():
+                hoard["coins"][c] = hoard["coins"].get(c, 0) + n
+            for what in ("gems", "jewellery", "magic"):
+                hoard[what] += part[what]
+        magic = hoard["magic"]          # magic items: as many as in one hoard of the type, not one per roll
+        hoard = scaled(hoard, share / rolls, rng)
+        hoard["magic"] = [x for x in magic if rng.random() < min(1.0, share) / rolls]
+        keep(s.lair, hoard, rng.choice(TREASURE["hiding"]["lair"]))
+    # the other monsters, and a few of the empty buildings
+    empty = [b for b in s.plan.buildings if b.uid in s.abandoned and b.uid not in s.occupants]
+    looked = {b.uid for b in rng.sample(empty, min(LOOSE_BUILDINGS, len(empty)))}
+    for b in s.plan.buildings:
+        if b is s.lair or (b.uid not in s.occupants and b.uid not in looked):
+            continue
+        content = "monster" if b.uid in s.occupants else "empty"
+        if rng.randint(1, 6) <= TREASURE["room_chance"][content]:
+            keep(b, roll_hoard(loose, expert, rng), rng.choice(TREASURE["hiding"]["lair" if content == "monster"
+                                                                                  else "loose"]))
     s.treasure = found
 
 
