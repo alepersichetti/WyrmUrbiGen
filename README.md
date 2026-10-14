@@ -147,7 +147,8 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
    - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake);
    - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up);
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
-   - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names)).
+   - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
+   - **people's names**: like the places (the same language), **fantasy** (endings mixed from all the languages), or one language of your choice.
 4. **Colours**: black on white (for printing), white on light blue, white on black, or **in full colour**, as in WyrmHex, on white or on black: every symbol in its own colour (water blue, woods green, walls stone grey, timber brown, gates red, secrets magenta), and on white pale fills under water, streets and buildings.
 5. **Symbols**: WyrmDelve's (`▓ █ ≈ ♣ ╔═╗`) or **keyboard characters only**, as in WyrmHex.
 6. **Name on the map**: the generated one, one of yours, or none.
@@ -166,13 +167,15 @@ Every settlement has a **seed**, like `C9500-B-R-A2-DE4-K7Q2MB`: type and people
 | Era | `A` Early Middle Ages, `B` Late Middle Ages, `R` Renaissance |
 | Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake |
 | Purpose | `R0` place of rest, `A1`-`A4` place of adventure with its danger |
-| Names | `IT` medieval Italian, `OE` Old English, `RE` Renaissance English, `GA` Scottish Gaelic, `TO` Tolkienesque, `PA` Persian and Arabesque, `BY` Byzantine Greek, `DE` German, `FR` French, `NO` Danish and Swedish, `RU` Russian and Baltic, `MX` a mix of them all; then the tone: `1` fair, `2` homely, `3` stately, `4` grim, `5` eerie |
+| Names | `IT` medieval Italian, `OE` Old English, `RE` Renaissance English, `GA` Scottish Gaelic, `TO` Tolkienesque, `PA` Persian and Arabesque, `BY` Byzantine Greek, `DE` German, `FR` French, `NO` Danish and Swedish, `RU` Russian and Baltic, `MX` a mix of them all; then the tone: `1` fair, `2` homely, `3` stately, `4` grim, `5` eerie; then, if the people are not named like the places, `X` (fantasy) or the code of their language (`DE4NO`: German places, Danish and Swedish people) |
 
 **The same seed always gives the same settlement**: map, people, monsters and treasure. The seed is also the name of its folder inside `settlements_generated`. Seeds made by older versions, without the names part (like `C9500-B-R-A2-K7Q2MB`), still work and give the same settlement as before, with its medieval Italian names.
 
 ### Place names
 
 The names of the settlement, of the dungeon nearby and of the shops named after a place are built from the **roots** in `data/names.json`: for every language, syllables and name elements for the start, the middle and the end of a word, plus whole words that go before (*Saint-*, *Borgo*, *Dar al-*) and after (*-le-Grand*, *Magna*, *am Berg*). Every tone has roots of its own, mixed with the common ones. Each language and tone can make **11 to 14 million names**; the mix of them all, hundreds of billions.
+
+**People's names** follow the same language: first names, family names and the way they are put together (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), and so do the families in the names of buildings and factions; the towns people come from are towns of the same land. A name is a real one of that language or a beginning and an ending of it (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): about **1,100 male and 1,100 female first names and 1,100 family names per language**. With `--people` / `--persone` you can name the people in **another language** than the places, or make them **fantasy**: a beginning of the language with an ending of any language (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), about 11,500 names of each kind. The roots are in `data/names.json` too.
 
 | Tone | | German | Old English |
 |---|---|---|---|
@@ -245,6 +248,7 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--danger` / `--pericolo` | 1 to 4 (place of adventure only) |
 | `--names` / `--nomi` | `italian`, `old english`, `renaissance`, `gaelic`, `tolkien`, `persian`, `byzantine`, `german`, `french`, `danish`, `russian`, `mixed` (or 1 to 12) |
 | `--tone` / `--tono` | `fair`, `homely`, `stately`, `grim`, `eerie` (or 1 to 5) |
+| `--people` / `--persone` | `places` (like the place names), `fantasy` (mixed endings), or a language: `italian`, `old english`, `renaissance`, `gaelic`, `tolkien`, `persian`, `byzantine`, `german`, `french`, `danish`, `russian`, `mixed` |
 | `--seed` / `--seme` | rebuilds the settlement of that seed |
 | `--colors` / `--colori` | 1 black on white, 2 white on light blue, 3 white on black, 4 colour on white, 5 colour on black |
 | `--format` / `--formato` | `A4`, `A3`, `A2`, `A1` |
@@ -264,7 +268,7 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 
 | File | What it holds |
 |---|---|
-| `names.json` | the roots of the place names: languages, tones and how a name is put together |
+| `names.json` | the roots of the names of places and people: languages, tones and how a name is put together |
 | `settlements.json` | settlement types, eras, terrains, saints, inn signs, gates, quarters, history sentences, threats, rumours, events, hooks |
 | `buildings.json` | the buildings: name, the types and eras they appear in, how many (`sv`: one every so many people; or `count`), size, stone or timber, where they stand (square, main street, gate, walls, river, outside), who lives there, services and prices, descriptions |
 | `people.json` | names, families, trades, traits, wants, secrets, rulers, factions, classes, spells, mercenaries |

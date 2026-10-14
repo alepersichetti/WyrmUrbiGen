@@ -222,6 +222,10 @@ TEXTS = {
     "q_terrain": ("Dove si trova?", "Where does it stand?"),
     "q_names": ("A che lingua somigliano i nomi dei luoghi?", "Which language do the place names sound like?"),
     "q_tone": ("Che tono hanno i nomi?", "What tone do the names have?"),
+    "q_people": ("Che nomi hanno le persone?", "What names do the people have?"),
+    "people_places": ("come i luoghi (la stessa lingua)", "like the places (the same language)"),
+    "people_fantasy": ("fantasy: desinenze mescolate da tutte le lingue", "fantasy: endings mixed from all languages"),
+    "people_places_hint": ("nomi e cognomi nella lingua dei nomi dei luoghi", "first and family names in the place names' language"),
     "q_danger": ("Quanto è pericoloso?", "How dangerous is it?"),
     "danger_1": ("1 · per personaggi di livello 1-2", "1 · for characters of level 1-2"),
     "danger_2": ("2 · per personaggi di livello 3-4", "2 · for characters of level 3-4"),
@@ -295,6 +299,10 @@ TEXTS = {
     "millions": ("{n} milioni", "{n} million"),
     "billions": ("{n} miliardi", "{n} billion"),
     "info_names_old": ("Nomi: italiano medievale, come nei semi di vecchio tipo", "Names: medieval Italian, as in older seeds"),
+    "info_people": ("Persone: {w} (circa {m} nomi maschili, {f} femminili e {c} cognomi)",
+                    "People: {w} (about {m} male and {f} female first names, {c} family names)"),
+    "people_w_places": ("come i luoghi, {s}", "like the places, {s}"),
+    "people_w_fantasy": ("fantasy, desinenze mescolate", "fantasy, mixed endings"),
     "info_what": ("{t} di {n} abitanti, {e}, {g}", "{t} of {n} people, {e}, {g}"),
     "info_folder": ("Cartella: {folder}", "Folder: {folder}"),
     "step_map": ("Mappa: terreno, mura, porte, strade, edifici", "Map: land, walls, gates, streets, buildings"),
@@ -375,6 +383,7 @@ TEXTS = {
     "key_seed": ("Seme", "Seed"),
     "key_pop": ("{n} abitanti", "{n} inhabitants"),
     "key_names": ("Nomi: {s}, tono {t}", "Names: {s}, {t} tone"),
+    "key_people": ("Persone: {w}", "People: {w}"),
     "key_scale": ("Scala: una riga di caratteri = {r} {u}, una colonna = metà", "Scale: one row of letters = {r} {u}, one column = half"),
     "purpose_rest": ("Luogo di riposo per gli avventurieri", "Place of rest for adventurers"),
     "purpose_adventure": ("Luogo d'avventura, pericolo {d}", "Place of adventure, danger {d}"),
@@ -501,6 +510,12 @@ TEXTS = {
                 "german, french, danish, russian, mixed (or 1-12)"),
     "h_tone": ("tono dei nomi: luminoso, rustico, solenne, cupo, arcano (o 1-5)",
                "tone of the names: fair, homely, stately, grim, eerie (or 1-5)"),
+    "h_people": ("nomi delle persone: luoghi (come i nomi dei luoghi), fantasy (desinenze mescolate da tutte le lingue) "
+                 "oppure una lingua: italiano, antico, rinascimentale, gaelico, tolkien, persiano, bizantino, tedesco, "
+                 "francese, danese, russo, misto",
+                 "people's names: places (like the place names), fantasy (endings mixed from all languages) or a "
+                 "language: italian, old english, renaissance, gaelic, tolkien, persian, byzantine, german, french, "
+                 "danish, russian, mixed"),
     "h_seed": ("seme completo (es. C9500-B-R-A2-DE4-K7Q2MB) per rifare un insediamento",
                "full seed (e.g. C9500-B-R-A2-DE4-K7Q2MB) to rebuild a settlement"),
     "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero, 4 a colori su bianco, 5 a colori su nero",
@@ -742,9 +757,11 @@ def span(text):
 
 
 # --- seed ---
-# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER-NAMES+TONE-CODE, e.g.
+# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER-NAMES+TONE[+PEOPLE]-CODE, e.g.
 # C9500-B-R-A2-DE4-K7Q2MB: a city of 9,500 people, Late Middle Ages, on a river,
-# a place of adventure of danger 2, grim German names. CODE = 6 symbols, 30
+# a place of adventure of danger 2, grim German names. PEOPLE: none for people
+# named like the places, X for fantasy names (mixed endings), or the code of
+# another language (DE4NO: Danish and Swedish people). CODE = 6 symbols, 30
 # random bits. Older seeds have no NAMES+TONE part: their names are the
 # medieval Italian ones of old, made exactly as before.
 SEED_SYMBOLS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"   # no I, L, O, U: too easy to misread
@@ -776,17 +793,23 @@ def from_code(text):
 
 def make_seed(p):
     purpose = "A" if p["purpose"] == "adventure" else "R"
-    names = f"{NAME_STYLE[p['names']]['code']}{NAME_TONE[p['tone']]['code']}-" if p.get("names") else ""
+    people = p.get("people") or "places"
+    people = "" if people == "places" else "X" if people == "fantasy" else NAME_STYLE[people]["code"]
+    names = f"{NAME_STYLE[p['names']]['code']}{NAME_TONE[p['tone']]['code']}{people}-" if p.get("names") else ""
     return (f"{TYPE[p['type']]['code']}{p['pop']}-{ERA[p['era']]['code']}-{TERRAIN[p['terrain']]['code']}-"
             f"{purpose}{p['danger']}-{names}{to_code(p['number'])}")
 
 
 def read_seed(text):
     parts = (text or "").strip().upper().replace(" ", "").split("-")
-    names = tone = None
-    if len(parts) == 6:             # with the names part
-        names, tone = NAME_STYLE_BY_CODE.get(parts[4][:-1]), NAME_TONE_BY_CODE.get(parts[4][-1:])
-        if None in (names, tone):
+    names = tone = people = None
+    if len(parts) == 6:             # with the names part: style, tone, people (none: like the places)
+        m = re.fullmatch(r"([A-Z]{2})(\d)([A-Z]{1,2})?", parts[4])
+        if not m:
+            return None
+        names, tone = NAME_STYLE_BY_CODE.get(m.group(1)), NAME_TONE_BY_CODE.get(m.group(2))
+        people = {None: "places", "X": "fantasy"}.get(m.group(3)) or NAME_STYLE_BY_CODE.get(m.group(3))
+        if None in (names, tone, people):
             return None
         del parts[4]
     if len(parts) != 5 or len(parts[0]) < 2 or len(parts[3]) != 2:
@@ -797,7 +820,7 @@ def read_seed(text):
     if None in (kind, era, terrain, purpose, n) or not parts[0][1:].isdigit() or not parts[3][1].isdigit():
         return None
     p = {"type": kind, "pop": int(parts[0][1:]), "era": era, "terrain": terrain, "purpose": purpose,
-         "danger": int(parts[3][1]), "names": names, "tone": tone, "number": n}
+         "danger": int(parts[3][1]), "names": names, "tone": tone, "people": people, "number": n}
     return None if check_params(p) else p
 
 
@@ -845,6 +868,7 @@ def random_params(n, fixed=None):
         p["danger"] = 0
     p["names"] = fixed.get("names") or r.choice([n["id"] for n in NAME_STYLES])
     p["tone"] = fixed.get("tone") or r.choice([t["id"] for t in NAME_TONES])
+    p["people"] = fixed.get("people") or r.choices(PEOPLE_MODES, weights=[3, 1])[0]
     p["number"] = n
     return p
 
@@ -881,7 +905,7 @@ def join_roots(left, right):
     return left + right
 
 
-def styled_name(rng, names, tone):
+def styled_name(rng, names, tone, simple=False):
     style = NAME_STYLE[names]
     if style.get("mix"):            # every root from a language of its own
         styles = [n for n in NAME_STYLES if not n.get("mix")]
@@ -889,7 +913,7 @@ def styled_name(rng, names, tone):
         pick_from = {"word": first, "start": first, "middle": rng.choice(styles), "end": last, "after": last}
     else:
         pick_from = dict.fromkeys(("word", "start", "middle", "end", "after"), style)
-    forms = TABLES["name_forms"]
+    forms = [f for f in TABLES["name_forms"] if not simple or "word" not in f[0] and "after" not in f[0]]
     form = rng.choices([f for f, _ in forms], weights=[w for _, w in forms])[0].split()
     for _ in range(20):             # no root twice, as in Liliensteinstein or Fairmead Mead
         roots = {slot: draw_root(rng, pick_from[slot], slot, tone) for slot in form}
@@ -949,26 +973,200 @@ def name_examples(names, tone, count=3):
     return [place_name(rng, used, names, tone) for _ in range(count)]
 
 
+# People's names follow the place names' language (or another, or a fantasy mix
+# of endings: the "people" setting). The random draws are always those of the
+# medieval Italian names (an index into the Italian tables), so a seed gives the
+# same settlement whatever its names; the name itself comes from a random
+# generator of its own, keyed by the settlement and by the person's turn. Names
+# are a real name of the language or a beginning plus an ending of it: about a
+# thousand first names and a thousand family names per language.
+PEOPLE_REAL = 0.35          # how often a name is a real one rather than built from roots
+PEOPLE_MODES = ("places", "fantasy")
+
+
+class NameBook(set):
+    """The names already given in a settlement, and how to make new ones."""
+
+    def __init__(self, p=None):
+        super().__init__()
+        p = p or {}
+        self.p, self.count = p, 0
+
+
+def people_style(p, r):
+    """(style, fantasy): whose people's names to use; for the mix, one drawn by r."""
+    people = p.get("people") or "places"
+    style = NAME_STYLE[p["names"] if people in PEOPLE_MODES else people]
+    if style.get("mix"):
+        style = r.choice([n for n in NAME_STYLES if not n.get("mix")])
+    return style, people == "fantasy"
+
+
+def real_names(style, key):
+    """The real names of a style: first names m/f or families (Italian: people.json)."""
+    if style["id"] == "italian":
+        return TABLES["families"] if key == "families" else TABLES["first_names"][key]
+    return style["people"][key]
+
+
+def built_name(r, style, part, fantasy):
+    """A beginning of the style and an ending of it (fantasy: of any language)."""
+    start = r.choice(style["people"]["roots"][part + "_start"])
+    ends = style["people"]["roots"][part + "_end"]
+    if fantasy:     # an ending of any language; with a vowel, or Hug + n would make Hugn
+        ends = [e for e in r.choice([n for n in NAME_STYLES if n.get("people")])["people"]["roots"][part + "_end"]
+                if VOWELS & set(e.lower())]
+    name = re.sub(r"(.)\1\1+", r"\1\1", join_roots(start, r.choice(ends)))
+    return name if name.startswith("al-") else name[:1].upper() + name[1:]
+
+
+def given_name(r, style, gender, fantasy):
+    if not fantasy and r.random() < PEOPLE_REAL:
+        return r.choice(real_names(style, gender))
+    return built_name(r, style, gender, fantasy)
+
+
+def feminine(style, family):
+    """A family name for a woman: NicLeoid, Komnene, Ivanova, Radvilaite."""
+    sid = style["id"]
+    if sid == "gaelic" and family.startswith("Mac"):
+        return "Nic" + family[3:]
+    if sid == "byzantine":
+        for end, fem in (("opoulos", "opoulina"), ("enos", "ene"), ("os", "ina"), ("es", "issa"), ("as", "aina"),
+                         ("is", "ina")):
+            if family.endswith(end):
+                return family[:-len(end)] + fem
+    if sid == "slavic":
+        for end, fem in (("sky", "skaya"), ("skoy", "skaya"), ("aitis", "aite"), ("as", "aite"), ("is", "aite"),
+                         ("ys", "yte"), ("ov", "ova"), ("ev", "eva"), ("in", "ina"), ("yn", "yna")):
+            if family.endswith(end):
+                return family[:-len(end)] + fem
+    return family
+
+
+def family_of(r, style, gender, fantasy):
+    if not fantasy and r.random() < PEOPLE_REAL:
+        family = r.choice(real_names(style, "families"))
+        return family if isinstance(family, str) else family[gender == "f"]
+    family = built_name(r, style, "fam", fantasy)
+    return feminine(style, family) if gender == "f" else family
+
+
+def patronymic(father, gender):
+    """Slavic and Baltic: Ivan -> Ivanovich/Ivanovna, Andrei -> Andreevich,
+    Nikita -> Nikitich, Algirdas -> Algirdaitis/Algirdaite."""
+    if father[-2:] in ("as", "is", "us"):
+        return father[:-2] + ("aite" if gender == "f" else "aitis")
+    if father[-1] in "ai" and father[-2:] != "ai":
+        stem, end = (father[:-1], ("ichna", "ich")) if father[-1] == "a" else (father[:-1], ("evna", "evich"))
+        return stem + end[gender != "f"]
+    return father + ("ovna" if gender == "f" else "ovich")
+
+
+def styled_person(book, gender, kind, j):
+    """(it, en): a person's name in the settlement's way, for an Italian draw of
+    kind father/family/place/by (j: the byname's index)."""
+    p = book.p
+    r = random.Random(f"wyrmurbigen-person-{p['number']}-{book.count}")
+    style, fantasy = people_style(p, r)
+    first = given_name(r, style, gender, fantasy)
+    if kind == "by":
+        by = TABLES["bynames"][j]
+        return f"{first} {by[0]}", f"{first} {by[1]}"
+    form = style["people"]["forms"][kind]
+    form = form[gender] if isinstance(form, dict) else form
+    form = form if isinstance(form, tuple) else (form, form)
+    father = given_name(r, style, "m", fantasy)
+    values = {"first": first, "father": father, "family": family_of(r, style, gender, fantasy),
+              "patronymic": patronymic(father, gender)}
+    if "{place}" in form[0]:
+        values["place"] = styled_name(r, p["names"], p["tone"], simple=True)
+    out = []
+    for text in fmt(form, **values):
+        text = re.sub(r"(.)\1\1+", r"\1\1", text)              # Magnus + sson -> Magnusson
+        if style["id"] == "french":
+            text = re.sub(r"\b(de) ([AEIOUYÉÈaeiouyh])", r"d'\2", text)
+        out.append(text)
+    return tuple(out)
+
+
 def person_name(rng, gender, used=None):
     """(it, en): first name and a surname, a father's name, a home town or a byname."""
     used = used if used is not None else set()
+    firsts, families, places, bynames = TABLES["first_names"], TABLES["families"], TABLES["places"], TABLES["bynames"]
     for _ in range(50):
-        first = rng.choice(TABLES["first_names"][gender])
+        i = rng.randrange(len(firsts[gender]))      # the same draws as rng.choice
+        first = firsts[gender][i]
         style = rng.random()
         if style < 0.3:
-            father = rng.choice(TABLES["first_names"]["m"])
-            name = (f"{first} di {father}",) * 2
+            kind, j = "father", rng.randrange(len(firsts["m"]))
+            name = (f"{first} di {firsts['m'][j]}",) * 2
         elif style < 0.6:
-            name = (f"{first} {rng.choice(TABLES['families'])}",) * 2
+            kind, j = "family", rng.randrange(len(families))
+            name = (f"{first} {families[j]}",) * 2
         elif style < 0.8:
-            name = (f"{first} da {rng.choice(TABLES['places'])}",) * 2
+            kind, j = "place", rng.randrange(len(places))
+            name = (f"{first} da {places[j]}",) * 2
         else:
-            by = rng.choice(TABLES["bynames"])
+            kind, j = "by", rng.randrange(len(bynames))
+            by = bynames[j]
             name = (f"{first} {by[0]}", f"{first} {by[1]}")
         if name[0] not in used:
             used.add(name[0])
-            return name
+            break
+    if isinstance(used, NameBook) and used.p.get("names"):
+        used.count += 1
+        return styled_person(used, gender, kind, j)
     return name
+
+
+def family_name(rng, p, key="family"):
+    """A family of the settlement's people (the draw of an Italian one)."""
+    j = rng.randrange(len(TABLES["families"]))
+    if not p.get("names"):
+        return TABLES["families"][j]
+    r = random.Random(f"wyrmurbigen-{key}-{p['number']}-{j}")
+    style, fantasy = people_style(p, r)
+    return family_of(r, style, "m", fantasy)
+
+
+def town_name(rng, p):
+    """Another town (a home town, a gate's destination) in the settlement's language."""
+    j = rng.randrange(len(TABLES["places"]))
+    if not p.get("names"):
+        return TABLES["places"][j]
+    return styled_name(random.Random(f"wyrmurbigen-town-{p['number']}-{j}"), p["names"], p["tone"], simple=True)
+
+
+def people_counts(p):
+    """About how many first names (m, f) and families the people's names can have."""
+    styles = [n for n in NAME_STYLES if n.get("people")]
+    people = p.get("people") or "places"
+    sid = p["names"] if people in PEOPLE_MODES else people
+    chosen = styles if NAME_STYLE[sid].get("mix") else [NAME_STYLE[sid]]
+
+    def count(part, real):
+        total = 0
+        for style in chosen:
+            ends = sum(len(n["people"]["roots"][part + "_end"]) for n in styles) if people == "fantasy" else \
+                len(style["people"]["roots"][part + "_end"])
+            total += len(style["people"]["roots"][part + "_start"]) * ends + \
+                (0 if people == "fantasy" else len(real_names(style, real)))
+        return total
+    return count("m", "m"), count("f", "f"), count("fam", "families")
+
+
+def people_words(p):
+    people = p.get("people") or "places"
+    if people == "places":
+        return tr("people_w_places", s=pick(NAME_STYLE[p["names"]]["name"]))
+    return tr("people_w_fantasy") if people == "fantasy" else pick(NAME_STYLE[people]["name"])
+
+
+def people_examples(p, count=3):
+    book = NameBook(dict(p, number=f"examples-{p.get('people')}"))
+    rng = random.Random(f"wyrmurbigen-people-examples-{p.get('people')}")
+    return [pick(person_name(rng, g, book)) for g in "mfm"[:count]]
 
 
 class Deck:
@@ -2844,8 +3042,13 @@ def fill_title(rng, kind, npc, s):
     title = rng.choice(kind.get("title") or [kind["name"]])
     adj_it, adj_en = TABLES["family_adj"]
     k = rng.randrange(len(adj_it))
+    family_adj = (adj_it[k], adj_en[k])
+    if s.p.get("names"):
+        r = random.Random(f"wyrmurbigen-family-adj-{s.p['number']}-{k}")
+        style, fantasy = people_style(s.p, r)
+        family_adj = (family_of(r, style, "m", fantasy),) * 2
     values = {"sign": rng.choice(TABLES["signs"]), "saint": rng.choice(TABLES["saints"]),
-              "family": (rng.choice(TABLES["families"]),) * 2, "family_adj": (adj_it[k], adj_en[k]),
+              "family": (family_name(rng, s.p),) * 2, "family_adj": family_adj,
               "guild": rng.choice(TABLES["guilds"]),
               "owner": (npc["first"], npc["first"]) if npc else (place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2}
     return fmt(title, **values)
@@ -2869,7 +3072,7 @@ def make_settlement(p, plan, seed):
     rng = random.Random(f"wyrmurbigen-people-{seed}")
     s = Settlement()
     s.p, s.plan, s.seed = p, plan, seed
-    used_names, used_places = set(), set()
+    used_names, used_places = NameBook(p), set()
     s.name = place_name(rng, used_places, p.get("names"), p.get("tone"))
     if rng.random() < 0.35 and not re.search(r"[ -]", s.name):
         ep = rng.choice(TERRAIN[p["terrain"]]["epithet"])
@@ -2898,7 +3101,7 @@ def make_settlement(p, plan, seed):
             g["name"] = ("Porta del Ponte", "Bridge Gate")
         else:
             g["name"] = fmt(rng.choice(TABLES["gates"]), saint=rng.choice(TABLES["saints"]),
-                            place=(rng.choice(TABLES["places"]),) * 2)
+                            place=(town_name(rng, p),) * 2)
         g["dir"] = compass(g["angle"])
     s.gates = gates
     s.quarter_names = []
@@ -2963,7 +3166,7 @@ def make_settlement(p, plan, seed):
     rng.shuffle(pool)
     s.factions = []
     for f in pool[:rng.randint(2, 3) if kind != "village" else 2]:
-        name = fmt(f["name"], family=(rng.choice(TABLES["families"]),) * 2, guild=rng.choice(TABLES["guilds"]),
+        name = fmt(f["name"], family=(family_name(rng, p),) * 2, guild=rng.choice(TABLES["guilds"]),
                    saint=rng.choice(TABLES["saints"]))
         leader = make_npc(rng, used_names, ("capo", "leader"), None,
                           rng.choice(("normal", "fighter", "thief", "cleric")), rng.randint(1, 4))
@@ -2972,12 +3175,12 @@ def make_settlement(p, plan, seed):
         a["rival"] = b["name"] if len(s.factions) > 1 and rng.random() < 0.6 else None
     # history
     founder = rng.choice([(f"{pick(person_name(rng, 'm', used_names))}",) * 2,
-                          fmt(("la famiglia {f}", "the {f} family"), f=(rng.choice(TABLES["families"]),) * 2)])
+                          fmt(("la famiglia {f}", "the {f} family"), f=(family_name(rng, p),) * 2)])
     founded = TABLES["history"]["founded_ward" if kind in ("castle", "fortress") else "founded"][p["era"]]
     parts = [fmt(rng.choice(founded), n=s.name_pair, founder=founder,
                  saint=rng.choice(TABLES["saints"]))]
     for e in rng.sample(TABLES["history"]["events"], 2):
-        parts.append(fmt(e, saint=rng.choice(TABLES["saints"]), family=(rng.choice(TABLES["families"]),) * 2))
+        parts.append(fmt(e, saint=rng.choice(TABLES["saints"]), family=(family_name(rng, p),) * 2))
     s.history = parts
     s.present = fmt(rng.choice(TABLES["history"]["present_rest"]), n=s.name_pair)
     s.demography = demography(p, plan, rng)
@@ -3093,8 +3296,8 @@ def plan_threat(s):
                        rng.choice(("fighter", "thief")) if sit["id"] not in ("tyrant", "cult") else
                        ("mu" if sit["id"] == "tyrant" else "cleric"), max(1, p["danger"] * 2 - 1), align=2)
     s.villain = villain
-    fam2 = rng.choice(TABLES["families"])
-    values = dict(n=s.name_pair, person=villain["name"], family=(rng.choice(TABLES["families"]),) * 2,
+    fam2 = family_name(rng, s.p)
+    values = dict(n=s.name_pair, person=villain["name"], family=(family_name(rng, s.p),) * 2,
                   family2=(fam2,) * 2, lair=(f"n. {s.lair.number} ({s.lair.title[0]})", f"no. {s.lair.number} ({s.lair.title[1]})"))
     s.dwellers = fmt(sit["dwellers"], **values)
     s.threat = fmt(sit["text"], **values)
@@ -3325,7 +3528,7 @@ def plan_lore(s):
                   "building": (f"{other.title[0]} ({tr_pair('ref_no')[0]} {other.number})",
                                f"{other.title[1]} ({tr_pair('ref_no')[1]} {other.number})") if other else ("", ""),
                   "dungeon": dungeon_name, "Dungeon": (capitalized(dungeon_name[0]), capitalized(dungeon_name[1])),
-                  "place": (rng.choice(TABLES["places"]),) * 2, "family": (rng.choice(TABLES["families"]),) * 2,
+                  "place": (town_name(rng, s.p),) * 2, "family": (family_name(rng, s.p),) * 2,
                   "saint": rng.choice(TABLES["saints"]),
                   "person": person_name(rng, rng.choice("mf"), s.used_names)}
         if getattr(s, "situation", None):
@@ -4154,6 +4357,8 @@ def key_blocks(s, title, units, content):
     if p.get("names"):
         blocks.append(("meta", tr("key_names", s=pick(NAME_STYLE[p["names"]]["name"]),
                                   t=pick(NAME_TONE[p["tone"]]["name"]))))
+        if (p.get("people") or "places") != "places":
+            blocks.append(("meta", tr("key_people", w=people_words(p))))
     n, length, unit, row = scale_bar(plan, units)
     blocks.append(("meta", tr("key_scale", r=f"{row:.1f}".replace(".", "," if LANG == "it" else "."), u=unit)))
     if story_on:
@@ -4732,6 +4937,15 @@ def ask_params():
                        for t in NAME_TONES])
     if tone:
         fixed["tone"] = tone
+    sample = {"names": names or "italian", "tone": tone or "homely"}
+    people_hints = [tr("people_places_hint") if not names else ", ".join(people_examples(dict(sample, people="places"))),
+                    ", ".join(people_examples(dict(sample, people="fantasy")))]
+    people_hints += [", ".join(people_examples(dict(sample, people=n["id"]))) for n in NAME_STYLES]
+    people = ask_choice(tr("q_people"), list(PEOPLE_MODES) + [n["id"] for n in NAME_STYLES],
+                        [tr("people_places"), tr("people_fantasy")] + [capitalized(pick(n["name"])) for n in NAME_STYLES],
+                        people_hints)
+    if people:
+        fixed["people"] = people
     if fixed.get("purpose", None) == "adventure":
         danger = ask_choice(tr("q_danger"), list(DANGERS), [tr(f"danger_{d}") for d in DANGERS])
         if danger:
@@ -4856,6 +5070,13 @@ def settings_from_options(argv):
                     help=tr("h_names"))
     ap.add_argument(*names("tono", "tone"), dest="tone", type=read_choice(NAME_TONES, "tono"), default=None,
                     help=tr("h_tone"))
+    language = read_choice(NAME_STYLES, "persone")
+
+    def read_people(text):
+        mode = {"luoghi": "places", "places": "places", "come-luoghi": "places", "like-places": "places",
+                "fantasy": "fantasy", "fantasia": "fantasy"}.get(text.strip().lower())
+        return mode or language(text)
+    ap.add_argument(*names("persone", "people"), dest="people", type=read_people, default=None, help=tr("h_people"))
     ap.add_argument(*names("seme", "seed"), dest="seed", default=None, help=tr("h_seed"))
     ap.add_argument(*names("colori", "colors"), dest="colors", type=int, choices=(1, 2, 3, 4, 5), default=1, help=tr("h_colors"))
     ap.add_argument(*names("formato", "format"), dest="paper", type=str.upper, choices=list(PAPERS), default=None,
@@ -4883,7 +5104,8 @@ def settings_from_options(argv):
          "colors": a.colors, "files": a.files, "content": a.content or (True,) * 4,
          "units": {"imperiale": "imperial", "metrica": "metric"}.get(a.units, a.units)}
     fixed = {k: v for k, v in (("type", a.type), ("era", a.era), ("terrain", a.terrain), ("pop", a.pop),
-                                ("danger", a.danger), ("names", a.names), ("tone", a.tone)) if v is not None}
+                                ("danger", a.danger), ("names", a.names), ("tone", a.tone),
+                                ("people", a.people)) if v is not None}
     if a.purpose:
         purpose = {"riposo": "rest", "rest": "rest", "avventura": "adventure", "adventure": "adventure"}.get(
             a.purpose.strip().lower())
@@ -4924,6 +5146,8 @@ def main():
     if p.get("names"):
         log.info(tr("info_names", s=pick(NAME_STYLE[p["names"]]["name"]), t=pick(NAME_TONE[p["tone"]]["name"]),
                     m=round_millions(name_combinations(p["names"], p["tone"]))))
+        m, f, c = people_counts(p)
+        log.info(tr("info_people", w=people_words(p), m=number(m), f=number(f), c=number(c)))
     else:
         log.info(tr("info_names_old"))
     units = p.get("units") or ("metric" if LANG == "it" else "imperial")

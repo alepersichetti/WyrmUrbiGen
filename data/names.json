@@ -74,6 +74,21 @@
           "grim": ["dei Lupi", "dei Corvi", "dei Morti", "della Forca", "delle Spine"],
           "eerie": ["delle Streghe", "della Luna", "delle Nebbie", "delle Fate", "dei Lumi"]
         }
+      },
+      "people": {
+        "forms": {
+          "father": {"m": "{first} di {father}", "f": "{first} di {father}"},
+          "family": "{first} {family}",
+          "place": "{first} da {place}"
+        },
+        "roots": {
+          "m_start": ["Alber", "Ansel", "Bald", "Bern", "Bert", "Bon", "Corr", "Dan", "Ermann", "Fil", "Franc", "Gherard", "Gian", "Guid", "Guglielm", "Ildebr", "Iac", "Lamb", "Leon", "Lud", "Manfr", "Mart", "Matt", "Nicc", "Odd", "Orl", "Pagan", "Rain", "Ruggi", "Sigis", "Tedald", "Ubert", "Ugol", "Valt", "Vann"],
+          "m_end": ["ino", "ello", "uccio", "aldo", "ardo", "erto", "olo", "ano", "iero", "one", "otto", "ozzo", "accio", "enzo", "ico", "eo", "ato", "ilio", "ario", "esco", "uzzo", "ugio", "emmo", "andro", "ippo", "orio", "ese", "asio", "imo", "ardino"],
+          "f_start": ["Ad", "Agn", "Alb", "Beatr", "Bianc", "Cat", "Cecil", "Chiar", "Cost", "Dian", "Elen", "Emil", "Fior", "Franc", "Gemm", "Gin", "Giov", "Gisl", "Ild", "Isab", "Laur", "Lis", "Lucr", "Marg", "Mat", "Nann", "Ottav", "Pier", "Rosm", "Sanc", "Sim", "Tadd", "Tess", "Vann", "Viol"],
+          "f_end": ["ina", "ella", "uccia", "alda", "arda", "etta", "ia", "ana", "iera", "ona", "otta", "ilia", "aria", "esca", "ice", "ilde", "enza", "uzza", "ola", "ata", "essa", "ica", "ea", "anna", "ide", "ira", "illa", "ora", "inda", "isa"],
+          "fam_start": ["Ubald", "Salimb", "Tolom", "Gherard", "Malasp", "Visc", "Guid", "Albert", "Buondelm", "Cerch", "Donat", "Lambert", "Gerem", "Pazz", "Strozz", "Baglion", "Orsin", "Colonn", "Sav", "Frangip", "Caet", "Gonzag", "Scalig", "Carrar", "Pall", "Rangon", "Pic", "Manfred", "Ordelaff", "Trinc", "Varan", "Montef", "Chiaramont", "Ventimigl", "Ruff"],
+          "fam_end": ["ini", "eschi", "elli", "ucci", "oni", "ardi", "esi", "ati", "etti", "oli", "ani", "ieri", "uzzi", "acci", "ari", "otti", "enghi", "aldi", "ighi", "eri", "asi", "ucchi", "olini", "iani", "i", "a", "ella", "esco", "ino", "ardini"]
+        }
       }
     },
     {
@@ -116,6 +131,24 @@
           "stately": ["Burh", "Minster", "Abbas", "Regis", "Hall"],
           "grim": ["Barrows", "Gallows", "Marsh", "Grave", "Scar"],
           "eerie": ["under Hill", "Howe", "Low", "Hollow", "Wyrd"]
+        }
+      },
+      "people": {
+        "m": ["Aelfric", "Aethelred", "Aldhelm", "Beorn", "Brihtwold", "Byrhtnoth", "Cenric", "Ceolwulf", "Cuthbert", "Cynewulf", "Dunstan", "Eadgar", "Eadric", "Eadwine", "Ecgbert", "Edmund", "Godric", "Godwine", "Guthlac", "Harold", "Hereward", "Leofric", "Leofwine", "Offa", "Oswald", "Oswine", "Osric", "Penda", "Raedwald", "Sigeric", "Swithun", "Tostig", "Wigstan", "Wilfrid", "Wulfhere", "Wulfric", "Wulfstan", "Alfred", "Athelstan", "Beornwulf"],
+        "f": ["Aelfgifu", "Aelfflaed", "Aethelflaed", "Aethelthryth", "Beornthryth", "Cwenburh", "Cynethryth", "Eadburh", "Eadgyth", "Eanflaed", "Ealhswith", "Edith", "Godgifu", "Hild", "Leofrun", "Mildthryth", "Osthryth", "Seaxburh", "Wulfrun", "Wynflaed", "Aelfwynn", "Aethelgifu", "Brihtgifu", "Cyneburh", "Eadflaed", "Eangyth", "Frithugyth", "Leofgifu", "Eadgifu", "Aethelburh", "Aelfthryth", "Ealdgyth", "Wulfwynn", "Sigeburh", "Heahburh", "Werburh", "Tetta", "Bebba", "Hereswith", "Aelfrun"],
+        "families": ["Hwita", "Reada", "Langa", "Cild", "Swarta", "Blaca", "Cniht", "Smith", "Hunta", "Fugel", "Wulfa", "Stilla", "Snell", "Hara", "Crisp", "Wisa", "Balda", "Stranga", "Godsunu", "Brada", "Hoppere", "Fisc", "Bucca", "Dunna", "Gamol", "Geong", "Heah", "Lytel", "Micel", "Rica", "Scort", "Sweta", "Tilia", "Pada", "Hacca", "Bryd", "Cyta", "Dodda", "Goda", "Hroc"],
+        "forms": {
+          "father": {"m": "{first} {father}ing", "f": "{first} {father}es dohtor"},
+          "family": "{first} {family}",
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Aelf", "Aethel", "Ald", "Beorht", "Beorn", "Brih", "Cen", "Ceol", "Cuth", "Cyne", "Ead", "Ecg", "God", "Guth", "Here", "Leof", "Os", "Pen", "Raed", "Sige", "Swith", "Wig", "Wil", "Wulf", "Byrht", "Eald", "Ean", "Heah", "Hwaet", "Frith", "Ord", "Torht", "Wyn", "Mild", "Win"],
+          "m_end": ["ric", "red", "helm", "wulf", "wine", "stan", "mund", "gar", "bert", "weard", "ferth", "here", "noth", "wald", "frith", "sige", "heard", "laf", "maer", "wig", "bald", "hun", "gils", "hroth", "win", "mod", "ulf", "brand", "cyn", "ing"],
+          "f_start": ["Aelf", "Aethel", "Beorn", "Cwen", "Cyne", "Ead", "Ean", "Eal", "God", "Hild", "Leof", "Mild", "Os", "Seax", "Wulf", "Wyn", "Frith", "Sige", "Heah", "Wer", "Aebb", "Bregu", "Ceol", "Eorm", "Hroth", "Leob", "Ric", "Tet", "Ten", "Ber", "Bert", "Gyth", "Ort", "Wil", "Here"],
+          "f_end": ["gifu", "flaed", "thryth", "burh", "gyth", "swith", "run", "wynn", "hild", "ith", "ryth", "lufu", "dis", "fled", "wen", "ware", "mod", "nyth", "hilda", "githa", "leofu", "bryd", "sweth", "wynna", "frida", "wela", "laf", "drith", "gyfu", "eth"],
+          "fam_start": ["Hwit", "Read", "Lang", "Swart", "Blac", "Brad", "Stran", "Wis", "Bald", "Hard", "Scort", "Lyt", "Mic", "Gamol", "Geon", "Heah", "Fug", "Wulf", "Hun", "Fisc", "Bucc", "Hroc", "Ead", "God", "Leof", "Smith", "Cniht", "Cild", "Dunn", "Gold", "Iren", "Stan", "Wud", "Hol", "Mere"],
+          "fam_end": ["a", "e", "ing", "sunu", "mann", "ere", "el", "ung", "ric", "wine", "ward", "lic", "en", "ling", "fot", "hand", "heafod", "berd", "sid", "tun", "hyrde", "smith", "cyn", "wita", "ra", "ega", "ecg", "mod", "wulf", "bera"]
         }
       }
     },
@@ -160,6 +193,24 @@
           "grim": ["Gallows", "on the Marches", "under the Moor", "Bridewell", "in the Fens"],
           "eerie": ["under Hill", "in the Mist", "by the Barrow", "Hollow", "Elfhame"]
         }
+      },
+      "people": {
+        "m": ["John", "Thomas", "William", "Richard", "Robert", "Henry", "Edward", "Walter", "Francis", "Nicholas", "Christopher", "Humphrey", "Ralph", "Roger", "Hugh", "Giles", "Gilbert", "Anthony", "Edmund", "George", "Lawrence", "Matthew", "Miles", "Oliver", "Peter", "Simon", "Stephen", "Toby", "Tristram", "Valentine", "Barnaby", "Bartholomew", "Ambrose", "Jasper", "Jeremy", "Nathaniel", "Rowland", "Thurstan", "Ellis", "Philip"],
+        "f": ["Agnes", "Alice", "Anne", "Avice", "Beatrice", "Bridget", "Cecily", "Dorothy", "Eleanor", "Elizabeth", "Emmot", "Frances", "Grace", "Helen", "Isabel", "Jane", "Joan", "Judith", "Katherine", "Lettice", "Mabel", "Margery", "Margaret", "Marian", "Mary", "Maud", "Millicent", "Olive", "Parnell", "Philippa", "Prudence", "Rose", "Susanna", "Thomasina", "Ursula", "Winifred", "Amabel", "Blanche", "Constance", "Dulcibella"],
+        "families": ["Ashby", "Barlow", "Blackwood", "Bolton", "Carew", "Clifford", "Cooper", "Dudley", "Fletcher", "Fairfax", "Grey", "Hawkins", "Hollis", "Howard", "Kempe", "Langley", "Lovell", "Marlowe", "Mortimer", "Neville", "Paget", "Percy", "Radcliffe", "Russell", "Seymour", "Sidney", "Spenser", "Stanley", "Talbot", "Thorne", "Tyndale", "Vaughan", "Walsingham", "Warde", "Webster", "Whitlock", "Wyatt", "Yardley", "Carter", "Draper"],
+        "forms": {
+          "father": {"m": "{first} {father}son", "f": "{first} {family}"},
+          "family": "{first} {family}",
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Ambr", "Barn", "Barthol", "Christ", "Edm", "Edw", "Ell", "Franc", "Gilb", "Hen", "Humph", "Jasp", "Jer", "Laur", "Matth", "Nath", "Nich", "Ol", "Phil", "Ral", "Rich", "Rob", "Rog", "Rowl", "Sim", "Steph", "Thom", "Tob", "Trist", "Val", "Walt", "Will", "Godw", "Osb", "Rand"],
+          "m_end": ["ert", "ard", "iam", "as", "en", "ey", "ias", "ose", "aby", "ew", "ond", "ip", "ain", "ock", "el", "an", "ery", "ford", "ick", "on", "ott", "yn", "ius", "ald", "ence", "aniel", "es", "imer", "ram", "ist"],
+          "f_start": ["Ag", "Al", "Am", "Av", "Beatr", "Bridg", "Cec", "Constan", "Dor", "Elean", "Eliz", "Em", "Franc", "Grac", "Hel", "Isab", "Jud", "Kath", "Lett", "Mab", "Marg", "Mar", "Maud", "Mill", "Ol", "Parn", "Phil", "Prud", "Ros", "Sus", "Thomas", "Urs", "Win", "Blanch", "Dulc"],
+          "f_end": ["ice", "ela", "abel", "eth", "ise", "ina", "ilda", "ence", "ett", "ory", "anne", "ia", "ene", "ey", "iet", "ilia", "inda", "ora", "ella", "ida", "yn", "ithe", "issa", "ance", "abelle", "ota", "elle", "is", "ary", "wen"],
+          "fam_start": ["Ash", "Barl", "Black", "Bolt", "Car", "Cliff", "Coop", "Dud", "Fletch", "Fair", "Hawk", "Holl", "How", "Kemp", "Lang", "Lov", "Marl", "Mort", "Nev", "Pag", "Perc", "Radcl", "Russ", "Seym", "Sid", "Spens", "Stan", "Talb", "Thorn", "Tynd", "Vaugh", "Walsing", "Ward", "Webb", "Whitl"],
+          "fam_end": ["by", "ow", "wood", "ton", "ew", "ford", "er", "ley", "ins", "is", "ard", "e", "ell", "owe", "imer", "ille", "et", "y", "iffe", "en", "our", "ney", "ser", "ot", "ale", "an", "ham", "ock", "field", "ing"]
+        }
       }
     },
     {
@@ -202,6 +253,24 @@
           "stately": ["an Righ", "nan Flath", "na Banrighe", "an Easbuig", "nan Uaislean"],
           "grim": ["Dubh", "nam Bas", "na Fala", "nam Fiach", "nan Cnamh"],
           "eerie": ["nan Sith", "nan Taibhse", "a' Cheo", "na Cailliche", "nan Draoidh"]
+        }
+      },
+      "people": {
+        "m": ["Aonghas", "Alasdair", "Calum", "Coinneach", "Domhnall", "Donnchadh", "Dubhghall", "Eachann", "Fearchar", "Fionnlagh", "Gillebride", "Gilleasbuig", "Iain", "Lachlann", "Murchadh", "Niall", "Raghnall", "Ruairidh", "Seumas", "Somhairle", "Tormod", "Uilleam", "Artair", "Brian", "Cailean", "Conall", "Diarmad", "Eoghann", "Fearghas", "Goiridh", "Iomhar", "Martainn", "Padraig", "Ruadhan", "Tadhg", "Torcall", "Uisdean", "Dughall", "Aodh", "Ailbeart"],
+        "f": ["Aileas", "Mairead", "Morag", "Seonaid", "Catriona", "Ealasaid", "Eilidh", "Fionnghal", "Floraidh", "Giorsal", "Iseabail", "Liusaidh", "Mairi", "Muireall", "Oighrig", "Raghnaid", "Sine", "Sorcha", "Una", "Beathag", "Ciorstaidh", "Deirdre", "Dearbhail", "Eithne", "Gormlaith", "Grainne", "Mor", "Moire", "Seonag", "Sileas", "Tearlag", "Barabal", "Caitir", "Diorbhal", "Annag", "Ceit", "Euna", "Lilias", "Peigi", "Raonaid"],
+        "families": [["MacLeoid", "NicLeoid"], ["MacDhomhnaill", "NicDhomhnaill"], ["Caimbeul", "Caimbeul"], ["MacGriogair", "NicGriogair"], ["MacCoinnich", "NicCoinnich"], ["MacAoidh", "NicAoidh"], ["MacNeacail", "NicNeacail"], ["MacFhionghain", "NicFhionghain"], ["MacIllEathain", "NicIllEathain"], ["MacLachlainn", "NicLachlainn"], ["MacAilpein", "NicAilpein"], ["MacAonghais", "NicAonghais"], ["MacDhughaill", "NicDhughaill"], ["Moireach", "Moireach"], ["Rothach", "Rothach"], ["Siosalach", "Siosalach"], ["Stiubhart", "Stiubhart"], ["Granndach", "Granndach"], ["Friseal", "Friseal"], ["MacAmhlaigh", "NicAmhlaigh"], ["MacIlleMhoire", "NicIlleMhoire"], ["MacRath", "NicRath"], ["MacSuain", "NicSuain"], ["MacThomais", "NicThomais"], ["MacCuithein", "NicCuithein"], ["MacIain", "NicIain"], ["MacPhail", "NicPhail"], ["MacMhathain", "NicMhathain"], ["MacCaoidh", "NicCaoidh"], ["MacDhonnchaidh", "NicDhonnchaidh"], ["MacFhearghais", "NicFhearghais"], ["MacGilleBhrath", "NicGilleBhrath"], ["MacNeill", "NicNeill"], ["MacRuairidh", "NicRuairidh"], ["MacShomhairle", "NicShomhairle"], ["MacEanraig", "NicEanraig"], ["MacUalraig", "NicUalraig"], ["MacMhuirich", "NicMhuirich"], ["MacCormaig", "NicCormaig"], ["MacDhiarmaid", "NicDhiarmaid"]],
+        "forms": {
+          "father": {"m": "{first} mac {father}", "f": "{first} nic {father}"},
+          "family": "{first} {family}",
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Aon", "Alas", "Cal", "Coinn", "Domh", "Donn", "Dubh", "Each", "Fear", "Fionn", "Gill", "Ia", "Lachl", "Murch", "Nia", "Ragh", "Ruair", "Seum", "Somh", "Torm", "Uill", "Cail", "Con", "Diarm", "Eogh", "Gor", "Iomh", "Mart", "Padr", "Ruadh", "Tad", "Torc", "Uisd", "Dugh", "Aodh"],
+          "m_end": ["ghas", "dair", "um", "each", "nall", "chadh", "ghall", "ann", "char", "lagh", "bride", "an", "ach", "aidh", "as", "airle", "od", "eam", "ean", "all", "ad", "ain", "ic", "ard", "uin", "ais", "ag", "ar", "eas", "oin"],
+          "f_start": ["Ail", "Mair", "Mor", "Seon", "Catr", "Eal", "Eil", "Fionn", "Flor", "Gior", "Iseab", "Lius", "Muir", "Oigh", "Ragh", "Sin", "Sorch", "Un", "Beath", "Ciorst", "Deir", "Dearbh", "Eithn", "Gorm", "Grain", "Moir", "Sil", "Tearl", "Barab", "Cait", "Diorb", "Ann", "Ceit", "Eun", "Peig"],
+          "f_end": ["eas", "ead", "ag", "aid", "iona", "asaid", "idh", "ghal", "aidh", "sal", "ail", "sidh", "i", "eall", "rig", "naid", "e", "cha", "a", "ilis", "inn", "ait", "ach", "ann", "ir", "ra", "ena", "ise", "eith", "lath"],
+          "fam_start": ["MacLe", "MacDhomh", "Caimb", "MacGriog", "MacCoinn", "MacAo", "MacNeac", "MacFhion", "MacIllEath", "MacLachl", "MacAilp", "MacAong", "MacDhugh", "Moir", "Roth", "Sios", "Stiubh", "Grann", "Fris", "MacAmh", "MacIlleMh", "MacR", "MacSu", "MacTh", "MacCuith", "MacI", "MacPh", "MacMhath", "MacCao", "MacDhonn", "MacFhear", "MacGill", "MacN", "MacRuair", "MacShomh"],
+          "fam_end": ["oid", "naill", "eul", "air", "ich", "idh", "ail", "inn", "ain", "ein", "ais", "aill", "each", "ach", "art", "dach", "eal", "laigh", "oire", "ath", "uain", "omais", "ean", "aig", "uirich", "ormaig", "iarmaid", "eanraig", "alraig", "ag"]
         }
       }
     },
@@ -246,6 +315,24 @@
           "grim": ["Gurth", "Goroth", "Dur", "Lug", "Nargul"],
           "eerie": ["Dwimor", "Fuinen", "Gwathren", "Ithilen", "Morne"]
         }
+      },
+      "people": {
+        "m": ["Aerandir", "Amlach", "Anardil", "Arandor", "Belecthor", "Beleggon", "Calendil", "Celedhir", "Cirion", "Daelon", "Dorgil", "Edrahil", "Elmir", "Eldacar", "Faelon", "Galdor", "Gilmar", "Haldir", "Hallatan", "Hirluin", "Ingold", "Ithilbor", "Lindor", "Luinil", "Mablon", "Meneldir", "Orodreth", "Pelendur", "Saelon", "Thalion", "Turgon", "Valandil", "Voronwe", "Aradan", "Borlad", "Ciryon", "Duilin", "Egalmoth", "Hador", "Rumil"],
+        "f": ["Aerin", "Amarie", "Anwen", "Andreth", "Elanor", "Elwen", "Erestiel", "Faelin", "Finduilas", "Gilraen", "Haleth", "Ioreth", "Ithilwen", "Lalaith", "Lindiel", "Lothiriel", "Luinwen", "Miriel", "Morwen", "Nellas", "Nimwen", "Rian", "Silmarien", "Elenwe", "Earwen", "Anariel", "Calenwen", "Celebwen", "Eledhwen", "Firiel", "Glorwen", "Ilmare", "Meneliel", "Taurwen", "Vanimelde", "Ancalime", "Emeldir", "Erendis", "Indis", "Luthiel"],
+        "families": ["Aldamir", "Anborn", "Arandur", "Baranor", "Calmacil", "Celepharn", "Dorlas", "Earnil", "Eradan", "Galador", "Gildor", "Golasgil", "Hallas", "Hurin", "Imrazor", "Ingwion", "Iorlas", "Lothar", "Mardil", "Minardil", "Narmacil", "Ohtar", "Ostoher", "Pelendur", "Romendacil", "Tarannon", "Telumehtar", "Thorondir", "Turambar", "Vorondil", "Belemir", "Celebrindor", "Dior", "Elatan", "Fingon", "Galion", "Hirgon", "Ithildin", "Malbeth", "Tarcil"],
+        "forms": {
+          "father": {"m": "{first} {father}ion", "f": "{first} {father}iel"},
+          "family": {"it": "{first} della Casa di {family}", "en": "{first} of the House of {family}"},
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Aer", "Am", "Anar", "Ar", "Bel", "Cal", "Cel", "Cir", "Dae", "Dor", "Ed", "El", "Eld", "Fae", "Gal", "Gil", "Hal", "Hir", "Ing", "Ith", "Lin", "Luin", "Mab", "Men", "Or", "Pel", "Sae", "Thal", "Tur", "Val", "Vor", "Bor", "Duil", "Egal", "Rum"],
+          "m_end": ["andir", "lach", "dil", "ador", "ecthor", "egon", "endil", "edhir", "ion", "lon", "gil", "rahil", "mir", "acar", "dor", "las", "on", "ronwe", "uin", "ond", "orn", "ath", "oth", "ir", "uil", "eth", "ros", "ras", "egil", "ost"],
+          "f_start": ["Aer", "Am", "An", "And", "El", "Er", "Fae", "Fin", "Gil", "Hal", "Ior", "Ith", "Lal", "Lin", "Loth", "Luin", "Mir", "Mor", "Nel", "Nim", "Ri", "Sil", "Ear", "Cal", "Celeb", "Eledh", "Fir", "Glor", "Ilm", "Men", "Taur", "Van", "Anc", "Em", "Ind"],
+          "f_end": ["in", "arie", "wen", "reth", "anor", "estiel", "duilas", "raen", "eth", "ireth", "iel", "laith", "iriel", "ien", "ellas", "ian", "marien", "we", "ael", "ilme", "alime", "eldir", "endis", "dis", "uthiel", "orie", "ith", "ise", "aneth", "inde"],
+          "fam_start": ["Ald", "Anb", "Ar", "Bar", "Calm", "Celeph", "Dorl", "Earn", "Erad", "Gal", "Gild", "Golas", "Hall", "Hur", "Imr", "Ingw", "Iorl", "Loth", "Mard", "Min", "Narm", "Oht", "Ost", "Pel", "Rom", "Tar", "Tel", "Thor", "Tur", "Vor", "Bel", "Di", "El", "Fing", "Hirg"],
+          "fam_end": ["amir", "orn", "andur", "anor", "macil", "harn", "las", "nil", "an", "ador", "or", "gil", "as", "in", "azor", "ion", "ar", "dil", "ardil", "acil", "tar", "oher", "endur", "endacil", "annon", "umehtar", "ondir", "ambar", "ondil", "emir"]
+        }
       }
     },
     {
@@ -288,6 +375,24 @@
           "stately": ["al-Malik", "al-Sultan", "Shahi", "al-Amir", "Khosravi"],
           "grim": ["al-Mawt", "Siyah", "al-Dam", "Div", "al-Harb"],
           "eerie": ["al-Jinn", "Peri", "al-Sihr", "al-Qamar", "al-Ghayb"]
+        }
+      },
+      "people": {
+        "m": ["Ahmad", "Ali", "Arash", "Bahram", "Bijan", "Dariush", "Farhad", "Faridun", "Firuz", "Hamid", "Hasan", "Hushang", "Ibrahim", "Ismail", "Jafar", "Jamshid", "Kamran", "Karim", "Khalid", "Khusraw", "Mahmud", "Mansur", "Mehrdad", "Musa", "Nasir", "Omar", "Parviz", "Qasim", "Rashid", "Rostam", "Saeed", "Salim", "Shapur", "Siavash", "Suhrab", "Tahir", "Yahya", "Yusuf", "Zal", "Zayd"],
+        "f": ["Afsaneh", "Ayesha", "Azadeh", "Banu", "Dilara", "Farah", "Fatima", "Golnar", "Gordafarid", "Habiba", "Jamila", "Laleh", "Layla", "Mahin", "Maryam", "Mehri", "Mina", "Nahid", "Nasrin", "Nazanin", "Parisa", "Pari", "Roshan", "Roxana", "Rudaba", "Salma", "Samira", "Shirin", "Simin", "Soraya", "Tahmina", "Yasmin", "Zahra", "Zainab", "Zarina", "Zubaida", "Anahita", "Banafsheh", "Katayun", "Manizheh"],
+        "families": ["al-Rashid", "al-Mansur", "al-Hashimi", "al-Tamimi", "al-Kindi", "al-Farisi", "al-Isfahani", "al-Shirazi", "al-Tusi", "al-Razi", "al-Balkhi", "al-Kirmani", "al-Qazwini", "al-Baghdadi", "al-Basri", "al-Kufi", "al-Dimashqi", "al-Misri", "al-Hamadani", "al-Nishapuri", "Barmaki", "Samani", "Tahiri", "Saffari", "Ziyari", "Ghaznavi", "Kayani", "Sasani", "Ashkani", "Mihrani", "Surani", "Karani", "Zand", "Afshar", "Bakhtiari", "al-Jurjani", "al-Khwarazmi", "al-Marwazi", "al-Sijistani", "al-Tabari"],
+        "forms": {
+          "father": {"m": "{first} ibn {father}", "f": "{first} bint {father}"},
+          "family": "{first} {family}",
+          "place": "{first} al-{place}"
+        },
+        "roots": {
+          "m_start": ["Ah", "Al", "Ar", "Bah", "Bij", "Dar", "Far", "Fir", "Ham", "Has", "Hush", "Ibr", "Ism", "Jaf", "Jam", "Kam", "Kar", "Khal", "Khus", "Mah", "Mans", "Mehr", "Mus", "Nas", "Parv", "Qas", "Rash", "Rost", "Sa", "Sal", "Shap", "Siav", "Suhr", "Tah", "Yus"],
+          "m_end": ["mad", "i", "ash", "ram", "an", "ush", "had", "idun", "uz", "id", "ang", "ahim", "ail", "far", "shid", "ran", "im", "raw", "mud", "ur", "dad", "a", "ir", "iz", "ar", "am", "ab", "eh", "ullah", "uddin"],
+          "f_start": ["Afs", "Ay", "Az", "Ban", "Dil", "Far", "Fat", "Gol", "Gord", "Hab", "Jam", "Lal", "Lay", "Mah", "Mar", "Mehr", "Min", "Nah", "Nas", "Naz", "Par", "Rosh", "Rox", "Rud", "Sal", "Sam", "Shir", "Sim", "Sor", "Tahm", "Yas", "Zahr", "Zayn", "Zar", "Zub"],
+          "f_end": ["aneh", "esha", "adeh", "u", "ara", "ah", "ima", "nar", "afarid", "iba", "ila", "eh", "la", "in", "yam", "i", "a", "id", "rin", "anin", "isa", "an", "ana", "aba", "ma", "ira", "aya", "ina", "ida", "ab"],
+          "fam_start": ["al-Rash", "al-Mans", "al-Hash", "al-Tam", "al-Kind", "al-Far", "al-Isfah", "al-Shir", "al-T", "al-R", "al-Balkh", "al-Kirm", "al-Qazw", "al-Baghd", "al-Basr", "al-K", "al-Dimashq", "al-Misr", "al-Hamad", "al-Nishap", "Barm", "Sam", "Tah", "Saff", "Ziy", "Ghazn", "Kay", "Sas", "Ashk", "Mihr", "Sur", "Kar", "Afsh", "Bakht", "al-Jurj"],
+          "fam_end": ["id", "ur", "imi", "i", "ani", "aki", "iri", "usi", "azi", "ari", "avi", "uri", "adi", "ashi", "ili", "awi", "ahi", "abadi", "uni", "isi", "ami", "ali", "afi", "iyya", "uddin", "ullah", "an", "ash", "ad", "ir"]
         }
       }
     },
@@ -332,6 +437,27 @@
           "grim": ["ton Nekron", "tou Thanatou", "Mavre", "ton Lykon", "tou Haimatos"],
           "eerie": ["tes Selenes", "ton Magon", "tes Nyktos", "ton Oneiron", "tes Hekates"]
         }
+      },
+      "people": {
+        "m": ["Alexios", "Andronikos", "Basileios", "Bardas", "Demetrios", "Georgios", "Ioannes", "Isaakios", "Konstantinos", "Leon", "Manuel", "Michael", "Nikephoros", "Niketas", "Nikolaos", "Romanos", "Stephanos", "Theodoros", "Theophilos", "Herakleios", "Leontios", "Maurikios", "Petros", "Philippos", "Photios", "Sergios", "Staurakios", "Symeon", "Theophanes", "Alexandros", "Anastasios", "Eustathios", "Gregorios", "Kosmas", "Lazaros", "Markos", "Pankratios", "Prokopios", "Zenon", "Akakios"],
+        "f": ["Anna", "Eudokia", "Eirene", "Theodora", "Zoe", "Maria", "Helena", "Theophano", "Euphrosyne", "Kassia", "Sophia", "Ariadne", "Pulcheria", "Eudoxia", "Martina", "Thekla", "Agatha", "Anastasia", "Barbara", "Chrysanthe", "Euphemia", "Kale", "Melania", "Olympias", "Pelagia", "Photeine", "Xene", "Glykeria", "Stephania", "Theodote", "Kyranna", "Makrina", "Euthymia", "Marina", "Sergia", "Paraskeve", "Domnika", "Eupraxia", "Zinaida", "Thomais"],
+        "families": [["Komnenos", "Komnene"], ["Doukas", "Doukaina"], ["Angelos", "Angelina"], ["Palaiologos", "Palaiologina"], ["Laskaris", "Laskarina"], ["Phokas", "Phokaina"], ["Skleros", "Sklerina"], ["Bryennios", "Bryennissa"], ["Kantakouzenos", "Kantakouzene"], ["Vatatzes", "Vatatzina"], ["Botaneiates", "Botaneiatissa"], ["Diogenes", "Diogenissa"], ["Argyros", "Argyropoulina"], ["Kourkouas", "Kourkouaina"], ["Dalassenos", "Dalassene"], ["Melissenos", "Melissene"], ["Tornikios", "Tornikaina"], ["Synadenos", "Synadene"], ["Philanthropenos", "Philanthropene"], ["Tarchaneiotes", "Tarchaneiotissa"], ["Raoul", "Raoulaina"], ["Choniates", "Choniatissa"], ["Kamateros", "Kamaterissa"], ["Branas", "Branaina"], ["Strategopoulos", "Strategopoulina"], ["Asanes", "Asanina"], ["Metochites", "Metochitissa"], ["Gabras", "Gabraina"], ["Taronites", "Taronitissa"], ["Xiphilinos", "Xiphiline"], ["Psellos", "Psellaina"], ["Monomachos", "Monomachina"], ["Maleinos", "Maleine"], ["Kontostephanos", "Kontostephanina"], ["Kalothetos", "Kalothetina"], ["Lekapenos", "Lekapene"], ["Tzimiskes", "Tzimiskaina"], ["Xeros", "Xerina"], ["Batatzes", "Batatzina"], ["Akropolites", "Akropolitissa"]],
+        "forms": {
+          "father": {
+            "m": {"it": "{first} figlio di {father}", "en": "{first} son of {father}"},
+            "f": {"it": "{first} figlia di {father}", "en": "{first} daughter of {father}"}
+          },
+          "family": "{first} {family}",
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Alex", "Andron", "Bas", "Bard", "Demetr", "Georg", "Ioann", "Isaak", "Konstant", "Leon", "Manu", "Mich", "Nikeph", "Nik", "Rom", "Steph", "Theod", "Theoph", "Herakl", "Leont", "Maur", "Petr", "Phil", "Phot", "Serg", "Staur", "Sym", "Alexandr", "Anast", "Eustath", "Greg", "Kosm", "Laz", "Mark", "Prok"],
+          "m_end": ["ios", "ikos", "eios", "as", "os", "es", "ianos", "inos", "oros", "ilos", "aios", "ippos", "ion", "akios", "eon", "anos", "enos", "ontios", "ikios", "odoros", "ophanes", "opios", "ilios", "aris", "ites", "atios", "ides", "oulos", "ikas", "akes"],
+          "f_start": ["Ann", "Eudok", "Eir", "Theod", "Zo", "Mar", "Hel", "Theoph", "Euphros", "Kass", "Soph", "Ariadn", "Pulch", "Eudox", "Mart", "Thek", "Agath", "Anast", "Barb", "Chrysanth", "Euphem", "Kal", "Mel", "Olymp", "Pelag", "Phot", "Glyk", "Stephan", "Kyr", "Makr", "Euthym", "Serg", "Paraskev", "Domn", "Eupra"],
+          "f_end": ["a", "ia", "ene", "ora", "e", "ina", "ano", "yne", "is", "ania", "eria", "issa", "ais", "ousa", "ike", "ope", "inna", "anna", "eia", "oe", "ilia", "ena", "ote", "ippe", "ema", "ula", "ida", "axia", "athe", "ane"],
+          "fam_start": ["Komn", "Douk", "Angel", "Palaiol", "Laskar", "Phok", "Skler", "Bryenn", "Kantakouz", "Vatatz", "Botaneiat", "Diogen", "Argyr", "Kourkou", "Dalass", "Meliss", "Tornik", "Synad", "Philanthrop", "Tarchaneiot", "Chon", "Kamater", "Bran", "Strategopoul", "Asan", "Metochit", "Gabr", "Taronit", "Xiphil", "Psell", "Monomach", "Malein", "Kontosteph", "Kaloth", "Lekap"],
+          "fam_end": ["enos", "as", "os", "ogos", "is", "ios", "es", "ites", "opoulos", "ates", "inos", "akes", "ides", "eros", "anos", "otes", "ikos", "oulos", "adenos", "atzes", "enes", "ontes", "aras", "ikes", "ilos", "inas", "etos", "ouzenos", "ogenes", "akios"]
+        }
       }
     },
     {
@@ -374,6 +500,24 @@
           "stately": ["an der Pfalz", "am Schloss", "zum Kaiser", "bei der Burg", "am Dom"],
           "grim": ["am Galgen", "im Moor", "am Totenacker", "im Graben", "am Rabenstein"],
           "eerie": ["im Nebel", "am Hexentanz", "im Mondschein", "am Irrlicht", "im Schatten"]
+        }
+      },
+      "people": {
+        "m": ["Albrecht", "Arnold", "Berthold", "Bernhard", "Burkhard", "Konrad", "Dietrich", "Eberhard", "Ekkehard", "Friedrich", "Gottfried", "Gunther", "Hartmann", "Heinrich", "Hermann", "Hildebrand", "Hugo", "Jakob", "Johann", "Kaspar", "Leopold", "Lothar", "Ludwig", "Markwart", "Matthias", "Meinhard", "Nikolaus", "Otto", "Rudolf", "Siegfried", "Sigismund", "Ulrich", "Walther", "Wenzel", "Werner", "Wilhelm", "Wolfram", "Rupprecht", "Engelbert", "Ortwin"],
+        "f": ["Adelheid", "Agnes", "Anna", "Barbara", "Beatrix", "Bertha", "Brunhild", "Elisabeth", "Elsbeth", "Ermengard", "Gertrud", "Gisela", "Hedwig", "Hildegard", "Irmgard", "Jutta", "Katharina", "Klara", "Kunigunde", "Liutgard", "Margarethe", "Mechthild", "Ottilie", "Richardis", "Sophia", "Ursula", "Walburga", "Gudrun", "Kriemhild", "Hilde", "Isolde", "Magdalena", "Veronika", "Wiborada", "Dorothea", "Christina", "Brigitta", "Imagina", "Reinhild", "Notburga"],
+        "families": ["Müller", "Schmid", "Schneider", "Fischer", "Weber", "Meyer", "Wagner", "Becker", "Schulz", "Hoffmann", "Koch", "Richter", "Wolf", "Schröder", "Neumann", "Zimmermann", "Braun", "Krüger", "Hartmann", "Lange", "Krause", "Lehmann", "Köhler", "Herrmann", "König", "Walter", "Huber", "Kaiser", "Fuchs", "Lang", "Scholz", "Möller", "Weiß", "Jung", "Hahn", "Vogel", "Keller", "Roth", "Beck", "Brenner"],
+        "forms": {
+          "father": {"m": "{first} {father}sohn", "f": "{first} {father}stochter"},
+          "family": "{first} {family}",
+          "place": "{first} von {place}"
+        },
+        "roots": {
+          "m_start": ["Adal", "Albr", "Arn", "Bern", "Bert", "Burk", "Kon", "Diet", "Eber", "Ekke", "Fried", "Gott", "Gunt", "Hart", "Hein", "Her", "Hilde", "Lud", "Leo", "Loth", "Mark", "Mein", "Ot", "Rud", "Sieg", "Sig", "Ul", "Walt", "Wen", "Wern", "Wil", "Wolf", "Rupp", "Engel", "Ort"],
+          "m_end": ["bert", "brecht", "old", "hard", "hold", "rad", "rich", "frid", "fried", "mann", "mar", "mund", "ulf", "wald", "win", "wig", "helm", "ram", "ger", "olf", "bald", "rat", "gar", "fang", "walt", "red", "ber", "hart", "ward", "olt"],
+          "f_start": ["Adel", "Agn", "Bert", "Brun", "Elis", "Els", "Erm", "Gert", "Gis", "Hed", "Hilde", "Irm", "Jut", "Kun", "Liut", "Mecht", "Ott", "Richard", "Wal", "Gud", "Kriem", "Is", "Mag", "Ver", "Doro", "Brig", "Rein", "Not", "Ros", "Sieg", "Ut", "Wil", "Fried", "Hel", "Ans"],
+          "f_end": ["heid", "gard", "trud", "hild", "burg", "wig", "gund", "lind", "run", "ta", "ina", "ilde", "rude", "traud", "mut", "swinth", "berga", "lies", "gunde", "ela", "ia", "isa", "olde", "linde", "a", "ine", "rada", "lin", "trudis", "egard"],
+          "fam_start": ["Müll", "Schmi", "Schneid", "Fisch", "Web", "Mey", "Wagn", "Beck", "Schul", "Hoff", "Ko", "Richt", "Wolf", "Schröd", "Neu", "Zimm", "Braun", "Krüg", "Hart", "Lang", "Kraus", "Lehm", "Köhl", "Herr", "Kön", "Walt", "Hub", "Kais", "Fuch", "Schol", "Möll", "Weiß", "Jung", "Hahn", "Brenn"],
+          "fam_end": ["er", "mann", "ig", "ke", "inger", "ert", "el", "ner", "ler", "berg", "stein", "hof", "hausen", "feld", "bach", "rich", "ow", "isch", "dorf", "bauer", "meier", "schmidt", "huber", "acker", "brecht", "wald", "enhagen", "oth", "at", "ling"]
         }
       }
     },
@@ -418,6 +562,24 @@
           "grim": ["-le-Noir", "-aux-Loups", "-les-Croix", "-la-Morte", "-aux-Corbeaux"],
           "eerie": ["-aux-Fées", "-la-Brume", "-sous-Lune", "-les-Ombres", "-aux-Songes"]
         }
+      },
+      "people": {
+        "m": ["Aimery", "Arnaud", "Baudouin", "Bernard", "Bertrand", "Charles", "Enguerrand", "Étienne", "Eustache", "Foulques", "Gaucher", "Gauthier", "Geoffroy", "Gérard", "Gilles", "Guillaume", "Guy", "Henri", "Hugues", "Jacques", "Jean", "Jourdain", "Josselin", "Louis", "Mathieu", "Nicolas", "Olivier", "Pierre", "Raoul", "Raymond", "Renaud", "Robert", "Roland", "Simon", "Thibaut", "Tristan", "Yves", "Amaury", "Anseau", "Godefroy"],
+        "f": ["Adèle", "Agnès", "Alix", "Aliénor", "Amélie", "Anne", "Béatrice", "Blanche", "Catherine", "Cécile", "Clémence", "Constance", "Éléonore", "Ermengarde", "Esclarmonde", "Héloïse", "Isabeau", "Jacqueline", "Jeanne", "Laure", "Mahaut", "Marguerite", "Marie", "Mathilde", "Mélisende", "Pétronille", "Philippa", "Sibylle", "Yolande", "Ysabel", "Guenièvre", "Aude", "Brunissende", "Douce", "Garsende", "Gisèle", "Marthe", "Perrine", "Sancie", "Oriane"],
+        "families": ["Lefèvre", "Lambert", "Martin", "Bernard", "Dubois", "Durand", "Leroy", "Moreau", "Laurent", "Girard", "Bonnet", "Fontaine", "Chevalier", "Garnier", "Faure", "Rousseau", "Blanc", "Guérin", "Boyer", "Marchand", "Mercier", "Dupont", "Lemoine", "Charpentier", "Tisserand", "Boucher", "Fournier", "Meunier", "Fauconnier", "Lebrun", "Legrand", "Petit", "Roux", "Bourgeois", "Châtelain", "Vasseur", "Joubert", "Rocher", "Delorme", "Beaumont"],
+        "forms": {
+          "father": {"m": "{first} fils de {father}", "f": "{first} fille de {father}"},
+          "family": "{first} {family}",
+          "place": "{first} de {place}"
+        },
+        "roots": {
+          "m_start": ["Aim", "Arn", "Baud", "Bern", "Bert", "Charl", "Enguer", "Étien", "Eust", "Foulq", "Gauch", "Gauth", "Geoffr", "Gér", "Gill", "Guill", "Henr", "Hug", "Jacq", "Jourd", "Joss", "Lou", "Math", "Nicol", "Oliv", "Pier", "Raou", "Raym", "Ren", "Rob", "Rol", "Thib", "Trist", "Amaur", "God"],
+          "m_end": ["ery", "aud", "ouin", "ard", "rand", "es", "eau", "ache", "ues", "er", "ier", "oy", "aume", "ain", "elin", "is", "ieu", "as", "ond", "aut", "an", "efroy", "on", "in", "ot", "ault", "ence", "é", "ance", "erre"],
+          "f_start": ["Ad", "Agn", "Al", "Alién", "Amél", "Ann", "Béatr", "Blanch", "Cather", "Céc", "Clém", "Const", "Éléon", "Ermen", "Esclar", "Hél", "Isab", "Jacquel", "Jeann", "Laur", "Mah", "Margue", "Mar", "Math", "Mélis", "Pétron", "Phil", "Sib", "Yol", "Ysab", "Guen", "Aud", "Bruniss", "Gars", "Oriann"],
+          "f_end": ["èle", "ès", "ix", "or", "ie", "e", "ice", "ence", "ine", "onde", "oïse", "eau", "ette", "aut", "ite", "ilde", "ende", "onne", "ippa", "ylle", "ande", "abel", "ièvre", "ade", "elle", "ise", "iane", "ée", "aine", "ille"],
+          "fam_start": ["Lef", "Lamb", "Mart", "Bern", "Dub", "Dur", "Ler", "Mor", "Laur", "Gir", "Bonn", "Font", "Chev", "Garn", "Faur", "Rouss", "Blanc", "Guér", "Boy", "March", "Merc", "Dup", "Lem", "Charp", "Tiss", "Bouch", "Fourn", "Meun", "Faucon", "Lebr", "Legr", "Pet", "Rou", "Bourg", "Chât"],
+          "fam_end": ["èvre", "ert", "in", "ard", "ois", "and", "oy", "eau", "ent", "et", "aine", "alier", "ier", "e", "ault", "ant", "ont", "oin", "elin", "erand", "otte", "ac", "ignac", "ville", "court", "mont", "aud", "eux", "as", "el"]
+        }
       }
     },
     {
@@ -461,6 +623,24 @@
           "grim": ["Galgebakke", "Mose", "Grav", "Kärr", "Ødegård"],
           "eerie": ["Trollskog", "Alvhög", "Dimmadal", "Måneskær", "Häxeberg"]
         }
+      },
+      "people": {
+        "m": ["Arne", "Asger", "Bjørn", "Bo", "Erik", "Esbern", "Folke", "Gorm", "Gunnar", "Halfdan", "Harald", "Hakon", "Ingvar", "Jens", "Knud", "Leif", "Magnus", "Niels", "Olaf", "Ragnar", "Rolf", "Sigurd", "Sten", "Sune", "Svend", "Toke", "Torben", "Tord", "Ulf", "Valdemar", "Birger", "Absalon", "Anders", "Eskil", "Gudmund", "Holger", "Ivar", "Karl", "Peder", "Torkel"],
+        "f": ["Astrid", "Birgitta", "Cecilia", "Dagmar", "Estrid", "Freja", "Gunhild", "Gyda", "Helga", "Inga", "Ingeborg", "Ingrid", "Karin", "Kristina", "Liv", "Margrete", "Märta", "Ragnhild", "Rikissa", "Sigrid", "Signe", "Solveig", "Thora", "Thyra", "Tove", "Ulvhild", "Valborg", "Åsa", "Bodil", "Edla", "Elin", "Gudrun", "Hedvig", "Ragna", "Sunniva", "Torunn", "Ylva", "Malin", "Botilda", "Ingegerd"],
+        "families": ["Bonde", "Brahe", "Bielke", "Banér", "Gyllenstierna", "Hvide", "Oxenstierna", "Rosenkrantz", "Sparre", "Sture", "Trolle", "Vasa", "Krognos", "Lykke", "Bille", "Ulfeldt", "Ahlefeldt", "Gøye", "Rud", "Skeel", "Thott", "Brock", "Galen", "Grubbe", "Juel", "Kaas", "Munk", "Rantzau", "Sehested", "Urne", "Walkendorff", "Due", "Folkunga", "Posse", "Stenbock", "Tott", "Örnfot", "Vinstorpa", "Leijonhufvud", "Natt och Dag"],
+        "forms": {
+          "father": {"m": "{first} {father}sson", "f": "{first} {father}sdotter"},
+          "family": "{first} {family}",
+          "place": "{first} fra {place}"
+        },
+        "roots": {
+          "m_start": ["Arn", "Asg", "Bjør", "Er", "Esb", "Folk", "Gor", "Gunn", "Half", "Har", "Hak", "Ingv", "Jen", "Knu", "Lei", "Magn", "Niel", "Ola", "Ragn", "Rol", "Sigu", "Ste", "Sun", "Sve", "Tor", "Ul", "Valde", "Birg", "Absal", "And", "Esk", "Gudm", "Holg", "Iv", "Tork"],
+          "m_end": ["e", "er", "n", "ik", "ern", "ke", "m", "ar", "dan", "ald", "on", "var", "s", "ud", "f", "us", "olf", "rd", "en", "nd", "ulf", "bjørn", "mund", "ger", "kel", "vid", "frid", "stein", "geir", "leif"],
+          "f_start": ["Ast", "Birg", "Cec", "Dag", "Est", "Fre", "Gun", "Gy", "Hel", "Ing", "Inge", "Kar", "Krist", "Li", "Marg", "Mär", "Ragn", "Rik", "Sig", "Sol", "Tho", "Thy", "To", "Ulv", "Val", "Bod", "Ed", "El", "Gud", "Hed", "Sunn", "Tor", "Yl", "Mal", "Bot"],
+          "f_end": ["rid", "itta", "ilia", "mar", "ja", "hild", "da", "ga", "a", "borg", "in", "ina", "v", "rete", "ta", "run", "issa", "ny", "veig", "ra", "ve", "dis", "il", "laug", "frid", "gerd", "unn", "va", "ilda", "lin"],
+          "fam_start": ["Bond", "Brah", "Bjelk", "Ban", "Gyllen", "Hvid", "Oxen", "Rosen", "Sparr", "Stur", "Troll", "Vas", "Krog", "Lykk", "Bill", "Ulf", "Ahle", "Gøy", "Ru", "Ske", "Thot", "Bro", "Gal", "Grubb", "Ju", "Kaa", "Mun", "Rantz", "Sehe", "Urn", "Walken", "Du", "Folk", "Poss", "Stenb"],
+          "fam_end": ["e", "er", "stierna", "krantz", "ström", "berg", "feldt", "sted", "hufvud", "ock", "holm", "gren", "lund", "qvist", "dal", "ung", "sson", "ing", "borg", "vik", "stad", "ske", "kvist", "hjelm", "skjöld", "ørn", "dahl", "mark", "gaard", "sen"]
+        }
       }
     },
     {
@@ -503,6 +683,24 @@
           "stately": ["Tsarskaya", "Knyazhaya", "Sviataya", "Slavnaya", "Bogataya"],
           "grim": ["Chernaya", "Mertvaya", "na Krovi", "pod Voronom", "Volchya"],
           "eerie": ["u Navi", "Ved'mina", "Leshaya", "Rusalchya", "pod Lunoy"]
+        }
+      },
+      "people": {
+        "m": ["Boris", "Bogdan", "Vladimir", "Vsevolod", "Vyacheslav", "Gleb", "Daniil", "Dmitri", "Ivan", "Igor", "Konstantin", "Mstislav", "Oleg", "Pyotr", "Rostislav", "Svyatoslav", "Sviatopolk", "Timofei", "Fyodor", "Yaroslav", "Yuri", "Ilya", "Nikita", "Mikhail", "Andrei", "Sergei", "Vasili", "Grigori", "Stepan", "Yakov", "Aleksandr", "Izyaslav", "Rurik", "Algirdas", "Gediminas", "Vytautas", "Kestutis", "Mindaugas", "Jogaila", "Traidenis"],
+        "f": ["Anastasia", "Anna", "Agafya", "Darya", "Evdokia", "Elena", "Yelizaveta", "Irina", "Ksenia", "Lyudmila", "Marfa", "Maria", "Natalya", "Olga", "Praskovya", "Rogneda", "Sofia", "Tatiana", "Ulyana", "Vasilisa", "Vera", "Yaroslava", "Zlata", "Zoya", "Milava", "Dobrava", "Predslava", "Rada", "Snezhana", "Lada", "Birute", "Danute", "Aldona", "Rimgaile", "Zivile", "Grazina", "Rasa", "Daina", "Laima", "Milda"],
+        "families": [["Ivanov", "Ivanova"], ["Petrov", "Petrova"], ["Sokolov", "Sokolova"], ["Volkov", "Volkova"], ["Morozov", "Morozova"], ["Kuznetsov", "Kuznetsova"], ["Lebedev", "Lebedeva"], ["Kozlov", "Kozlova"], ["Novikov", "Novikova"], ["Orlov", "Orlova"], ["Medvedev", "Medvedeva"], ["Belov", "Belova"], ["Voronin", "Voronina"], ["Golovin", "Golovina"], ["Obolensky", "Obolenskaya"], ["Shuisky", "Shuiskaya"], ["Galitsky", "Galitskaya"], ["Trubetskoy", "Trubetskaya"], ["Dolgorukov", "Dolgorukova"], ["Romanov", "Romanova"], ["Vorontsov", "Vorontsova"], ["Kurbsky", "Kurbskaya"], ["Godunov", "Godunova"], ["Saburov", "Saburova"], ["Pozharsky", "Pozharskaya"], ["Basmanov", "Basmanova"], ["Buturlin", "Buturlina"], ["Sheremetev", "Sheremeteva"], ["Odoevsky", "Odoevskaya"], ["Radvila", "Radvilaite"], ["Gostautas", "Gostautaite"], ["Kesgaila", "Kesgailaite"], ["Astikas", "Astikaite"], ["Monvydas", "Monvydaite"], ["Zabiela", "Zabielaite"], ["Sapieha", "Sapieha"], ["Rostovsky", "Rostovskaya"], ["Yaroslavsky", "Yaroslavskaya"], ["Tverskoy", "Tverskaya"], ["Mosalsky", "Mosalskaya"]],
+        "forms": {
+          "father": {"m": "{first} {patronymic}", "f": "{first} {patronymic}"},
+          "family": "{first} {family}",
+          "place": {"it": "{first} di {place}", "en": "{first} of {place}"}
+        },
+        "roots": {
+          "m_start": ["Bor", "Bogd", "Vlad", "Vsev", "Vyach", "Gle", "Dan", "Dmit", "Iv", "Ig", "Konst", "Mst", "Ol", "Pyot", "Rost", "Svyat", "Svyato", "Timof", "Fyod", "Yar", "Yur", "Il", "Nik", "Mikh", "Andr", "Serg", "Vas", "Grig", "Step", "Yak", "Alek", "Izy", "Ru", "Alg", "Vyt"],
+          "m_end": ["is", "dan", "imir", "olod", "eslav", "ib", "iil", "ri", "an", "or", "antin", "islav", "eg", "ur", "opolk", "ei", "ita", "ail", "ili", "ov", "ian", "slav", "mir", "ko", "as", "autas", "irdas", "edas", "ius", "ys"],
+          "f_start": ["Anast", "Ann", "Agaf", "Dar", "Evdok", "Elen", "Yeliz", "Ir", "Ksen", "Lyud", "Marf", "Mar", "Natal", "Ol", "Prask", "Rogn", "Sof", "Tat", "Ulyan", "Vasil", "Ver", "Yarosl", "Zlat", "Zo", "Mil", "Dobr", "Predsl", "Rad", "Snezh", "Lad", "Bir", "Dan", "Ald", "Gra", "Laim"],
+          "f_end": ["asia", "a", "ya", "ia", "okia", "ena", "aveta", "ina", "enia", "mila", "fa", "ovya", "eda", "iana", "isa", "ava", "ana", "ute", "ona", "ele", "zina", "ka", "ushka", "ota", "inka", "ila", "ima", "aite", "uta", "ika"],
+          "fam_start": ["Ivan", "Petr", "Sokol", "Volk", "Moroz", "Kuznets", "Lebed", "Kozl", "Novik", "Orl", "Medved", "Bel", "Voron", "Golov", "Obolen", "Shui", "Galit", "Trubets", "Dolgoruk", "Roman", "Voronts", "Kurb", "Godun", "Sabur", "Pozhar", "Basman", "Buturl", "Sheremet", "Odoev", "Radvil", "Gostaut", "Kesgail", "Astik", "Monvyd", "Zabiel"],
+          "fam_end": ["ov", "ev", "in", "sky", "skoy", "enko", "uk", "ets", "ovsky", "insky", "as", "is", "aitis", "enas", "ka", "ovets", "ishev", "atov", "ukhin", "anov", "arev", "ilov", "ichev", "onov", "agin", "aev", "yov", "ensky", "itsky", "ys"]
         }
       }
     },
