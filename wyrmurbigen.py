@@ -6,7 +6,7 @@ fortresses for OSR games, all in ASCII.
 
 Sibling of WyrmHex (hexcrawl maps) and WyrmDelve (dungeons). It draws the plan
 of a settlement with letters and symbols, like an old roguelike, numbers every
-building, and writes a key (TXT and a PDF book, like WyrmDelve's) with the
+building, and writes a key (a TXT file and a PDF file, like WyrmDelve's) with the
 history, the government and factions, the inhabitants of every building with
 OSR stats, rumours and events, and:
 
@@ -33,14 +33,22 @@ suggested. Three colour schemes. --ascii-only uses keyboard characters only,
 like WyrmHex; the .txt maps always do.
 
 Output goes to settlements_generated/<seed>/ next to this file (or --output):
-  <seed>_referee.png/.txt   referee's map: building numbers, secrets
-  <seed>_players.png/.txt   the same map without numbers and secrets
+  <seed>_referee.png/.txt   referee's map: building numbers and list, secrets
+  <seed>_players.png/.txt   the same map and list without the secrets
   <seed>_key.txt            the whole key as plain text
-  <seed>_book.pdf           the key as an A4 book (Sebaldus-Gotisch headings,
+  <seed>_key.pdf            the key as an A4 PDF file (Sebaldus-Gotisch headings,
                             Crimson Text), with the referee's map inside
 
-The seed (e.g. C2-B-R-A2-K7Q2MB = type+size, era, terrain, purpose+danger,
-code) holds the whole settlement: the same seed always gives the same one.
+Place names sound like one of eleven languages (medieval Italian, Old English,
+Renaissance English, Scottish Gaelic, Tolkienesque, Persian and Arabesque,
+Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic) or a
+mix of them all, in one of five tones (fair, homely, stately, grim, eerie):
+millions of names for each, from the roots in data/names.json.
+
+The seed (e.g. C2-B-R-A2-DE4-K7Q2MB = type+size, era, terrain,
+purpose+danger, names+tone, code) holds the whole settlement: the same seed
+always gives the same one. Seeds without names+tone, made by older versions,
+still work and keep their medieval Italian names.
 
 Usage. Every option has an Italian and an English name, use whichever:
   python wyrmurbigen.py                              interactive
@@ -48,7 +56,8 @@ Usage. Every option has an Italian and an English name, use whichever:
   python wyrmurbigen.py --terreno costa              / --terrain coast
   python wyrmurbigen.py --scopo avventura --pericolo 3   / --purpose adventure --danger 3
   python wyrmurbigen.py --dimensione 3               / --size 3
-  python wyrmurbigen.py --seme C2-B-R-A2-K7Q2MB      / --seed C2-B-R-A2-K7Q2MB
+  python wyrmurbigen.py --nomi tedesco --tono cupo    / --names german --tone grim
+  python wyrmurbigen.py --seme C2-B-R-A2-DE4-K7Q2MB  / --seed C2-B-R-A2-DE4-K7Q2MB
   python wyrmurbigen.py --solo-ascii --formato A3 --pdf
   python wyrmurbigen.py --help
 Parameters you leave out are chosen at random.
@@ -181,6 +190,8 @@ TEXTS = {
     "q_pop": ("Abitanti ({lo}-{hi})", "Inhabitants ({lo}-{hi})"),
     "q_era": ("Epoca: a quale architettura e urbanistica si ispira?", "Era: which architecture and town planning?"),
     "q_terrain": ("Dove si trova?", "Where does it stand?"),
+    "q_names": ("A che lingua somigliano i nomi dei luoghi?", "Which language do the place names sound like?"),
+    "q_tone": ("Che tono hanno i nomi?", "What tone do the names have?"),
     "q_danger": ("Quanto è pericoloso?", "How dangerous is it?"),
     "danger_1": ("1 · per personaggi di livello 1-2", "1 · for characters of level 1-2"),
     "danger_2": ("2 · per personaggi di livello 3-4", "2 · for characters of level 3-4"),
@@ -210,9 +221,9 @@ TEXTS = {
     "units_imperial": ("imperiale (piedi)", "imperial (feet)"),
     "units_metric": ("metrica (metri)", "metric (metres)"),
     "output_intro": ("Che file vuoi?", "Which files do you want?"),
-    "output_png": ("mappe in PNG e libro PDF, separati", "PNG maps and a PDF book, apart"),
-    "output_pdf": ("mappe in PDF e libro PDF, separati", "PDF maps and a PDF book, apart"),
-    "output_single": ("un unico PDF: le due mappe e poi il libro", "one single PDF: the two maps, then the book"),
+    "output_png": ("mappe in PNG e chiave in un file PDF, separati", "PNG maps and the key in a PDF file, apart"),
+    "output_pdf": ("mappe in PDF e chiave in un file PDF, separati", "PDF maps and the key in a PDF file, apart"),
+    "output_single": ("un unico file PDF: le due mappe e poi la chiave", "one single PDF file: the two maps, then the key"),
     "paper_choice": ("  Scegli il formato (premi Invio per quello consigliato).",
                      "  Choose the format (press Enter for the suggested one)."),
     "q_paper": ("  Formato di stampa (A4, A3, A2, A1) [{default}]: ", "  Print format (A4, A3, A2, A1) [{default}]: "),
@@ -232,7 +243,7 @@ TEXTS = {
                     "No monospaced font found: check that the fonts folder is next to wyrmurbigen.py, "
                     "or give a .ttf file with --font."),
     "err_size": ("{path}: {size} non è un foglio A4, A3, A2 o A1 a 600 dpi", "{path}: {size} is not an A4, A3, A2 or A1 sheet at 600 dpi"),
-    "err_book_fonts": ("ERRORE: manca il font {f} nella cartella {d}, quindi il PDF non viene creato (le mappe e la chiave .txt sì).",
+    "err_pdf_fonts": ("ERRORE: manca il font {f} nella cartella {d}, quindi il PDF non viene creato (le mappe e la chiave .txt sì).",
                        "ERROR: the font {f} is missing from {d}, so the PDF is not made (the maps and the .txt key are)."),
     "err_no_fpdf": ("ERRORE: manca la libreria fpdf2, quindi il PDF non viene creato. Scrivi: pip install -r requirements.txt",
                     "ERROR: the fpdf2 library is missing, so the PDF is not made. Type: pip install -r requirements.txt"),
@@ -240,7 +251,7 @@ TEXTS = {
                      "e poi: pip install -r requirements.txt",
                      "ERROR: the old «fpdf» library {v} is installed instead of «fpdf2». Type: pip uninstall -y fpdf fpdf2  "
                      "and then: pip install -r requirements.txt"),
-    "err_book": ("ERRORE: il PDF non è stato creato: {e}", "ERROR: the PDF was not made: {e}"),
+    "err_pdf": ("ERRORE: il PDF non è stato creato: {e}", "ERROR: the PDF was not made: {e}"),
     "warn_no_monsters": ("Manca data/monsters.json (o è rovinato): niente mostri", "data/monsters.json is missing (or broken): no monsters"),
     "warn_no_treasure": ("Manca data/treasure.json (o è rovinato): niente tesori", "data/treasure.json is missing (or broken): no treasure"),
     "warn_tiny": ("Caratteri molto piccoli: scegli un formato più grande se puoi.", "Very small letters: choose a bigger format if you can."),
@@ -248,6 +259,10 @@ TEXTS = {
     # steps
     "step_settings": ("Impostazioni", "Settings"),
     "info_seed": ("Seme: {s}", "Seed: {s}"),
+    "info_names": ("Nomi: {s}, tono {t} (circa {m} di combinazioni)", "Names: {s}, {t} tone (about {m} combinations)"),
+    "millions": ("{n} milioni", "{n} million"),
+    "billions": ("{n} miliardi", "{n} billion"),
+    "info_names_old": ("Nomi: italiano medievale, come nei semi di vecchio tipo", "Names: medieval Italian, as in older seeds"),
     "info_what": ("{t} di {n} abitanti, {e}, {g}", "{t} of {n} people, {e}, {g}"),
     "info_folder": ("Cartella: {folder}", "Folder: {folder}"),
     "step_map": ("Mappa: terreno, mura, porte, strade, edifici", "Map: land, walls, gates, streets, buildings"),
@@ -268,12 +283,12 @@ TEXTS = {
     "info_sheet": ("Foglio {paper} {o} ({w} x {h} px a {dpi} dpi), caratteri da {mm:.2f} mm",
                    "{paper} sheet, {o} ({w} x {h} px at {dpi} dpi), {mm:.2f} mm letters"),
     "step_maps": ("Mappe dell'arbitro e dei giocatori ({paper}, {dpi} dpi)", "Referee's and players' maps ({paper}, {dpi} dpi)"),
-    "step_key": ("Chiave e libro", "Key and book"),
+    "step_key": ("Chiave e file PDF", "Key and PDF file"),
     "saved": ("Salvate: {a}  +  {b}", "Saved: {a}  +  {b}"),
     "saved_txt": ("Salvata: {a}", "Saved: {a}"),
     "saved_key": ("Chiave: {a}", "Key: {a}"),
-    "saved_book": ("Libro: {a}", "Book: {a}"),
-    "saved_book_maps": ("PDF unico (mappe e libro): {a}", "Single PDF (maps and book): {a}"),
+    "saved_pdf": ("File PDF: {a}", "PDF file: {a}"),
+    "saved_pdf_maps": ("File PDF unico (mappe e chiave): {a}", "Single PDF file (maps and key): {a}"),
     "pb_drawing": ("disegno", "drawing"),
     "pb_saving": ("salvataggio", "saving"),
     "pb_done": ("fatto", "done"),
@@ -285,6 +300,16 @@ TEXTS = {
     "lg_wood": ("in legno o graticcio", "timber or half-timbered"),
     "lg_door": ("porta", "door"),
     "lg_number": ("numero dell'edificio", "building number"),
+    "lg_buildings": ("Edifici", "Buildings"),
+    "bolpo": ("Bolpo ama Pisa", "Bolpo loves Pisa"),
+    "bolpo_again": ("Bolpo ama ancora Pisa", "Bolpo still loves Pisa"),
+    "info_index_side": ("Elenco degli edifici accanto alla mappa: così i caratteri sono più grandi",
+                        "Building list beside the map: the letters come out bigger"),
+    "info_index_under": ("Elenco degli edifici sotto la mappa: così i caratteri sono più grandi",
+                         "Building list under the map: the letters come out bigger"),
+    "ix_lair": ("covo: {d}", "lair: {d}"),
+    "ix_tunnel": ("qui comincia la galleria segreta", "the secret tunnel starts here"),
+    "ix_secrets": ("Segreti:", "Secrets:"),
     "lg_ruin": ("macerie", "rubble"),
     "lg_wall": ("mura", "walls"),
     "lg_tower": ("torre o bastione", "tower or bastion"),
@@ -317,6 +342,7 @@ TEXTS = {
     # key
     "key_seed": ("Seme", "Seed"),
     "key_pop": ("{n} abitanti", "{n} inhabitants"),
+    "key_names": ("Nomi: {s}, tono {t}", "Names: {s}, {t} tone"),
     "key_scale": ("Scala: una riga di caratteri = {r} {u}, una colonna = metà", "Scale: one row of letters = {r} {u}, one column = half"),
     "purpose_rest": ("Luogo di riposo per gli avventurieri", "Place of rest for adventurers"),
     "purpose_adventure": ("Luogo d'avventura, pericolo {d}", "Place of adventure, danger {d}"),
@@ -424,9 +450,9 @@ TEXTS = {
                 "Skerples, OSR: Land and Investments (Coins and Scrolls). Only the numbers of these sources are used."),
     # help
     "h_description": ("WyrmUrbiGen: genera villaggi, paesi, città, castelli e fortezze per giochi OSR, in ASCII come un "
-                      "roguelike, con abitanti, mostri e tesori. Mappe PNG o PDF a 600 dpi + TXT, chiave e libro PDF.",
+                      "roguelike, con abitanti, mostri e tesori. Mappe PNG o PDF a 600 dpi + TXT, chiave in TXT e in un file PDF.",
                       "WyrmUrbiGen: makes villages, towns, cities, castles and fortresses for OSR games, in ASCII like a "
-                      "roguelike, with inhabitants, monsters and treasure. 600 dpi PNG or PDF maps + TXT, key and PDF book."),
+                      "roguelike, with inhabitants, monsters and treasure. 600 dpi PNG or PDF maps + TXT, key as TXT and as a PDF file."),
     "h_epilog": ("Senza opzioni parte la modalità interattiva. I parametri non indicati sono scelti a caso.",
                  "Without options the interactive mode starts. Parameters you leave out are chosen at random."),
     "h_language": ("lingua dei testi: it o en", "language of the texts: it or en"),
@@ -437,12 +463,19 @@ TEXTS = {
                   "plains, hills, mountains, forest, swamp, coast, river, lake (or 1-8)"),
     "h_purpose": ("riposo o avventura", "rest or adventure"),
     "h_danger": ("pericolo del luogo d'avventura, da 1 a 4", "danger of the place of adventure, 1 to 4"),
-    "h_seed": ("seme completo (es. C9500-B-R-A2-K7Q2MB) per rifare un insediamento", "full seed (e.g. C9500-B-R-A2-K7Q2MB) to rebuild a settlement"),
+    "h_names": ("lingua dei nomi dei luoghi: italiano, antico (Old English), rinascimentale, gaelico, tolkien, "
+                "persiano, bizantino, tedesco, francese, danese, russo, misto (o 1-12)",
+                "language of the place names: italian, old english, renaissance, gaelic, tolkien, persian, byzantine, "
+                "german, french, danish, russian, mixed (or 1-12)"),
+    "h_tone": ("tono dei nomi: luminoso, rustico, solenne, cupo, arcano (o 1-5)",
+               "tone of the names: fair, homely, stately, grim, eerie (or 1-5)"),
+    "h_seed": ("seme completo (es. C9500-B-R-A2-DE4-K7Q2MB) per rifare un insediamento",
+               "full seed (e.g. C9500-B-R-A2-DE4-K7Q2MB) to rebuild a settlement"),
     "h_colors": ("1 nero su bianco (default), 2 bianco su celeste, 3 bianco su nero", "1 black on white (default), 2 white on light blue, 3 white on black"),
     "h_format": ("formato di stampa; senza, viene suggerito e chiesto", "print format; without it, it is suggested and asked"),
-    "h_png": ("mappe in PNG e libro PDF a parte (di base)", "PNG maps and a separate PDF book (the default)"),
-    "h_pdf": ("mappe in PDF e libro PDF a parte", "PDF maps and a separate PDF book"),
-    "h_single": ("un unico PDF con le mappe e il libro", "one single PDF with the maps and the book"),
+    "h_png": ("mappe in PNG e chiave in un file PDF a parte (di base)", "PNG maps and the key in a separate PDF file (the default)"),
+    "h_pdf": ("mappe in PDF e chiave in un file PDF a parte", "PDF maps and the key in a separate PDF file"),
+    "h_single": ("un unico file PDF con le mappe e la chiave", "one single PDF file with the maps and the key"),
     "h_title": ("titolo della mappa (default: il nome dell'insediamento)", "map title (default: the settlement's name)"),
     "h_no_title": ("mappa senza nome", "map without a name"),
     "h_content": ("cosa mettere nella chiave: storia, abitanti, mostri, tesori, anche insieme separati da virgole; "
@@ -557,7 +590,8 @@ class Log:
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OPTIONAL_DATA = ("monsters.json", "clues.json", "treasure.json")    # from WyrmDelve: without them, no monsters or treasure
-REQUIRED = ("settlement_types", "eras", "terrains", "name_parts", "saints", "signs", "gates", "quarters", "history",
+REQUIRED = ("settlement_types", "eras", "terrains", "name_styles", "name_tones", "name_forms", "saints", "signs", "gates",
+            "quarters", "history",
             "situations", "rumors", "adventure_rumors", "events", "hooks", "dungeons", "buildings", "first_names",
             "families", "family_adj", "bynames", "places", "trades", "traits", "wants", "secrets", "rulers",
             "factions", "guilds", "classes", "spells", "retainers", "demographics", "economy")
@@ -618,6 +652,12 @@ ERA_BY_CODE = {e["code"]: e["id"] for e in ERAS}
 TERRAINS = TABLES["terrains"]
 TERRAIN = {t["id"]: t for t in TERRAINS}
 TERRAIN_BY_CODE = {t["code"]: t["id"] for t in TERRAINS}
+NAME_STYLES = TABLES["name_styles"]
+NAME_STYLE = {n["id"]: n for n in NAME_STYLES}
+NAME_STYLE_BY_CODE = {n["code"]: n["id"] for n in NAME_STYLES}
+NAME_TONES = TABLES["name_tones"]
+NAME_TONE = {t["id"]: t for t in NAME_TONES}
+NAME_TONE_BY_CODE = {t["code"]: t["id"] for t in NAME_TONES}
 BUILDINGS = TABLES["buildings"]
 BUILDING = {b["id"]: b for b in BUILDINGS}
 SITUATIONS = TABLES["situations"]
@@ -669,9 +709,11 @@ def span(text):
 
 
 # --- seed ---
-# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER-CODE, e.g. C9500-B-R-A2-K7Q2MB:
-# a city of 9,500 people, Late Middle Ages, on a river, a place of adventure of
-# danger 2. CODE = 6 symbols, 30 random bits.
+# TYPE+POPULATION-ERA-TERRAIN-PURPOSE+DANGER-NAMES+TONE-CODE, e.g.
+# C9500-B-R-A2-DE4-K7Q2MB: a city of 9,500 people, Late Middle Ages, on a river,
+# a place of adventure of danger 2, grim German names. CODE = 6 symbols, 30
+# random bits. Older seeds have no NAMES+TONE part: their names are the
+# medieval Italian ones of old, made exactly as before.
 SEED_SYMBOLS = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"   # no I, L, O, U: too easy to misread
 CODE_LENGTH = 6
 PURPOSES = ("rest", "adventure")
@@ -701,12 +743,19 @@ def from_code(text):
 
 def make_seed(p):
     purpose = "A" if p["purpose"] == "adventure" else "R"
+    names = f"{NAME_STYLE[p['names']]['code']}{NAME_TONE[p['tone']]['code']}-" if p.get("names") else ""
     return (f"{TYPE[p['type']]['code']}{p['pop']}-{ERA[p['era']]['code']}-{TERRAIN[p['terrain']]['code']}-"
-            f"{purpose}{p['danger']}-{to_code(p['number'])}")
+            f"{purpose}{p['danger']}-{names}{to_code(p['number'])}")
 
 
 def read_seed(text):
     parts = (text or "").strip().upper().replace(" ", "").split("-")
+    names = tone = None
+    if len(parts) == 6:             # with the names part
+        names, tone = NAME_STYLE_BY_CODE.get(parts[4][:-1]), NAME_TONE_BY_CODE.get(parts[4][-1:])
+        if None in (names, tone):
+            return None
+        del parts[4]
     if len(parts) != 5 or len(parts[0]) < 2 or len(parts[3]) != 2:
         return None
     kind, era, terrain = TYPE_BY_CODE.get(parts[0][0]), ERA_BY_CODE.get(parts[1]), TERRAIN_BY_CODE.get(parts[2])
@@ -715,12 +764,12 @@ def read_seed(text):
     if None in (kind, era, terrain, purpose, n) or not parts[0][1:].isdigit() or not parts[3][1].isdigit():
         return None
     p = {"type": kind, "pop": int(parts[0][1:]), "era": era, "terrain": terrain, "purpose": purpose,
-         "danger": int(parts[3][1]), "number": n}
+         "danger": int(parts[3][1]), "names": names, "tone": tone, "number": n}
     return None if check_params(p) else p
 
 
 def example_seed():
-    return "C9500-B-R-A2-K7Q2MB"
+    return "C9500-B-R-A2-DE4-K7Q2MB"
 
 
 def check_params(p):
@@ -761,6 +810,8 @@ def random_params(n, fixed=None):
         p["danger"] = fixed.get("danger") or r.choices(DANGERS, weights=[4, 4, 3, 1])[0]
     else:
         p["danger"] = 0
+    p["names"] = fixed.get("names") or r.choice([n["id"] for n in NAME_STYLES])
+    p["tone"] = fixed.get("tone") or r.choice([t["id"] for t in NAME_TONES])
     p["number"] = n
     return p
 
@@ -772,14 +823,97 @@ def type_span(p):
 
 
 # --- names ---
-def place_name(rng, used=None):
+# Place names are built from the roots in data/names.json: a style (a language
+# they sound like) and a tone. A name is a form such as "word start middle end":
+# word and after are whole words before and after it, start + middle + end are
+# syllables or name elements joined into one word.
+TONE_BIAS = 0.6         # how often a root comes from the tone's own list
+VOWELS = set("aeiouyàáâäåæéèêëíìîïóòôöøúùûü")
+
+
+def draw_root(rng, style, slot, tone):
+    table = style["roots"].get(slot, {})
+    common, toned = table.get("all", []), table.get(tone, [])
+    if toned and (not common or rng.random() < TONE_BIAS):
+        return rng.choice(toned)
+    return rng.choice(common)
+
+
+def join_roots(left, right):
+    """Glue two roots, without stutters: Linden + en -> Linden, Novo + ovo -> Novovo."""
+    if len(left) >= 2 and right[:2].lower() == left[-2:].lower():
+        right = right[2:]
+    elif left and right and right[0].lower() == left[-1].lower() and right[0].lower() in VOWELS:
+        right = right[1:]
+    return left + right
+
+
+def styled_name(rng, names, tone):
+    style = NAME_STYLE[names]
+    if style.get("mix"):            # every root from a language of its own
+        styles = [n for n in NAME_STYLES if not n.get("mix")]
+        first, last = rng.choice(styles), rng.choice(styles)
+        pick_from = {"word": first, "start": first, "middle": rng.choice(styles), "end": last, "after": last}
+    else:
+        pick_from = dict.fromkeys(("word", "start", "middle", "end", "after"), style)
+    forms = TABLES["name_forms"]
+    form = rng.choices([f for f, _ in forms], weights=[w for _, w in forms])[0].split()
+    for _ in range(20):             # no root twice, as in Liliensteinstein or Fairmead Mead
+        roots = {slot: draw_root(rng, pick_from[slot], slot, tone) for slot in form}
+        bare = [r.lower().strip("-' ").split()[-1] for r in roots.values()]
+        if not any(i != k and len(x) >= 3 and x in y for i, x in enumerate(bare) for k, y in enumerate(bare)):
+            break
+    core = roots["start"]
+    for slot in ("middle", "end"):
+        if slot in roots:
+            core = join_roots(core, roots[slot])
+    core = re.sub(r"(.)\1\1+", r"\1\1", core, flags=re.IGNORECASE)
+    core = core[:1].upper() + core[1:]
+    if "word" in roots:
+        word = roots["word"]
+        core = word + core if word[-1] in "-'" else f"{word} {core}"
+    if "after" in roots:
+        after = roots["after"]
+        core = core + after if after[0] == "-" else f"{core} {after}"
+    return core
+
+
+def place_name(rng, used=None, names=None, tone=None):
+    """A place name in the style and tone of `names` and `tone`; without them,
+    the medieval Italian names of the older seeds, made as they always were."""
     used = used if used is not None else set()
-    parts = TABLES["name_parts"]
     while True:
-        name = rng.choice(parts["start"]) + rng.choice(parts["end"])
+        if names:
+            name = styled_name(rng, names, tone)
+        else:
+            roots = NAME_STYLES[0]["roots"]
+            name = rng.choice(roots["start"]["all"]) + rng.choice(roots["end"]["all"])
         if name not in used:
             used.add(name)
             return name
+
+
+def name_combinations(names, tone):
+    """How many different names a style and tone can make (roughly: a few
+    syllables may glue into the same word)."""
+    style = NAME_STYLE[names]
+    styles = [n for n in NAME_STYLES if not n.get("mix")] if style.get("mix") else [style]
+
+    def size(slot):
+        return len({w for s in styles for key in ("all", tone) for w in s["roots"].get(slot, {}).get(key, [])})
+    return sum(math.prod(size(slot) for slot in form.split()) for form, _ in TABLES["name_forms"])
+
+
+def round_millions(n):
+    """12,345,678 -> "12 milioni" / "12 million"; from a billion up, billions."""
+    key, n = ("billions", n / 1e9) if n >= 1e9 else ("millions", n / 1e6)
+    return tr(key, n=number(round(n)) if n >= 10 else f"{n:.1f}".replace(".", "," if LANG == "it" else "."))
+
+
+def name_examples(names, tone, count=3):
+    rng = random.Random(f"wyrmurbigen-examples-{names}-{tone}")
+    used = set()
+    return [place_name(rng, used, names, tone) for _ in range(count)]
 
 
 def person_name(rng, gender, used=None):
@@ -2680,7 +2814,7 @@ def fill_title(rng, kind, npc, s):
     values = {"sign": rng.choice(TABLES["signs"]), "saint": rng.choice(TABLES["saints"]),
               "family": (rng.choice(TABLES["families"]),) * 2, "family_adj": (adj_it[k], adj_en[k]),
               "guild": rng.choice(TABLES["guilds"]),
-              "owner": (npc["first"], npc["first"]) if npc else (place_name(rng),) * 2}
+              "owner": (npc["first"], npc["first"]) if npc else (place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2}
     return fmt(title, **values)
 
 
@@ -2703,8 +2837,8 @@ def make_settlement(p, plan, seed):
     s = Settlement()
     s.p, s.plan, s.seed = p, plan, seed
     used_names, used_places = set(), set()
-    s.name = place_name(rng, used_places)
-    if rng.random() < 0.35:
+    s.name = place_name(rng, used_places, p.get("names"), p.get("tone"))
+    if rng.random() < 0.35 and not re.search(r"[ -]", s.name):
         ep = rng.choice(TERRAIN[p["terrain"]]["epithet"])
         s.name_pair = (f"{s.name} {ep[0]}", f"{s.name} {ep[1]}")
     else:
@@ -3148,7 +3282,7 @@ def treasure_line(t):
 def plan_lore(s):
     rng = s.rng_lore
     npcs = [b for b in s.plan.buildings if getattr(b, "npc", None)]
-    dungeon_name = fmt(rng.choice(TABLES["dungeons"]), x=(place_name(rng),) * 2)
+    dungeon_name = fmt(rng.choice(TABLES["dungeons"]), x=(place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2)
 
     def fill(entry):
         b = rng.choice(npcs) if npcs else None
@@ -3346,8 +3480,10 @@ def ground_char(plan, x, y, G):
     return " "
 
 
-def map_canvas(plan, referee, G, labels=True):
-    """The map as letters. referee: building numbers and secrets."""
+def map_canvas(plan, referee, G, labels=True, secrets=None):
+    """The map as letters. referee: building numbers and (unless `secrets` is
+    False) the secret posterns and tunnel."""
+    secrets = referee if secrets is None else secrets
     W, H = plan.W, plan.H
     c = Canvas(W, H)
     for y in range(H):
@@ -3376,7 +3512,7 @@ def map_canvas(plan, referee, G, labels=True):
                 c.put(x, y, G(*SYMBOLS["grave"]) if x % 2 == 0 else " ")
     for b in plan.buildings:
         draw_building(c, b, G, referee and labels)
-    if referee:
+    if secrets:
         for x, y in plan.tunnel:
             if plan.bmap[y][x] < 0 and plan.cell[y][x] not in FORT:
                 c.put(x, y, G(*SYMBOLS["tunnel"]), "n")
@@ -3442,7 +3578,8 @@ def scale_bar(plan, units):
     return n, best, unit, row
 
 
-def legend_entries(plan, p, referee, G, units):
+def legend_entries(plan, p, referee, G, units, secrets=None):
+    secrets = referee if secrets is None else secrets
     used = set()
     for y in range(plan.H):
         for x in range(plan.W):
@@ -3492,14 +3629,36 @@ def legend_entries(plan, p, referee, G, units):
                             ("reed", "reed1", "lg_reed")):
         if key in used:
             out.append([(G(*SYMBOLS[sym]), "n"), (" " + tr(label), "n")])
-    if referee and plan.secret:
+    if secrets and plan.secret:
         out.append([("$", "b"), (" " + tr("lg_secret"), "n")])
-    if referee and plan.tunnel:
+    if secrets and plan.tunnel:
         out.append([(G(*SYMBOLS["tunnel"]), "n"), (" " + tr("lg_tunnel"), "n")])
     n, length, unit, row = scale_bar(plan, units)
     bar_text = G("├" + "─" * (n - 2) + "┤", "|" + "-" * (n - 2) + "|")
     out.append([(tr("lg_scale"), "b"), (" " + bar_text + f" {number(length)} {unit}", "n"),
                 (tr("lg_row", r=f"{row:.1f}".replace(".", "," if LANG == "it" else "."), u=unit), "n")])
+    return out
+
+
+def building_index(s):
+    """(number, name) of every building, as everybody sees it."""
+    return [(b.number, pick(b.title)) for b in sorted(s.plan.buildings, key=lambda b: b.number)]
+
+
+def building_secrets(s):
+    """What only the referee knows of the buildings: the thieves' hideout, the
+    threat's lair, where the secret tunnel starts."""
+    out = []
+    for b in sorted(s.plan.buildings, key=lambda b: b.number):
+        notes = []
+        if b.kind.get("secret"):
+            notes.append(pick(b.kind["secret"]))
+        if b is getattr(s, "lair", None):
+            notes.append(tr("ix_lair", d=pick(s.dwellers)))
+        if b is s.plan.tunnel_from and s.plan.tunnel:
+            notes.append(tr("ix_tunnel"))
+        if notes:
+            out.append(f"{b.number} {', '.join(notes)}")
     return out
 
 
@@ -3523,17 +3682,44 @@ def legend_width(line):
     return sum(len(t) for entry in line for t, _ in entry) + 4 * (len(line) - 1)
 
 
-class Layout:
-    """Title, subtitle, the map, the legend: the page in letters."""
+INDEX_GAP = 3           # letters between two columns of the building index
+INDEX_MAX = 40          # longest entry of the building index
 
-    def __init__(self, panel, legend, title, subtitle):
+
+class Layout:
+    """Title, subtitle, the map, the legend and the building index (number -
+    place, in columns): the page in letters."""
+
+    def __init__(self, panel, legend, title, subtitle, index=(), secrets=(), side=False, motto=None):
         self.panel = panel
-        inner = max(panel.width, len(title) + 4, len(subtitle) + 4, 60)
+        self.index, self.index_rows, self.side = list(index), [], side and bool(index)
+        if self.index:
+            self.index_digits = len(str(max(n for n, _ in self.index)))
+            self.index_width = min(INDEX_MAX, max(self.index_digits + 1 + len(t) for _, t in self.index))
+        block = 0
+        if self.side:               # columns as tall as the map, beside it
+            nrows = max(1, panel.height - 2)
+            self.index_cols = -(-len(self.index) // nrows)
+            nrows = -(-len(self.index) // self.index_cols)
+            self.index_rows = [self.index[r::nrows] for r in range(nrows)]
+            block = 2 * INDEX_GAP + self.index_cols * (self.index_width + INDEX_GAP) - INDEX_GAP
+        inner = max(panel.width + block, len(title) + 4, len(subtitle) + 4, 60)
+        if self.index and not self.side:    # columns as wide as the page, under the legend
+            ncols = max(1, (inner + INDEX_GAP) // (self.index_width + INDEX_GAP))
+            nrows = -(-len(self.index) // ncols)
+            self.index_cols = -(-len(self.index) // nrows)
+            self.index_rows = [self.index[r::nrows] for r in range(nrows)]
         self.legend = pack_legend(legend, inner)
-        self.title, self.subtitle = title, subtitle
+        # the referee's secrets, one line or more under the legend
+        notes = [[(tr("ix_secrets"), "b")]] + [[(t, "n")] for t in secrets] if secrets else []
+        self.secrets = pack_legend(notes, inner)
+        self.title, self.subtitle, self.motto = title, subtitle, motto
         self.cols = inner + 4
-        self.top = 4 if title else 3
-        self.rows = self.top + 1 + panel.height + 1 + len(self.legend) + 1
+        self.top = (4 if title else 3) + (1 if motto else 0)
+        self.panel_x = (self.cols - panel.width - block) // 2
+        self.rows = (self.top + 1 + max(panel.height, len(self.index_rows) + 2 if self.side else 0) + 1
+                     + len(self.legend) + 1 + (2 + len(self.index_rows) + 1 if self.index_rows and not self.side else 0)
+                     + len(self.secrets) + (1 if self.secrets else 0))
 
 
 def compose_page(layout):
@@ -3541,10 +3727,39 @@ def compose_page(layout):
     t, s = layout.title, layout.subtitle
     if t:
         page.write((layout.cols - len(t)) // 2, 1, t, "b")
+    if layout.motto:
+        page.write((layout.cols - len(layout.motto)) // 2, layout.top - 3, layout.motto)
     page.write((layout.cols - len(s)) // 2, layout.top - 2, s)
-    page.paste(layout.panel, (layout.cols - layout.panel.width) // 2, layout.top)
-    y = layout.top + layout.panel.height + 1
+    page.paste(layout.panel, layout.panel_x, layout.top)
+    y = layout.top + max(layout.panel.height, len(layout.index_rows) + 2 if layout.side else 0) + 1
     for line in layout.legend:
+        x = (layout.cols - legend_width(line)) // 2
+        for n, entry in enumerate(line):
+            if n:
+                x += 4
+            for text, style in entry:
+                page.write(x, y, text, style)
+                x += len(text)
+        y += 1
+    if layout.index_rows:
+        width, digits = layout.index_width, layout.index_digits
+        block = layout.index_cols * (width + INDEX_GAP) - INDEX_GAP
+        if layout.side:
+            x0, y0 = layout.panel_x + layout.panel.width + 2 * INDEX_GAP, layout.top
+        else:
+            x0, y0 = (layout.cols - block) // 2, y + 1
+        head = tr("lg_buildings")
+        page.write(x0 + (block - len(head)) // 2 if not layout.side else x0, y0, head, "b")
+        for r, row in enumerate(layout.index_rows):
+            for k, (n, title) in enumerate(row):
+                x = x0 + k * (width + INDEX_GAP)
+                room = width - digits - 1
+                text = title if len(title) <= room else title[:room - 1].rstrip() + "."
+                page.write(x, y0 + 2 + r, f"{n:>{digits}}", "b")
+                page.write(x + digits + 1, y0 + 2 + r, text)
+        if not layout.side:
+            y = y0 + 2 + len(layout.index_rows) + 1
+    for line in layout.secrets:
         x = (layout.cols - legend_width(line)) // 2
         for n, entry in enumerate(line):
             if n:
@@ -3582,8 +3797,14 @@ def fit(layout, paper, aspect):
     return best
 
 
-def suggest_paper(layout, aspect):
-    options = {paper: fit(layout, paper, aspect) for paper in PAPERS}
+def best_fit(layouts, paper, aspect):
+    """The layout that gives the biggest letters on a paper (the first one if
+    they tie): (char_mm, fill, orientation, layout)."""
+    return max((fit(layout, paper, aspect) + (layout,) for layout in layouts), key=lambda option: option[0])
+
+
+def suggest_paper(layouts, aspect):
+    options = {paper: best_fit(layouts, paper, aspect) for paper in PAPERS}
     readable = [p for p in PAPERS if options[p][0] >= GOOD_CHAR_MM]
     return (readable[0] if readable else list(PAPERS)[-1]), options
 
@@ -3592,10 +3813,14 @@ def verdict(char_mm):
     return tr("v_too_small") if char_mm < SMALL_CHAR_MM else tr("v_small") if char_mm < GOOD_CHAR_MM else tr("v_good")
 
 
-def ask_paper(layout, aspect, wanted, ask_user, log):
-    suggested, options = suggest_paper(layout, aspect)
-    log.info(tr("info_paper_intro", nc=layout.cols, nr=layout.rows))
-    for paper, (char_mm, _, orientation) in options.items():
+def ask_paper(layouts, aspect, wanted, ask_user, log):
+    """The paper, the letter size, the orientation and the layout: of the
+    `layouts` (the building index under or beside the map), on every paper
+    the one with the biggest letters."""
+    suggested, options = suggest_paper(layouts, aspect)
+    panel = layouts[0].panel
+    log.info(tr("info_paper_intro", nc=panel.width, nr=panel.height))
+    for paper, (char_mm, _, orientation, _) in options.items():
         note = tr("suggested") if paper == suggested else ""
         log.info(tr("info_paper_option", paper=paper, o=tr("orientation_" + orientation), mm=char_mm,
                     v=verdict(char_mm), note=note))
@@ -3616,8 +3841,8 @@ def ask_paper(layout, aspect, wanted, ask_user, log):
                 default = answer
                 break
             print(tr("paper_retry"))
-    char_mm, _, orientation = options[default]
-    return default, char_mm, orientation
+    char_mm, _, orientation, layout = options[default]
+    return default, char_mm, orientation, layout
 
 
 # --- rendering and saving ---
@@ -3849,6 +4074,9 @@ def key_blocks(s, title, units, content):
                ("meta", f"{capitalized(type_name(p['type']))} · {capitalized(pick(ERA[p['era']]['name']))} · "
                         f"{capitalized(pick(TERRAIN[p['terrain']]['name']))}"),
                ("meta", f"{purpose} · {tr('key_pop', n=number(p['pop']))}")]
+    if p.get("names"):
+        blocks.append(("meta", tr("key_names", s=pick(NAME_STYLE[p["names"]]["name"]),
+                                  t=pick(NAME_TONE[p["tone"]]["name"]))))
     n, length, unit, row = scale_bar(plan, units)
     blocks.append(("meta", tr("key_scale", r=f"{row:.1f}".replace(".", "," if LANG == "it" else "."), u=unit)))
     if story_on:
@@ -4015,15 +4243,15 @@ def write_key(blocks, path):
         f.write("\n".join(lines) + "\n")
 
 
-# --- the book ---
-BOOK_FONTS = ("Sebaldus-Gotisch.ttf", "CrimsonText-Regular.ttf", "CrimsonText-Italic.ttf", "CrimsonText-Bold.ttf",
+# --- the PDF file ---
+PDF_FONTS = ("Sebaldus-Gotisch.ttf", "CrimsonText-Regular.ttf", "CrimsonText-Italic.ttf", "CrimsonText-Bold.ttf",
               "CrimsonText-BoldItalic.ttf", "DejaVuSans.ttf")
 
 
-def book_problem():
-    missing = [name for name in BOOK_FONTS if not os.path.isfile(font_file(name))]
+def pdf_problem():
+    missing = [name for name in PDF_FONTS if not os.path.isfile(font_file(name))]
     if missing:
-        return tr("err_book_fonts", f=", ".join(missing), d=short_path(FONT_DIR))
+        return tr("err_pdf_fonts", f=", ".join(missing), d=short_path(FONT_DIR))
     try:
         import fpdf
     except ImportError:
@@ -4038,8 +4266,8 @@ def book_problem():
     return None
 
 
-def write_book(blocks, path, settings, maps=()):
-    """The key as an A4 book, like WyrmDelve's: Sebaldus-Gotisch headings,
+def write_pdf(blocks, path, settings, maps=()):
+    """The key as an A4 PDF file, like WyrmDelve's: Sebaldus-Gotisch headings,
     Crimson Text body. `maps`: (title, PIL image, paper, orientation) pages
     to put at the front (the single-PDF option)."""
     from fpdf import FPDF
@@ -4090,6 +4318,10 @@ def write_book(blocks, path, settings, maps=()):
             pdf.set_title(block[1] or PROGRAM)
             pdf.set_font("gothic", "", 30)
             pdf.multi_cell(0, 13, block[1] or PROGRAM, align="C", new_x="LMARGIN", new_y="NEXT")
+            pdf.ln(2)
+        elif kind == "motto":
+            pdf.set_font("crimson", "I", 15)
+            pdf.multi_cell(0, 7, block[1], align="C", new_x="LMARGIN", new_y="NEXT")
             pdf.ln(2)
         elif kind == "meta":
             pdf.set_font("crimson", "I", 11)
@@ -4414,6 +4646,15 @@ def ask_params():
     terrain = ask_choice(tr("q_terrain"), [t["id"] for t in TERRAINS], [pick(t["menu"]) for t in TERRAINS])
     if terrain:
         fixed["terrain"] = terrain
+    names = ask_choice(tr("q_names"), [n["id"] for n in NAME_STYLES], [capitalized(pick(n["name"])) for n in NAME_STYLES],
+                       [", ".join(name_examples(n["id"], t, 1)[0] for t in ("fair", "stately", "grim")) for n in NAME_STYLES])
+    if names:
+        fixed["names"] = names
+    tone = ask_choice(tr("q_tone"), [t["id"] for t in NAME_TONES], [capitalized(pick(t["name"])) for t in NAME_TONES],
+                      [pick(t["about"]) + (" · " + ", ".join(name_examples(names, t["id"], 2)) if names else "")
+                       for t in NAME_TONES])
+    if tone:
+        fixed["tone"] = tone
     if fixed.get("purpose", None) == "adventure":
         danger = ask_choice(tr("q_danger"), list(DANGERS), [tr(f"danger_{d}") for d in DANGERS])
         if danger:
@@ -4468,7 +4709,7 @@ def ask_units():
 
 
 def ask_output():
-    """png, pdf (maps and book apart) or single (one PDF with everything)."""
+    """png, pdf (maps and PDF file apart) or single (one PDF file with everything)."""
     options = ("png", "pdf", "single")
     return options[menu(tr("output_intro"), [tr("output_" + o) for o in options], 0)]
 
@@ -4503,8 +4744,8 @@ def read_choice(table, label):
     def parse(text):
         t = text.strip().lower()
         for item in table:
-            names = {item["id"], item["code"].lower(), pick(item["menu"]).lower(), *(n.lower() for n in item["menu"]),
-                     *(n.lower() for n in item["name"])}
+            names = {item["id"], item["code"].lower(), *(n.lower() for n in item.get("menu", ())),
+                     *(n.lower() for n in item["name"]), *(n.lower() for n in item.get("aliases", ()))}
             plain = {n.replace("à", "a") for n in names}
             if t in names or t.replace("à", "a") in plain or (len(t) >= 3 and any(
                     n.startswith(t) or (" " in n and n.split(" ")[-1].startswith(t)) or n.startswith("grande " + t)
@@ -4534,6 +4775,10 @@ def settings_from_options(argv):
     ap.add_argument(*names("scopo", "purpose"), dest="purpose", default=None, help=tr("h_purpose"))
     ap.add_argument(*names("pericolo", "danger"), dest="danger", type=int, choices=DANGERS, default=None,
                     help=tr("h_danger"))
+    ap.add_argument(*names("nomi", "names"), dest="names", type=read_choice(NAME_STYLES, "nomi"), default=None,
+                    help=tr("h_names"))
+    ap.add_argument(*names("tono", "tone"), dest="tone", type=read_choice(NAME_TONES, "tono"), default=None,
+                    help=tr("h_tone"))
     ap.add_argument(*names("seme", "seed"), dest="seed", default=None, help=tr("h_seed"))
     ap.add_argument(*names("colori", "colors"), dest="colors", type=int, choices=(1, 2, 3), default=1, help=tr("h_colors"))
     ap.add_argument(*names("formato", "format"), dest="paper", type=str.upper, choices=list(PAPERS), default=None,
@@ -4561,7 +4806,7 @@ def settings_from_options(argv):
          "colors": a.colors, "files": a.files, "content": a.content or (True,) * 4,
          "units": {"imperiale": "imperial", "metrica": "metric"}.get(a.units, a.units)}
     fixed = {k: v for k, v in (("type", a.type), ("era", a.era), ("terrain", a.terrain), ("pop", a.pop),
-                                ("danger", a.danger)) if v is not None}
+                                ("danger", a.danger), ("names", a.names), ("tone", a.tone)) if v is not None}
     if a.purpose:
         purpose = {"riposo": "rest", "rest": "rest", "avventura": "adventure", "adventure": "adventure"}.get(
             a.purpose.strip().lower())
@@ -4599,6 +4844,11 @@ def main():
     log.info(tr("info_what", t=type_name(p["type"]), n=number(p["pop"]), e=pick(ERA[p["era"]]["name"]),
                 g=pick(TERRAIN[p["terrain"]]["name"])))
     log.info(tr("purpose_rest") if p["purpose"] == "rest" else tr("purpose_adventure", d=p["danger"]))
+    if p.get("names"):
+        log.info(tr("info_names", s=pick(NAME_STYLE[p["names"]]["name"]), t=pick(NAME_TONE[p["tone"]]["name"]),
+                    m=round_millions(name_combinations(p["names"], p["tone"]))))
+    else:
+        log.info(tr("info_names_old"))
     units = p.get("units") or ("metric" if LANG == "it" else "imperial")
     content = list(p["content"])
     if p["purpose"] == "rest":
@@ -4609,10 +4859,20 @@ def main():
     if content[3] and not TREASURE:
         log.warn(tr("warn_no_treasure"))
         content[3] = False
-    problem = book_problem()
+    problem = pdf_problem()
     if problem:
         log.error(problem)
     folder = os.path.join(p["output"], seed)
+    # easter egg: a settlement the user names Pisa gets a subtitle, and a
+    # fonder one when the same seed was already printed as Pisa
+    motto = None
+    if (p["title"] or "").strip().casefold() == "pisa":
+        try:
+            with open(os.path.join(folder, f"{seed}_key.txt"), encoding="utf-8") as f:
+                again = f.readline().strip().casefold().endswith("— pisa")
+        except OSError:
+            again = False
+        motto = tr("bolpo_again" if again else "bolpo")
     os.makedirs(folder, exist_ok=True)
     log.info(tr("info_folder", folder=short_path(folder)))
     font_spec, bold_spec = find_font(p["font"])
@@ -4645,8 +4905,18 @@ def main():
     plain = Glyphs(None, True)
     subtitle = tr("subtitle", seed=seed, t=capitalized(type_name(p["type"])), e=pick(ERA[p["era"]]["name"]),
                   n=number(p["pop"]), b=len(plan.buildings))
-    ref_layout = Layout(map_canvas(plan, True, G), legend_entries(plan, p, True, G, units), title, subtitle)
-    paper, char_mm, orientation = ask_paper(ref_layout, aspect, p["paper"], p.pop("ask_paper", False), log)
+
+    def page_layout(G, referee, title, side):
+        """The referee's map has the secrets, on the map and in the building
+        index; the players' map has numbers and index, but no secrets."""
+        return Layout(map_canvas(plan, True, G, secrets=referee), legend_entries(plan, p, True, G, units, referee),
+                      title, subtitle, building_index(s), building_secrets(s) if referee else (), side, motto)
+    # the building index goes under the map or beside it, whichever prints
+    # the map bigger on the paper
+    paper, char_mm, orientation, ref_layout = ask_paper([page_layout(G, True, title, side) for side in (False, True)],
+                                                        aspect, p["paper"], p.pop("ask_paper", False), log)
+    side = ref_layout.side
+    log.info(tr("info_index_side" if side else "info_index_under"))
     files = p["files"] or (ask_output() if interactive else "png")
     fonts = (font_spec, bold_spec, advance_em, aspect)
     pixels = pixel_layout(ref_layout, paper, orientation, char_mm, fonts)
@@ -4657,15 +4927,12 @@ def main():
         log.warn(tr("warn_tiny"))
     settings = {"seed": seed, "colors": p["colors"], "paper": paper, "title": p["title"], "language": LANG,
                 "ascii_only": p["ascii_only"], "files": files, "units": units, "version": VERSION}
-    pl_title = tr("players_title", t=title) if title else tr("players_title_plain")
-    pl_layout = Layout(map_canvas(plan, False, G), legend_entries(plan, p, False, G, units), pl_title, subtitle)
-    pl_pixels = pixel_layout(pl_layout, paper, orientation, char_mm, fonts)
-
     log.step(tr("step_maps", paper=paper, dpi=DPI))
-    pages = [("referee", compose_page(ref_layout), pixels,
-              compose_page(Layout(map_canvas(plan, True, plain), legend_entries(plan, p, True, plain, units), title, subtitle))),
-             ("players", compose_page(pl_layout), pl_pixels,
-              compose_page(Layout(map_canvas(plan, False, plain), legend_entries(plan, p, False, plain, units), pl_title, subtitle)))]
+    pl_title = tr("players_title", t=title) if title else tr("players_title_plain")
+    pl_layout = page_layout(G, False, pl_title, side)
+    pages = [("referee", compose_page(ref_layout), pixels, compose_page(page_layout(plain, True, title, side))),
+             ("players", compose_page(pl_layout), pixel_layout(pl_layout, paper, orientation, char_mm, fonts),
+              compose_page(page_layout(plain, False, pl_title, side)))]
     images = []
     base = os.path.join(folder, seed)
     for name, canvas, px, text in pages:
@@ -4689,15 +4956,17 @@ def main():
 
     log.step(tr("step_key"))
     blocks = key_blocks(s, title, units, content)
+    if motto:
+        blocks.insert(1, ("motto", motto))     # in the PDF file only: write_key skips it
     write_key(blocks, f"{base}_key.txt")
     log.info(tr("saved_key", a=short_path(f"{base}_key.txt")))
     if not problem:
-        book = f"{base}_book.pdf"
+        pdf_path = f"{base}_key.pdf"
         try:
-            write_book(blocks, book, settings, maps=images)
-            log.info(tr("saved_book_maps" if images else "saved_book", a=short_path(book)))
+            write_pdf(blocks, pdf_path, settings, maps=images)
+            log.info(tr("saved_pdf_maps" if images else "saved_pdf", a=short_path(pdf_path)))
         except Exception as e:          # never lose the maps and the key over the PDF
-            log.error(tr("err_book", e=f"{type(e).__name__}: {e}"))
+            log.error(tr("err_pdf", e=f"{type(e).__name__}: {e}"))
     elif images:
         for name, img, _, _ in images:
             save_png(img, f"{base}_{name}.png", settings)

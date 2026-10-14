@@ -1,0 +1,517 @@
+{
+  "name_tones": [
+    {
+      "id": "fair",
+      "code": "1",
+      "name": {"it": "luminoso", "en": "fair"},
+      "about": {"it": "gentile, fiorito, accogliente", "en": "gentle, blooming, welcoming"}
+    },
+    {
+      "id": "homely",
+      "code": "2",
+      "name": {"it": "rustico", "en": "homely"},
+      "about": {"it": "di campagna e di mercato, quotidiano", "en": "country and market, everyday"}
+    },
+    {
+      "id": "stately",
+      "code": "3",
+      "name": {"it": "solenne", "en": "stately"},
+      "about": {"it": "nobile, regale, maestoso", "en": "noble, royal, grand"}
+    },
+    {
+      "id": "grim",
+      "code": "4",
+      "name": {"it": "cupo", "en": "grim"},
+      "about": {"it": "duro, oscuro, di guerra e di morte", "en": "harsh, dark, of war and death"}
+    },
+    {
+      "id": "eerie",
+      "code": "5",
+      "name": {"it": "arcano", "en": "eerie"},
+      "about": {"it": "misterioso, stregato, fatato", "en": "mysterious, haunted, fey"}
+    }
+  ],
+  "name_forms": [["start end", 12], ["start middle end", 8], ["word start end", 3], ["start end after", 3], ["word start middle end", 1], ["start middle end after", 1], ["word start end after", 1], ["word start middle end after", 1]],
+  "name_styles": [
+    {
+      "id": "italian",
+      "code": "IT",
+      "name": {"it": "italiano medievale", "en": "medieval Italian"},
+      "aliases": ["italiano", "italian", "medievale"],
+      "roots": {
+        "start": {
+          "all": ["Mont", "Val", "Roc", "Pietr", "Fos", "Brac", "Cor", "Gual", "Mar", "Sar", "Ter", "Vel", "Cas", "Lup", "Orv", "Spol", "Bel", "Cer", "Fal", "Gav", "Ser", "Tor", "Arc", "Bor", "Cald", "Fiesc", "Gran", "Lan", "Mons", "Nov", "Ponz", "Rad", "Sov", "Trev", "Vign", "Zag", "Acqu", "Carp", "Font", "Querc"],
+          "fair": ["Fior", "Lucc", "Ros", "Sol", "Lill", "Prat", "Verd", "Giunc", "Mel", "Viol", "Oliv", "Chiar"],
+          "homely": ["Mulin", "Forn", "Pecor", "Vacc", "Orz", "Fav", "Cann", "Pagl", "Cort", "Campagn", "Castagn", "Noc"],
+          "stately": ["August", "Regal", "Princip", "Duc", "Cesar", "Aquil", "Leon", "Magn", "Sant", "Gonfal", "Ottav", "Imper"],
+          "grim": ["Mort", "Ner", "Corv", "Tesch", "Ferr", "Spin", "Lupar", "Malv", "Sangu", "Crud", "Tenebr", "Fiel"],
+          "eerie": ["Strig", "Lun", "Nebb", "Fat", "Spettr", "Stell", "Sibill", "Incant", "Grott", "Arcan", "Brum", "Selv"]
+        },
+        "middle": {
+          "all": ["ar", "er", "ol", "an", "en", "in", "on", "ur", "al", "el", "ac", "ed", "ov", "ag", "ign", "ast", "ell", "ill", "ord", "orn", "ib", "is", "ot", "ul", "av", "ens", "ig", "ent", "ass", "icc"]
+        },
+        "end": {
+          "all": ["ano", "ate", "engo", "asco", "ola", "ino", "ello", "ara", "ezza", "orio", "iglia", "ena", "occhio", "ignano", "aldo", "ugia", "erno", "oli", "ana", "iano", "esco", "ice", "ona", "ago", "aia"],
+          "fair": ["ella", "etta", "ina", "iola", "osa", "aria", "entina", "ilia"],
+          "homely": ["aglia", "ucci", "accio", "ale", "eto", "aio", "ile", "uccio"],
+          "stately": ["eggio", "enza", "ingo", "onia", "osto", "iana", "uria", "emma"],
+          "grim": ["uro", "acca", "orta", "ozzo", "uglio", "astra", "egna", "urro"],
+          "eerie": ["ania", "iria", "ombra", "era", "ima", "ula", "eda", "isa"]
+        },
+        "word": {
+          "all": ["Borgo", "Castel", "Rocca", "Pieve", "Torre", "Villa", "Poggio", "Monte", "Ponte", "Corte"],
+          "fair": ["Prato", "Fonte", "Colle", "Vigna", "Rivo"],
+          "homely": ["Mulino", "Casale", "Cascina", "Mercato", "Pozzo"],
+          "stately": ["Palazzo", "Badia", "Contea", "Marca", "Signoria"],
+          "grim": ["Forca", "Fossa", "Bastia", "Sasso", "Murata"],
+          "eerie": ["Selva", "Grotta", "Nebbia", "Eremo", "Sibilla"]
+        },
+        "after": {
+          "all": ["Maggiore", "Minore", "Superiore", "Inferiore", "di Sopra", "di Sotto", "in Piano", "in Colle", "a Valle", "a Monte"],
+          "fair": ["dei Fiori", "delle Rose", "del Sole", "dei Prati", "delle Fonti"],
+          "homely": ["dei Mulini", "dei Pastori", "del Mercato", "dei Fabbri", "delle Vigne"],
+          "stately": ["Imperiale", "Reale", "dei Conti", "del Duca", "dei Santi"],
+          "grim": ["dei Lupi", "dei Corvi", "dei Morti", "della Forca", "delle Spine"],
+          "eerie": ["delle Streghe", "della Luna", "delle Nebbie", "delle Fate", "dei Lumi"]
+        }
+      }
+    },
+    {
+      "id": "old_english",
+      "code": "OE",
+      "name": {"it": "inglese antico (Old English)", "en": "Old English"},
+      "aliases": ["old english", "anglosassone", "anglo-saxon", "antico"],
+      "roots": {
+        "start": {
+          "all": ["Ash", "Elm", "Oak", "Brad", "Wulf", "Whit", "Ead", "Alder", "Brom", "Cold", "Stan", "Ald", "Thorn", "Hazel", "Wil", "Bark", "Cyne", "Sut", "Nor", "Wes", "Est", "Lang", "Hol", "Ox", "Shep", "Swin", "Wor", "Bran", "Ceol", "Os"],
+          "fair": ["Sunn", "Lin", "Fair", "Merry", "Rose", "Swet", "Gold", "Leof", "Blith", "Wyn", "Apple", "Bright"],
+          "homely": ["Barley", "Bean", "Hay", "Hen", "Kine", "Chese", "Corn", "Flax", "Mill", "Brew", "Wheat", "Wool"],
+          "stately": ["King", "Ethel", "Ealdor", "Ric", "Eorl", "Thane", "Halig", "Bishop", "Abbots", "Queen", "Brego", "Here"],
+          "grim": ["Black", "Grim", "Raven", "Gallow", "Dead", "Blod", "Crow", "Bane", "Morth", "Slaughter", "Hound", "Iron"],
+          "eerie": ["Elf", "Wyrm", "Dwimmer", "Witch", "Mist", "Mona", "Ent", "Nicor", "Puck", "Hob", "Thurs", "Scucca"]
+        },
+        "middle": {
+          "all": ["ing", "inge", "es", "en", "le", "er", "an", "el", "on", "ings", "den", "ham", "wood", "ley", "ey", "well", "ridge", "brook", "stow", "cot", "bourne", "dale", "hurst", "mere", "lade"]
+        },
+        "end": {
+          "all": ["ton", "ham", "wick", "stead", "ford", "bury", "ley", "worth", "combe", "thorpe", "hithe", "den", "field", "bridge", "wood", "chester", "borough", "mouth", "hall", "holt", "hurst", "more", "well", "cott", "wold", "bourne", "minster", "stow", "ing", "sey"],
+          "fair": ["dale", "lea", "mead", "bloom", "haven", "glade", "brook", "garth"],
+          "homely": ["wich", "fold", "croft", "barton", "wardine", "hay", "stoke", "mill"],
+          "stately": ["burgh", "castle", "hold", "seat", "ward", "tower", "gate", "hallow"],
+          "grim": ["grave", "barrow", "moor", "fen", "scar", "gallows", "ditch", "pit"],
+          "eerie": ["low", "pool", "hollow", "shade", "howe", "gast", "wyrd", "fell"]
+        },
+        "word": {
+          "all": ["Great", "Little", "East", "West", "North", "South", "Old", "Nether", "Over", "Long"],
+          "fair": ["Fair", "Sweet", "Green", "Bright", "Blithe"],
+          "homely": ["Cheap", "Stoke", "Ox", "Hay", "Thorpe"],
+          "stately": ["King's", "Earl's", "Abbots", "Thane's", "High"],
+          "grim": ["Black", "Grim", "Dead", "Wolf's", "Gallow"],
+          "eerie": ["Elf", "Wyrm", "Ent", "Hob", "Dwimmer"]
+        },
+        "after": {
+          "all": ["Magna", "Parva", "Wold", "Heath", "Moor", "Fen", "Weald", "Mere", "Holt", "Dene"],
+          "fair": ["in the Dale", "Lea", "Mead", "by the Brook", "on the Green"],
+          "homely": ["Fields", "Common", "Croft", "End", "Thorpe"],
+          "stately": ["Burh", "Minster", "Abbas", "Regis", "Hall"],
+          "grim": ["Barrows", "Gallows", "Marsh", "Grave", "Scar"],
+          "eerie": ["under Hill", "Howe", "Low", "Hollow", "Wyrd"]
+        }
+      }
+    },
+    {
+      "id": "renaissance_english",
+      "code": "RE",
+      "name": {"it": "inglese rinascimentale", "en": "Renaissance English"},
+      "aliases": ["rinascimentale", "renaissance", "elisabettiano", "elizabethan", "tudor"],
+      "roots": {
+        "start": {
+          "all": ["Ashe", "Bramble", "Chel", "Dor", "Ever", "Glou", "Hather", "Kettle", "Lynd", "Marl", "Pen", "Rother", "Sand", "Thorn", "Wey", "Whit", "Wych", "Hamp", "Nor", "Wel", "Win", "Wor", "Ply", "Tam", "Lud", "Shrews", "Kenil", "Bever", "Harrow", "Tewk"],
+          "fair": ["Prim", "Rose", "Lark", "Merri", "Honey", "Lily", "Clover", "Sweet", "Sunning", "Daisy", "Swan", "Green"],
+          "homely": ["Ale", "Barley", "Cob", "Hop", "Tinker", "Mutton", "Pudding", "Plough", "Haye", "Cheap", "Goose", "Brew"],
+          "stately": ["Kings", "Queens", "Prince", "Crown", "Regent", "Duke", "Lords", "Abbots", "Bishops", "Marques", "Gloriana", "Sovereign"],
+          "grim": ["Black", "Gallows", "Hang", "Grave", "Crow", "Gibbet", "Murk", "Coffin", "Raven", "Dread", "Bleak", "Dun"],
+          "eerie": ["Wytch", "Hob", "Puck", "Mab", "Fey", "Moon", "Mist", "Owl", "Hollow", "Elder", "Gloam", "Shadow"]
+        },
+        "middle": {
+          "all": ["ing", "es", "en", "ers", "ley", "ton", "ham", "bury", "worth", "ford", "wick", "s", "le", "er", "combe", "wood", "by", "bridge", "stone", "more", "well", "hurst", "field", "cote", "dale"]
+        },
+        "end": {
+          "all": ["ton", "ham", "ford", "bury", "ley", "leigh", "worth", "combe", "thorpe", "hythe", "stead", "field", "bridge", "wood", "borough", "chester", "mouth", "hall", "hurst", "well", "cote", "wold", "bourne", "minster", "stoke", "wyke", "shaw", "ridge", "haven", "by"],
+          "fair": ["dale", "mead", "glade", "grove", "brook", "bower", "lea", "green"],
+          "homely": ["croft", "wich", "barton", "fold", "mill", "market", "cross", "farthing"],
+          "stately": ["castle", "court", "palace", "towers", "manor", "abbey", "priory", "park"],
+          "grim": ["gallows", "grave", "moor", "marsh", "pit", "scar", "rake", "heath"],
+          "eerie": ["hollow", "howe", "mere", "shade", "barrow", "low", "tor", "fell"]
+        },
+        "word": {
+          "all": ["Great", "Little", "Long", "High", "Upper", "Lower", "New", "Old", "Port", "Saint"],
+          "fair": ["Merry", "Fair", "Sweet", "Green", "Bonny"],
+          "homely": ["Market", "Chipping", "Mill", "Steeple", "Church"],
+          "stately": ["King's", "Queen's", "Bishop's", "Abbots", "Royal"],
+          "grim": ["Black", "Hanging", "Cold", "Dead Man's", "Blind"],
+          "eerie": ["Elfin", "Hob's", "Witch's", "Moon", "Owl's"]
+        },
+        "after": {
+          "all": ["Magna", "Parva", "St. Mary", "St. Giles", "St. Michael", "in Arden", "on the Hill", "under Edge", "End", "Cross"],
+          "fair": ["in the Vale", "on the Green", "by the Brook", "in the Meadows", "Blossom"],
+          "homely": ["Market", "Fields", "Common", "cum Hamlet", "Heath"],
+          "stately": ["Regis", "Royal", "Abbas", "Episcopi", "Prior"],
+          "grim": ["Gallows", "on the Marches", "under the Moor", "Bridewell", "in the Fens"],
+          "eerie": ["under Hill", "in the Mist", "by the Barrow", "Hollow", "Elfhame"]
+        }
+      }
+    },
+    {
+      "id": "gaelic",
+      "code": "GA",
+      "name": {"it": "gaelico scozzese", "en": "Scottish Gaelic"},
+      "aliases": ["gaelico", "gaelic", "scozzese", "scottish"],
+      "roots": {
+        "start": {
+          "all": ["Kil", "Dun", "Inver", "Bal", "Ach", "Glen", "Strath", "Ard", "Auchter", "Tober", "Craig", "Kin", "Tor", "Drum", "Pit", "Cul", "Ben", "Car", "Blair", "Knock", "Lag", "Port", "Rath", "Tully", "Gart", "Fin", "Mor", "Alt", "Corr", "Bran"],
+          "fair": ["Grian", "Blath", "Ros", "Ceol", "Lus", "Fionn", "Geal", "Sona", "Caoin", "Mil", "Bonn", "Ail"],
+          "homely": ["Muil", "Gow", "Each", "Cro", "Arbh", "Coirc", "Bo", "Caor", "Mart", "Tigh", "Iasg", "Clach"],
+          "stately": ["Righ", "Flath", "Tighearn", "Caistel", "Uasal", "Banrigh", "Dal", "Mormh", "Clann", "Easbuig", "Teamp", "Ardrigh"],
+          "grim": ["Dubh", "Bas", "Fuil", "Fiach", "Mad", "Cnamh", "Uaigh", "Cath", "Sgian", "Doirb", "Gruam", "Fearg"],
+          "eerie": ["Sith", "Taibh", "Draoi", "Ceo", "Sgail", "Fuath", "Brug", "Caill", "Seun", "Nathr", "Fiadh", "Uaimh"]
+        },
+        "middle": {
+          "all": ["na", "an", "a", "ach", "nam", "ie", "ar", "in", "ol", "er", "al", "dar", "mon", "bre", "nach", "ard", "ver", "dal", "lan", "ra", "ma", "ca", "ish", "och", "lin"]
+        },
+        "end": {
+          "all": ["more", "beg", "an", "ach", "ie", "aig", "ock", "uig", "ary", "ally", "och", "oran", "lie", "gorm", "glas", "dearg", "buie", "ruadh", "bane", "inch", "ross", "rie", "ish", "lin", "dow", "ray", "mhor", "laig", "eck", "ain"],
+          "fair": ["geal", "bhan", "grian", "fionn", "shona", "blath", "caoin", "ail"],
+          "homely": ["bhaile", "mhuilinn", "chro", "ghobha", "airigh", "each", "chaoraich", "mart"],
+          "stately": ["righ", "flaith", "chaisteil", "uasal", "bhanrigh", "teamhair", "clann", "easbuig"],
+          "grim": ["dubh", "bais", "fhuil", "fhiach", "chnamh", "uaigh", "catha", "dorch"],
+          "eerie": ["sith", "taibhse", "draoi", "cheo", "sgail", "fhuath", "bhrugh", "chaillich"]
+        },
+        "word": {
+          "all": ["Baile", "Port", "Eilean", "Beinn", "Cnoc", "Achadh", "Allt", "Dail", "Coille", "Cille"],
+          "fair": ["Grianan", "Lios", "Blar", "Inis", "Gleann"],
+          "homely": ["Tigh", "Muileann", "Bothan", "Croit", "Margadh"],
+          "stately": ["Caisteal", "Dun", "Righ", "Teampall", "Cathair"],
+          "grim": ["Uaigh", "Carn", "Creag", "Garbh", "Sgurr"],
+          "eerie": ["Sithean", "Uamh", "Clach", "Tom", "Brugh"]
+        },
+        "after": {
+          "all": ["Mhor", "Bheag", "Shuas", "Shios", "Ur", "Ard", "na h-Aibhne", "an Uisge", "nan Gall", "na Coille"],
+          "fair": ["na Greine", "nam Blath", "Gheal", "an Fhonn", "Bhan"],
+          "homely": ["a' Mhuilinn", "nan Each", "a' Chro", "a' Bhaile", "nan Caorach"],
+          "stately": ["an Righ", "nan Flath", "na Banrighe", "an Easbuig", "nan Uaislean"],
+          "grim": ["Dubh", "nam Bas", "na Fala", "nam Fiach", "nan Cnamh"],
+          "eerie": ["nan Sith", "nan Taibhse", "a' Cheo", "na Cailliche", "nan Draoidh"]
+        }
+      }
+    },
+    {
+      "id": "tolkienian",
+      "code": "TO",
+      "name": {"it": "tolkieniano (elfico)", "en": "Tolkienesque (elvish)"},
+      "aliases": ["tolkien", "tolkieniano", "tolkienesque", "elfico", "elvish"],
+      "roots": {
+        "start": {
+          "all": ["Mith", "Ered", "Gon", "Ar", "Bel", "Cel", "Dor", "El", "Fal", "Gil", "Hith", "Imlad", "Lin", "Lor", "Nan", "Nim", "Os", "Rhu", "Rim", "Tal", "Tir", "Thar", "Cir", "Eol", "Fin", "Galad", "Ith", "Mel", "Nar", "Sil"],
+          "fair": ["Lauri", "Elen", "Calen", "Ninqu", "Vany", "Alda", "Yav", "Loth", "Mallor", "Celeb", "Anar", "Aelin"],
+          "homely": ["Buck", "Brand", "Tuck", "Bag", "Under", "Hay", "Mich", "Nob", "Hobb", "Frog", "Whit", "Stock"],
+          "stately": ["Aran", "Tar", "Tur", "Ond", "Numen", "Andun", "Hyarm", "Rom", "Elend", "Ermen", "Calim", "Heru"],
+          "grim": ["Mor", "Ang", "Dur", "Gor", "Ugl", "Lug", "Nurn", "Carch", "Thang", "Gul", "Burz", "Ghash"],
+          "eerie": ["Dwim", "Fuin", "Taur", "Ithil", "Gwath", "Del", "Tinu", "Lum", "Uial", "Echor", "Nauro", "Hiri"]
+        },
+        "middle": {
+          "all": ["a", "e", "i", "o", "an", "en", "in", "on", "ar", "el", "il", "ol", "ad", "ed", "eth", "ath", "ir", "ur", "al", "ian", "ien", "ui", "or", "as", "ae"]
+        },
+        "end": {
+          "all": ["ond", "iath", "ost", "ador", "ien", "dor", "las", "duin", "nor", "thil", "rond", "lin", "mir", "wen", "gard", "ion", "ath", "orn", "dil", "ras", "eth", "alad", "uin", "oth", "ennas", "emar", "ant", "ir", "ui", "on"],
+          "fair": ["alda", "ilme", "naith", "lisse", "enor", "elde", "imloth", "ilien"],
+          "homely": ["ton", "bury", "hole", "by", "end", "bottom", "ford", "hill"],
+          "stately": ["tur", "aran", "menel", "dun", "carnil", "heru", "oron", "tirion"],
+          "grim": ["goroth", "band", "udun", "gul", "nurz", "dush", "gash", "ruk"],
+          "eerie": ["nen", "fuin", "gwath", "ithil", "lothren", "morn", "dwimor", "echor"]
+        },
+        "word": {
+          "all": ["Amon", "Dol", "Minas", "Caras", "Tol", "Emyn", "Nan", "Taur", "Ost", "Bar"],
+          "fair": ["Talath", "Imlad", "Aelin", "Calen", "Nen"],
+          "homely": ["Little", "Over", "Nether", "Long", "Green"],
+          "stately": ["Annun", "Aran", "Tirith", "Tar", "Ered"],
+          "grim": ["Barad", "Cirith", "Dagor", "Gurth", "Nurn"],
+          "eerie": ["Dwimor", "Gwath", "Fuin", "Ithil", "Hithu"]
+        },
+        "after": {
+          "all": ["Ennor", "Lammen", "Hithui", "Arnen", "Edhil", "Iaur", "Bain", "Rhovan", "Gelydh", "Ithryn"],
+          "fair": ["Galen", "Lossen", "Nimren", "Elenath", "Bainion"],
+          "homely": ["-under-Hill", "-on-the-Water", "Bottom", "End", "Hollow"],
+          "stately": ["Aranion", "Turon", "Menel", "Ondolin", "Heruion"],
+          "grim": ["Gurth", "Goroth", "Dur", "Lug", "Nargul"],
+          "eerie": ["Dwimor", "Fuinen", "Gwathren", "Ithilen", "Morne"]
+        }
+      }
+    },
+    {
+      "id": "persian",
+      "code": "PA",
+      "name": {"it": "persiano e arabeggiante", "en": "Persian and Arabesque"},
+      "aliases": ["persiano", "persian", "arabo", "arabic", "arabeggiante", "arabesque"],
+      "roots": {
+        "start": {
+          "all": ["Kar", "Bakh", "Sam", "Nish", "Tab", "Kash", "Yaz", "Shah", "Mar", "Bad", "Zar", "Far", "Gul", "Jan", "Ham", "Rash", "Bas", "Qas", "Sul", "Taj", "Khor", "Daml", "Ard", "Mas", "Zah", "Nur", "Raz", "Saf", "Tir", "Ker"],
+          "fair": ["Bahar", "Nas", "Lal", "Rosh", "Yas", "Nar", "Nil", "Sabz", "Shir", "Anar", "Gol", "Firuz"],
+          "homely": ["Bazar", "Khan", "Chah", "Deh", "Bagh", "Asiy", "Nan", "Kisht", "Kuch", "Qan", "Sar", "Chang"],
+          "stately": ["Malik", "Sultan", "Khosr", "Dar", "Darab", "Amir", "Pasar", "Arsh", "Kayan", "Sasan", "Jamsh", "Firdaws"],
+          "grim": ["Siyah", "Marg", "Khun", "Div", "Zahr", "Gurg", "Harb", "Qabr", "Jahann", "Ghul", "Dakh", "Zulm"],
+          "eerie": ["Jinn", "Peri", "Ifr", "Sihr", "Mah", "Simur", "Raml", "Sirr", "Tals", "Ghayb", "Afsun", "Qamar"]
+        },
+        "middle": {
+          "all": ["a", "i", "u", "ar", "an", "ab", "ad", "am", "al", "ash", "ir", "ish", "un", "ud", "ak", "az", "ah", "or", "ast", "ez", "av", "im", "eh", "ul", "id"]
+        },
+        "end": {
+          "all": ["abad", "stan", "shahr", "iya", "an", "kand", "gird", "dan", "ar", "esh", "ana", "iz", "ud", "ra", "at", "ah", "ad", "in", "ur", "avand", "ab", "sar", "rud", "dasht", "kuh", "bar", "gah", "un", "aya", "ast"],
+          "fair": ["golestan", "bagh", "naz", "bahar", "afruz", "roz", "yas", "nush"],
+          "homely": ["deh", "khan", "chah", "bazar", "kar", "pur", "ganj", "vand"],
+          "stately": ["gerd", "takht", "qasr", "dar", "shahan", "sultan", "amir", "pasar"],
+          "grim": ["khun", "marg", "zahr", "div", "gurg", "qabr", "dakhma", "siyah"],
+          "eerie": ["jinn", "peri", "sihr", "mahtab", "raml", "sirr", "afsun", "ghayb"]
+        },
+        "word": {
+          "all": ["Qal'at", "Bandar", "Shahr-e", "Dar al-", "Ain", "Wadi", "Ras", "Bab", "Suq", "Madinat"],
+          "fair": ["Bagh-e", "Nahr", "Rawdat", "Bustan-e", "Chashmeh"],
+          "homely": ["Deh", "Kariz", "Suq al-", "Rabat", "Kalateh"],
+          "stately": ["Takht-e", "Qasr al-", "Kakh-e", "Diwan", "Sultan"],
+          "grim": ["Qabr-e", "Dakhma", "Kuh-e", "Burj al-", "Khandaq"],
+          "eerie": ["Ghar-e", "Qubbat al-", "Bir", "Tilism", "Maqam"]
+        },
+        "after": {
+          "all": ["al-Kabir", "al-Saghir", "al-Jadid", "al-Qadim", "Bala", "Pain", "Kohneh", "Now", "Sharqi", "Gharbi"],
+          "fair": ["al-Zahra", "al-Khadra", "Golshan", "al-Jamila", "Nowruz"],
+          "homely": ["al-Suq", "Bazar", "Dehqan", "al-Khan", "Kuchak"],
+          "stately": ["al-Malik", "al-Sultan", "Shahi", "al-Amir", "Khosravi"],
+          "grim": ["al-Mawt", "Siyah", "al-Dam", "Div", "al-Harb"],
+          "eerie": ["al-Jinn", "Peri", "al-Sihr", "al-Qamar", "al-Ghayb"]
+        }
+      }
+    },
+    {
+      "id": "byzantine",
+      "code": "BY",
+      "name": {"it": "greco bizantino", "en": "Byzantine Greek"},
+      "aliases": ["bizantino", "byzantine", "greco", "greek"],
+      "roots": {
+        "start": {
+          "all": ["Chrys", "Theo", "Nik", "Kon", "Andr", "Phil", "Dem", "Kal", "Mel", "Pyr", "Ser", "Thess", "Tryp", "Lyk", "Nyss", "Ker", "Mes", "Pel", "Myr", "Kast", "Arg", "Laz", "Pat", "Proc", "Smyr", "Trap", "Xen", "Zyg", "Hier", "Anch"],
+          "fair": ["Rhod", "Kalli", "Eir", "Phot", "Hilar", "Glyk", "Anth", "Ampel", "Daphn", "Elai", "Euph", "Hel"],
+          "homely": ["Agr", "Chor", "Kom", "Myl", "Boukol", "Poim", "Krith", "Sit", "Oin", "Tyr", "Kep", "Ergast"],
+          "stately": ["Basil", "Porph", "Desp", "Sebast", "Augoust", "Kaisar", "Megal", "Hagi", "Arch", "Staur", "Doxo", "Pantokr"],
+          "grim": ["Mavr", "Thanat", "Haim", "Skot", "Nekr", "Polem", "Phon", "Taph", "Drak", "Korak", "Sider", "Lim"],
+          "eerie": ["Mag", "Selen", "Hekat", "Oneir", "Myst", "Psych", "Pneum", "Eidol", "Nykt", "Astr", "Sibyl", "Gorg"]
+        },
+        "middle": {
+          "all": ["o", "a", "i", "e", "y", "on", "ar", "os", "ik", "al", "op", "el", "an", "ip", "ast", "ok", "ou", "en", "it", "om", "yr", "ol", "is", "er", "ag"]
+        },
+        "end": {
+          "all": ["opolis", "polis", "ikon", "ion", "ada", "eia", "ousa", "itsa", "ena", "ina", "ane", "os", "as", "ia", "ikos", "ea", "ates", "eus", "ope", "oupolis", "akion", "onia", "ini", "ochori", "aion", "iani", "atos", "ara", "oula", "ymna"],
+          "fair": ["anthe", "daphne", "ilia", "elaia", "ampelos", "rhodon", "kalon", "glykia"],
+          "homely": ["chori", "kome", "mylos", "agros", "kepos", "stasi", "oikia", "chorion"],
+          "stately": ["kastron", "basileia", "sebasteia", "augousta", "kratos", "doxa", "palation", "stauros"],
+          "grim": ["thanatos", "taphos", "skotia", "haima", "nekra", "pyrgos", "drakon", "phonos"],
+          "eerie": ["mageia", "selene", "oneira", "mysterion", "eidolon", "nyx", "astron", "sibylla"]
+        },
+        "word": {
+          "all": ["Hagia", "Hagios", "Kastro", "Nea", "Palaia", "Ano", "Kato", "Megali", "Mikri", "Epano"],
+          "fair": ["Kale", "Hilara", "Eirene", "Glyka", "Daphni"],
+          "homely": ["Chora", "Kome", "Emporio", "Mylos", "Agora"],
+          "stately": ["Basilissa", "Sebaste", "Augousta", "Porphyra", "Archontiko"],
+          "grim": ["Mavro", "Nekro", "Phrourio", "Taphos", "Drakontia"],
+          "eerie": ["Selene", "Nykta", "Spilia", "Hekate", "Oneiro"]
+        },
+        "after": {
+          "all": ["Nea", "Palaia", "Megale", "Mikra", "tou Theou", "ton Hagion", "tou Kastrou", "Anatolike", "Dytike", "Prote"],
+          "fair": ["ton Rhodon", "tes Eirenes", "Kale", "tou Heliou", "ton Anthon"],
+          "homely": ["tou Emporiou", "ton Mylon", "tes Agoras", "ton Poimenon", "tou Chorou"],
+          "stately": ["Basilike", "Sebaste", "tou Despotou", "ton Archonton", "Porphyra"],
+          "grim": ["ton Nekron", "tou Thanatou", "Mavre", "ton Lykon", "tou Haimatos"],
+          "eerie": ["tes Selenes", "ton Magon", "tes Nyktos", "ton Oneiron", "tes Hekates"]
+        }
+      }
+    },
+    {
+      "id": "german",
+      "code": "DE",
+      "name": {"it": "tedesco", "en": "German"},
+      "aliases": ["tedesco", "german", "deutsch"],
+      "roots": {
+        "start": {
+          "all": ["Alt", "Brau", "Dorn", "Eichen", "Falken", "Grün", "Hagen", "Hohen", "Kirch", "Linden", "Mühl", "Neu", "Ober", "Rosen", "Schön", "Stein", "Tann", "Unter", "Wald", "Weiß", "Wolfs", "Eisen", "Bären", "Hirsch", "Adler", "Birken", "Buchen", "Erlen", "Fichten", "Heiden"],
+          "fair": ["Blumen", "Sonnen", "Lilien", "Lerchen", "Wiesen", "Glück", "Gold", "Licht", "Herz", "Mai", "Apfel", "Frieden"],
+          "homely": ["Bauern", "Korn", "Hafer", "Gersten", "Ochsen", "Schaf", "Bier", "Brot", "Salz", "Holz", "Flachs", "Hopfen"],
+          "stately": ["Königs", "Kaisers", "Fürsten", "Grafen", "Herren", "Bischofs", "Ritter", "Kron", "Reichen", "Ehren", "Hoch", "Burg"],
+          "grim": ["Schwarz", "Toten", "Blut", "Raben", "Galgen", "Teufels", "Finster", "Drachen", "Grimm", "Mord", "Krähen", "Henker"],
+          "eerie": ["Hexen", "Nebel", "Mond", "Alben", "Geister", "Irr", "Zauber", "Nacht", "Kobold", "Elfen", "Druden", "Schatten"]
+        },
+        "middle": {
+          "all": ["en", "er", "s", "es", "el", "ing", "ling", "ach", "au", "ers", "eck", "in", "berg", "burg", "bach", "stein", "tal", "feld", "wald", "hof", "dorf", "brück", "heim", "brunn", "see"]
+        },
+        "end": {
+          "all": ["burg", "berg", "heim", "stadt", "dorf", "feld", "hausen", "stein", "tal", "bach", "au", "brück", "furt", "hof", "rode", "wald", "kirchen", "brunn", "hagen", "ingen", "lingen", "born", "weiler", "see", "eck", "bruck", "haus", "werth", "holz", "leben"],
+          "fair": ["wiese", "garten", "quell", "lust", "ruh", "grund", "hain", "mai"],
+          "homely": ["mühle", "markt", "hufen", "scheuer", "krug", "anger", "stätt", "kotten"],
+          "stately": ["pfalz", "fels", "schloss", "krone", "münster", "stift", "thron", "residenz"],
+          "grim": ["grab", "galgen", "moor", "schlucht", "fall", "turm", "graben", "acker"],
+          "eerie": ["nebel", "schatten", "grotte", "moos", "ried", "zauber", "spuk", "irrlicht"]
+        },
+        "word": {
+          "all": ["Alt", "Neu", "Ober", "Nieder", "Groß", "Klein", "Hohen", "Unter", "Mittel", "Bad"],
+          "fair": ["Sankt", "Maria", "Grün", "Schön", "Frohen"],
+          "homely": ["Markt", "Dorf", "Mühl", "Bauern", "Kirch"],
+          "stately": ["Freie Stadt", "Kaiser", "Burg", "Fürsten", "Reichs-"],
+          "grim": ["Schwarz", "Toten", "Raben", "Wüsten", "Finster"],
+          "eerie": ["Hexen", "Nebel", "Mond", "Irr", "Geister"]
+        },
+        "after": {
+          "all": ["am Berg", "im Tal", "am Bach", "an der Au", "im Grund", "am Hang", "auf der Höhe", "im Feld", "am Wald", "vor dem Tor"],
+          "fair": ["im Blumengrund", "am Sonnenhang", "in der Wiese", "am Lindenquell", "im Rosental"],
+          "homely": ["an der Mühle", "am Markt", "beim Krug", "am Anger", "im Dorf"],
+          "stately": ["an der Pfalz", "am Schloss", "zum Kaiser", "bei der Burg", "am Dom"],
+          "grim": ["am Galgen", "im Moor", "am Totenacker", "im Graben", "am Rabenstein"],
+          "eerie": ["im Nebel", "am Hexentanz", "im Mondschein", "am Irrlicht", "im Schatten"]
+        }
+      }
+    },
+    {
+      "id": "french",
+      "code": "FR",
+      "name": {"it": "francese", "en": "French"},
+      "aliases": ["francese", "french", "français", "francais"],
+      "roots": {
+        "start": {
+          "all": ["Mont", "Beau", "Bel", "Roche", "Clair", "Ver", "Font", "Char", "Mar", "Bour", "Chan", "Coul", "Dam", "Gran", "Join", "Lan", "Riche", "Sau", "Tour", "Val", "Vau", "Ville", "Chenon", "Bré", "Cour", "Cler", "Aub", "Lor", "Bois", "Neuf"],
+          "fair": ["Fleur", "Bonne", "Doux", "Rose", "Lys", "Joli", "Sol", "Belle", "Pré", "Mai", "Aube", "Vign"],
+          "homely": ["Moul", "Four", "Grange", "Champ", "Blé", "Pomme", "Vach", "Chèvre", "Marc", "Pont", "Foin", "Cerise"],
+          "stately": ["Roy", "Prince", "Duc", "Comte", "Baron", "Lion", "Aigle", "Haut", "Grand", "Châtel", "Noble", "Sire"],
+          "grim": ["Mal", "Noir", "Mort", "Sang", "Corb", "Loup", "Fer", "Gib", "Brûl", "Fos", "Ronce", "Deuil"],
+          "eerie": ["Brume", "Lune", "Sorc", "Fée", "Ombre", "Givre", "Song", "Lutin", "Mélus", "Nuit", "Hibou", "Glas"]
+        },
+        "middle": {
+          "all": ["e", "é", "i", "on", "an", "er", "el", "ain", "au", "ier", "ec", "ol", "ar", "ant", "eu", "ois", "ille", "ign", "onne", "ard", "et", "ot", "in", "ac", "ais"]
+        },
+        "end": {
+          "all": ["ville", "court", "mont", "fort", "ac", "ières", "y", "ay", "eux", "bourg", "val", "lieu", "ange", "oux", "ignac", "champ", "fontaine", "roche", "bois", "pré", "mesnil", "neuve", "vaux", "ence", "ine", "ard", "ette", "eil", "on", "ais"],
+          "fair": ["fleur", "joie", "belle", "lys", "rose", "doux", "aube", "clair"],
+          "homely": ["moulin", "grange", "ferme", "marché", "pont", "four", "champs", "clos"],
+          "stately": ["château", "royal", "couronne", "palais", "abbaye", "haute", "sire", "dôme"],
+          "grim": ["gibet", "noir", "mort", "sang", "fosse", "loup", "croix", "ronce"],
+          "eerie": ["brume", "lune", "fée", "ombre", "sort", "songe", "givre", "nuit"]
+        },
+        "word": {
+          "all": ["Saint-", "Sainte-", "La", "Le", "Mont-", "Val-", "Pont-", "Bourg-", "Les", "Château-"],
+          "fair": ["Belle-", "Bonne-", "Douce-", "Joyeuse-", "Clair-"],
+          "homely": ["Moulin-", "Grange-", "Champ-", "Four-", "Clos-"],
+          "stately": ["Haut-", "Grand-", "Fort-", "Châtel-", "Royal-"],
+          "grim": ["Mal-", "Noir-", "Mort-", "Croix-", "Fosse-"],
+          "eerie": ["Brume-", "Lune-", "Ombre-", "Fée-", "Nuit-"]
+        },
+        "after": {
+          "all": ["-le-Grand", "-le-Petit", "-le-Vieux", "-la-Neuve", "-en-Val", "-aux-Bois", "-les-Bains", "-sous-Roche", "-le-Haut", "-le-Bas"],
+          "fair": ["-les-Roses", "-aux-Fleurs", "-la-Belle", "-en-Pré", "-le-Doux"],
+          "homely": ["-aux-Moulins", "-le-Marché", "-les-Champs", "-aux-Granges", "-la-Ferme"],
+          "stately": ["-le-Royal", "-le-Château", "-l'Abbaye", "-la-Comtesse", "-le-Duc"],
+          "grim": ["-le-Noir", "-aux-Loups", "-les-Croix", "-la-Morte", "-aux-Corbeaux"],
+          "eerie": ["-aux-Fées", "-la-Brume", "-sous-Lune", "-les-Ombres", "-aux-Songes"]
+        }
+      }
+    },
+    {
+      "id": "norse",
+      "code": "NO",
+      "name": {"it": "danese e svedese", "en": "Danish and Swedish"},
+      "aliases": ["danese", "svedese", "danish", "swedish", "nordico", "nordic", "scandinavo", "scandinavian"],
+      "roots": {
+        "start": {
+          "all": ["Ask", "Björk", "Frey", "Ravn", "Sol", "Hel", "Ny", "Hval", "Gul", "Rød", "Stor", "Lille", "Öster", "Väs", "Nor", "Søn", "Hede", "Kvarn", "Sten", "Ek", "Gran", "Hav", "Ulv", "Ting", "Odens", "Tors", "Hjort", "Svan", "Ring", "Ål"],
+          "fair": ["Blom", "Lys", "Sommer", "Rosen", "Lind", "Lærke", "Freja", "Honning", "Gylden", "Ljung", "Äng", "Solv"],
+          "homely": ["Bonde", "Korn", "Mølle", "Ko", "Får", "Smeds", "Bryg", "Havre", "Fisk", "Salt", "Torv", "Lin"],
+          "stately": ["Kongs", "Dronning", "Jarls", "Herre", "Riks", "Kron", "Prins", "Hertigs", "Biskops", "Ärke", "Adels", "Höga"],
+          "grim": ["Svart", "Död", "Blod", "Varg", "Drak", "Grim", "Kråk", "Galge", "Mörk", "Järn", "Orm", "Bål"],
+          "eerie": ["Troll", "Alf", "Häx", "Dimm", "Måne", "Skugg", "Nisse", "Vätte", "Rune", "Seid", "Mylling", "Draug"]
+        },
+        "middle": {
+          "all": ["s", "e", "a", "en", "er", "ing", "es", "by", "sted", "vik", "holm", "lund", "berg", "borg", "dal", "å", "ø", "strand", "mark", "ås", "sund", "næs", "rup", "tofte", "bro"]
+        },
+        "end": {
+          "all": ["by", "borg", "holm", "köping", "vik", "stad", "sund", "havn", "lund", "torp", "rup", "sted", "løv", "bro", "dal", "berg", "ås", "näs", "fors", "hamn", "ø", "å", "mark", "strand", "hus", "gård", "red", "skov", "bæk", "inge"],
+          "fair": ["blomst", "lys", "vang", "äng", "lind", "glad", "sol", "rosen"],
+          "homely": ["mølle", "bonde", "toft", "lycke", "kvarn", "fiske", "stuga", "hage"],
+          "stately": ["slot", "hall", "ting", "kron", "sal", "jarl", "riket", "hov"],
+          "grim": ["grav", "hög", "mose", "galge", "død", "kärr", "skär", "øde"],
+          "eerie": ["troll", "dimma", "alv", "skugga", "måne", "häxa", "høj", "runa"]
+        },
+        "word": {
+          "all": ["Gamla", "Nya", "Store", "Lille", "Øster", "Vester", "Nørre", "Søndre", "Övre", "Nedre"],
+          "fair": ["Blom", "Ljusa", "Gyllene", "Gröna", "Sommar"],
+          "homely": ["Kvarn", "Torp", "Bonde", "Fiske", "Kirke"],
+          "stately": ["Kongens", "Dronningens", "Jarlens", "Kungs", "Biskops"],
+          "grim": ["Svarta", "Döda", "Ulve", "Galge", "Draka"],
+          "eerie": ["Troll", "Dimma", "Alv", "Häxe", "Måne"]
+        },
+        "after": {
+          "all": ["Norr", "Söder", "Öster", "Väster", "Strand", "Bro", "Gamle", "By", "Kirkeby", "Sogn"],
+          "fair": ["i Lunden", "Sommerlyst", "Blomstervang", "i Ängen", "Solgård"],
+          "homely": ["Mølle", "Bondeby", "Fiskerleje", "Kvarn", "Torv"],
+          "stately": ["Slot", "Kongsgård", "Hall", "Ting", "Kloster"],
+          "grim": ["Galgebakke", "Mose", "Grav", "Kärr", "Ødegård"],
+          "eerie": ["Trollskog", "Alvhög", "Dimmadal", "Måneskær", "Häxeberg"]
+        }
+      }
+    },
+    {
+      "id": "slavic",
+      "code": "RU",
+      "name": {"it": "russo e baltico", "en": "Russian and Baltic"},
+      "aliases": ["russo", "baltico", "russian", "baltic", "slavo", "slavic"],
+      "roots": {
+        "start": {
+          "all": ["Nov", "Bel", "Chern", "Volk", "Zlat", "Vel", "Kras", "Gor", "Yar", "Sver", "Vlad", "Rus", "Pol", "Tver", "Smol", "Kalin", "Viln", "Kaun", "Ryaz", "Mozh", "Tor", "Dub", "Lip", "Bor", "Lug", "Vys", "Stav", "Kol", "Rad", "Zven"],
+          "fair": ["Svet", "Lyub", "Mir", "Ros", "Ves", "Lad", "Dobr", "Sol", "Zor", "Laim", "Saul", "Medu"],
+          "homely": ["Mel", "Pas", "Med", "Ryb", "Kov", "Gonch", "Sel", "Derev", "Pshen", "Ovs", "Les", "Rzh"],
+          "stately": ["Tsar", "Knyaz", "Bogat", "Slav", "Vladim", "Kreml", "Velik", "Sviat", "Gedim", "Vytaut", "Kral", "Gosud"],
+          "grim": ["Mor", "Smert", "Krov", "Voron", "Volch", "Mrak", "Kost", "Grob", "Zmei", "Bes", "Tem", "Lyut"],
+          "eerie": ["Ved", "Lesh", "Rusal", "Kosch", "Domov", "Yag", "Mes", "Upyr", "Nav", "Veln", "Perkun", "Laum"]
+        },
+        "middle": {
+          "all": ["o", "e", "a", "i", "ov", "ev", "in", "an", "en", "ol", "ar", "el", "om", "osh", "ich", "ush", "av", "ets", "ky", "ny", "ra", "li", "to", "it", "izh"]
+        },
+        "end": {
+          "all": ["grad", "gorod", "sk", "ovo", "ino", "evo", "ava", "iai", "pils", "ai", "ets", "ye", "ka", "ov", "in", "oye", "itsa", "yazh", "ichi", "any", "ovka", "evka", "slav", "mir", "ny", "ica", "uva", "ena", "kalnis", "ciems"],
+          "fair": ["sveta", "lada", "zorya", "saule", "laima", "rosa", "polye", "dar"],
+          "homely": ["selo", "melnitsa", "pole", "kuznya", "rybnoye", "lugi", "dvor", "muiza"],
+          "stately": ["kreml", "knyazh", "slavl", "tsarev", "stol", "bogat", "dvorets", "sobor"],
+          "grim": ["mogila", "krov", "smert", "mrak", "kost", "voron", "boloto", "zmei"],
+          "eerie": ["ved", "leshy", "rusalka", "koshchei", "navi", "yaga", "laume", "velnias"]
+        },
+        "word": {
+          "all": ["Novy", "Stary", "Veliky", "Maly", "Verkhny", "Nizhny", "Krasny", "Sviaty", "Bolshoy", "Dolny"],
+          "fair": ["Svetly", "Zolotoy", "Laimes", "Saules", "Tikhy"],
+          "homely": ["Selo", "Pogost", "Sloboda", "Posad", "Khutor"],
+          "stately": ["Tsarskoye", "Knyazhy", "Bogaty", "Slavny", "Gedimino"],
+          "grim": ["Cherny", "Mertvy", "Volchy", "Kostyanoy", "Krovavy"],
+          "eerie": ["Ved'min", "Leshy", "Navy", "Rusalchy", "Lunny"]
+        },
+        "after": {
+          "all": ["na Gore", "pod Lesom", "Novaya", "Staraya", "Velikaya", "Malaya", "za Rekoy", "na Brodu", "Posad", "Sloboda"],
+          "fair": ["Svetlaya", "na Lugu", "Zolotaya", "u Rodnika", "Laimes"],
+          "homely": ["na Torgu", "u Melnitsy", "Kuznechnaya", "Rybatskaya", "Pogost"],
+          "stately": ["Tsarskaya", "Knyazhaya", "Sviataya", "Slavnaya", "Bogataya"],
+          "grim": ["Chernaya", "Mertvaya", "na Krovi", "pod Voronom", "Volchya"],
+          "eerie": ["u Navi", "Ved'mina", "Leshaya", "Rusalchya", "pod Lunoy"]
+        }
+      }
+    },
+    {
+      "id": "mixed",
+      "code": "MX",
+      "name": {"it": "mescolanza di tutte", "en": "a mix of them all"},
+      "aliases": ["misto", "mescolanza", "mix", "mixed", "tutte", "all"],
+      "mix": true
+    }
+  ]
+}

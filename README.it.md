@@ -145,7 +145,9 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - **tipo** (villaggio, paese, città, grande città, castello, fortezza) e **numero di abitanti**;
    - **epoca** (alto medioevo, basso medioevo, Rinascimento);
    - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago);
-   - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre).
+   - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre);
+   - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
+   - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi)).
 4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero.
 5. **Simboli**: quelli di WyrmDelve (`▓ █ ≈ ♣ ╔═╗`) oppure **solo i caratteri della tastiera**, come in WyrmHex.
 6. **Nome sulla mappa**: quello generato, uno tuo, oppure nessuno.
@@ -156,7 +158,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
 
 ## 4. Il seme
 
-Ogni insediamento ha un **seme**, come `C9500-B-R-A2-K7Q2MB`: tipo e abitanti, epoca, terreno, scopo e pericolo, codice.
+Ogni insediamento ha un **seme**, come `C9500-B-R-A2-DE4-K7Q2MB`: tipo e abitanti, epoca, terreno, scopo e pericolo, nomi e tono, codice.
 
 | Parte | Valori |
 |---|---|
@@ -164,8 +166,21 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2-K7Q2MB`: tipo e abitanti, e
 | Epoca | `A` alto medioevo, `B` basso medioevo, `R` Rinascimento |
 | Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago |
 | Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo |
+| Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano |
 
-**Lo stesso seme dà sempre lo stesso insediamento**: mappa, abitanti, mostri e tesori. Il seme è anche il nome della cartella dentro `settlements_generated`.
+**Lo stesso seme dà sempre lo stesso insediamento**: mappa, abitanti, mostri e tesori. Il seme è anche il nome della cartella dentro `settlements_generated`. I semi delle versioni precedenti, senza la parte dei nomi (come `C9500-B-R-A2-K7Q2MB`), funzionano ancora e danno lo stesso insediamento di prima, con i suoi nomi italiani medievali.
+
+### I nomi dei luoghi
+
+I nomi dell'insediamento, del dungeon vicino e delle botteghe che portano il nome di un luogo sono fatti con le **radici** di `data/names.json`: per ogni lingua, sillabe ed elementi per l'inizio, il mezzo e la fine di una parola, più parole intere che vanno prima (*Saint-*, *Borgo*, *Dar al-*) e dopo (*-le-Grand*, *Magna*, *am Berg*). Ogni tono ha radici sue, mescolate a quelle comuni. Ogni lingua con ogni tono dà **da 11 a 14 milioni di nomi**; la mescolanza di tutte, centinaia di miliardi.
+
+| Tono | | Tedesco | Inglese antico |
+|---|---|---|---|
+| luminoso | gentile, fiorito, accogliente | Lerchenruh, Apfelsee am Lindenquell | Rosemead, Leofhaven |
+| rustico | di campagna e di mercato, quotidiano | Hopfenhufen, Salzkotten | Millworth, Elmmill Common |
+| solenne | nobile, regale, maestoso | Königsfurt, Fürstenstift | Kingcastle Regis, Abbotsgate |
+| cupo | duro, oscuro, di guerra e di morte | Finstergraben, Teufelsgrab | Slaughtergrave, Crowgrave Holt |
+| arcano | misterioso, stregato, fatato | Mondspuk, Eichennebel | Elffell, Thurscott |
 
 ## 5. I file che ottieni
 
@@ -173,11 +188,11 @@ Tutto va in `settlements_generated/<seme>/`:
 
 | File | Cosa contiene |
 |---|---|
-| `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, postierle segrete `$`, galleria segreta `░` |
-| `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa senza numeri e senza segreti |
+| `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, l'**elenco degli edifici** (numero e nome), postierle segrete `$`, galleria segreta `░`, e una riga **Segreti** (il covo dei ladri, il covo della minaccia, dove comincia la galleria) |
+| `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa, con i numeri e l'elenco degli edifici, senza i segreti |
 | `.txt` accanto a ogni mappa | la mappa come testo, solo caratteri della tastiera |
 | `<seme>_key.txt` | la **chiave**: storia, minaccia, governo e fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
-| `<seme>_book.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
+| `<seme>_key.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
 
 ### Simboli
 
@@ -205,6 +220,8 @@ Tutto va in `settlements_generated/<seme>/`:
 | `∴` | `*` | macerie |
 | `$` | `$` | postierla segreta (solo arbitro) |
 
+**L'elenco degli edifici** va accanto alla mappa o sotto, dove la mappa viene stampata con i caratteri più grandi sul formato che hai scelto (o su quello consigliato): di solito accanto, sotto per le mappe lunghe e basse.
+
 **Scala.** In fondo alla legenda c'è una scala grafica. Le lettere sono alte il doppio di quanto sono larghe: una riga di caratteri vale il doppio di una colonna, e la chiave dice quanti metri (o piedi) vale una riga.
 
 ## 6. Per chi ha fretta: le opzioni
@@ -212,7 +229,8 @@ Tutto va in `settlements_generated/<seme>/`:
 ```
 python wyrmurbigen.py --tipo citta --epoca basso --terreno fiume --scopo avventura --pericolo 2
 python wyrmurbigen.py --popolazione 30000 --epoca rinascimento --terreno costa --pdf-unico
-python wyrmurbigen.py --seme C9500-B-R-A2-K7Q2MB --formato A3 --solo-ascii
+python wyrmurbigen.py --nomi gaelico --tono arcano --tipo castello
+python wyrmurbigen.py --seme C9500-B-R-A2-DE4-K7Q2MB --formato A3 --solo-ascii
 python wyrmurbigen.py --language en --type castle --purpose rest --png
 ```
 
@@ -225,6 +243,8 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--terreno` / `--terrain` | `pianura`, `collina`, `montagna`, `foresta`, `palude`, `costa`, `fiume`, `lago` |
 | `--scopo` / `--purpose` | `riposo` o `avventura` |
 | `--pericolo` / `--danger` | da 1 a 4 (solo luogo d'avventura) |
+| `--nomi` / `--names` | `italiano`, `antico`, `rinascimentale`, `gaelico`, `tolkien`, `persiano`, `bizantino`, `tedesco`, `francese`, `danese`, `russo`, `misto` (o da 1 a 12) |
+| `--tono` / `--tone` | `luminoso`, `rustico`, `solenne`, `cupo`, `arcano` (o da 1 a 5) |
 | `--seme` / `--seed` | rifà l'insediamento di quel seme |
 | `--colori` / `--colors` | 1 nero su bianco, 2 bianco su celeste, 3 bianco su nero |
 | `--formato` / `--format` | `A4`, `A3`, `A2`, `A1` |
@@ -244,7 +264,8 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 
 | File | Cosa contiene |
 |---|---|
-| `settlements.json` | tipi di insediamento, epoche, terreni, nomi di luoghi, santi, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci |
+| `names.json` | le radici dei nomi dei luoghi: lingue, toni e come si compone un nome |
+| `settlements.json` | tipi di insediamento, epoche, terreni, santi, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci |
 | `buildings.json` | gli edifici: nome, tipi ed epoche in cui compaiono, quanti (`sv`: uno ogni tanti abitanti; oppure `count`), dimensioni, pietra o legno, dove stanno (piazza, strada maestra, porta, mura, fiume, fuori), chi ci vive, servizi e prezzi, descrizioni |
 | `people.json` | nomi, famiglie, mestieri, caratteri, desideri, segreti, governanti, fazioni, classi, incantesimi, mercenari |
 | `demographics.json` | i numeri di *Medieval Demographics Made Easy* |
