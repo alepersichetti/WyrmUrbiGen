@@ -301,6 +301,8 @@ TEXTS = {
     "lg_door": ("porta", "door"),
     "lg_number": ("numero dell'edificio", "building number"),
     "lg_buildings": ("Edifici", "Buildings"),
+    "bolpo": ("Bolpo ama Pisa", "Bolpo loves Pisa"),
+    "bolpo_again": ("Bolpo ama ancora Pisa", "Bolpo still loves Pisa"),
     "info_index_side": ("Elenco degli edifici accanto alla mappa: così i caratteri sono più grandi",
                         "Building list beside the map: the letters come out bigger"),
     "info_index_under": ("Elenco degli edifici sotto la mappa: così i caratteri sono più grandi",
@@ -3688,7 +3690,7 @@ class Layout:
     """Title, subtitle, the map, the legend and the building index (number -
     place, in columns): the page in letters."""
 
-    def __init__(self, panel, legend, title, subtitle, index=(), secrets=(), side=False):
+    def __init__(self, panel, legend, title, subtitle, index=(), secrets=(), side=False, motto=None):
         self.panel = panel
         self.index, self.index_rows, self.side = list(index), [], side and bool(index)
         if self.index:
@@ -3711,9 +3713,9 @@ class Layout:
         # the referee's secrets, one line or more under the legend
         notes = [[(tr("ix_secrets"), "b")]] + [[(t, "n")] for t in secrets] if secrets else []
         self.secrets = pack_legend(notes, inner)
-        self.title, self.subtitle = title, subtitle
+        self.title, self.subtitle, self.motto = title, subtitle, motto
         self.cols = inner + 4
-        self.top = 4 if title else 3
+        self.top = (4 if title else 3) + (1 if motto else 0)
         self.panel_x = (self.cols - panel.width - block) // 2
         self.rows = (self.top + 1 + max(panel.height, len(self.index_rows) + 2 if self.side else 0) + 1
                      + len(self.legend) + 1 + (2 + len(self.index_rows) + 1 if self.index_rows and not self.side else 0)
@@ -3725,6 +3727,8 @@ def compose_page(layout):
     t, s = layout.title, layout.subtitle
     if t:
         page.write((layout.cols - len(t)) // 2, 1, t, "b")
+    if layout.motto:
+        page.write((layout.cols - len(layout.motto)) // 2, layout.top - 3, layout.motto)
     page.write((layout.cols - len(s)) // 2, layout.top - 2, s)
     page.paste(layout.panel, layout.panel_x, layout.top)
     y = layout.top + max(layout.panel.height, len(layout.index_rows) + 2 if layout.side else 0) + 1
@@ -4315,6 +4319,10 @@ def write_pdf(blocks, path, settings, maps=()):
             pdf.set_font("gothic", "", 30)
             pdf.multi_cell(0, 13, block[1] or PROGRAM, align="C", new_x="LMARGIN", new_y="NEXT")
             pdf.ln(2)
+        elif kind == "motto":
+            pdf.set_font("crimson", "I", 15)
+            pdf.multi_cell(0, 7, block[1], align="C", new_x="LMARGIN", new_y="NEXT")
+            pdf.ln(2)
         elif kind == "meta":
             pdf.set_font("crimson", "I", 11)
             pdf.multi_cell(0, 5.5, block[1], align="C", new_x="LMARGIN", new_y="NEXT")
@@ -4855,6 +4863,16 @@ def main():
     if problem:
         log.error(problem)
     folder = os.path.join(p["output"], seed)
+    # easter egg: a settlement the user names Pisa gets a subtitle, and a
+    # fonder one when the same seed was already printed as Pisa
+    motto = None
+    if (p["title"] or "").strip().casefold() == "pisa":
+        try:
+            with open(os.path.join(folder, f"{seed}_key.txt"), encoding="utf-8") as f:
+                again = f.readline().strip().casefold().endswith("— pisa")
+        except OSError:
+            again = False
+        motto = tr("bolpo_again" if again else "bolpo")
     os.makedirs(folder, exist_ok=True)
     log.info(tr("info_folder", folder=short_path(folder)))
     font_spec, bold_spec = find_font(p["font"])
@@ -4892,7 +4910,7 @@ def main():
         """The referee's map has the secrets, on the map and in the building
         index; the players' map has numbers and index, but no secrets."""
         return Layout(map_canvas(plan, True, G, secrets=referee), legend_entries(plan, p, True, G, units, referee),
-                      title, subtitle, building_index(s), building_secrets(s) if referee else (), side)
+                      title, subtitle, building_index(s), building_secrets(s) if referee else (), side, motto)
     # the building index goes under the map or beside it, whichever prints
     # the map bigger on the paper
     paper, char_mm, orientation, ref_layout = ask_paper([page_layout(G, True, title, side) for side in (False, True)],
@@ -4938,6 +4956,8 @@ def main():
 
     log.step(tr("step_key"))
     blocks = key_blocks(s, title, units, content)
+    if motto:
+        blocks.insert(1, ("motto", motto))     # in the PDF file only: write_key skips it
     write_key(blocks, f"{base}_key.txt")
     log.info(tr("saved_key", a=short_path(f"{base}_key.txt")))
     if not problem:
