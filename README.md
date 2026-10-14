@@ -188,8 +188,8 @@ Everything goes into `settlements_generated/<seed>/`:
 
 | File | What it holds |
 |---|---|
-| `<seed>_referee.png` (or `.pdf`) | the **referee's map**: building numbers, secret posterns `$`, secret tunnel `░` |
-| `<seed>_players.png` (or `.pdf`) | the **players' map**: the same map without numbers and without secrets |
+| `<seed>_referee.png` (or `.pdf`) | the **referee's map**: building numbers, the list of the **buildings** (number and name), secret posterns `$`, secret tunnel `░`, and a **Secrets** line (the thieves' hideout, the threat's lair, where the tunnel starts) |
+| `<seed>_players.png` (or `.pdf`) | the **players' map**: the same map, numbers and list of buildings, without the secrets |
 | `.txt` next to every map | the map as text, keyboard characters only |
 | `<seed>_key.txt` | the **key**: history, threat, government and factions, demographics, economy, services and mercenaries, rumours and events, walls and gates, and every building with its inhabitant |
 | `<seed>_key.pdf` | the same key as an **A4 book** (headings in Sebaldus-Gotisch, text in Crimson Text); with the **single PDF** option it also holds the two maps |
@@ -219,6 +219,8 @@ Everything goes into `settlements_generated/<seed>/`:
 | `○` `Θ` `π` | `o` `O` `h` | well, fountain, market stall |
 | `∴` | `*` | rubble |
 | `$` | `$` | secret postern (referee only) |
+
+**The list of buildings** goes beside the map or under it, whichever prints the map with bigger letters on the paper you chose (or on the suggested one): usually beside it, under it for long, low maps.
 
 **Scale.** At the bottom of the legend there is a scale bar. Letters are twice as tall as they are wide: a row of letters is worth twice a column, and the key says how many metres (or feet) a row is worth.
 

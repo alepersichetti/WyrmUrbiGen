@@ -188,8 +188,8 @@ Tutto va in `settlements_generated/<seme>/`:
 
 | File | Cosa contiene |
 |---|---|
-| `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, postierle segrete `$`, galleria segreta `░` |
-| `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa senza numeri e senza segreti |
+| `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, l'**elenco degli edifici** (numero e nome), postierle segrete `$`, galleria segreta `░`, e una riga **Segreti** (il covo dei ladri, il covo della minaccia, dove comincia la galleria) |
+| `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa, con i numeri e l'elenco degli edifici, senza i segreti |
 | `.txt` accanto a ogni mappa | la mappa come testo, solo caratteri della tastiera |
 | `<seme>_key.txt` | la **chiave**: storia, minaccia, governo e fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
 | `<seme>_key.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
@@ -219,6 +219,8 @@ Tutto va in `settlements_generated/<seme>/`:
 | `○` `Θ` `π` | `o` `O` `h` | pozzo, fontana, banco del mercato |
 | `∴` | `*` | macerie |
 | `$` | `$` | postierla segreta (solo arbitro) |
+
+**L'elenco degli edifici** va accanto alla mappa o sotto, dove la mappa viene stampata con i caratteri più grandi sul formato che hai scelto (o su quello consigliato): di solito accanto, sotto per le mappe lunghe e basse.
 
 **Scala.** In fondo alla legenda c'è una scala grafica. Le lettere sono alte il doppio di quanto sono larghe: una riga di caratteri vale il doppio di una colonna, e la chiave dice quanti metri (o piedi) vale una riga.
 

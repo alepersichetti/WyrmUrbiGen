@@ -33,8 +33,8 @@ suggested. Three colour schemes. --ascii-only uses keyboard characters only,
 like WyrmHex; the .txt maps always do.
 
 Output goes to settlements_generated/<seed>/ next to this file (or --output):
-  <seed>_referee.png/.txt   referee's map: building numbers, secrets
-  <seed>_players.png/.txt   the same map without numbers and secrets
+  <seed>_referee.png/.txt   referee's map: building numbers and list, secrets
+  <seed>_players.png/.txt   the same map and list without the secrets
   <seed>_key.txt            the whole key as plain text
   <seed>_key.pdf            the key as an A4 PDF file (Sebaldus-Gotisch headings,
                             Crimson Text), with the referee's map inside
@@ -300,6 +300,14 @@ TEXTS = {
     "lg_wood": ("in legno o graticcio", "timber or half-timbered"),
     "lg_door": ("porta", "door"),
     "lg_number": ("numero dell'edificio", "building number"),
+    "lg_buildings": ("Edifici", "Buildings"),
+    "info_index_side": ("Elenco degli edifici accanto alla mappa: così i caratteri sono più grandi",
+                        "Building list beside the map: the letters come out bigger"),
+    "info_index_under": ("Elenco degli edifici sotto la mappa: così i caratteri sono più grandi",
+                         "Building list under the map: the letters come out bigger"),
+    "ix_lair": ("covo: {d}", "lair: {d}"),
+    "ix_tunnel": ("qui comincia la galleria segreta", "the secret tunnel starts here"),
+    "ix_secrets": ("Segreti:", "Secrets:"),
     "lg_ruin": ("macerie", "rubble"),
     "lg_wall": ("mura", "walls"),
     "lg_tower": ("torre o bastione", "tower or bastion"),
@@ -3470,8 +3478,10 @@ def ground_char(plan, x, y, G):
     return " "
 
 
-def map_canvas(plan, referee, G, labels=True):
-    """The map as letters. referee: building numbers and secrets."""
+def map_canvas(plan, referee, G, labels=True, secrets=None):
+    """The map as letters. referee: building numbers and (unless `secrets` is
+    False) the secret posterns and tunnel."""
+    secrets = referee if secrets is None else secrets
     W, H = plan.W, plan.H
     c = Canvas(W, H)
     for y in range(H):
@@ -3500,7 +3510,7 @@ def map_canvas(plan, referee, G, labels=True):
                 c.put(x, y, G(*SYMBOLS["grave"]) if x % 2 == 0 else " ")
     for b in plan.buildings:
         draw_building(c, b, G, referee and labels)
-    if referee:
+    if secrets:
         for x, y in plan.tunnel:
             if plan.bmap[y][x] < 0 and plan.cell[y][x] not in FORT:
                 c.put(x, y, G(*SYMBOLS["tunnel"]), "n")
@@ -3566,7 +3576,8 @@ def scale_bar(plan, units):
     return n, best, unit, row
 
 
-def legend_entries(plan, p, referee, G, units):
+def legend_entries(plan, p, referee, G, units, secrets=None):
+    secrets = referee if secrets is None else secrets
     used = set()
     for y in range(plan.H):
         for x in range(plan.W):
@@ -3616,14 +3627,36 @@ def legend_entries(plan, p, referee, G, units):
                             ("reed", "reed1", "lg_reed")):
         if key in used:
             out.append([(G(*SYMBOLS[sym]), "n"), (" " + tr(label), "n")])
-    if referee and plan.secret:
+    if secrets and plan.secret:
         out.append([("$", "b"), (" " + tr("lg_secret"), "n")])
-    if referee and plan.tunnel:
+    if secrets and plan.tunnel:
         out.append([(G(*SYMBOLS["tunnel"]), "n"), (" " + tr("lg_tunnel"), "n")])
     n, length, unit, row = scale_bar(plan, units)
     bar_text = G("├" + "─" * (n - 2) + "┤", "|" + "-" * (n - 2) + "|")
     out.append([(tr("lg_scale"), "b"), (" " + bar_text + f" {number(length)} {unit}", "n"),
                 (tr("lg_row", r=f"{row:.1f}".replace(".", "," if LANG == "it" else "."), u=unit), "n")])
+    return out
+
+
+def building_index(s):
+    """(number, name) of every building, as everybody sees it."""
+    return [(b.number, pick(b.title)) for b in sorted(s.plan.buildings, key=lambda b: b.number)]
+
+
+def building_secrets(s):
+    """What only the referee knows of the buildings: the thieves' hideout, the
+    threat's lair, where the secret tunnel starts."""
+    out = []
+    for b in sorted(s.plan.buildings, key=lambda b: b.number):
+        notes = []
+        if b.kind.get("secret"):
+            notes.append(pick(b.kind["secret"]))
+        if b is getattr(s, "lair", None):
+            notes.append(tr("ix_lair", d=pick(s.dwellers)))
+        if b is s.plan.tunnel_from and s.plan.tunnel:
+            notes.append(tr("ix_tunnel"))
+        if notes:
+            out.append(f"{b.number} {', '.join(notes)}")
     return out
 
 
@@ -3647,17 +3680,44 @@ def legend_width(line):
     return sum(len(t) for entry in line for t, _ in entry) + 4 * (len(line) - 1)
 
 
-class Layout:
-    """Title, subtitle, the map, the legend: the page in letters."""
+INDEX_GAP = 3           # letters between two columns of the building index
+INDEX_MAX = 40          # longest entry of the building index
 
-    def __init__(self, panel, legend, title, subtitle):
+
+class Layout:
+    """Title, subtitle, the map, the legend and the building index (number -
+    place, in columns): the page in letters."""
+
+    def __init__(self, panel, legend, title, subtitle, index=(), secrets=(), side=False):
         self.panel = panel
-        inner = max(panel.width, len(title) + 4, len(subtitle) + 4, 60)
+        self.index, self.index_rows, self.side = list(index), [], side and bool(index)
+        if self.index:
+            self.index_digits = len(str(max(n for n, _ in self.index)))
+            self.index_width = min(INDEX_MAX, max(self.index_digits + 1 + len(t) for _, t in self.index))
+        block = 0
+        if self.side:               # columns as tall as the map, beside it
+            nrows = max(1, panel.height - 2)
+            self.index_cols = -(-len(self.index) // nrows)
+            nrows = -(-len(self.index) // self.index_cols)
+            self.index_rows = [self.index[r::nrows] for r in range(nrows)]
+            block = 2 * INDEX_GAP + self.index_cols * (self.index_width + INDEX_GAP) - INDEX_GAP
+        inner = max(panel.width + block, len(title) + 4, len(subtitle) + 4, 60)
+        if self.index and not self.side:    # columns as wide as the page, under the legend
+            ncols = max(1, (inner + INDEX_GAP) // (self.index_width + INDEX_GAP))
+            nrows = -(-len(self.index) // ncols)
+            self.index_cols = -(-len(self.index) // nrows)
+            self.index_rows = [self.index[r::nrows] for r in range(nrows)]
         self.legend = pack_legend(legend, inner)
+        # the referee's secrets, one line or more under the legend
+        notes = [[(tr("ix_secrets"), "b")]] + [[(t, "n")] for t in secrets] if secrets else []
+        self.secrets = pack_legend(notes, inner)
         self.title, self.subtitle = title, subtitle
         self.cols = inner + 4
         self.top = 4 if title else 3
-        self.rows = self.top + 1 + panel.height + 1 + len(self.legend) + 1
+        self.panel_x = (self.cols - panel.width - block) // 2
+        self.rows = (self.top + 1 + max(panel.height, len(self.index_rows) + 2 if self.side else 0) + 1
+                     + len(self.legend) + 1 + (2 + len(self.index_rows) + 1 if self.index_rows and not self.side else 0)
+                     + len(self.secrets) + (1 if self.secrets else 0))
 
 
 def compose_page(layout):
@@ -3666,9 +3726,36 @@ def compose_page(layout):
     if t:
         page.write((layout.cols - len(t)) // 2, 1, t, "b")
     page.write((layout.cols - len(s)) // 2, layout.top - 2, s)
-    page.paste(layout.panel, (layout.cols - layout.panel.width) // 2, layout.top)
-    y = layout.top + layout.panel.height + 1
+    page.paste(layout.panel, layout.panel_x, layout.top)
+    y = layout.top + max(layout.panel.height, len(layout.index_rows) + 2 if layout.side else 0) + 1
     for line in layout.legend:
+        x = (layout.cols - legend_width(line)) // 2
+        for n, entry in enumerate(line):
+            if n:
+                x += 4
+            for text, style in entry:
+                page.write(x, y, text, style)
+                x += len(text)
+        y += 1
+    if layout.index_rows:
+        width, digits = layout.index_width, layout.index_digits
+        block = layout.index_cols * (width + INDEX_GAP) - INDEX_GAP
+        if layout.side:
+            x0, y0 = layout.panel_x + layout.panel.width + 2 * INDEX_GAP, layout.top
+        else:
+            x0, y0 = (layout.cols - block) // 2, y + 1
+        head = tr("lg_buildings")
+        page.write(x0 + (block - len(head)) // 2 if not layout.side else x0, y0, head, "b")
+        for r, row in enumerate(layout.index_rows):
+            for k, (n, title) in enumerate(row):
+                x = x0 + k * (width + INDEX_GAP)
+                room = width - digits - 1
+                text = title if len(title) <= room else title[:room - 1].rstrip() + "."
+                page.write(x, y0 + 2 + r, f"{n:>{digits}}", "b")
+                page.write(x + digits + 1, y0 + 2 + r, text)
+        if not layout.side:
+            y = y0 + 2 + len(layout.index_rows) + 1
+    for line in layout.secrets:
         x = (layout.cols - legend_width(line)) // 2
         for n, entry in enumerate(line):
             if n:
@@ -3706,8 +3793,14 @@ def fit(layout, paper, aspect):
     return best
 
 
-def suggest_paper(layout, aspect):
-    options = {paper: fit(layout, paper, aspect) for paper in PAPERS}
+def best_fit(layouts, paper, aspect):
+    """The layout that gives the biggest letters on a paper (the first one if
+    they tie): (char_mm, fill, orientation, layout)."""
+    return max((fit(layout, paper, aspect) + (layout,) for layout in layouts), key=lambda option: option[0])
+
+
+def suggest_paper(layouts, aspect):
+    options = {paper: best_fit(layouts, paper, aspect) for paper in PAPERS}
     readable = [p for p in PAPERS if options[p][0] >= GOOD_CHAR_MM]
     return (readable[0] if readable else list(PAPERS)[-1]), options
 
@@ -3716,10 +3809,14 @@ def verdict(char_mm):
     return tr("v_too_small") if char_mm < SMALL_CHAR_MM else tr("v_small") if char_mm < GOOD_CHAR_MM else tr("v_good")
 
 
-def ask_paper(layout, aspect, wanted, ask_user, log):
-    suggested, options = suggest_paper(layout, aspect)
-    log.info(tr("info_paper_intro", nc=layout.cols, nr=layout.rows))
-    for paper, (char_mm, _, orientation) in options.items():
+def ask_paper(layouts, aspect, wanted, ask_user, log):
+    """The paper, the letter size, the orientation and the layout: of the
+    `layouts` (the building index under or beside the map), on every paper
+    the one with the biggest letters."""
+    suggested, options = suggest_paper(layouts, aspect)
+    panel = layouts[0].panel
+    log.info(tr("info_paper_intro", nc=panel.width, nr=panel.height))
+    for paper, (char_mm, _, orientation, _) in options.items():
         note = tr("suggested") if paper == suggested else ""
         log.info(tr("info_paper_option", paper=paper, o=tr("orientation_" + orientation), mm=char_mm,
                     v=verdict(char_mm), note=note))
@@ -3740,8 +3837,8 @@ def ask_paper(layout, aspect, wanted, ask_user, log):
                 default = answer
                 break
             print(tr("paper_retry"))
-    char_mm, _, orientation = options[default]
-    return default, char_mm, orientation
+    char_mm, _, orientation, layout = options[default]
+    return default, char_mm, orientation, layout
 
 
 # --- rendering and saving ---
@@ -4790,8 +4887,18 @@ def main():
     plain = Glyphs(None, True)
     subtitle = tr("subtitle", seed=seed, t=capitalized(type_name(p["type"])), e=pick(ERA[p["era"]]["name"]),
                   n=number(p["pop"]), b=len(plan.buildings))
-    ref_layout = Layout(map_canvas(plan, True, G), legend_entries(plan, p, True, G, units), title, subtitle)
-    paper, char_mm, orientation = ask_paper(ref_layout, aspect, p["paper"], p.pop("ask_paper", False), log)
+
+    def page_layout(G, referee, title, side):
+        """The referee's map has the secrets, on the map and in the building
+        index; the players' map has numbers and index, but no secrets."""
+        return Layout(map_canvas(plan, True, G, secrets=referee), legend_entries(plan, p, True, G, units, referee),
+                      title, subtitle, building_index(s), building_secrets(s) if referee else (), side)
+    # the building index goes under the map or beside it, whichever prints
+    # the map bigger on the paper
+    paper, char_mm, orientation, ref_layout = ask_paper([page_layout(G, True, title, side) for side in (False, True)],
+                                                        aspect, p["paper"], p.pop("ask_paper", False), log)
+    side = ref_layout.side
+    log.info(tr("info_index_side" if side else "info_index_under"))
     files = p["files"] or (ask_output() if interactive else "png")
     fonts = (font_spec, bold_spec, advance_em, aspect)
     pixels = pixel_layout(ref_layout, paper, orientation, char_mm, fonts)
@@ -4802,15 +4909,12 @@ def main():
         log.warn(tr("warn_tiny"))
     settings = {"seed": seed, "colors": p["colors"], "paper": paper, "title": p["title"], "language": LANG,
                 "ascii_only": p["ascii_only"], "files": files, "units": units, "version": VERSION}
-    pl_title = tr("players_title", t=title) if title else tr("players_title_plain")
-    pl_layout = Layout(map_canvas(plan, False, G), legend_entries(plan, p, False, G, units), pl_title, subtitle)
-    pl_pixels = pixel_layout(pl_layout, paper, orientation, char_mm, fonts)
-
     log.step(tr("step_maps", paper=paper, dpi=DPI))
-    pages = [("referee", compose_page(ref_layout), pixels,
-              compose_page(Layout(map_canvas(plan, True, plain), legend_entries(plan, p, True, plain, units), title, subtitle))),
-             ("players", compose_page(pl_layout), pl_pixels,
-              compose_page(Layout(map_canvas(plan, False, plain), legend_entries(plan, p, False, plain, units), pl_title, subtitle)))]
+    pl_title = tr("players_title", t=title) if title else tr("players_title_plain")
+    pl_layout = page_layout(G, False, pl_title, side)
+    pages = [("referee", compose_page(ref_layout), pixels, compose_page(page_layout(plain, True, title, side))),
+             ("players", compose_page(pl_layout), pixel_layout(pl_layout, paper, orientation, char_mm, fonts),
+              compose_page(page_layout(plain, False, pl_title, side)))]
     images = []
     base = os.path.join(folder, seed)
     for name, canvas, px, text in pages:
