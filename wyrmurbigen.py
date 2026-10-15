@@ -411,6 +411,12 @@ TEXTS = {
     "lg_forest": ("bosco", "woods"),
     "lg_hill": ("colline", "hills"),
     "lg_mount": ("montagne", "mountains"),
+    "lg_cliff": ("dirupi", "cliffs"),
+    "perched": ("Arroccato su uno sperone: dirupi tutt'intorno, tranne verso {d}, da dove si sale con strade a "
+                "tornanti; dentro, le vie più ripide sono gradinate e la cima è del castello o del tempio.",
+                "Perched on a spur: cliffs all round but to the {d}, where roads climb in hairpin bends; inside, the "
+                "steepest lanes are flights of steps and the top belongs to the castle or the temple."),
+    "lg_stairs": ("gradinata", "steps"),
     "lg_reed": ("canneto", "reeds"),
     "lg_secret": ("postierla segreta (solo arbitro)", "secret postern (referee only)"),
     "lg_tunnel": ("galleria segreta (solo arbitro)", "secret tunnel (referee only)"),
@@ -1398,6 +1404,9 @@ class Plan:
         self.quarters = 1           # walled towns: one quarter for every gate
         self.layout = ""            # how the streets were laid out (for the key)
         self.row_m = 5.0            # metres in a row of letters
+        self.height = None          # mountains: 0 to 1, highest at the summit (see perched)
+        self.approach = None        # mountains: the angle of the one easy way up
+        self.stairs = set()         # mountains: street cells too steep for a cart
 
     def ok(self, x, y):
         """Whether x, y is on the map."""
@@ -1566,6 +1575,8 @@ def environment(plan, p, rng, reach):
                     near = abs(x - centre) / ASPECT <= half
                 if near:
                     ground[y][x] = "water"
+    if terrain == "mountains":
+        perched(plan, rng)
     for y in range(H):
         for x in range(W):
             if ground[y][x] == "water":
@@ -1592,7 +1603,9 @@ def environment(plan, p, rng, reach):
                 elif d > reach * 1.3 and a > 0.72 and t < 0.45:
                     ground[y][x] = "tree"
             elif terrain == "mountains":
-                if d > reach * 1.35 and a > 0.56 and t < 0.6:
+                # the valley below the way up stays open: hills and woods, no peaks
+                down = abs(math.remainder(math.atan2(y - cy, (x - cx) / ASPECT) - plan.approach, 2 * math.pi)) < 0.8
+                if d > reach * 1.35 and a > 0.56 and t < 0.6 and not down:
                     ground[y][x] = "mount"
                 elif d > reach * 1.15 and a > 0.44 and t < 0.32:
                     ground[y][x] = "hill"
@@ -1602,6 +1615,21 @@ def environment(plan, p, rng, reach):
                 if d > reach * 1.2 and b > 0.8 and t < 0.35:
                     ground[y][x] = "tree"          # copses and hedgerows
     plan.water = any(ground[y][x] == "water" for y in range(H) for x in range(W))
+
+
+def perched(plan, rng):
+    """A mountain settlement sits on a spur: the summit a little off the centre, on the far side from the one easy
+    way up (plan.approach, an angle); plan.height, 0 to 1, falls from the summit, faster and faster towards the
+    valleys. plan.grade is how steep the slope is just outside the settlement (for roads and stairs)."""
+    a = rng.uniform(0, 2 * math.pi)
+    plan.approach = a
+    sx, sy = ray(plan.cx, plan.cy, a + math.pi, plan.R * 0.45)
+    plan.summit = (sx, sy)
+    far = max(vdist(x, y, sx, sy) for x in (0, plan.W - 1) for y in (0, plan.H - 1))
+    plan.height = [[1 - (vdist(x, y, sx, sy) / far) ** 1.6 + (plan.n1[y][x] - 0.5) * 0.06 for x in range(plan.W)]
+                   for y in range(plan.H)]
+    d = plan.R * 1.3
+    plan.grade = 1.6 * d ** 0.6 / far ** 1.6
 
 
 # --- shapes ---
@@ -1804,9 +1832,13 @@ def gate_angles(plan, mask, n, rng, prefer=None):
         scores.append((a, land))
     lands = [a for a, ok in scores if ok] or [a for a, _ in scores]
     start = prefer if prefer is not None else rng.choice(lands)
+    spread = 2 * math.pi / n
+    if plan.approach is not None and prefer is None:    # perched: one or two gates, both facing the way up
+        n = min(n, 2)
+        start, spread = plan.approach - (n - 1) * 0.45, 0.9
     chosen = []
     for i in range(n):
-        want = start + 2 * math.pi * i / n + rng.uniform(-0.25, 0.25)
+        want = start + spread * i + rng.uniform(-0.25, 0.25)
         best = min(lands, key=lambda a: min(abs(a - want) % (2 * math.pi), (want - a) % (2 * math.pi))
                    + (5 if any(abs(math.remainder(a - c, 2 * math.pi)) < 0.6 for c in chosen) else 0))
         chosen.append(best)
@@ -2168,6 +2200,9 @@ class Fields:
         return field
 
 
+SUMMIT_KINDS = ("rocca", "lords_hall", "palace", "palazzo", "cathedral", "basilica", "church", "keep")
+
+
 def place_one(plan, rng, kind, era, fields, region, mode, place, outside=False, gap=(1, 1), size=None,
               keep_clear=None):
     """Find the best spot for one building; None if there is no room."""
@@ -2211,6 +2246,8 @@ def place_one(plan, rng, kind, era, fields, region, mode, place, outside=False, 
                 continue
             mx, my = int(x0 + w / 2), int(y0 + h / 2)
             score = rng.random() * 2
+            if plan.height and (kind.get("keep") or kind["id"] in SUMMIT_KINDS):
+                score += plan.height[my][mx] * 40       # perched: up at the top
             if place == "square":
                 score += 12 if street and plan.cell[street[1]][street[0]] == SQUARE else 0
                 score -= fields.get("square")[my][mx] * 0.6
@@ -2402,6 +2439,45 @@ def fields(plan, rng, terrain, reach):
             plan.ground[y][x] = "field:" + kind
 
 
+HAIRPIN_WIDTH = (3.5, 5.0)  # mountain roads: how far each hairpin leg swings to the side (visual units)
+HAIRPIN_DROP = (2.5, 3.5)   # ... and how far down it goes
+CLIFF_BAND = 3.2           # mountains: how far below the settlement the cliffs go (visual units)
+CLIFF_OPEN = 1.05          # ... except within this angle of the way up (radians)
+STAIR_GRADE = 0.9         # a street steeper than this (in plan.grade) is a flight of steps
+
+
+def hairpins(plan, start, angle, rng, cost):
+    """A perched settlement's road: from `start` down the mountain along `angle` to the edge of the map, in hairpin
+    bends (legs that cross the slope, left and right, as they go down); each leg the cheapest way between its
+    bends. Returns the cells, or None."""
+    ux, uy = math.cos(angle), math.sin(angle)
+    vx, vy = -uy, ux
+    width, drop = rng.uniform(*HAIRPIN_WIDTH), rng.uniform(*HAIRPIN_DROP)
+    side = rng.choice((-1, 1))
+    bends, k = [], 1
+    while True:
+        x = start[0] + (ux * k * drop + vx * width * side) * ASPECT
+        y = start[1] + uy * k * drop + vy * width * side
+        if not plan.ok(int(x), int(y)):
+            break
+        bends.append((int(x), int(y)))
+        side, k = -side, k + 1
+    path, at = [start], start
+    for bend in bends:
+        leg = route(plan, at, lambda x, y, b=bend: (x, y) == b, cost, target=bend)
+        if leg:
+            path += leg[1:]
+            at = bend
+    t = 0
+    while plan.ok(*map(int, ray(at[0], at[1], angle, t))):
+        t += 0.5
+    ex, ey = ray(at[0], at[1], angle, t - 0.5)
+    end = (max(0, min(plan.W - 1, int(ex))), max(0, min(plan.H - 1, int(ey))))
+    leg = route(plan, at, lambda x, y: (x in (0, plan.W - 1) or y in (0, plan.H - 1)) and vdist(x, y, *end) < 8,
+                cost, target=end)
+    return path + leg[1:] if leg else (path if len(path) > 1 else None)
+
+
 def roads_out(plan, rng):
     """From every gate (or across a village) to the edge of the map."""
     def cost(x, y):
@@ -2419,8 +2495,8 @@ def roads_out(plan, rng):
         if c in (DITCH, MOAT):
             base = 2.0
         return base * (1 + plan.n2[y][x])
-    # from each gate, a road to the map's edge in the gate's direction, the cheapest way round woods and hills;
-    # bridges over water and ditches
+    # from each gate, a road to the map's edge in the gate's direction, the cheapest way round woods and hills
+    # (in the mountains, down hairpin bends); bridges over water and ditches
     for gate in plan.gates:
         if gate["outer"] is None:
             continue
@@ -2438,7 +2514,10 @@ def roads_out(plan, rng):
             edge = x in (0, plan.W - 1) or y in (0, plan.H - 1)
             return edge and vdist(x, y, *target) < 8
 
-        path = route(plan, gate["outer"], goal, cost, target=target)
+        if plan.height:
+            path = hairpins(plan, gate["outer"], a, rng, cost)
+        else:
+            path = route(plan, gate["outer"], goal, cost, target=target)
         if path:
             carve(plan, path, ROAD, over=(None, DITCH, MOAT, ROAD))
             for x, y in path:
@@ -2467,6 +2546,14 @@ def village_roads(plan, rng, n):
         x, y = ray(plan.cx, plan.cy, a, t - 0.5)
         start = (max(0, min(plan.W - 1, int(x))), max(0, min(plan.H - 1, int(y))))
         path = route(plan, start, lambda x, y: (x, y) in plan.square, cost, target=(plan.cx, plan.cy))
+        if path and plan.height:
+            # perched: the road climbs in hairpin bends up to where it enters the village
+            entry = next((k for k, (x, y) in enumerate(path) if plan.inside[y][x]), None)
+            if entry:
+                down = hairpins(plan, path[entry], a, rng, cost)
+                if down:
+                    path = down[::-1] + path[entry + 1:]
+                    start = path[0]
         if path:
             for x, y in path:
                 kind = STREET if plan.inside[y][x] else ROAD
@@ -2716,6 +2803,8 @@ def build_plan(p, seed):
     lo, hi = RADIUS[kind]
     R = lo + (hi - lo) * t
     lay = layout_for(p, rng)
+    if p["terrain"] == "mountains":
+        lay["moat"] = None          # perched: the cliffs are the moat
     W = int(R * 2 * ASPECT * (1.55 + 0.35 * lay["reach"])) + 14
     H = int(R * 2 * (1.12 + 0.18 * lay["reach"])) + 8
     plan = Plan(W, H, rng)
@@ -2887,6 +2976,11 @@ def build_ward(plan, p, rng, lay):
         angles = rng.sample(mids, min(lay["gates"] or 1, len(mids)))
     else:
         angles = gate_angles(plan, mask, lay["gates"] or 1, rng)
+    if plan.approach is not None and shape in ("castrum", "star", "rocca"):
+        # perched: only the gates on the way up (one or two), none over the cliffs
+        off = lambda a: abs(math.remainder(a - plan.approach, 2 * math.pi))
+        angles = sorted(angles, key=off)
+        angles = angles[:min(2, max(1, sum(1 for a in angles if off(a) < 1.2)))]
     for a in angles:
         carve_gate(plan, mask, a, flank=lay["towers"])
     if lay["moat"]:
@@ -3050,13 +3144,48 @@ def line_cells_between(a, b):
     return out
 
 
+def cliffs(plan):
+    """Below a perched settlement the ground drops in cliffs, all round but on the way up."""
+    edge = [(x, y) for y in range(plan.H) for x in range(plan.W) if plan.inside[y][x]]
+    dist = distance_field(plan, edge, limit=CLIFF_BAND + 1)
+    for y in range(plan.H):
+        for x in range(plan.W):
+            if plan.inside[y][x] or plan.cell[y][x] is not None or plan.is_water(x, y):
+                continue
+            if 0.9 < dist[y][x] <= CLIFF_BAND + (plan.n2[y][x] - 0.5) * 1.5:
+                angle = math.atan2(y - plan.cy, (x - plan.cx) / ASPECT)
+                if abs(math.remainder(angle - plan.approach, 2 * math.pi)) > CLIFF_OPEN:
+                    plan.ground[y][x] = "cliff"
+
+
+def stairs(plan):
+    """The street cells of a perched settlement too steep for a cart: flights of steps."""
+    out = set()
+    for y in range(plan.H):
+        for x in range(plan.W):
+            if plan.cell[y][x] != STREET or (x, y) in plan.main:      # main streets stay ramps for carts
+                continue
+            for dx, dy in DIRS4:
+                nx, ny = x + dx, y + dy
+                if plan.ok(nx, ny) and plan.cell[ny][nx] == STREET:
+                    step = 1 / ASPECT if dx else 1.0
+                    if abs(plan.height[ny][nx] - plan.height[y][x]) / step / plan.grade > STAIR_GRADE:
+                        out.add((x, y))
+                        break
+    return out
+
+
 def finish(plan, p, rng):
     """Fields, gardens, wells, the cemetery crosses, quarters, numbers, secrets."""
     ward = p["type"] in ("castle", "fortress")
-    # fields around every settlement (castles: roads out first)
+    # fields around every settlement (castles: roads out first); a perched settlement first gets its cliffs and
+    # its stairs
     if not ward or True:
         if ward:
             roads_out(plan, rng)
+        if plan.height:
+            cliffs(plan)
+            plan.stairs = stairs(plan)
         fields(plan, rng, p["terrain"], plan.R * plan.lay["reach"])
     # what is left inside the walls: courtyards and kitchen gardens
     for y in range(plan.H):
@@ -4066,7 +4195,7 @@ SYMBOLS = {
     "wall": ("▓", "#"), "tower": ("█", "@"), "gate": ("+", "+"), "palisade": ("▒", "%"),
     "ditch": ("░", ":"), "water": ("≈", "~"), "bridge": ("=", "="), "street": (".", "."), "road": ("·", "."),
     "garden": ("τ", "v"), "grave": ("Ω", "i"), "mound": ("∩", "n"), "rubble": ("∴", "*"),
-    "secret": ("$", "$"), "tunnel": ("░", ":"), "brambles": ("ψ", "&"),
+    "secret": ("$", "$"), "tunnel": ("░", ":"), "brambles": ("ψ", "&"), "cliff": ("Λ", "/"), "stairs": ("≣", ">"),
     "well": ("○", "o"), "fountain": ("Θ", "O"), "stall": ("π", "h"), "tree": ("♣", "T"),
     "forest1": ("♣", "T"), "forest2": ("♠", "Y"), "hill": ("∩", "n"), "mount": ("▲", "^"),
     "reed1": ("⌠", ","), "reed2": ('"', ";"),
@@ -4078,7 +4207,7 @@ DOUBLE = {"h": ("═", "="), "v": ("║", "H"), "tl": ("╔", "="), "tr": ("╗"
 SINGLE = {"h": ("─", "-"), "v": ("│", "|"), "tl": ("┌", "-"), "tr": ("┐", "-"), "bl": ("└", "-"), "br": ("┘", "-")}
 
 
-GROUND_TAGS = {"water": "water", "tree": "forest", "hill": "hill", "mount": "mount", "reed": "reed"}
+GROUND_TAGS = {"water": "water", "tree": "forest", "hill": "hill", "mount": "mount", "reed": "reed", "cliff": "mount"}
 
 
 def ground_tag(g):
@@ -4099,6 +4228,8 @@ def ground_char(plan, x, y, G):
         return G(*SYMBOLS["hill"])
     if g == "mount":
         return G(*SYMBOLS["mount"])
+    if g == "cliff":
+        return G(*SYMBOLS["cliff"])
     if g == "reed":
         return G(*SYMBOLS["reed1" if t < 0.2 else "reed2"])
     if g.startswith("field:"):
@@ -4151,7 +4282,12 @@ def map_canvas(plan, referee, G, labels=True, secrets=None):
                 c.put(x, y, "=", "b", "bridge")
             elif cell in (STREET, SQUARE, YARD):
                 bramble = ruin and plan.tex[y][x] > RUIN_BRAMBLES
-                c.put(x, y, G(*SYMBOLS["brambles"]) if bramble else ".", "n", "garden" if bramble else "street")
+                if bramble:
+                    c.put(x, y, G(*SYMBOLS["brambles"]), "n", "garden")
+                elif (x, y) in plan.stairs and (x + y) % 2 == 0:
+                    c.put(x, y, G(*SYMBOLS["stairs"]), "n", "street")      # a flight of steps, with landings
+                else:
+                    c.put(x, y, ".", "n", "street")
             elif cell == ROAD:
                 c.put(x, y, G(*SYMBOLS["road"]), "n", "road")
             elif cell == GARDEN:
@@ -4270,6 +4406,8 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     if MOUND in used:
         out.append([(G(*SYMBOLS["mound"]), "n", "mound"), (" " + tr("lg_mound"), "n")])
     out.append([(".", "n", "street", "bg:street"), (" " + tr("lg_street"), "n")])
+    if plan.stairs:
+        out.append([(G(*SYMBOLS["stairs"]), "n", "street", "bg:street"), (" " + tr("lg_stairs"), "n")])
     if getattr(plan, "ruin", False):
         out.append([(G(*SYMBOLS["brambles"]), "n", "garden"), (" " + tr("lg_brambles"), "n")])
     if ROAD in used:
@@ -4287,7 +4425,7 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
         if key in fields_used:
             out.append([(G(*SYMBOLS[key]), "n", key), (" " + tr("lg_" + key), "n")])
     for key, sym, label in (("tree", "forest1", "lg_forest"), ("hill", "hill", "lg_hill"), ("mount", "mount", "lg_mount"),
-                            ("reed", "reed1", "lg_reed")):
+                            ("cliff", "cliff", "lg_cliff"), ("reed", "reed1", "lg_reed")):
         if key in used:
             out.append([(G(*SYMBOLS[sym]), "n", ground_tag(key)), (" " + tr(label), "n")])
     if secrets and plan.secret:
@@ -4945,6 +5083,8 @@ def walls_blocks(s):
         out.append(("p", tr("walls_" + (plan.wall_kind or "stone")) + (tr("moat_" + plan.moat) if plan.moat else "")))
     else:
         out.append(("p", tr("walls_none")))
+    if plan.height:
+        out.append(("p", tr("perched", d=pick(compass(plan.approach)))))
     for g in s.gates:
         out.append(("item", f"[{g['letter']}] {pick(g['name'])} ({pick(g['dir'])})"))
     if plan.secret:
@@ -5424,7 +5564,8 @@ def ask_params():
                      [pick(e["about"]) for e in ERAS])
     if era:
         fixed["era"] = era
-    terrain = ask_choice(tr("q_terrain"), [t["id"] for t in TERRAINS], [pick(t["menu"]) for t in TERRAINS])
+    terrain = ask_choice(tr("q_terrain"), [t["id"] for t in TERRAINS], [pick(t["menu"]) for t in TERRAINS],
+                         [pick(t["about"]) if t.get("about") else "" for t in TERRAINS])
     if terrain:
         fixed["terrain"] = terrain
     # names and tone show a few examples generated on the spot

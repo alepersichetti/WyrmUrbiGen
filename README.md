@@ -146,7 +146,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
    - **place of rest or place of adventure**;
    - **type** (village, town, city, big city, castle, fortress) and **number of people**;
    - **era** (Early Middle Ages, Late Middle Ages, Renaissance);
-   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake);
+   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake), each with a short description. In the **mountains** the settlement is **perched** on a spur: cliffs all round (`Λ`) but on the side of the one way up, where one or two gates open and the roads wind down in hairpin bends; inside, the steepest side lanes are flights of steps (`≣`) and the castle, the palace and the great temple stand at the top; no moats, the cliffs are enough;
    - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up) and its **state**: **in ruins** (monsters and a layered history) or **inhabited and threatened**; at random, a city is always in ruins, other settlements one time in three;
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
