@@ -62,7 +62,9 @@ Works with any analogue "OSR" roleplaying game. Sibling of [WyrmHex](https://git
 At start the program asks whether the settlement is:
 
 - a **place of rest** for adventurers: inns, healers, smiths, horses, mercenaries and followers for hire, prices in gold pieces, jobs and hooks;
-- a **place of adventure**: a threat (brigands, a cult, plague, a curse, an orc siege, a night beast, haunted ruins, a necromancer lord, something rising from the water, a dragon, a collapsed mine, a feud), with a clock of what happens if nobody steps in, **wandering monsters, monsters and clues in the buildings, and treasure** from WyrmDelve's tables (its bestiary and the *Old-School Essentials* treasure).
+- a **place of adventure**, either **in ruins** or **inhabited and threatened**. In ruins (the usual choice for a city): abandoned for decades or centuries, with breaches in the walls and brambles in the streets, full of monsters (the city of the dead, the goblin warren, a beast's nest, the sleeping dragon, the faithful of the nameless god, the drowned town, the fungus garden, the ghost court, the orc stronghold), with **a layered history** (founding, height, fall, and whoever came after, leaving traces in the buildings), whoever rules the ruins, and rumours, events and hooks for those who go there. Inhabited: a threat (brigands, a cult, plague, a curse, an orc siege, a night beast, a necromancer lord, something rising from the water, a dragon, a collapsed mine, a feud). Either way, with a clock of what happens if nobody steps in, **wandering monsters, monsters and clues in the buildings, and treasure** from WyrmDelve's tables (its bestiary and the *Old-School Essentials* treasure).
+
+**Treasure** stays within the place's means: only the threat has a lair hoard (its *Old-School Essentials* treasure type, rolled several times and brought to about 1,200, 3,500, 10,000 or 22,000 gp on average by danger, a little less in a village and a little more in a city; magic items stay those of a single hoard); the other monsters and a few empty buildings have the unguarded treasure of a dungeon level as dangerous as the place. In all, about 750-2,000 gp at danger 1, 3,000-7,500 at danger 2, 10,000-20,000 at danger 3, 25,000-50,000 at danger 4 (cities towards the top, villages towards the bottom).
 
 #### Types and population
 
@@ -145,7 +147,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
    - **type** (village, town, city, big city, castle, fortress) and **number of people**;
    - **era** (Early Middle Ages, Late Middle Ages, Renaissance);
    - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake);
-   - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up);
+   - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up) and its **state**: **in ruins** (monsters and a layered history) or **inhabited and threatened**; at random, a city is always in ruins, other settlements one time in three;
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
    - **people's names**: like the places (the same language), **fantasy** (endings mixed from all the languages), or one language of your choice.
@@ -156,26 +158,31 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
 8. **Units**: metres or feet.
 9. **Print format**: A4, A3, A2 or A1, with the suggested one already highlighted.
 10. **Which files**: **PNG** maps and a PDF book apart, **PDF** maps and a PDF book apart, or **one single PDF** with the two maps and then the book.
+11. **Again, in another look?** At the end you can make the same settlement again with other colours, symbols, paper and files, as many times as you like: the new maps keep the earlier ones and have the paper and style in their names (`<seed>_referee_A3_c5.png`, `_c4_ascii`).
 
 ## 4. The seed
 
-Every settlement has a **seed**, like `C9500-B-R-A2-DE4-K7Q2MB`: type and people, era, terrain, purpose and danger, names and tone, code.
+Every settlement has a **seed**, like `C9500-B-R-A2R-DE4-K7Q2MB`: type and people, era, terrain, purpose, danger and state, names and tone, code.
 
 | Part | Values |
 |---|---|
 | Type | `V` village, `B` town, `C` city, `G` big city, `K` castle, `F` fortress, followed by the number of people |
 | Era | `A` Early Middle Ages, `B` Late Middle Ages, `R` Renaissance |
 | Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake |
-| Purpose | `R0` place of rest, `A1`-`A4` place of adventure with its danger |
+| Purpose | `R0` place of rest, `A1`-`A4` place of adventure with its danger, then its state: `R` in ruins, `T` inhabited and threatened |
 | Names | `IT` medieval Italian, `OE` Old English, `RE` Renaissance English, `GA` Scottish Gaelic, `TO` Tolkienesque, `PA` Persian and Arabesque, `BY` Byzantine Greek, `DE` German, `FR` French, `NO` Danish and Swedish, `RU` Russian and Baltic, `MX` a mix of them all; then the tone: `1` fair, `2` homely, `3` stately, `4` grim, `5` eerie; then, if the people are not named like the places, `X` (fantasy) or the code of their language (`DE4NO`: German places, Danish and Swedish people) |
 
-**The same seed always gives the same settlement**: map, people, monsters and treasure. The seed is also the name of its folder inside `settlements_generated`. Seeds made by older versions, without the names part (like `C9500-B-R-A2-K7Q2MB`), still work and give the same settlement as before, with its medieval Italian names.
+**The same seed always gives the same settlement**: map, people, monsters and treasure. The seed is also the name of its folder inside `settlements_generated`. Seeds made by older versions still work and give the same map: without the state (like `C9500-B-R-A2-DE4-K7Q2MB`) the threat can be any, ruins included; without the names part (like `C9500-B-R-A2-K7Q2MB`) the places keep their medieval Italian names of old. Their people, families, nearby towns and gods, though, have made-up names, as in every new seed.
 
 ### Place names
 
-The names of the settlement, of the dungeon nearby and of the shops named after a place are built from the **roots** in `data/names.json`: for every language, syllables and name elements for the start, the middle and the end of a word, plus whole words that go before (*Saint-*, *Borgo*, *Dar al-*) and after (*-le-Grand*, *Magna*, *am Berg*). Every tone has roots of its own, mixed with the common ones. Each language and tone can make **11 to 14 million names**; the mix of them all, hundreds of billions.
+WyrmUrbiGen is a fantasy generator: it names no real places, families, saints or religions. It starts from real particles of eleven languages to make up names that *sound* like those languages but do not exist.
 
-**People's names** follow the same language: first names, family names and the way they are put together (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), and so do the families in the names of buildings and factions; the towns people come from are towns of the same land. A name is a real one of that language or a beginning and an ending of it (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): about **1,100 male and 1,100 female first names and 1,100 family names per language**. With `--people` / `--persone` you can name the people in **another language** than the places, or make them **fantasy**: a beginning of the language with an ending of any language (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), about 11,500 names of each kind. The roots are in `data/names.json` too.
+The names of the settlement, of the dungeon nearby and of the shops named after a place are built from the **roots** in `data/names.json`: for every language, syllables and name elements for the start, the middle and the end of a word, plus whole words that go before (*Belle-*, *Borgo*, *Dar al-*) and after (*-le-Grand*, *Magna*, *am Berg*). Every tone has roots of its own, mixed with the common ones. Each language and tone can make **11 to 14 million names**; the mix of them all, hundreds of billions.
+
+**People's names** follow the same language: first names, family names and the way they are put together (*Inga Bjørnsdotter*, *Cailean mac Artair*, *Bahram ibn Ismail*, *Berthold von Salzburg*, *Anna Olegovna*), and so do the families in the names of buildings and factions; the towns people come from are towns of the same land. Every name is a beginning and an ending of the language (*Wern* + *hart*, *Wulf* + *stan*, *Lebed* + *ensky*): real particles, made-up names, about **1,050 male and 1,050 female first names and 1,050 family names per language**. Every settlement has a dozen families and a dozen towns nearby, which come back in its buildings, factions, history and rumours. With `--people` / `--persone` you can name the people in **another language** than the places, or make them **fantasy**: a beginning of the language with an ending of any language (*Siegisa Zimmavi*, *Dietost Ludrawsohn*), about 11,500 names of each kind. The roots are in `data/names.json` too.
+
+**The gods** are made up as well: every settlement worships five, each the god or goddess of something (the harvest, storms, the dead, the sea on the coast, the hunt in the forest...), with names built from roots of their own (*Orsaldra*, *Velmor*, *Ilyra*). Temples, shrines, cloisters, monasteries, gates and quarters bear their names; churches become temples, bishops high priests, and on the map graves are `Ω` instead of a cross.
 
 | Tone | | German | Old English |
 |---|---|---|---|
@@ -230,10 +237,10 @@ Everything goes into `settlements_generated/<seed>/`:
 ## 6. In a hurry: the options
 
 ```
-python wyrmurbigen.py --type city --era late --terrain river --purpose adventure --danger 2
+python wyrmurbigen.py --type city --era late --terrain river --purpose adventure --danger 2 --state ruin
 python wyrmurbigen.py --population 30000 --era renaissance --terrain coast --single-pdf
 python wyrmurbigen.py --names gaelic --tone eerie --type castle
-python wyrmurbigen.py --seed C9500-B-R-A2-DE4-K7Q2MB --format A3 --ascii-only
+python wyrmurbigen.py --seed C9500-B-R-A2R-DE4-K7Q2MB --format A3 --ascii-only
 python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 ```
 
@@ -246,6 +253,7 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--terrain` / `--terreno` | `plains`, `hills`, `mountains`, `forest`, `swamp`, `coast`, `river`, `lake` |
 | `--purpose` / `--scopo` | `rest` or `adventure` |
 | `--danger` / `--pericolo` | 1 to 4 (place of adventure only) |
+| `--state` / `--stato` | `ruin` (in ruins, monsters and a layered history) or `inhabited` (inhabited and threatened); place of adventure only |
 | `--names` / `--nomi` | `italian`, `old english`, `renaissance`, `gaelic`, `tolkien`, `persian`, `byzantine`, `german`, `french`, `danish`, `russian`, `mixed` (or 1 to 12) |
 | `--tone` / `--tono` | `fair`, `homely`, `stately`, `grim`, `eerie` (or 1 to 5) |
 | `--people` / `--persone` | `places` (like the place names), `fantasy` (mixed endings), or a language: `italian`, `old english`, `renaissance`, `gaelic`, `tolkien`, `persian`, `byzantine`, `german`, `french`, `danish`, `russian`, `mixed` |
@@ -268,10 +276,10 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 
 | File | What it holds |
 |---|---|
-| `names.json` | the roots of the names of places and people: languages, tones and how a name is put together |
-| `settlements.json` | settlement types, eras, terrains, saints, inn signs, gates, quarters, history sentences, threats, rumours, events, hooks |
+| `names.json` | the roots of the names of places, people and gods: languages, tones and how a name is put together |
+| `settlements.json` | settlement types, eras, terrains, the gods' domains, inn signs, gates, quarters, history sentences, threats, rumours, events, hooks, and for ruins their layered history, rumours, events and hooks |
 | `buildings.json` | the buildings: name, the types and eras they appear in, how many (`sv`: one every so many people; or `count`), size, stone or timber, where they stand (square, main street, gate, walls, river, outside), who lives there, services and prices, descriptions |
-| `people.json` | names, families, trades, traits, wants, secrets, rulers, factions, classes, spells, mercenaries |
+| `people.json` | bynames, trades, traits, wants, secrets, rulers, factions, guilds, classes, spells, mercenaries |
 | `demographics.json` | the numbers of *Medieval Demographics Made Easy* |
 | `economy.json` | the numbers of *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | from WyrmDelve: bestiary, clues, *Old-School Essentials* treasure |

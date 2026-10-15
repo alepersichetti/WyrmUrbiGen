@@ -1,198 +1,4 @@
 {
- "first_names": {
-  "m": [
-   "Guido",
-   "Bertoldo",
-   "Ugolino",
-   "Lapo",
-   "Cecco",
-   "Gualtiero",
-   "Ildebrando",
-   "Sigismondo",
-   "Ranieri",
-   "Bindo",
-   "Corrado",
-   "Dino",
-   "Folco",
-   "Ghino",
-   "Iacopo",
-   "Manfredi",
-   "Nuccio",
-   "Oddone",
-   "Puccio",
-   "Rinaldo",
-   "Simone",
-   "Taddeo",
-   "Ubaldo",
-   "Vanni",
-   "Arrigo",
-   "Baldo",
-   "Cione",
-   "Duccio",
-   "Ezzelino",
-   "Filippo",
-   "Gherardo",
-   "Lando",
-   "Matteo",
-   "Neri",
-   "Orlando",
-   "Pandolfo",
-   "Rodolfo",
-   "Salimbene",
-   "Tedaldo",
-   "Uberto",
-   "Alberico",
-   "Brunetto",
-   "Castruccio",
-   "Donato",
-   "Ermanno",
-   "Fazio",
-   "Giannozzo",
-   "Lotario",
-   "Maso",
-   "Nanni",
-   "Ottaviano",
-   "Piero",
-   "Rustico",
-   "Spinello",
-   "Tano",
-   "Ugo",
-   "Zanobi",
-   "Agnolo",
-   "Bonaccorso",
-   "Federigo"
-  ],
-  "f": [
-   "Tessa",
-   "Bice",
-   "Lapa",
-   "Monna Ghita",
-   "Cia",
-   "Dianora",
-   "Emilia",
-   "Fiordaliso",
-   "Giovanna",
-   "Ilaria",
-   "Lisa",
-   "Mea",
-   "Nanna",
-   "Oretta",
-   "Piccarda",
-   "Sandra",
-   "Taddea",
-   "Usanna",
-   "Verdiana",
-   "Alda",
-   "Berta",
-   "Caterina",
-   "Drusiana",
-   "Elisabetta",
-   "Francesca",
-   "Gemma",
-   "Isotta",
-   "Lucrezia",
-   "Margherita",
-   "Nella",
-   "Ottavia",
-   "Pia",
-   "Rosaspina",
-   "Simona",
-   "Tancia",
-   "Ubaldina",
-   "Vanna",
-   "Zita",
-   "Agnese",
-   "Brigida",
-   "Costanza",
-   "Diamante",
-   "Ermellina",
-   "Filippa",
-   "Giuditta",
-   "Lena",
-   "Matilde",
-   "Novella",
-   "Orsola",
-   "Pellegrina"
-  ]
- },
- "families": [
-  "Ubaldini",
-  "Salimbeni",
-  "Tolomei",
-  "Gherardeschi",
-  "Malaspina",
-  "Della Torre",
-  "Visconti",
-  "Guidi",
-  "Alberti",
-  "Buondelmonti",
-  "Cerchi",
-  "Donati",
-  "Lambertazzi",
-  "Geremei",
-  "Pazzi",
-  "Strozzi",
-  "Baglioni",
-  "Oddi",
-  "Manfredi",
-  "Ordelaffi",
-  "Pepoli",
-  "Scaligeri",
-  "Caminesi",
-  "Trinci",
-  "Varano",
-  "Chiaramonte",
-  "Ventimiglia",
-  "Doria",
-  "Spinola",
-  "Fieschi",
-  "Grimaldi",
-  "Malatesta",
-  "Montefeltro",
-  "Orsini",
-  "Colonna",
-  "Savelli",
-  "Farnese",
-  "Gonzaga",
-  "Pico",
-  "Pio",
-  "Rangoni",
-  "Correggio",
-  "Rossi",
-  "Sanvitale",
-  "Pallavicino",
-  "Landi",
-  "Anguissola",
-  "Beccaria",
-  "Langosco",
-  "Tizzoni"
- ],
- "family_adj": {
-  "it": [
-   "Malaspiniana",
-   "Viscontea",
-   "Albornoziana",
-   "Estense",
-   "Sforzesca",
-   "Scaligera",
-   "Feltresca",
-   "Orsiniana",
-   "Gonzaghesca",
-   "Farnesiana"
-  ],
-  "en": [
-   "Malaspina",
-   "Visconti",
-   "Albornoz",
-   "Este",
-   "Sforza",
-   "Scaliger",
-   "Montefeltro",
-   "Orsini",
-   "Gonzaga",
-   "Farnese"
-  ]
- },
  "bynames": [
   {
    "it": "il Guercio",
@@ -242,38 +48,6 @@
    "it": "Spadalunga",
    "en": "Longsword"
   }
- ],
- "places": [
-  "Lucca",
-  "Siena",
-  "Arezzo",
-  "Pistoia",
-  "Volterra",
-  "Cortona",
-  "Spoleto",
-  "Gubbio",
-  "Todi",
-  "Orvieto",
-  "Ferrara",
-  "Mantova",
-  "Cremona",
-  "Lodi",
-  "Pavia",
-  "Asti",
-  "Ivrea",
-  "Aquileia",
-  "Ravenna",
-  "Rimini",
-  "Ascoli",
-  "Fermo",
-  "Sulmona",
-  "Amalfi",
-  "Trani",
-  "Lecce",
-  "Messina",
-  "Sassari",
-  "Chioggia",
-  "Brescia"
  ],
  "trades": [
   {
@@ -893,9 +667,8 @@
    "it_f": "avara fino all'ultimo denaro"
   },
   {
-   "it": "pio, cita i santi a ogni frase",
-   "en": "devout, quotes saints in every sentence",
-   "it_f": "pia, cita i santi a ogni frase"
+   "it": "pio, cita gli dei a ogni frase",
+   "en": "devout, quotes the gods in every sentence"
   },
   {
    "it": "sospettoso coi forestieri",
@@ -903,9 +676,8 @@
    "it_f": "sospettosa coi forestieri"
   },
   {
-   "it": "sempre ubriaco dopo il vespro",
-   "en": "always drunk after vespers",
-   "it_f": "sempre ubriaca dopo il vespro"
+   "it": "sempre ubriaco dopo il tramonto",
+   "en": "always drunk after sundown"
   },
   {
    "it": "orgoglioso del proprio lignaggio",
@@ -961,9 +733,8 @@
    "it_f": "stanca e malata, tossisce sempre"
   },
   {
-   "it": "colto, parla latino ai clienti",
-   "en": "learned, speaks Latin to customers",
-   "it_f": "colta, parla latino ai clienti"
+   "it": "colto, parla la lingua antica ai clienti",
+   "en": "learned, speaks the old tongue to customers"
   },
   {
    "it": "generoso con chi è in difficoltà",
@@ -1164,8 +935,8 @@
    "en": "secretly loves a member of the rival family"
   },
   {
-   "it": "ha rubato le decime della pieve",
-   "en": "stole the parish tithes"
+   "it": "ha rubato le offerte del tempio",
+   "en": "stole the temple offerings"
   },
   {
    "it": "custodisce un oggetto magico che non sa usare",
@@ -1232,8 +1003,8 @@
   "city": {
    "early": [
     {
-     "it": "il vescovo-conte",
-     "en": "the bishop-count"
+     "it": "il sacerdote-conte",
+     "en": "the priest-count"
     }
    ],
    "late": [
@@ -1328,8 +1099,8 @@
   },
   {
    "name": {
-    "it": "la confraternita di {saint}",
-    "en": "the confraternity of {saint}"
+    "it": "la confraternita di {god}",
+    "en": "the confraternity of {god}"
    },
    "goal": {
     "it": "costruire un nuovo ospedale per i poveri",
@@ -1384,12 +1155,12 @@
   },
   {
    "name": {
-    "it": "il capitolo dei canonici",
-    "en": "the cathedral chapter"
+    "it": "il collegio dei sacerdoti",
+    "en": "the college of priests"
    },
    "goal": {
-    "it": "riavere le terre tolte al vescovo",
-    "en": "to recover the lands taken from the bishop"
+    "it": "riavere le terre tolte al gran tempio",
+    "en": "to recover the lands taken from the great temple"
    },
    "where": [
     "city"
@@ -1510,8 +1281,8 @@
    "en": "Wool"
   },
   {
-   "it": "di Calimala",
-   "en": "Cloth Finishers'"
+   "it": "dei Mercanti di Panni",
+   "en": "Cloth Merchants'"
   },
   {
    "it": "del Cambio",
