@@ -146,7 +146,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
    - **luogo di riposo o luogo d'avventura**;
    - **tipo** (villaggio, paese, città, grande città, castello, fortezza) e **numero di abitanti**;
    - **epoca** (alto medioevo, basso medioevo, Rinascimento);
-   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago);
+   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago), ognuno con una breve descrizione. In **montagna** l'insediamento è **arroccato** su uno sperone: dirupi tutt'intorno (`Λ`) tranne dalla parte dell'unica salita, dove si aprono una o due porte e le strade scendono a tornanti; dentro, le vie secondarie più ripide sono gradinate (`≣`) e la rocca, il palazzo e il tempio maggiore stanno in cima; niente fossati, ci sono già i dirupi;
    - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre) e lo **stato**: **in rovina** (mostri e storia a strati) o **abitato e minacciato**; a caso, una città è sempre in rovina, gli altri insediamenti una volta su tre;
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
