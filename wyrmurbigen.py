@@ -283,10 +283,13 @@ TEXTS = {
     "q_name": ("  Nome della mappa: ", "  Map name: "),
     "name_empty": ("    Scrivi un nome.", "    Type a name."),
     "content_intro": ("Cosa vuoi nella chiave e nel PDF?", "What do you want in the key and the PDF?"),
-    "content_story": ("storia: storia, fazioni, economia, voci ed eventi", "story: history, factions, economy, rumours and events"),
+    "content_story": ("storia: storia stratificata, fazioni, economia, voci ed eventi",
+                      "story: layered history, factions, economy, rumours and events"),
     "content_people": ("abitanti: un PNG per ogni edificio, con statistiche OSR", "people: an NPC for every building, with OSR stats"),
     "content_monsters": ("mostri: mostri erranti, mostri e indizi negli edifici", "monsters: wandering monsters, monsters and clues in the buildings"),
     "content_treasure": ("tesori: monete, gemme, gioielli e oggetti magici", "treasure: coins, gems, jewellery and magic items"),
+    "content_intrigue": ("intrighi: i PNG che contano, con storia, motivazioni e legami; le fazioni e le loro radici",
+                         "intrigue: the NPCs who matter, with story, motives and ties; the factions and their roots"),
     "content_help": ("    Scrivi i numeri che vuoi, separati da virgole (es. 1,2); 0 = solo l'elenco degli edifici.",
                      "    Type the numbers you want, separated by commas (e.g. 1,2); 0 = only the list of buildings."),
     "units_intro": ("Unità di misura:", "Units:"),
@@ -515,9 +518,30 @@ TEXTS = {
     "hirelings": ("Avventurieri da assoldare", "Adventurers for hire"),
     "hireling_pay": (" Chiede 25 mo al mese e mezza parte del bottino.", " Asks 25 gp a month and half a share of the loot."),
     "hooks": ("Lavori e agganci (d4)", "Jobs and hooks (d4)"),
-    "rumours": ("Voci (d8; V vera, F falsa: solo per l'arbitro)", "Rumours (d8; T true, F false: referee only)"),
+    "rumours": ("Voci (d10; V vera, F falsa, ½ in parte vera: solo per l'arbitro)",
+                "Rumours (d10; T true, F false, ½ partly true: referee only)"),
     "true": ("V", "T"),
     "false": ("F", "F"),
+    "partial": ("½: {x}", "½: {x}"),
+    "h_notables": ("Chi conta", "Who matters"),
+    "h_notables_ruin": ("Chi conta intorno alle rovine", "Who matters around the ruins"),
+    "h_factions": ("Le fazioni", "The factions"),
+    "h_factions_ruin": ("Le fazioni intorno alle rovine", "The factions around the ruins"),
+    "nb_story": ("Storia: {x}", "Story: {x}"),
+    "nb_want": ("Vuole {x}.", "Wants {x}."),
+    "nb_secret": ("Segreto: {x}.", "Secret: {x}."),
+    "nb_bonds": ("Legami: {x}.", "Ties: {x}."),
+    "nb_hook": ("Ai personaggi: {x}.", "For the characters: {x}."),
+    "nb_leads": ("Guida {f}.", "Leads {f}."),
+    "fa_about": ("Chi sono: {x}; {p}.", "Who they are: {x}; {p}."),
+    "fa_goal": ("Vogliono {x}.", "They want {x}."),
+    "fa_root": ("Tutto nasce da {s} ({w}).", "It all goes back to {s} ({w})."),
+    "fa_how": ("Come: {x}; {y}.", "How: {x}; {y}."),
+    "fa_hq": ("Sede: {x}.", "Base: {x}."),
+    "fa_camp": ("Accampati: {x}.", "Camped in: {x}."),
+    "fa_leader": ("Guida: {x}.", "Led by {x}."),
+    "fa_rival": ("Rivali: {x}, {r}.", "Rivals: {x}, {r}."),
+    "fa_ally": ("Alleati: {x}, {r}.", "Allies: {x}, {r}."),
     "events": ("Eventi durante il soggiorno (d6)", "Events during the stay (d6)"),
     "h_walls": ("Mura, porte e segreti", "Walls, gates and secrets"),
     "walls_stone": ("Mura di pietra", "Stone walls"),
@@ -582,9 +606,9 @@ TEXTS = {
     "h_single": ("un unico file PDF con le mappe e la chiave", "one single PDF file with the maps and the key"),
     "h_title": ("titolo della mappa (default: il nome dell'insediamento)", "map title (default: the settlement's name)"),
     "h_no_title": ("mappa senza nome", "map without a name"),
-    "h_content": ("cosa mettere nella chiave: storia, abitanti, mostri, tesori, anche insieme separati da virgole; "
+    "h_content": ("cosa mettere nella chiave: storia, abitanti, mostri, tesori, intrighi, anche insieme separati da virgole; "
                   "mappa = solo l'elenco degli edifici; tutto = tutto (di base)",
-                  "what to put in the key: story, people, monsters, treasure, also together separated by commas; "
+                  "what to put in the key: story, people, monsters, treasure, intrigue, also together separated by commas; "
                   "map = only the list of buildings; all = everything (the default)"),
     "h_units": ("unità: imperiale o metrica (di base metrica in italiano, imperiale in inglese)",
                 "units: imperial or metric (by default imperial in English, metric in Italian)"),
@@ -615,6 +639,12 @@ def fmt(pair, **values):
     return (contract_it(out[0]),) + out[1:]
 
 
+def sentence(text):
+    """The text as a sentence: a capital letter first, a full stop at the end (unless it has one)."""
+    text = capitalized(text.strip())
+    return text if text[-1:] in ".!?»\"" else text + "."
+
+
 def capitalized(text):
     """The text with its first letter in upper case (the rest untouched, unlike str.capitalize)."""
     return text[:1].upper() + text[1:] if text else text
@@ -626,14 +656,15 @@ PREPOSITIONS = {"da": "da", "di": "de", "a": "a", "in": "ne", "su": "su"}
 
 def contract_it(text):
     """Italian grammar around a filled-in name: a preposition glued to the article after it ("da la Torre" ->
-    "dalla Torre"), and "gli" before s + consonant, z, x, gn, ps or a vowel ("dei Schneider" -> "degli
-    Schneider")."""
+    "dalla Torre"), "ad" before an a ("a Arnaldo" -> "ad Arnaldo"), and "gli" before s + consonant, z, x, gn, ps
+    or a vowel ("dei Schneider" -> "degli Schneider", "i Ursini" -> "gli Ursini")."""
     def glue(m):
         """One preposition and article, glued, keeping a capital letter."""
         word = PREPOSITIONS[m.group(1).lower()] + ARTICLES[m.group(2)]
         return (capitalized(word) if m.group(1)[0].isupper() else word) + m.group(3)
     text = re.sub(r"\b(da|di|a|in|su|Da|Di|A|In|Su) (la|le|il|lo|gli|i|l')( |(?<=')|$)", glue, text)
-    return re.sub(r"\b(de|ne|a|da|su|De|Ne|A|Da|Su)i (?=[Ss][^aeiouyAEIOUY ]|[ZzXx]|Gn|Ps|[AEIOUaeiouÆØÅ])", r"\1gli ",
+    text = re.sub(r"\b(A|a) (?=[Aa])", r"\1d ", text)
+    return re.sub(r"\b(de|ne|a|da|su|De|Ne|A|Da|Su|)i (?=[Ss][^aeiouyAEIOUY ]|[ZzXx]|Gn|Ps|[AEIOUaeiouÆØÅ])", r"\1gli ",
                   text)
 
 
@@ -730,10 +761,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
 OPTIONAL_DATA = ("monsters.json", "clues.json", "treasure.json")    # from WyrmDelve: without them, no monsters or treasure
 REQUIRED = ("settlement_types", "eras", "terrains", "name_styles", "name_tones", "name_forms", "god_roots",
-            "god_domains", "god_titles", "signs", "gates", "quarters", "history", "situations", "rumors",
-            "adventure_rumors", "events", "hooks", "dungeons", "ruin_history", "ruin_rumors", "ruin_events",
-            "ruin_hooks", "buildings", "bynames", "trades", "traits", "wants", "secrets", "rulers", "factions",
-            "guilds", "classes", "spells", "retainers", "demographics", "economy")
+            "god_domains", "god_titles", "signs", "gates", "quarters", "history", "situations",
+            "events", "hooks", "dungeons", "ruin_history", "ruin_events", "ruin_hooks", "buildings", "bynames",
+            "trades", "traits", "wants", "secrets", "rulers", "guilds", "classes", "spells", "retainers",
+            "demographics", "economy", "ages", "strata_events", "npc_hooks", "legacies", "kin", "relic_things", "relic_qualities", "ruin_layers",
+            "trades_pl", "origins", "rises", "bonds", "bond_reasons", "faction_kinds", "emblem_nouns",
+            "emblem_colours", "faction_assets", "faction_powers", "faction_rivalry", "faction_alliance",
+            "rumor_sources", "rumor_verbs", "rumor_contents", "rumor_twists")
 
 
 def from_json(value):
@@ -768,7 +802,11 @@ def load_tables(folder=DATA):
     tables = {}
     for name in sorted(os.listdir(folder)):
         if name.endswith(".json") and name not in OPTIONAL_DATA:
-            tables.update(read_json(os.path.join(folder, name)))
+            new = read_json(os.path.join(folder, name))
+            twice = sorted(set(new) & set(tables))
+            if twice:
+                sys.exit(f"Tabelle ripetute in / Tables repeated in {name}: {', '.join(twice)}")
+            tables.update(new)
     missing = [k for k in REQUIRED if k not in tables]
     if missing:
         sys.exit(f"Nella cartella data mancano / The data folder lacks: {', '.join(missing)}")
@@ -3388,10 +3426,17 @@ def make_npc(rng, used, role, gender=None, cls="normal", lv=None, align=None):
     if cls != "normal" and lv is None:
         lv = 1
     name = person_name(rng, gender, used)
+    p = getattr(used, "p", None)
+    if p and "number" in p:
+        # a town, a family or a god of their own; drawn apart, so the rest of the settlement stays as it was
+        r = random.Random(f"wyrmurbigen-npcfill-{p['number']}-{used.count}")
+        values = dict(place=town_name(r, p), family=(family_name(r, p),) * 2, god=god_name(r, p))
+    else:
+        values = dict(place="?", family="?", god="?")
     return {"name": name, "first": name[0].split(" ")[0], "gender": gender, "role": role, "cls": cls, "lv": lv,
-            "trait": gendered(rng.choice(TABLES["traits"]), gender),
-            "want": gendered(rng.choice(TABLES["wants"]), gender),
-            "secret": gendered(rng.choice(TABLES["secrets"]), gender),
+            "trait": fmt(gendered(rng.choice(TABLES["traits"]), gender), **values),
+            "want": fmt(gendered(rng.choice(TABLES["wants"]), gender), **values),
+            "secret": fmt(gendered(rng.choice(TABLES["secrets"]), gender), **values),
             "stats": stat_line(rng, cls, lv, align)}
 
 
@@ -3549,26 +3594,12 @@ def make_settlement(p, plan, seed):
     seat = [b for b in notable if b.kind.get("keep")] or \
            [b for b in notable if b.id in ("town_hall", "lords_hall", "manor", "rocca", "palazzo", "command")]
     s.ruler_seat = seat[0] if seat else None
-    # factions
-    pool = [f for f in TABLES["factions"] if allowed_in(f["where"], kind)]
-    rng.shuffle(pool)
-    s.factions = []
-    for f in pool[:rng.randint(2, 3) if kind != "village" else 2]:
-        name = fmt(f["name"], family=(family_name(rng, p),) * 2, guild=rng.choice(TABLES["guilds"]),
-                   god=god_name(rng, p))
-        leader = make_npc(rng, used_names, ("capo", "leader"), None,
-                          rng.choice(("normal", "fighter", "thief", "cleric")), rng.randint(1, 4))
-        s.factions.append({"name": name, "goal": f["goal"], "leader": leader})
-    for a, b in zip(s.factions, s.factions[1:] + s.factions[:1]):
-        a["rival"] = b["name"] if len(s.factions) > 1 and rng.random() < 0.6 else None
+    s.factions, s.notables, s.strata = [], [], []       # made by plan_intrigue
     # history
     founder = rng.choice([(f"{pick(person_name(rng, 'm', used_names))}",) * 2,
                           fmt(("la famiglia {f}", "the {f} family"), f=(family_name(rng, p),) * 2)])
     founded = TABLES["history"]["founded_ward" if kind in ("castle", "fortress") else "founded"][p["era"]]
-    parts = [fmt(rng.choice(founded), n=s.name_pair, founder=founder, god=god_name(rng, p))]
-    for e in rng.sample(TABLES["history"]["events"], 2):
-        parts.append(fmt(e, god=god_name(rng, p), family=(family_name(rng, p),) * 2))
-    s.history = parts
+    s.history = [fmt(rng.choice(founded), n=s.name_pair, founder=founder, god=god_name(rng, p))]
     s.present = fmt(rng.choice(TABLES["history"]["present_rest"]), n=s.name_pair)
     # the numbers: demography and economy
     s.demography = demography(p, plan, rng)
@@ -3740,6 +3771,7 @@ def ruin_layers(s, rng, values):
         s.layers.append((labels["after"], fmt(later["text"], **values)))
         if spots:
             s.traces[spots.pop().uid] = fmt(later["trace"], **values)
+    s.ruin_cast = values
 
 
 def fits_monster(m, where):
@@ -3996,13 +4028,326 @@ def treasure_line(t):
     return tr("room_treasure", v=value, x=t["text"], w=t["where"])
 
 
+# --- who matters: layered history, factions, main NPCs ---
+# Every settlement has a layered history (strata): its founding and a few
+# events, each with its age and the legacy it left (a grudge, a debt, a claim,
+# a lost relic, a secret...). Factions and main NPCs are built on those
+# legacies, from the tables of data/intrigue.json: what each faction wants and
+# why, where each main NPC comes from, how they rose, what they want and hide,
+# and whom they are tied to. A ruin's strata are its layers.
+STRATA = {"village": 2, "town": 3, "city": 4, "bigcity": 4, "castle": 3, "fortress": 3}
+FACTIONS = {"village": 2, "town": 3, "city": 4, "bigcity": 5, "castle": 2, "fortress": 2, "ruin": 3}
+NOTABLES = {"village": 4, "town": 5, "city": 6, "bigcity": 7, "castle": 4, "fortress": 4, "ruin": 4}
+FOUNDING_LEGACIES = ("claim", "wealth", "vow", "curse")
+
+
+def gfill(entry, gender="m", **values):
+    """(it, en) of a data entry with optional feminine forms, filled in."""
+    return fmt(gendered(entry, gender), **values)
+
+
+def relic(rng):
+    """(it, en): a made-up relic, "the black crown of the founder"."""
+    thing, quality = rng.choice(TABLES["relic_things"]), rng.choice(TABLES["relic_qualities"])
+    return f"{thing['it']} {quality[thing['g']]}", f"{thing['en'].replace('the ', 'the ' + quality['en'] + ' ', 1)}"
+
+
+def emblem(rng):
+    """(it, en) of a faction's emblem: "del Corvo Bianco", "of the White Raven"; and the colour."""
+    noun, colour = rng.choice(TABLES["emblem_nouns"]), rng.choice(TABLES["emblem_colours"])
+    art = noun["art"] + ("" if noun["art"].endswith("'") else " ")
+    return (f"{art}{noun['it']} {colour[noun['g']]}", f"of the {colour['en']} {noun['en']}"), colour
+
+
+def cast(rng, s):
+    """The fillers of a stratum: two families, a figure of the past, a god, a town, a relic."""
+    p = s.p
+    family = family2 = family_name(rng, p)
+    for _ in range(10):
+        if family2 != family:
+            break
+        family2 = family_name(rng, p)
+    return {"n": s.name_pair, "family": (family,) * 2, "family2": (family2,) * 2,
+            "person": person_name(rng, rng.choice("mf"), s.used_names), "god": god_name(rng, p),
+            "place": (town_name(rng, p),) * 2, "relic": relic(rng), "dungeon": s.dungeon_name}
+
+
+def stratum(label, text, short, legacy, values, when=None):
+    """One layer of the past: its label (an age), text, what to call it, the legacy it left and its fillers."""
+    when = when or label
+    values = dict(values, short=short, when=(when[0].lower(), when[1].lower()))
+    return {"label": label, "text": text, "short": short, "legacy": legacy, "values": values}
+
+
+def plan_strata(s, rng):
+    """s.strata: the founding and a few events, oldest first (inhabited places); a ruin's layers otherwise."""
+    p, kind = s.p, s.p["type"]
+    data = TABLES
+    if hasattr(s, "layers"):
+        shorts = data["ruin_layers"]
+        names = ("height", "fall") + ("after",) * (len(s.layers) - 3)
+        out = [stratum(s.layers[0][0], s.layers[0][1], fmt(("la fondazione di {n}", "the founding of {n}"), n=s.name_pair),
+                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"))]
+        for (label, text), name in zip(s.layers[1:], names):
+            short = {"height": ("i giorni dello splendore", "the days of glory"), "fall": ("la caduta", "the fall"),
+                     "after": ("il saccheggio", "the sack")}[name]
+            when = {"height": ("un tempo", "once"), "after": ("dopo la caduta", "after the fall")}.get(name)
+            if name == "fall":      # "Caduta, 50 anni fa": the age after the comma
+                when = tuple(part.split(", ", 1)[-1] for part in label)
+            values = dict(cast(rng, s), **{k: v for k, v in s.ruin_cast.items() if k in ("family", "family2", "god")})
+            out.append(stratum(label, text, short, rng.choice(shorts[name]), values, when=when))
+        return out
+    founding = stratum(("Fondazione", "Founding"), s.history[0], fmt(("la fondazione di {n}", "the founding of {n}"),
+                                                                     n=s.name_pair),
+                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"))
+    pool = [e for e in data["strata_events"] if allowed_in(e["where"], kind)
+            and (not e.get("terrains") or p["terrain"] in e["terrains"])]
+    events = rng.sample(pool, min(STRATA[kind], len(pool)))
+    ages = sorted(rng.sample(range(len(data["ages"])), len(events)))
+    out = [founding]
+    for e, age in zip(events, ages):
+        values = cast(rng, s)
+        when = data["ages"][age]
+        text = fmt(e["text"], **values)
+        out.append(stratum((capitalized(when[0]), capitalized(when[1])), text, fmt(e["short"], **values),
+                           rng.choice(e["legacies"]), values, when=when))
+    return out
+
+
+def ref(npc, home):
+    """(it, en): a person and where they live: "Ruggilio Picoli (n. 12)"."""
+    if home is None:
+        return npc["name"]
+    return tuple(f"{npc['name'][k]} ({tr_pair('ref_no')[k]} {home.number})" for k in (0, 1))
+
+
+def building_ref(b):
+    """(it, en): "n. 12 (Torre dei Picoli)"."""
+    return tuple(f"{tr_pair('ref_no')[k]} {b.number} ({b.title[k]})" for k in (0, 1))
+
+
+def plan_factions(s, rng):
+    """s.factions: a few factions of the kinds this place can have, each rooted in a stratum of its past, with a
+    goal, a way of working, a strength, a base, a leader, a rival and perhaps an ally."""
+    p, plan = s.p, s.plan
+    ruin = hasattr(s, "layers")
+    kind = "ruin" if ruin else p["type"]
+    kinds = [k for k in TABLES["faction_kinds"] if ("ruin" in k["where"]) == ruin and (ruin or allowed_in(k["where"], kind))]
+    rng.shuffle(kinds)
+    taken, factions, goals = set(), [], set()
+    gates = [g for g in getattr(s, "gates", []) if g.get("name")]
+    for k in kinds[:FACTIONS[kind]]:
+        roots = [st for st in s.strata if st["legacy"] in k["legacies"]] or s.strata
+        st = rng.choice(roots)
+        legacy = st["legacy"] if st["legacy"] in k["legacies"] else rng.choice(k["legacies"])
+        mark, colour = emblem(rng)
+        values = dict(st["values"], emblem=mark, guild=rng.choice(TABLES["guilds"]),
+                      colour_m=(colour["m"], colour["en"]), colour_f=(colour["f"], colour["en"]), colour=colour["en"])
+        name = gfill(rng.choice(k["names"]), **values)
+        # the base: a building of the kind's, else none (around a ruin: a camp in a ruined building)
+        if ruin:        # a building no monster holds, if there is one
+            homes = [b for b in plan.buildings if b is not getattr(s, "lair", None) and b.uid not in taken]
+            homes = [b for b in homes if b.uid not in getattr(s, "occupants", {})] or homes
+        else:
+            homes = [b for b in plan.buildings if b.id in k["hq"] and b.uid not in taken and b is not getattr(s, "lair", None)]
+        hq = rng.choice(homes) if homes else None
+        if hq is not None:
+            taken.add(hq.uid)
+        if hq is not None and getattr(hq, "npc", None) and not ruin:
+            leader = hq.npc
+        else:
+            leader = make_npc(rng, s.used_names, None, None, rng.choice(("normal", "fighter", "thief", "cleric")),
+                              rng.randint(1, 4))
+            leader["role"] = gfill(k["leader"], leader["gender"], **values)
+        where = "ruin" if ruin else "living"
+        assets = [a for a in TABLES["faction_assets"] if (gates or "{gate}" not in gendered(a, "m")[0])
+                  and where in (a.get("where", (where,)) if isinstance(a, dict) else (where,))]
+        values["gate"] = rng.choice(gates)["name"] if gates else ("", "")
+        goal = rng.choice([x for x in TABLES["legacies"][legacy]["goal"] if id(x) not in goals]
+                          or TABLES["legacies"][legacy]["goal"])
+        goals.add(id(goal))
+        factions.append({"name": name, "kind": k, "stratum": st, "legacy": legacy,
+                         "about": gfill(k["about"], **values), "power": rng.choice(TABLES["faction_powers"]),
+                         "goal": gfill(goal, **values),
+                         "method": gfill(rng.choice(k["methods"]), **values), "asset": gfill(rng.choice(assets), **values),
+                         "hq": hq, "leader": leader, "camp": ruin})
+    # rivals all round, and here and there an alliance
+    for a, b in zip(factions, factions[1:] + factions[:1]):
+        if a is not b:
+            a["rival"] = (b, fmt(rng.choice(TABLES["faction_rivalry"]), **a["stratum"]["values"]))
+    for f in factions:
+        others = [o for o in factions if o is not f and o is not (f.get("rival") or (None,))[0]]
+        if others and rng.random() < 0.45:
+            f["ally"] = (rng.choice(others), fmt(rng.choice(TABLES["faction_alliance"]), **f["stratum"]["values"]))
+    return factions
+
+
+def plan_notables(s, rng):
+    """s.notables: the main NPCs (the ruler, the threat's leader, the factions' leaders, a few keepers; around a
+    ruin, the factions' leaders and a survivor), each with a story rooted in the strata, a motive with its why, a
+    secret, a tie to another of them and a job for the characters."""
+    p, plan = s.p, s.plan
+    ruin = hasattr(s, "layers")
+    kind = "ruin" if ruin else p["type"]
+    chosen, seen = [], set()
+
+    def add(npc, home, faction=None):
+        """One main NPC, once."""
+        if npc is not None and id(npc) not in seen:
+            seen.add(id(npc))
+            chosen.append({"npc": npc, "home": home, "faction": faction})
+    if not ruin:
+        add(s.ruler, s.ruler_seat)
+    if getattr(s, "villain", None) and not getattr(s, "boss", None):
+        add(s.villain, getattr(s, "lair", None))
+    for f in s.factions:
+        add(f["leader"], f["hq"], f)
+    if ruin:
+        survivor = make_npc(rng, s.used_names, None, None, "normal", None)
+        survivor["role"] = gendered({"it": "sopravvissuto", "it_f": "sopravvissuta", "en": "survivor"}, survivor["gender"])
+        add(survivor, None)
+    else:
+        keepers = [b for b in plan.buildings if getattr(b, "npc", None) and not b.kind.get("filler")]
+        rng.shuffle(keepers)
+        keepers.sort(key=lambda b: -b.kind.get("priority", 0))
+        for b in keepers:
+            if len(chosen) >= NOTABLES[kind]:
+                break
+            add(b.npc, b)
+    legacies = TABLES["legacies"]
+    taken = set()
+
+    def fresh(pool):
+        """An entry of `pool` not given to another notable yet (if there is one)."""
+        left = [e for e in pool if id(e) not in taken] or pool
+        e = rng.choice(left)
+        taken.add(id(e))
+        return e
+    for nb in chosen:
+        npc, g = nb["npc"], nb["npc"]["gender"]
+        st = nb["faction"]["stratum"] if nb["faction"] else rng.choice(s.strata)
+        legacy = nb["faction"]["legacy"] if nb["faction"] else st["legacy"]
+        kin = rng.choice(TABLES["kin"])
+        values = dict(st["values"], kin=kin, Kin=(capitalized(kin[0]), capitalized(kin[1])),
+                      When=(capitalized(st["values"]["when"][0]), capitalized(st["values"]["when"][1])),
+                      trade=rng.choice(TABLES["trades_pl"]))
+        nb["values"] = values
+        nb["story"] = [gfill(fresh(TABLES["origins"]), g, **values),
+                       gfill(fresh(legacies[legacy]["past"]), g, **values),
+                       gfill(fresh(TABLES["rises"]), g, **values)]
+        npc["want"] = gfill(fresh(legacies[legacy]["want"]), g, **values)
+        other = rng.choice(list(legacies)) if rng.random() < 0.4 else legacy
+        npc["secret"] = gfill(fresh(legacies[other]["secret"]), g, **values)
+        nb["stratum"] = st
+    # ties: each of them with another, and the job they offer
+    for nb in chosen:
+        others = [o for o in chosen if o is not nb]
+        if not others:
+            nb["bonds"], nb["hook"] = [], None
+            continue
+        nb["bonds"] = []
+        for o in rng.sample(others, min(len(others), 1 if rng.random() < 0.6 else 2)):
+            bond = rng.choice(TABLES["bonds"])
+            reason = fmt(rng.choice(TABLES["bond_reasons"]), **nb["values"])
+            nb["bonds"].append(gfill(rng.choice(bond["text"]), nb["npc"]["gender"], other=ref(o["npc"], o["home"]),
+                                     reason=reason, **{k: v for k, v in nb["values"].items() if k != "other"}))
+        target = rng.choice(others)
+        nb["hook"] = gfill(fresh(TABLES["npc_hooks"]), nb["npc"]["gender"], other=ref(target["npc"], target["home"]),
+                           **nb["values"])
+    return chosen
+
+
+def plan_intrigue(s):
+    """The layered history, the factions and the main NPCs, from a generator of their own (the rest of a seed's
+    settlement does not change with them)."""
+    rng = random.Random(f"wyrmurbigen-intrigue-{s.seed}")
+    s.dungeon_name = fmt(rng.choice(TABLES["dungeons"]),
+                         x=(place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2)
+    s.strata = plan_strata(s, rng)
+    s.factions = plan_factions(s, rng)
+    s.notables = plan_notables(s, rng)
+
+
+def rumour_values(s, rng):
+    """The fillers a rumour may use, all from this settlement: its people, main NPCs, factions, families, gods,
+    towns, past, buildings and threat."""
+    npcs = [b for b in s.plan.buildings if getattr(b, "npc", None)]
+    st = rng.choice(s.strata)
+    family = family2 = family_name(rng, s.p)
+    for _ in range(10):
+        if family2 != family:
+            break
+        family2 = family_name(rng, s.p)
+    values = {"family": (family,) * 2, "family2": (family2,) * 2,
+              "god": god_name(rng, s.p), "place": (town_name(rng, s.p),) * 2, "dungeon": s.dungeon_name,
+              "Dungeon": (capitalized(s.dungeon_name[0]), capitalized(s.dungeon_name[1])), "n": s.name_pair,
+              "short": st["short"], "when": st["values"]["when"], "relic": st["values"]["relic"]}
+    if npcs and not hasattr(s, "layers"):
+        b = rng.choice(npcs)
+        values["npc"] = ref(b.npc, b)
+    if s.plan.buildings:
+        values["bref"] = building_ref(rng.choice(s.plan.buildings))
+    if s.notables:
+        nb = rng.choice(s.notables)
+        values["notable"] = ref(nb["npc"], nb["home"])
+    if s.factions:
+        f = rng.sample(s.factions, min(2, len(s.factions)))
+        values["faction"] = f[0]["name"]
+        if len(f) > 1:
+            values["faction2"] = f[1]["name"]
+    if getattr(s, "situation", None):
+        values["dwellers"] = s.dwellers
+        if s.dwellers[0].split(" ")[0] in ("i", "gli", "le"):
+            values["dwellers_pl"] = s.dwellers
+        values["lair"] = building_ref(s.lair)
+        names = getattr(s, "monster_names", None)
+        if names:
+            values["monster"] = (rng.choice(names),) * 2
+    return values
+
+
+RUMOURS = 10                # the rumours table: a d10
+THREAT_RUMOURS = 3          # ... of which about the threat, in a place of adventure
+
+
+def plan_rumours(s, rng):
+    """s.rumours: RUMOURS rumours, each told by someone in some way, true, false or partly true (with what is wrong
+    for the referee); a few about the threat in a place of adventure."""
+    where = "ruin" if hasattr(s, "layers") else "living"
+    threat_keys = ("dwellers", "dwellers_pl", "lair", "monster")
+    contents = [c for c in TABLES["rumor_contents"] if where in c["where"]]
+    out, used = [], set()
+    wanted_threat = THREAT_RUMOURS if getattr(s, "situation", None) else 0
+    tries = 0
+    while len(out) < RUMOURS and tries < 400:
+        tries += 1
+        values = rumour_values(s, rng)
+        about_threat = len(out) < wanted_threat
+        pool = [c for c in contents if (any("{" + k + "}" in c["it"] for k in threat_keys) == about_threat)
+                and all(key in values for key in re.findall(r"\{(\w+)\}", c["it"]))]
+        if not pool:
+            continue
+        c = rng.choice(pool)
+        if c["it"] in used:
+            continue
+        used.add(c["it"])
+        source = rng.choice(TABLES["rumor_sources"])
+        verb = gendered(rng.choice(TABLES["rumor_verbs"]), source["g"])
+        text = fmt((f"{source['it']} {verb[0]} {c['it']}.", f"{source['en']} {verb[1]} {c['en']}."), **values)
+        truth = rng.choices(("true", "false", "partial"), weights=(5, 3, 2))[0]
+        twist = fmt(rng.choice(TABLES["rumor_twists"]), **values) if truth == "partial" else None
+        out.append((text, truth, twist))
+    rng.shuffle(out)
+    return out
+
+
 # --- rumours, events, hooks, retainers ---
 def plan_lore(s):
     """Rumours, events, adventure hooks and retainers for hire, filled in with the settlement's own people,
     buildings, families and dungeon."""
     rng = s.rng_lore
     npcs = [b for b in s.plan.buildings if getattr(b, "npc", None)]
-    dungeon_name = fmt(rng.choice(TABLES["dungeons"]), x=(place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2)
+    dungeon_name = s.dungeon_name
 
     def fill(entry):
         """Fill a text template with a random person, building, place, family, god, dungeon..."""
@@ -4026,24 +4371,12 @@ def plan_lore(s):
             return pick(fmt(entry, **values)), True
         return pick(fmt((entry["it"], entry["en"]), **values)), entry.get("true", True)
 
-    # eight rumours (true or false): up to four about the threat, the rest general
+    # the rumours table, from the rumour generator
     ruin = hasattr(s, "layers")
-    general = list(TABLES["ruin_rumors" if ruin else "rumors"])
-    rng.shuffle(general)
-    rumours = []
-    if getattr(s, "situation", None):
-        special = list(TABLES["adventure_rumors"])
-        rng.shuffle(special)
-        rumours += [fill(r) for r in special[:4]]
-        if hasattr(s, "monster_names"):
-            pass
-    rumours += [fill(r) for r in general[:8 - len(rumours)]]
-    rng.shuffle(rumours)
-    s.rumours = rumours
+    s.rumours = plan_rumours(s, rng)
     # six events and four adventure hooks
     s.events = [fill(e)[0] for e in rng.sample(TABLES["ruin_events" if ruin else "events"], 6)]
     s.hooks = [fill(h)[0] for h in rng.sample(TABLES["ruin_hooks" if ruin else "hooks"], 4)]
-    s.dungeon_name = dungeon_name
     # retainers and mercenaries for hire
     rows = []
     for r in rng.sample(TABLES["retainers"], rng.randint(3, 6)):
@@ -4936,7 +5269,7 @@ def adventure_words(p, s=None):
 def key_blocks(s, title, units, content):
     """The whole key as a list of blocks (title, meta, h, p, item, table, quarter, building...), which write_key and
     write_pdf both turn into text."""
-    story_on, people_on, monsters_on, treasure_on = content
+    story_on, people_on, monsters_on, treasure_on, intrigue_on = content
     p, plan = s.p, s.plan
     # title, then the meta lines: seed, type, era, terrain, purpose, population, names and scale
     blocks = [("title", title)]
@@ -4958,8 +5291,9 @@ def key_blocks(s, title, units, content):
         blocks += [("item", f"{pick(label)}. {capitalized(pick(text))}") for label, text in s.layers]
         blocks.append(("p", tr("gods_ruin", g=pick(gods_text(p)))))
     elif story_on:
-        # history (and the present day, in a place of rest)
-        blocks += [("h", tr("h_history"))] + [("p", " ".join(capitalized(pick(x)) for x in s.history))]
+        # history in layers, from the founding (and the present day, in a place of rest)
+        blocks.append(("h", tr("h_history")))
+        blocks += [("item", f"{pick(st['label'])}. {capitalized(pick(st['text']))}") for st in s.strata]
         if p["purpose"] == "rest":
             blocks.append(("p", pick(s.present)))
         blocks.append(("p", tr("gods", g=pick(gods_text(p)))))
@@ -4979,14 +5313,16 @@ def key_blocks(s, title, units, content):
         blocks.append(("h", tr("h_government")))
         seat = f" ({tr('lives_in', n=s.ruler_seat.number)})" if s.ruler_seat else ""
         blocks.append(("p", capitalized(npc_line(s.ruler, full=people_on)) + seat))
-        if story_on:
+        if story_on and not intrigue_on:     # with the intrigue, the factions have a section of their own
             for f in s.factions:
-                rival = tr("faction_rival", r=pick(f["rival"])) if f.get("rival") else ""
+                rival = tr("faction_rival", r=pick(f["rival"][0]["name"])) if f.get("rival") else ""
                 blocks.append(("item", tr("faction", n=capitalized(pick(f["name"])), g=pick(f["goal"]),
                                           l=npc_line(f["leader"], full=False)) + rival))
         blocks += demography_blocks(s)
         if story_on:
             blocks += economy_blocks(s)
+    if intrigue_on:
+        blocks += intrigue_blocks(s)
     if p["purpose"] == "rest":
         # a place of rest: services, mercenaries, hirelings and hooks
         blocks.append(("h", tr("h_services")))
@@ -5003,8 +5339,9 @@ def key_blocks(s, title, units, content):
     if story_on:
         # rumours and events
         blocks.append(("h", tr("h_lore")))
-        blocks.append(("table", tr("rumours"), [(k + 1, f"{text} [{tr('true') if ok else tr('false')}]")
-                                                for k, (text, ok) in enumerate(s.rumours)]))
+        blocks.append(("table", tr("rumours"), [(k + 1, f"{capitalized(pick(text))} "
+                                                        f"[{tr('partial', x=pick(twist)) if twist else tr(truth)}]")
+                                                for k, (text, truth, twist) in enumerate(s.rumours)]))
         blocks.append(("table", tr("events_ruin" if ruin else "events"), [(k + 1, e) for k, e in enumerate(s.events)]))
         if ruin:
             blocks.append(("table", tr("hooks_ruin"), [(k + 1, h) for k, h in enumerate(s.hooks)]))
@@ -5026,6 +5363,44 @@ def key_blocks(s, title, units, content):
     blocks.append(("h", tr("h_sources")))
     blocks.append(("note", tr("sources")))
     return blocks
+
+
+def intrigue_blocks(s):
+    """The key's main NPCs (story, motive, secret, ties, a job for the characters) and factions (who they are,
+    what they want and why, how, where, who leads them, against and with whom)."""
+    ruin = hasattr(s, "layers")
+    out = [("h", tr("h_notables_ruin" if ruin else "h_notables"))]
+    for nb in s.notables:
+        npc = nb["npc"]
+        lines = [f"{pick(npc['stats'])}. {capitalized(pick(npc['trait']))}.",
+                 tr("nb_story", x=" ".join(sentence(pick(x)) for x in nb["story"])),
+                 tr("nb_want", x=pick(npc["want"])), tr("nb_secret", x=pick(npc["secret"]))]
+        if nb["faction"]:
+            lines.append(tr("nb_leads", f=pick(nb["faction"]["name"])))
+        if nb["bonds"]:
+            lines.append(tr("nb_bonds", x="; ".join(pick(x) for x in nb["bonds"])))
+        if nb["hook"]:
+            lines.append(tr("nb_hook", x=pick(nb["hook"])))
+        label = str(nb["home"].number) if nb["home"] is not None else "·"
+        out.append(("building", label, f"{pick(npc['name'])}, {pick(npc['role'])}", lines))
+    if not s.factions:
+        return out
+    out.append(("h", tr("h_factions_ruin" if ruin else "h_factions")))
+    for f in s.factions:
+        st, leader = f["stratum"], f["leader"]
+        home = next((nb["home"] for nb in s.notables if nb["npc"] is leader), None)
+        lines = [tr("fa_about", x=pick(f["about"]), p=pick(f["power"])), tr("fa_goal", x=pick(f["goal"])),
+                 pick(fmt(tr_pair("fa_root"), s=st["short"], w=st["values"]["when"])),
+                 tr("fa_how", x=pick(f["method"]), y=pick(f["asset"]))]
+        if f["hq"] is not None:
+            lines.append(tr("fa_camp" if f["camp"] else "fa_hq", x=pick(building_ref(f["hq"]))))
+        lines.append(tr("fa_leader", x=f"{pick(ref(leader, home))}, {pick(leader['role'])}"))
+        if f.get("rival"):
+            lines.append(tr("fa_rival", x=pick(f["rival"][0]["name"]), r=pick(f["rival"][1])))
+        if f.get("ally"):
+            lines.append(tr("fa_ally", x=pick(f["ally"][0]["name"]), r=pick(f["ally"][1])))
+        out.append(("building", "·", capitalized(pick(f["name"])), lines))
+    return out
 
 
 def demography_blocks(s):
@@ -5620,30 +5995,31 @@ def ask_name():
         print(tr("name_empty"))
 
 
-CONTENT_KEYS = ("story", "people", "monsters", "treasure")
+CONTENT_KEYS = ("story", "people", "monsters", "treasure", "intrigue")
 CONTENT_WORDS = {"storia": 0, "story": 0, "abitanti": 1, "people": 1, "png": 1, "npc": 1, "mostri": 2, "monsters": 2,
-                 "tesori": 3, "tesoro": 3, "treasure": 3}
+                 "tesori": 3, "tesoro": 3, "treasure": 3, "intrighi": 4, "intrigue": 4, "fazioni": 4, "factions": 4}
 
 
 def read_content(text):
-    """The --content option as four on/off flags (story, people, monsters, treasure)."""
+    """The --content option as five on/off flags (story, people, monsters, treasure, intrigue)."""
     words = [w for w in text.replace("+", ",").replace(" ", ",").lower().split(",") if w]
     if words in (["mappa"], ["map"], ["mappe"], ["maps"]):
-        return (False,) * 4
+        return (False,) * len(CONTENT_KEYS)
     if words in (["tutto"], ["all"]):
-        return (True,) * 4
+        return (True,) * len(CONTENT_KEYS)
     if not words or any(w not in CONTENT_WORDS for w in words):
         raise argparse.ArgumentTypeError(tr("err_content", s=text))
-    return tuple(any(CONTENT_WORDS[w] == k for w in words) for k in range(4))
+    return tuple(any(CONTENT_WORDS[w] == k for w in words) for k in range(len(CONTENT_KEYS)))
 
 
 def ask_content(adventure):
     """Ask what goes in the key; monsters and treasure only for a place of adventure."""
-    keys = CONTENT_KEYS if adventure else CONTENT_KEYS[:2]
+    keys = [k for k in CONTENT_KEYS if adventure or k not in ("monsters", "treasure")]
     parts = [tr("content_" + k).split(": ", 1) for k in keys]
     ticks = menu(tr("content_intro"), [a.capitalize() for a, _ in parts], hints=[b for _, b in parts],
                  ticks=(True,) * len(keys))
-    return tuple(ticks) + (False,) * (4 - len(ticks))
+    chosen = dict(zip(keys, ticks))
+    return tuple(chosen.get(k, False) for k in CONTENT_KEYS)
 
 
 def ask_units():
@@ -5763,8 +6139,8 @@ def settings_from_options(argv):
     naming.add_argument(*names("senza-titolo", "no-title"), dest="title", action="store_const", const="",
                         help=tr("h_no_title"))
     ap.add_argument(*names("contenuto", "content"), dest="content", type=read_content, default=None,
-                    metavar="{mappa,tutto,storia,abitanti,mostri,tesori}" if LANG == "it"
-                    else "{map,all,story,people,monsters,treasure}", help=tr("h_content"))
+                    metavar="{mappa,tutto,storia,abitanti,mostri,tesori,intrighi}" if LANG == "it"
+                    else "{map,all,story,people,monsters,treasure,intrigue}", help=tr("h_content"))
     ap.add_argument(*names("unita", "units"), dest="units", default=None,
                     choices=("imperiale", "metrica", "imperial", "metric"), help=tr("h_units"))
     ap.add_argument(*names("solo-ascii", "ascii-only"), dest="ascii_only", action="store_true", help=tr("h_ascii"))
@@ -5774,7 +6150,7 @@ def settings_from_options(argv):
     a = ap.parse_args(argv)
     # the look of the output, then the parameters of the settlement the user fixed
     p = {"title": a.title, "ascii_only": a.ascii_only, "font": a.font, "paper": a.paper, "output": a.output,
-         "colors": a.colors, "files": a.files, "content": a.content or (True,) * 4,
+         "colors": a.colors, "files": a.files, "content": a.content or (True,) * len(CONTENT_KEYS),
          "units": {"imperiale": "imperial", "metrica": "metric"}.get(a.units, a.units)}
     fixed = {k: v for k, v in (("type", a.type), ("era", a.era), ("terrain", a.terrain), ("pop", a.pop),
                                 ("danger", a.danger), ("state", a.state), ("names", a.names), ("tone", a.tone),
@@ -5906,6 +6282,7 @@ def make(params, interactive, again=False):
         if TREASURE:
             plan_treasure(s)
         log.info(tr("info_threat", t=pick(s.situation["name"]), n=s.lair.number))
+    plan_intrigue(s)
     plan_lore(s)
     title = pick(s.title) if p["title"] is None else p["title"]
     log.info(f"«{title}»" if LANG == "it" else f"“{title}”")

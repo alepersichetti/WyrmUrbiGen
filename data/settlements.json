@@ -108,16 +108,6 @@
       "renaissance": [{"it": "{founder} fece ricostruire {n} da un ingegnere militare, con bastioni bassi e larghi contro le bombarde.", "en": "{founder} had {n} rebuilt by a military engineer, with low, broad bastions against the bombards."},
                       {"it": "Le vecchie torri di {n} non reggevano più i cannoni: {founder} le fece abbattere e cingere di bastioni.", "en": "The old towers of {n} could no longer stand the cannon: {founder} had them pulled down and girded with bastions."}]
     },
-    "events": [{"it": "Nell'anno del grande incendio bruciò mezza contrada, e le case furono rifatte in pietra.", "en": "In the year of the great fire half a quarter burned, and the houses were rebuilt in stone."},
-               {"it": "La peste portò via un abitante su tre; il cimitero fu allargato fino alle mura.", "en": "The plague took one in three; the graveyard was stretched up to the walls."},
-               {"it": "Un assedio di tre mesi finì quando qualcuno aprì una postierla di notte: nessuno sa chi fu.", "en": "A three-month siege ended when someone opened a postern by night: no one knows who."},
-               {"it": "Il fiume ruppe gli argini e da allora i mulini stanno più in alto.", "en": "The river broke its banks, and since then the mills stand higher up."},
-               {"it": "Un prodigio di {god}, che fermò una frana, ne fece il patrono del luogo.", "en": "A wonder of {god}, who stopped a landslide, made the god the patron of the place."},
-               {"it": "Una faida tra due famiglie insanguinò le strade per una generazione.", "en": "A feud between two families bloodied the streets for a generation."},
-               {"it": "Un terremoto fece crollare la vecchia torre; i suoi sotterranei non sono mai stati riaperti.", "en": "An earthquake brought the old tower down; its cellars have never been reopened."},
-               {"it": "Una carestia fece aprire i granai del signore, e la gente non l'ha mai dimenticato.", "en": "A famine forced the lord's granaries open, and the people never forgot it."},
-               {"it": "Il passaggio di un imperatore lasciò un privilegio di fiera, e una fiera porta ricchezza e guai.", "en": "An emperor's visit left a fair charter, and a fair brings wealth and trouble."},
-               {"it": "Un eretico fu arso in piazza; sua figlia giurò vendetta e sparì.", "en": "A heretic was burned in the square; his daughter swore revenge and vanished."}],
     "present_rest": [{"it": "Oggi {n} è un luogo tranquillo, dove gli avventurieri sono ben accetti finché pagano e non sguainano le armi.", "en": "Today {n} is a quiet place, where adventurers are welcome as long as they pay and keep their blades sheathed."},
                      {"it": "Oggi {n} vive dei viandanti: locande, botteghe e templi aspettano chi torna dalle rovine con le tasche piene.", "en": "Today {n} lives on travellers: inns, shops and temples wait for those who come back from the ruins with full pockets."},
                      {"it": "Oggi {n} è prospera ma sospettosa: le porte chiudono al tramonto e le guardie ricordano ogni faccia.", "en": "Today {n} is prosperous but wary: the gates close at sunset and the guards remember every face."}]
@@ -228,32 +218,6 @@
      "lairs": ["fortress", "castle", "palace", "city"], "clock": [{"it": "una banda di orchi torna da una razzia con dei prigionieri", "en": "an orc band comes back from a raid with prisoners"}, {"it": "il capo degli orchi sfida a duello il più forte dei personaggi", "en": "the orc chief challenges the strongest character to a duel"}, {"it": "arriva un'altra tribù: alleanza o guerra", "en": "another tribe arrives: alliance or war"}, {"it": "gli orchi marciano sulle terre vicine", "en": "the orcs march on the lands nearby"}],
      "fall": [{"it": "Un esercito venuto da lontano assediò {n} per un anno; quando la fame aprì le porte, non lasciò in piedi nessuno.", "en": "An army from far away besieged {n} for a year; when hunger opened the gates, it left no one standing."}]}
   ],
-  "rumors": [
-    {"it": "{npc} paga bene chi riporta indietro le pecore sparite sulla collina.", "en": "{npc} pays well to whoever brings back the sheep lost on the hill.", "true": true},
-    {"it": "Sotto {building} c'è un passaggio che porta fuori dalle mura.", "en": "Under {building} there's a passage leading out past the walls.", "true": true},
-    {"it": "{npc} è stato visto parlare di notte con uno straniero incappucciato.", "en": "{npc} was seen talking at night with a hooded stranger.", "true": true},
-    {"it": "{Dungeon}, a mezza giornata di cammino, custodisce ancora l'oro di un antico re.", "en": "{Dungeon}, half a day's walk away, still holds an ancient king's gold.", "true": true},
-    {"it": "{Dungeon}? Non c'è più niente: l'hanno saccheggiata i nonni dei nostri nonni.", "en": "{Dungeon}? Nothing left there: our grandparents' grandparents looted it.", "true": false},
-    {"it": "L'acqua del pozzo della piazza guarisce le febbri.", "en": "The water of the square's well cures fevers.", "true": false},
-    {"it": "La famiglia {family} ha venduto la figlia a un mago in cambio di un debito.", "en": "The {family} family sold their daughter to a wizard to settle a debt.", "true": false},
-    {"it": "{npc} conosce la strada per {dungeon}, ma vuole una parte del bottino.", "en": "{npc} knows the way to {dungeon}, but wants a share of the loot.", "true": true},
-    {"it": "Da {place} arriva una carovana carica di spezie: cercano scorta.", "en": "A caravan laden with spice is coming from {place}: they need an escort.", "true": true},
-    {"it": "Il sacerdote del tempio tiene nascosta una reliquia che fa prodigi.", "en": "The temple priest hides a relic that works wonders.", "true": false},
-    {"it": "Nel bosco a nord c'è una strega che compra capelli e denti.", "en": "In the woods to the north there's a witch who buys hair and teeth.", "true": true},
-    {"it": "Chi dorme in {building} sente le campane suonare a mezzanotte, anche se nessuno le tocca.", "en": "Whoever sleeps in {building} hears the bells ring at midnight, though no one touches them.", "true": false},
-    {"it": "Le guardie della porta chiudono un occhio per una moneta d'argento.", "en": "The gate guards look the other way for a silver coin.", "true": true},
-    {"it": "{npc} è in realtà un nobile in incognito.", "en": "{npc} is really a noble in disguise.", "true": false},
-    {"it": "Un cavaliere è partito un mese fa per {dungeon} e non è più tornato; la sua spada valeva un castello.", "en": "A knight left for {dungeon} a month ago and never came back; his sword was worth a castle.", "true": true},
-    {"it": "Il signore sta per alzare le tasse per pagare una guerra.", "en": "The lord is about to raise taxes to pay for a war.", "true": true}
-  ],
-  "adventure_rumors": [
-    {"it": "{Dwellers} temono il fuoco più delle spade.", "en": "{Dwellers} fear fire more than swords.", "true": true},
-    {"it": "Dentro {lair} c'è il tesoro dei signori di un tempo.", "en": "Inside {lair} lies the treasure of the old lords.", "true": true},
-    {"it": "Qualcuno in paese aiuta {dwellers} in cambio di oro.", "en": "Someone in town helps {dwellers} in exchange for gold.", "true": true},
-    {"it": "{monster} si aggira di notte vicino al cimitero.", "en": "{monster} prowls near the graveyard at night.", "true": true},
-    {"it": "{Dwellers} sono solo una storia per spaventare i bambini.", "en": "{Dwellers} are just a tale to scare children.", "true": false},
-    {"it": "Basta l'acqua santa del tempio per scacciare ogni male da qui.", "en": "The temple's holy water is enough to drive every evil from here.", "true": false}
-  ],
   "events": [
     {"it": "Festa del dio patrono: mercanti da fuori, giocolieri, borseggiatori ovunque.", "en": "Feast of the patron god: foreign merchants, jugglers, pickpockets everywhere."},
     {"it": "Una processione blocca le strade; chi non si inginocchia è guardato male.", "en": "A procession blocks the streets; whoever doesn't kneel gets dark looks."},
@@ -306,18 +270,6 @@
       {"text": {"it": "Una compagnia di avventurieri vi entrò cent'anni fa; la ballata dice che ne uscì uno solo.", "en": "A company of adventurers went in a hundred years ago; the ballad says only one came out."}, "trace": {"it": "uno scheletro in armatura, la spada spezzata, e una freccia incisa nel muro che indica una direzione", "en": "a skeleton in armour, a broken sword, and an arrow carved into the wall pointing somewhere"}}
     ]
   },
-  "ruin_rumors": [
-    {"it": "{building}: nelle sue cantine c'è ancora l'oro dei {family}.", "en": "{building}: the gold of the {family} still lies in its cellars.", "true": true},
-    {"it": "Chi passa la notte tra le rovine di {n} sente suonare campane che non esistono più.", "en": "Whoever spends the night in the ruins of {n} hears bells that are no longer there.", "true": false},
-    {"it": "{Dungeon}, sotto le rovine, è più antica della città stessa.", "en": "{Dungeon}, under the ruins, is older than the town itself.", "true": true},
-    {"it": "I sacerdoti di {god} pagano bene chi riporta le reliquie del loro vecchio tempio.", "en": "The priests of {god} pay well for the relics of their old temple.", "true": true},
-    {"it": "Chi porta via una pietra da {n} si porta dietro la sua maledizione.", "en": "Whoever takes a stone away from {n} takes its curse along.", "true": false},
-    {"it": "Il tesoro della città fu nascosto prima della caduta, e nessuno l'ha mai trovato.", "en": "The town treasury was hidden before the fall, and no one has ever found it.", "true": true},
-    {"it": "Le rovine sono vuote: i mostri sono solo storie dei pastori.", "en": "The ruins are empty: the monsters are only shepherds' tales.", "true": false},
-    {"it": "Un'altra compagnia è partita per {n} tre giorni fa.", "en": "Another company left for {n} three days ago.", "true": true},
-    {"it": "{building}: una scala scende più in basso delle cantine.", "en": "{building}: a stair goes deeper than the cellars.", "true": true},
-    {"it": "I discendenti dei {family} vivono ancora nel villaggio vicino e sanno dov'è l'ingresso segreto.", "en": "The heirs of the {family} still live in the nearby village and know where the secret way in is.", "true": true}
-  ],
   "ruin_events": [
     {"it": "Un crollo improvviso: una strada si chiude alle spalle dei personaggi.", "en": "A sudden collapse: a street closes behind the characters."},
     {"it": "Nebbia fitta per un giorno intero: ci si orienta solo con le torri.", "en": "Thick fog for a whole day: the towers are the only landmarks."},

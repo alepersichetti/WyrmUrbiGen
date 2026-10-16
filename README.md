@@ -57,7 +57,7 @@ Works with any analogue "OSR" roleplaying game. Sibling of [WyrmHex](https://git
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the referee's map, and the **key** (as `.txt` and as a **PDF file**) tells everything about the settlement: history, government and factions, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
+**WyrmUrbiGen** draws random **villages, towns, cities, big cities, castles, and fortresses** for old school (OSR) campaigns, made only of letters and symbols like the roguelikes NetHack, ADOM and Dwarf Fortress. Every building has its **number** on the referee's map, and the **key** (as `.txt` and as a **PDF file**) tells everything about the settlement: history, government and factions, the NPCs who matter, the people of every building with their OSR stats, demographics, the economy of the country around, rumours and events.
 
 At start the program asks whether the settlement is:
 
@@ -65,6 +65,13 @@ At start the program asks whether the settlement is:
 - a **place of adventure**, either **in ruins** or **inhabited and threatened**. In ruins (the usual choice for a city): abandoned for decades or centuries, with breaches in the walls and brambles in the streets, full of monsters (the city of the dead, the goblin warren, a beast's nest, the sleeping dragon, the faithful of the nameless god, the drowned town, the fungus garden, the ghost court, the orc stronghold), with **a layered history** (founding, height, fall, and whoever came after, leaving traces in the buildings), whoever rules the ruins, and rumours, events and hooks for those who go there. Inhabited: a threat (brigands, a cult, plague, a curse, an orc siege, a night beast, a necromancer lord, something rising from the water, a dragon, a collapsed mine, a feud). Either way, with a clock of what happens if nobody steps in, **wandering monsters, monsters and clues in the buildings, and treasure** from WyrmDelve's tables (its bestiary and the *Old-School Essentials* treasure).
 
 **Treasure** stays within the place's means: only the threat has a lair hoard (its *Old-School Essentials* treasure type, rolled several times and brought to about 1,200, 3,500, 10,000 or 22,000 gp on average by danger, a little less in a village and a little more in a city; magic items stay those of a single hoard); the other monsters and a few empty buildings have the unguarded treasure of a dungeon level as dangerous as the place. In all, about 750-2,000 gp at danger 1, 3,000-7,500 at danger 2, 10,000-20,000 at danger 3, 25,000-50,000 at danger 4 (cities towards the top, villages towards the bottom).
+
+Every settlement has **a layered history**: its founding and two to four events (a fire, a feud, a famine, a heresy, a treasure found, a betrayal...), each with its age and **the legacy** it left: a grudge, an exile, a claim, a debt, a lost relic, a secret, a vow, a curse, a hidden treasure, a betrayal, a prophecy, a fortune. A ruin's layers are those of its history (founding, height, fall, sack). On those legacies stand:
+
+- **the factions** (two to five by type; around a ruin, scavengers, brigands, rival adventurers, cultists, scholars...): name and emblem, who they are and how strong, what they want and **why** (the layer it all goes back to), how they work and what they hold, their base, who leads them, rivals and allies;
+- **the NPCs who matter** (the ruler, the threat's leader, the faction leaders, a few keepers; around a ruin, the faction leaders and a survivor): three sentences of personal history tied to families, gods, events and nearby towns, what they want and why, a secret, **their ties** to the other NPCs who matter (ally, rival, creditor, secret love, kin, blackmailer, mentor...) with the building number, and a job for the characters.
+
+The **rumours** are a d10 table from a generator: who tells it (fifty sources), how (twenty-four ways of telling), what (over a hundred contents, drawn from the place's people, factions, families, gods, history and threat), and whether it is true, false or **only partly true** (with what is wrong, for the referee): hundreds of thousands of different rumours. The tables are in `data/intrigue.json` and `data/rumors.json`.
 
 #### Types and population
 
@@ -154,7 +161,7 @@ The welcome screen with the castle comes up, then the questions. **Multiple-choi
 4. **Colours**: black on white (for printing), white on light blue, white on black, or **in full colour**, as in WyrmHex, on white or on black: every symbol in its own colour (water blue, woods green, walls stone grey, timber brown, gates red, secrets magenta), and on white pale fills under water, streets and buildings (see [In colour](#in-colour) in the gallery).
 5. **Symbols**: WyrmDelve's (`▓ █ ≈ ♣ ╔═╗`) or **keyboard characters only**, as in WyrmHex.
 6. **Name on the map**: the generated one, one of yours, or none.
-7. **What goes in the key**: story, people and (in a place of adventure) monsters and treasure; Space ticks and unticks.
+7. **What goes in the key**: story, people, (in a place of adventure) monsters and treasure, and intrigue (the NPCs who matter and the factions); Space ticks and unticks.
 8. **Units**: metres or feet.
 9. **Print format**: A4, A3, A2 or A1, with the suggested one already highlighted.
 10. **Which files**: **PNG** maps and a PDF book apart, **PDF** maps and a PDF book apart, or **one single PDF** with the two maps and then the book.
@@ -201,7 +208,7 @@ Everything goes into `settlements_generated/<seed>/`:
 | `<seed>_referee.png` (or `.pdf`) | the **referee's map**: building numbers, the list of the **buildings** (number and name), secret posterns `$`, secret tunnel `░`, and a **Secrets** line (the thieves' hideout, the threat's lair, where the tunnel starts) |
 | `<seed>_players.png` (or `.pdf`) | the **players' map**: the same map, numbers and list of buildings, without the secrets |
 | `.txt` next to every map | the map as text, keyboard characters only |
-| `<seed>_key.txt` | the **key**: history, threat, government and factions, demographics, economy, services and mercenaries, rumours and events, walls and gates, and every building with its inhabitant |
+| `<seed>_key.txt` | the **key**: history, threat, government, the NPCs who matter and the factions, demographics, economy, services and mercenaries, rumours and events, walls and gates, and every building with its inhabitant |
 | `<seed>_key.pdf` | the same key as an **A4 book** (headings in Sebaldus-Gotisch, text in Crimson Text); with the **single PDF** option it also holds the two maps |
 
 ### Symbols
@@ -262,7 +269,7 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--format` / `--formato` | `A4`, `A3`, `A2`, `A1` |
 | `--png`, `--pdf`, `--single-pdf` / `--pdf-unico` | PNG maps and book, PDF maps and book, or one single PDF |
 | `--title` / `--titolo`, `--no-title` / `--senza-titolo` | name on the map |
-| `--content` / `--contenuto` | `story`, `people`, `monsters`, `treasure` separated by commas; `map`; `all` |
+| `--content` / `--contenuto` | `story`, `people`, `monsters`, `treasure`, `intrigue` separated by commas; `map`; `all` |
 | `--units` / `--unita` | `metric` or `imperial` |
 | `--ascii-only` / `--solo-ascii` | keyboard characters only |
 | `--font` | a monospaced font of your choice |
@@ -277,9 +284,11 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 | File | What it holds |
 |---|---|
 | `names.json` | the roots of the names of places, people and gods: languages, tones and how a name is put together |
-| `settlements.json` | settlement types, eras, terrains, the gods' domains, inn signs, gates, quarters, history sentences, threats, rumours, events, hooks, and for ruins their layered history, rumours, events and hooks |
+| `settlements.json` | settlement types, eras, terrains, the gods' domains, inn signs, gates, quarters, founding sentences, threats, events, hooks, and for ruins their layered history, events and hooks |
 | `buildings.json` | the buildings: name, the types and eras they appear in, how many (`sv`: one every so many people; or `count`), size, stone or timber, where they stand (square, main street, gate, walls, river, outside), who lives there, services and prices, descriptions |
-| `people.json` | bynames, trades, traits, wants, secrets, rulers, factions, guilds, classes, spells, mercenaries |
+| `people.json` | bynames, trades, traits, wants, secrets, rulers, guilds, classes, spells, mercenaries |
+| `intrigue.json` | the layers of history (ages, events, legacies), relics, factions (kinds, emblems, means, rivalries, alliances) and the NPCs who matter (origins, rises, ties, hooks) |
+| `rumors.json` | the rumour generator: sources, ways of telling, contents and half-truths |
 | `demographics.json` | the numbers of *Medieval Demographics Made Easy* |
 | `economy.json` | the numbers of *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | from WyrmDelve: bestiary, clues, *Old-School Essentials* treasure |

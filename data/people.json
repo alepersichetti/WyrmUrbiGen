@@ -668,7 +668,8 @@
   },
   {
    "it": "pio, cita gli dei a ogni frase",
-   "en": "devout, quotes the gods in every sentence"
+   "en": "devout, quotes the gods in every sentence",
+   "it_f": "pia, cita gli dei a ogni frase"
   },
   {
    "it": "sospettoso coi forestieri",
@@ -787,6 +788,211 @@
    "it": "ossessionato dalla pulizia",
    "en": "obsessed with cleanliness",
    "it_f": "ossessionata dalla pulizia"
+  },
+  {
+   "it": "parla solo per proverbi",
+   "en": "speaks only in proverbs"
+  },
+  {
+   "it": "ride troppo forte e troppo a lungo",
+   "en": "laughs too loud and too long"
+  },
+  {
+   "it": "non guarda mai negli occhi",
+   "en": "never meets anyone's eye"
+  },
+  {
+   "it": "conta tutto: monete, passi, parole",
+   "en": "counts everything: coins, steps, words"
+  },
+  {
+   "it": "collezionista di ossa di animali",
+   "en": "collects animal bones"
+  },
+  {
+   "it": "ha sempre fame",
+   "en": "is always hungry"
+  },
+  {
+   "it": "racconta la stessa storia di guerra a tutti",
+   "en": "tells everyone the same war story"
+  },
+  {
+   "it": "si offende per un nonnulla",
+   "en": "takes offence at nothing"
+  },
+  {
+   "it": "dorme di giorno e lavora di notte",
+   "en": "sleeps by day and works by night"
+  },
+  {
+   "it": "fischietta quando mente",
+   "en": "whistles when lying"
+  },
+  {
+   "it": "ha paura dei gatti",
+   "en": "is afraid of cats"
+  },
+  {
+   "it": "porta sempre un fiore all'occhiello",
+   "en": "always wears a flower in the buttonhole"
+  },
+  {
+   "it": "parla con il suo cane come con una persona",
+   "en": "talks to their dog like a person"
+  },
+  {
+   "it": "scrive tutto su un taccuino",
+   "en": "writes everything in a notebook"
+  },
+  {
+   "it": "coraggioso fino all'incoscienza",
+   "en": "brave to the point of recklessness",
+   "it_f": "coraggiosa fino all'incoscienza"
+  },
+  {
+   "it": "gentile con i bambini, crudele con gli adulti",
+   "en": "kind to children, cruel to adults"
+  },
+  {
+   "it": "tossisce sangue e finge di niente",
+   "en": "coughs blood and pretends it's nothing"
+  },
+  {
+   "it": "superbo, si veste sopra il suo rango",
+   "en": "proud, dresses above their station",
+   "it_f": "superba, si veste sopra il suo rango"
+  },
+  {
+   "it": "generoso con gli sconosciuti, avaro con la famiglia",
+   "en": "generous to strangers, miserly with family",
+   "it_f": "generosa con gli sconosciuti, avara con la famiglia"
+  },
+  {
+   "it": "non dimentica mai un volto",
+   "en": "never forgets a face"
+  },
+  {
+   "it": "cambia idea a ogni vento",
+   "en": "changes their mind with every wind"
+  },
+  {
+   "it": "mangia aglio crudo contro gli spiriti",
+   "en": "eats raw garlic against spirits"
+  },
+  {
+   "it": "canta mentre lavora, stonato",
+   "en": "sings out of tune while working"
+  },
+  {
+   "it": "diffidente verso maghi e chierici",
+   "en": "distrustful of wizards and clerics"
+  },
+  {
+   "it": "adula chiunque abbia un titolo",
+   "en": "flatters anyone with a title"
+  },
+  {
+   "it": "sempre di corsa, sempre in ritardo",
+   "en": "always rushing, always late"
+  },
+  {
+   "it": "parla piano, costringe a chinarsi",
+   "en": "speaks softly, making people lean in"
+  },
+  {
+   "it": "ha un tic all'occhio quando è nervoso",
+   "en": "has a twitching eye when nervous",
+   "it_f": "ha un tic all'occhio quando è nervosa"
+  },
+  {
+   "it": "cita autori che nessuno ha letto",
+   "en": "quotes authors no one has read"
+  },
+  {
+   "it": "si lava tre volte al giorno",
+   "en": "washes three times a day"
+  },
+  {
+   "it": "sfida tutti a braccio di ferro",
+   "en": "challenges everyone to arm-wrestling"
+  },
+  {
+   "it": "non beve mai, e lo fa notare",
+   "en": "never drinks, and makes a point of it"
+  },
+  {
+   "it": "crede in tutti i presagi",
+   "en": "believes in every omen"
+  },
+  {
+   "it": "tratta gli animali meglio delle persone",
+   "en": "treats animals better than people"
+  },
+  {
+   "it": "ha una risata contagiosa",
+   "en": "has an infectious laugh"
+  },
+  {
+   "it": "parla ai morti al cimitero",
+   "en": "talks to the dead in the graveyard"
+  },
+  {
+   "it": "vanitoso, si guarda in ogni specchio",
+   "en": "vain, looks in every mirror",
+   "it_f": "vanitosa, si guarda in ogni specchio"
+  },
+  {
+   "it": "non sa dire di no",
+   "en": "can't say no"
+  },
+  {
+   "it": "ruba piccole cose senza accorgersene",
+   "en": "steals small things without noticing"
+  },
+  {
+   "it": "filosofo da osteria",
+   "en": "a tavern philosopher",
+   "it_f": "filosofa da osteria"
+  },
+  {
+   "it": "paranoico, cambia serratura ogni mese",
+   "en": "paranoid, changes locks every month",
+   "it_f": "paranoica, cambia serratura ogni mese"
+  },
+  {
+   "it": "ama i pettegolezzi più del pane",
+   "en": "loves gossip more than bread"
+  },
+  {
+   "it": "è gentile solo con chi paga",
+   "en": "is kind only to those who pay"
+  },
+  {
+   "it": "ha mani d'oro e lingua di vipera",
+   "en": "has golden hands and a viper's tongue"
+  },
+  {
+   "it": "sempre allegro, anche ai funerali",
+   "en": "always cheerful, even at funerals",
+   "it_f": "sempre allegra, anche ai funerali"
+  },
+  {
+   "it": "ossessionato da una vecchia offesa",
+   "en": "obsessed with an old insult",
+   "it_f": "ossessionata da una vecchia offesa"
+  },
+  {
+   "it": "parla con un forte accento di {place}",
+   "en": "speaks with a strong accent from {place}"
+  },
+  {
+   "it": "odia l'acqua e non si lava mai",
+   "en": "hates water and never washes"
+  },
+  {
+   "it": "porta al collo un amuleto che non toglie mai",
+   "en": "wears an amulet round the neck and never takes it off"
   }
  ],
  "wants": [
@@ -852,7 +1058,7 @@
   },
   {
    "it": "che nessuno scavi sotto casa sua",
-   "en": "that nobody digs under their house"
+   "en": "nobody to dig under their house"
   },
   {
    "it": "sapere chi gli ruba le galline",
@@ -869,6 +1075,188 @@
   {
    "it": "vedere il mare prima di morire",
    "en": "to see the sea before dying"
+  },
+  {
+   "it": "che qualcuno ritrovi il suo cane",
+   "en": "for someone to find their dog"
+  },
+  {
+   "it": "vendicarsi dell'esattore",
+   "en": "revenge on the tax collector"
+  },
+  {
+   "it": "imparare a leggere, in segreto",
+   "en": "to learn to read, in secret"
+  },
+  {
+   "it": "una spada vera, da cavaliere",
+   "en": "a real sword, a knight's sword"
+  },
+  {
+   "it": "una pozione d'amore efficace",
+   "en": "a love potion that works"
+  },
+  {
+   "it": "sapere chi è suo padre",
+   "en": "to know who their father is"
+  },
+  {
+   "it": "riavere la bottega di famiglia",
+   "en": "to get the family shop back"
+  },
+  {
+   "it": "andare in pellegrinaggio al tempio di {god}",
+   "en": "to go on pilgrimage to the temple of {god}"
+  },
+  {
+   "it": "un posto nel consiglio per il figlio",
+   "en": "a council seat for their son"
+  },
+  {
+   "it": "un medico per la moglie, che non guarisce",
+   "en": "a physician for their wife, who isn't getting better"
+  },
+  {
+   "it": "che i mostri stiano lontani dal suo campo",
+   "en": "for the monsters to stay away from their field"
+  },
+  {
+   "it": "cento monete d'oro, subito",
+   "en": "a hundred gold coins, right now"
+  },
+  {
+   "it": "che nessuno scopra ciò che ha fatto ieri notte",
+   "en": "no one to find out what they did last night"
+  },
+  {
+   "it": "comprare la casa dei vicini",
+   "en": "to buy the neighbours' house"
+  },
+  {
+   "it": "fuggire con l'amante",
+   "en": "to run away with their lover"
+  },
+  {
+   "it": "un apprendista onesto e sveglio",
+   "en": "an honest, bright apprentice"
+  },
+  {
+   "it": "che sua figlia sposi un {family}",
+   "en": "for their daughter to marry a {family}"
+  },
+  {
+   "it": "rivedere {place} prima di morire",
+   "en": "to see {place} again before dying"
+  },
+  {
+   "it": "un oggetto magico, uno qualunque",
+   "en": "a magic item, any magic item"
+  },
+  {
+   "it": "dimostrare di essere migliore del fratello",
+   "en": "to prove they're better than their brother"
+  },
+  {
+   "it": "che la guerra finisca prima che chiamino suo figlio",
+   "en": "for the war to end before they call up their son"
+  },
+  {
+   "it": "sapere che fine ha fatto la nave di suo padre",
+   "en": "to learn what became of their father's ship"
+  },
+  {
+   "it": "liberarsi di un fantasma che vive in casa",
+   "en": "to be rid of a ghost living in the house"
+  },
+  {
+   "it": "un buon raccolto, almeno quest'anno",
+   "en": "a good harvest, just this once"
+  },
+  {
+   "it": "essere ammesso nell'Arte",
+   "en": "to be admitted to the guild",
+   "it_f": "essere ammessa nell'Arte"
+  },
+  {
+   "it": "che la strada per {place} torni sicura",
+   "en": "for the road to {place} to be safe again"
+  },
+  {
+   "it": "riscattare un parente prigioniero dei briganti",
+   "en": "to ransom a relative held by brigands"
+  },
+  {
+   "it": "vincere la gara di tiro con l'arco",
+   "en": "to win the archery contest"
+  },
+  {
+   "it": "che qualcuno gli creda, almeno una volta",
+   "en": "for someone to believe them, just once",
+   "it_f": "che qualcuno le creda, almeno una volta"
+  },
+  {
+   "it": "un libro di ricette di un alchimista morto",
+   "en": "a recipe book of a dead alchemist"
+  },
+  {
+   "it": "la mano di chi ama, che è promessa a un altro",
+   "en": "the hand of their beloved, who is promised to another"
+  },
+  {
+   "it": "una tomba degna per il padre",
+   "en": "a worthy tomb for their father"
+  },
+  {
+   "it": "vendere la sua merce a {place}",
+   "en": "to sell their wares in {place}"
+  },
+  {
+   "it": "ritrovare la fede in {god}",
+   "en": "to find their faith in {god} again"
+  },
+  {
+   "it": "che la sua bottega sia la più famosa del luogo",
+   "en": "for their shop to be the most famous in the place"
+  },
+  {
+   "it": "un'occasione per partire all'avventura",
+   "en": "a chance to go adventuring"
+  },
+  {
+   "it": "che il figlio torni dalle rovine dove è sceso",
+   "en": "for their son to come back from the ruins he went down into"
+  },
+  {
+   "it": "rifarsi una vita lontano da qui",
+   "en": "to start a new life far from here"
+  },
+  {
+   "it": "una cura per la sua cecità che avanza",
+   "en": "a cure for their failing sight"
+  },
+  {
+   "it": "che i {family} la paghino",
+   "en": "for the {family} to pay"
+  },
+  {
+   "it": "una scorta fino a {place}",
+   "en": "an escort to {place}"
+  },
+  {
+   "it": "sapere cosa c'è nel baule chiuso del nonno",
+   "en": "to know what is in grandfather's locked chest"
+  },
+  {
+   "it": "proteggere la figlia da un pretendente pericoloso",
+   "en": "to protect their daughter from a dangerous suitor"
+  },
+  {
+   "it": "pagare il riscatto di un figlio rapito",
+   "en": "to pay the ransom of a kidnapped son"
+  },
+  {
+   "it": "che il pozzo della piazza torni pulito",
+   "en": "for the square's well to be clean again"
   }
  ],
  "secrets": [
@@ -957,6 +1345,195 @@
   {
    "it": "ha fatto un patto con qualcosa nel bosco",
    "en": "made a pact with something in the woods"
+  },
+  {
+   "it": "è un licantropo, e lo sa",
+   "en": "is a werewolf, and knows it"
+  },
+  {
+   "it": "ha sposato due persone in due città diverse",
+   "en": "is married to two people in two different towns"
+  },
+  {
+   "it": "tiene un diario di tutti i peccati dei vicini",
+   "en": "keeps a diary of all the neighbours' sins"
+  },
+  {
+   "it": "è il vero padre del figlio del fabbro",
+   "en": "is the real father of the smith's son",
+   "it_f": "è la vera madre della figlia del fabbro"
+  },
+  {
+   "it": "ha rubato l'anello della moglie del signore",
+   "en": "stole the ring of the lord's wife"
+  },
+  {
+   "it": "fa parte di un culto di un dio senza nome",
+   "en": "belongs to a cult of a nameless god"
+  },
+  {
+   "it": "ha ucciso un uomo a {place} ed è fuggito",
+   "en": "killed a man in {place} and fled",
+   "it_f": "ha ucciso un uomo a {place} ed è fuggita"
+  },
+  {
+   "it": "sa leggere le carte e ha visto la propria morte",
+   "en": "can read the cards and has seen their own death"
+  },
+  {
+   "it": "nasconde un fratello ricercato in soffitta",
+   "en": "hides a wanted brother in the attic"
+  },
+  {
+   "it": "è una spia dei {family}",
+   "en": "is a spy for the {family}"
+  },
+  {
+   "it": "annacqua il vino e il latte",
+   "en": "waters down the wine and the milk"
+  },
+  {
+   "it": "ha trovato una moneta d'oro antica e ne cerca altre",
+   "en": "found an ancient gold coin and is looking for more"
+  },
+  {
+   "it": "non è mai stato in guerra: le storie le ha rubate",
+   "en": "never went to war: the stories are stolen",
+   "it_f": "non è mai stata in guerra: le storie le ha rubate"
+  },
+  {
+   "it": "è innamorato del sacerdote di {god}",
+   "en": "is in love with the priest of {god}",
+   "it_f": "è innamorata del sacerdote di {god}"
+  },
+  {
+   "it": "ha seppellito qualcosa nel giardino la notte scorsa",
+   "en": "buried something in the garden last night"
+  },
+  {
+   "it": "deve la vita a un demone, e il demone ha chiesto il conto",
+   "en": "owes their life to a demon, and the demon has sent the bill"
+  },
+  {
+   "it": "è il figlio illegittimo dei {family}",
+   "en": "is the illegitimate son of the {family}",
+   "it_f": "è la figlia illegittima dei {family}"
+  },
+  {
+   "it": "vende le ricette del suo maestro ai concorrenti",
+   "en": "sells their master's recipes to rivals"
+  },
+  {
+   "it": "sa dove dorme il drago dei monti",
+   "en": "knows where the mountain dragon sleeps"
+  },
+  {
+   "it": "ha falsificato il testamento dello zio",
+   "en": "forged their uncle's will"
+  },
+  {
+   "it": "non sa leggere, ma finge da anni",
+   "en": "can't read, but has pretended for years"
+  },
+  {
+   "it": "è un mago che si nasconde",
+   "en": "is a wizard in hiding",
+   "it_f": "è una maga che si nasconde"
+  },
+  {
+   "it": "ha un tesoro sotto il letto e dorme con un coltello",
+   "en": "has a treasure under the bed and sleeps with a knife"
+  },
+  {
+   "it": "tradisce il coniuge con il miglior amico",
+   "en": "cheats on their spouse with their best friend"
+  },
+  {
+   "it": "ha venduto le chiavi della porta ai ladri",
+   "en": "sold the keys to the gate to the thieves"
+  },
+  {
+   "it": "è stato un brigante, sotto un altro nome",
+   "en": "was a brigand, under another name",
+   "it_f": "è stata una brigantessa, sotto un altro nome"
+  },
+  {
+   "it": "ha visto il signore uccidere un uomo",
+   "en": "saw the lord kill a man"
+  },
+  {
+   "it": "conserva i denti di tutti i suoi nemici",
+   "en": "keeps the teeth of all their enemies"
+  },
+  {
+   "it": "prega di nascosto un dio proibito",
+   "en": "secretly prays to a forbidden god"
+  },
+  {
+   "it": "è malato e ha pochi mesi",
+   "en": "is sick and has a few months left",
+   "it_f": "è malata e ha pochi mesi"
+  },
+  {
+   "it": "ha un gemello di cui nessuno sa nulla",
+   "en": "has a twin no one knows about"
+  },
+  {
+   "it": "ha venduto l'anima per il suo talento",
+   "en": "sold their soul for their talent"
+  },
+  {
+   "it": "conosce il vero nome di un demone",
+   "en": "knows the true name of a demon"
+  },
+  {
+   "it": "ha incendiato la bottega del rivale anni fa",
+   "en": "burned down a rival's shop years ago"
+  },
+  {
+   "it": "riceve lettere da {place} che brucia subito",
+   "en": "gets letters from {place} that they burn at once"
+  },
+  {
+   "it": "è d'accordo con i briganti della strada",
+   "en": "is in league with the road brigands"
+  },
+  {
+   "it": "ha fatto sparire un esattore",
+   "en": "made a tax collector disappear"
+  },
+  {
+   "it": "tiene prigioniero un folletto in una gabbia",
+   "en": "keeps a sprite prisoner in a cage"
+  },
+  {
+   "it": "è l'erede legittimo della signoria, e non lo dice",
+   "en": "is the rightful heir to the lordship, and won't say so",
+   "it_f": "è l'erede legittima della signoria, e non lo dice"
+  },
+  {
+   "it": "ha un debito di gioco con la gilda dei ladri",
+   "en": "has a gambling debt with the thieves' guild"
+  },
+  {
+   "it": "ha scavato un tunnel dalla cantina alle mura",
+   "en": "has dug a tunnel from the cellar to the walls"
+  },
+  {
+   "it": "compra cadaveri per uno studioso di {place}",
+   "en": "buys corpses for a scholar from {place}"
+  },
+  {
+   "it": "non ha ombra, e evita il sole",
+   "en": "has no shadow, and avoids the sun"
+  },
+  {
+   "it": "ha giurato fedeltà a due signori diversi",
+   "en": "has sworn fealty to two different lords"
+  },
+  {
+   "it": "custodisce la chiave di una cripta che nessuno ha mai aperto",
+   "en": "keeps the key to a crypt no one has ever opened"
   }
  ],
  "rulers": {
@@ -1069,212 +1646,6 @@
    ]
   }
  },
- "factions": [
-  {
-   "name": {
-    "it": "la famiglia dei {family}",
-    "en": "the {family} family"
-   },
-   "goal": {
-    "it": "prendersi il governo",
-    "en": "to seize the government"
-   },
-   "where": [
-    "town",
-    "city"
-   ]
-  },
-  {
-   "name": {
-    "it": "l'Arte {guild}",
-    "en": "the {guild} guild"
-   },
-   "goal": {
-    "it": "abbassare le gabelle sulle merci",
-    "en": "to lower the tolls on goods"
-   },
-   "where": [
-    "city"
-   ]
-  },
-  {
-   "name": {
-    "it": "la confraternita di {god}",
-    "en": "the confraternity of {god}"
-   },
-   "goal": {
-    "it": "costruire un nuovo ospedale per i poveri",
-    "en": "to build a new hospital for the poor"
-   },
-   "where": [
-    "town",
-    "city",
-    "village"
-   ]
-  },
-  {
-   "name": {
-    "it": "il popolo minuto",
-    "en": "the common folk"
-   },
-   "goal": {
-    "it": "pane a buon prezzo e voce nel consiglio",
-    "en": "cheap bread and a voice on the council"
-   },
-   "where": [
-    "city"
-   ]
-  },
-  {
-   "name": {
-    "it": "i fuoriusciti",
-    "en": "the exiles"
-   },
-   "goal": {
-    "it": "rientrare in città con le armi",
-    "en": "to return to town by force of arms"
-   },
-   "where": [
-    "city",
-    "town"
-   ]
-  },
-  {
-   "name": {
-    "it": "la gilda dei ladri",
-    "en": "the thieves' guild"
-   },
-   "goal": {
-    "it": "controllare le porte e le gabelle",
-    "en": "to control the gates and the tolls"
-   },
-   "where": [
-    "city",
-    "town"
-   ]
-  },
-  {
-   "name": {
-    "it": "il collegio dei sacerdoti",
-    "en": "the college of priests"
-   },
-   "goal": {
-    "it": "riavere le terre tolte al gran tempio",
-    "en": "to recover the lands taken from the great temple"
-   },
-   "where": [
-    "city"
-   ]
-  },
-  {
-   "name": {
-    "it": "i pastori della montagna",
-    "en": "the mountain herders"
-   },
-   "goal": {
-    "it": "il diritto di pascolo nei boschi del signore",
-    "en": "grazing rights in the lord's woods"
-   },
-   "where": [
-    "village"
-   ]
-  },
-  {
-   "name": {
-    "it": "gli anziani del villaggio",
-    "en": "the village elders"
-   },
-   "goal": {
-    "it": "che nulla cambi",
-    "en": "that nothing ever changes"
-   },
-   "where": [
-    "village"
-   ]
-  },
-  {
-   "name": {
-    "it": "i giovani del villaggio",
-    "en": "the village youth"
-   },
-   "goal": {
-    "it": "una festa, un ballo e un po' di libertà",
-    "en": "a feast, a dance and some freedom"
-   },
-   "where": [
-    "village",
-    "town"
-   ]
-  },
-  {
-   "name": {
-    "it": "i cavalieri del signore",
-    "en": "the lord's knights"
-   },
-   "goal": {
-    "it": "una guerra per guadagnare terre",
-    "en": "a war to win lands"
-   },
-   "where": [
-    "castle",
-    "town"
-   ]
-  },
-  {
-   "name": {
-    "it": "la servitù del castello",
-    "en": "the castle servants"
-   },
-   "goal": {
-    "it": "paga arretrata e meno frustate",
-    "en": "back pay and fewer floggings"
-   },
-   "where": [
-    "castle"
-   ]
-  },
-  {
-   "name": {
-    "it": "i veterani della guarnigione",
-    "en": "the garrison veterans"
-   },
-   "goal": {
-    "it": "la paga, che non arriva da tre mesi",
-    "en": "their pay, three months overdue"
-   },
-   "where": [
-    "fortress",
-    "castle"
-   ]
-  },
-  {
-   "name": {
-    "it": "gli ufficiali giovani",
-    "en": "the young officers"
-   },
-   "goal": {
-    "it": "una sortita gloriosa",
-    "en": "a glorious sally"
-   },
-   "where": [
-    "fortress"
-   ]
-  },
-  {
-   "name": {
-    "it": "i mercanti forestieri",
-    "en": "the foreign merchants"
-   },
-   "goal": {
-    "it": "un fondaco tutto loro e le loro leggi",
-    "en": "a warehouse of their own and their own laws"
-   },
-   "where": [
-    "city",
-    "town"
-   ]
-  }
- ],
  "guilds": [
   {
    "it": "della Lana",
