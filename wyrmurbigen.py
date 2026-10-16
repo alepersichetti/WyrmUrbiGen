@@ -523,6 +523,8 @@ TEXTS = {
     "true": ("V", "T"),
     "false": ("F", "F"),
     "partial": ("½: {x}", "½: {x}"),
+    "named_after": ("Il nome ricorda {x} ({w}).", "Named after {x} ({w})."),
+    "named_trait": ("Il nome viene da {x}.", "The name comes from {x}."),
     "h_notables": ("Chi conta", "Who matters"),
     "h_notables_ruin": ("Chi conta intorno alle rovine", "Who matters around the ruins"),
     "h_factions": ("Le fazioni", "The factions"),
@@ -767,7 +769,8 @@ REQUIRED = ("settlement_types", "eras", "terrains", "name_styles", "name_tones",
             "demographics", "economy", "ages", "strata_events", "npc_hooks", "legacies", "kin", "relic_things", "relic_qualities", "ruin_layers",
             "trades_pl", "origins", "rises", "bonds", "bond_reasons", "faction_kinds", "emblem_nouns",
             "emblem_colours", "faction_assets", "faction_powers", "faction_rivalry", "faction_alliance",
-            "rumor_sources", "rumor_verbs", "rumor_contents", "rumor_twists")
+            "rumor_sources", "rumor_verbs", "rumor_contents", "rumor_twists", "rumor_kits", "noble_houses",
+            "founding_marks", "height_marks", "place_traits")
 
 
 def from_json(value):
@@ -1259,10 +1262,25 @@ def person_name(rng, gender, used):
     return name
 
 
+LOCAL_FAMILIES = 0.25       # the share of great families named in the people's own way; the rest are noble mixes
+
+
+def noble_name(r):
+    """A great family's name: the root of one noble house of Europe or Byzantium and the ending of another (or the
+    same): Komnen + aldi, Visc + enos, Arpad + ville."""
+    houses = TABLES["noble_houses"]
+    root, end = r.choice(r.choice(houses)["roots"]), r.choice(r.choice(houses)["ends"])
+    name = re.sub(r"(.)\1\1+", r"\1\1", join_roots(root, end))
+    return name[:1].upper() + name[1:]
+
+
 def family_name(rng, p, key="family"):
-    """One of the settlement's FAMILIES_PER_PLACE families, made up in its people's way."""
+    """One of the settlement's FAMILIES_PER_PLACE great families: a mix of the roots of the noble houses or, now and
+    then, a name made up in its people's way."""
     j = rng.randrange(FAMILIES_PER_PLACE)
     r = random.Random(f"wyrmurbigen-{key}-{p['number']}-{j}")
+    if r.random() >= LOCAL_FAMILIES:
+        return noble_name(r)
     style, fantasy = people_style(p, r)
     return family_of(r, style, "m", fantasy)
 
@@ -4072,11 +4090,12 @@ def cast(rng, s):
             "place": (town_name(rng, p),) * 2, "relic": relic(rng), "dungeon": s.dungeon_name}
 
 
-def stratum(label, text, short, legacy, values, when=None):
-    """One layer of the past: its label (an age), text, what to call it, the legacy it left and its fillers."""
+def stratum(label, text, short, legacy, values, when=None, mark=None):
+    """One layer of the past: its label (an age), text, what to call it, the legacy it left, its fillers and the
+    name it may leave on a building ("della Cometa")."""
     when = when or label
     values = dict(values, short=short, when=(when[0].lower(), when[1].lower()))
-    return {"label": label, "text": text, "short": short, "legacy": legacy, "values": values}
+    return {"label": label, "text": text, "short": short, "legacy": legacy, "values": values, "mark": mark}
 
 
 def plan_strata(s, rng):
@@ -4087,7 +4106,8 @@ def plan_strata(s, rng):
         shorts = data["ruin_layers"]
         names = ("height", "fall") + ("after",) * (len(s.layers) - 3)
         out = [stratum(s.layers[0][0], s.layers[0][1], fmt(("la fondazione di {n}", "the founding of {n}"), n=s.name_pair),
-                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"))]
+                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"),
+                       mark=rng.choice(data["founding_marks"]))]
         for (label, text), name in zip(s.layers[1:], names):
             short = {"height": ("i giorni dello splendore", "the days of glory"), "fall": ("la caduta", "the fall"),
                      "after": ("il saccheggio", "the sack")}[name]
@@ -4095,11 +4115,13 @@ def plan_strata(s, rng):
             if name == "fall":      # "Caduta, 50 anni fa": the age after the comma
                 when = tuple(part.split(", ", 1)[-1] for part in label)
             values = dict(cast(rng, s), **{k: v for k, v in s.ruin_cast.items() if k in ("family", "family2", "god")})
-            out.append(stratum(label, text, short, rng.choice(shorts[name]), values, when=when))
+            mark = rng.choice(data["height_marks"]) if name == "height" else None
+            out.append(stratum(label, text, short, rng.choice(shorts[name]), values, when=when, mark=mark))
         return out
     founding = stratum(("Fondazione", "Founding"), s.history[0], fmt(("la fondazione di {n}", "the founding of {n}"),
                                                                      n=s.name_pair),
-                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"))
+                       rng.choice(FOUNDING_LEGACIES), cast(rng, s), when=("secoli fa", "centuries ago"),
+                       mark=rng.choice(data["founding_marks"]))
     pool = [e for e in data["strata_events"] if allowed_in(e["where"], kind)
             and (not e.get("terrains") or p["terrain"] in e["terrains"])]
     events = rng.sample(pool, min(STRATA[kind], len(pool)))
@@ -4110,7 +4132,7 @@ def plan_strata(s, rng):
         when = data["ages"][age]
         text = fmt(e["text"], **values)
         out.append(stratum((capitalized(when[0]), capitalized(when[1])), text, fmt(e["short"], **values),
-                           rng.choice(e["legacies"]), values, when=when))
+                           rng.choice(e["legacies"]), values, when=when, mark=e["mark"]))
     return out
 
 
@@ -4257,13 +4279,64 @@ def plan_notables(s, rng):
     return chosen
 
 
-def plan_intrigue(s):
-    """The layered history, the factions and the main NPCs, from a generator of their own (the rest of a seed's
-    settlement does not change with them)."""
-    rng = random.Random(f"wyrmurbigen-intrigue-{s.seed}")
+RENAMED = 0.2               # the share of family and owner buildings named after the past or the place instead
+RENAMED_MAX = 6
+
+
+def title_base(kind):
+    """(it, en): what a building of `kind` is called without its family or owner ("Palazzo", "Palace"), or None."""
+    for t in kind.get("title") or []:
+        if "{family}" in t[0] or "{owner}" in t[0]:
+            it = re.sub(r"\s*\b(?:dei|degli|di|del|della)?\s*\{(?:family|owner)\}", "", t[0]).strip()
+            en = re.sub(r"\{(?:family|owner)\}(?:'s)?\s*", "", t[1]).strip()
+            if it and en and "{" not in it + en:
+                return it, en
+    return None
+
+
+def rename_buildings(s, rng):
+    """In addition to the names from families and owners: a few buildings named after a layer of the past
+    ("Villa della Cometa", "Isolato della Peste") or a trait of the place ("Palazzo del Guado"), with the reason
+    kept for the key (b.named)."""
+    p, ruin = s.p, hasattr(s, "layers")
+    traits = [t for t in TABLES["place_traits"] if not t.get("terrains") or p["terrain"] in t["terrains"]]
+    local, common = [t for t in traits if t.get("terrains")], [t for t in traits if not t.get("terrains")]
+    chosen = rng.sample(local, min(1, len(local))) + rng.sample(common, min(1, len(common)))
+    marks = [("stratum", st, st["mark"]) for st in s.strata if st.get("mark")]
+    marks += [("trait", t, (t["it"], t["en"])) for t in chosen]
+    bases = {b.uid: title_base(b.kind) for b in s.plan.buildings if not b.kind.get("filler")}
+    candidates = [b for b in s.plan.buildings if bases.get(b.uid) and b is not getattr(s, "lair", None)]
+    if not ruin:            # row houses and blocks too: "Isolato della Peste"
+        candidates += [b for b in s.plan.buildings if b.kind.get("filler") and b is not getattr(s, "lair", None) and pick(b.title) in
+                       ("Case a schiera", "Row houses", "Isolato", "Block")]
+    if not marks or not candidates:
+        return
+    n = min(RENAMED_MAX, max(1, round(len(candidates) * RENAMED)), len(candidates))
+    rng.shuffle(marks)
+    for k, b in enumerate(rng.sample(candidates, n)):
+        what, source, mark = marks[k % len(marks)]
+        base = bases.get(b.uid) or b.title
+        b.title = (f"{base[0]} {mark[0]}", f"{base[1]} {mark[1]}")
+        if what == "stratum":
+            b.named = tr_pair("named_after"), {"x": source["short"], "w": source["values"]["when"]}
+        else:
+            b.named = tr_pair("named_trait"), {"x": fmt(gendered(source["why"], "m"), place=(town_name(rng, p),) * 2)}
+
+
+def plan_past(s):
+    """The layered history (a ruin's comes with its threat) and the dungeon nearby, and the buildings named after
+    them; from a generator of their own, so the rest of a seed's settlement does not change."""
+    rng = random.Random(f"wyrmurbigen-past-{s.seed}")
     s.dungeon_name = fmt(rng.choice(TABLES["dungeons"]),
                          x=(place_name(rng, None, s.p.get("names"), s.p.get("tone")),) * 2)
     s.strata = plan_strata(s, rng)
+    rename_buildings(s, rng)
+
+
+def plan_intrigue(s):
+    """The factions and the main NPCs, rooted in the layered history (plan_past), from a generator of their own
+    (the rest of a seed's settlement does not change with them)."""
+    rng = random.Random(f"wyrmurbigen-intrigue-{s.seed}")
     s.factions = plan_factions(s, rng)
     s.notables = plan_notables(s, rng)
 
@@ -4278,8 +4351,13 @@ def rumour_values(s, rng):
         if family2 != family:
             break
         family2 = family_name(rng, s.p)
+    place = place2 = town_name(rng, s.p)
+    for _ in range(10):
+        if place2 != place:
+            break
+        place2 = town_name(rng, s.p)
     values = {"family": (family,) * 2, "family2": (family2,) * 2,
-              "god": god_name(rng, s.p), "place": (town_name(rng, s.p),) * 2, "dungeon": s.dungeon_name,
+              "god": god_name(rng, s.p), "place": (place,) * 2, "place2": (place2,) * 2, "dungeon": s.dungeon_name,
               "Dungeon": (capitalized(s.dungeon_name[0]), capitalized(s.dungeon_name[1])), "n": s.name_pair,
               "short": st["short"], "when": st["values"]["when"], "relic": st["values"]["relic"]}
     if npcs and not hasattr(s, "layers"):
@@ -4287,6 +4365,9 @@ def rumour_values(s, rng):
         values["npc"] = ref(b.npc, b)
     if s.plan.buildings:
         values["bref"] = building_ref(rng.choice(s.plan.buildings))
+        b = rng.choice(s.plan.buildings)
+        values["bthe"] = (f"il {tr_pair('ref_no')[0]} {b.number} ({b.title[0]})",
+                          f"no. {b.number} ({b.title[1]})")
     if s.notables:
         nb = rng.choice(s.notables)
         values["notable"] = ref(nb["npc"], nb["home"])
@@ -4308,6 +4389,26 @@ def rumour_values(s, rng):
 
 RUMOURS = 10                # the rumours table: a d10
 THREAT_RUMOURS = 3          # ... of which about the threat, in a place of adventure
+KIT_SHARE = 0.6             # how often a rumour comes from a kit rather than the list of contents
+
+
+def expand_kit(kit):
+    """Every rumour a kit makes: its text with each slot filled by each of its pieces, in every combination; a
+    rumour fits where all its pieces fit."""
+    out = [{"it": kit["text"][0], "en": kit["text"][1], "where": {"living", "ruin"}}]
+    for slot, pieces in kit["parts"].items():
+        grown = []
+        for c in out:
+            for piece in pieces:
+                pair = piece if isinstance(piece, tuple) else (piece["it"], piece["en"])
+                where = set(piece["where"]) if isinstance(piece, dict) and "where" in piece else {"living", "ruin"}
+                grown.append({"it": c["it"].replace("{" + slot + "}", pair[0]),
+                              "en": c["en"].replace("{" + slot + "}", pair[1]), "where": c["where"] & where})
+        out = grown
+    return [c for c in out if c["where"]]
+
+
+RUMOUR_KITS = [expand_kit(k) for k in TABLES["rumor_kits"]]
 
 
 def plan_rumours(s, rng):
@@ -4316,6 +4417,7 @@ def plan_rumours(s, rng):
     where = "ruin" if hasattr(s, "layers") else "living"
     threat_keys = ("dwellers", "dwellers_pl", "lair", "monster")
     contents = [c for c in TABLES["rumor_contents"] if where in c["where"]]
+    kits = [[c for c in kit if where in c["where"]] for kit in RUMOUR_KITS]
     out, used = [], set()
     wanted_threat = THREAT_RUMOURS if getattr(s, "situation", None) else 0
     tries = 0
@@ -4323,7 +4425,9 @@ def plan_rumours(s, rng):
         tries += 1
         values = rumour_values(s, rng)
         about_threat = len(out) < wanted_threat
-        pool = [c for c in contents if (any("{" + k + "}" in c["it"] for k in threat_keys) == about_threat)
+        # from the list, or from a kit (one kit as likely as another, whatever its size)
+        table = rng.choice([k for k in kits if k]) if rng.random() < KIT_SHARE else contents
+        pool = [c for c in table if (any("{" + k + "}" in c["it"] for k in threat_keys) == about_threat)
                 and all(key in values for key in re.findall(r"\{(\w+)\}", c["it"]))]
         if not pool:
             continue
@@ -4332,7 +4436,8 @@ def plan_rumours(s, rng):
             continue
         used.add(c["it"])
         source = rng.choice(TABLES["rumor_sources"])
-        verb = gendered(rng.choice(TABLES["rumor_verbs"]), source["g"])
+        verbs = [v for v in TABLES["rumor_verbs"] if "in piazza" not in gendered(v, "m")[0] or "in piazza" not in source["it"]]
+        verb = gendered(rng.choice(verbs), source["g"])      # not "in the square" twice
         text = fmt((f"{source['it']} {verb[0]} {c['it']}.", f"{source['en']} {verb[1]} {c['en']}."), **values)
         truth = rng.choices(("true", "false", "partial"), weights=(5, 3, 2))[0]
         twist = fmt(rng.choice(TABLES["rumor_twists"]), **values) if truth == "partial" else None
@@ -5239,6 +5344,9 @@ def building_lines(s, b, people_on, monsters_on, treasure_on):
             lines.append(npc_line(b.npc, full=True) + household)
         elif b.npc:
             lines.append(npc_line(b.npc, full=False))
+    if getattr(b, "named", None):     # a name from the past or from the place
+        text, values = b.named
+        lines.append(pick(fmt(text, **values)))
     if s.ruler_seat is b and not ruin:
         lines.append(tr("seat_of", r=pick(s.ruler["role"])))
     if b.kind.get("services") and s.p["purpose"] == "rest":
@@ -6282,6 +6390,7 @@ def make(params, interactive, again=False):
         if TREASURE:
             plan_treasure(s)
         log.info(tr("info_threat", t=pick(s.situation["name"]), n=s.lair.number))
+    plan_past(s)
     plan_intrigue(s)
     plan_lore(s)
     title = pick(s.title) if p["title"] is None else p["title"]
