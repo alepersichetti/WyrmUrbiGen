@@ -57,7 +57,7 @@ Compatibile con qualunque gioco di ruolo analogico "OSR". Fratello di [WyrmHex](
 
 ### WyrmUrbiGen v1.0.0
 
-**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa dell'arbitro, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
+**WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa dell'arbitro, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, i PNG che contano, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
 
 All'avvio il programma chiede se l'insediamento è:
 
@@ -65,6 +65,13 @@ All'avvio il programma chiede se l'insediamento è:
 - un **luogo d'avventura**, **in rovina** oppure **abitato e minacciato**. In rovina (la scelta normale per una città): abbandonato da decenni o secoli, con brecce nelle mura e rovi nelle strade, popolato da mostri (la città dei morti, la tana dei goblin, il nido di una bestia, il drago addormentato, i fedeli del dio senza nome, la città sommersa, il giardino di funghi, la corte dei fantasmi, la roccaforte degli orchi), con **una storia a strati** (fondazione, splendore, caduta, e chi è venuto dopo, lasciando tracce negli edifici), chi comanda tra le rovine, voci, eventi e agganci per chi ci va. Abitato: una minaccia (briganti, un culto, la peste, una maledizione, un assedio di orchi, una bestia notturna, un signore negromante, qualcosa che sale dall'acqua, un drago, una miniera crollata, una faida). In tutti e due i casi, con un orologio di quello che succede se nessuno interviene, **mostri erranti, mostri e indizi negli edifici e tesori** presi dalle tabelle di WyrmDelve (bestiario e tesori di *Old-School Essentials*).
 
 I **tesori** restano alla portata del luogo: solo la minaccia ha un tesoro di tana (il suo tipo di *Old-School Essentials*, tirato più volte e riportato in media a circa 1.200, 3.500, 10.000 o 22.000 mo secondo il pericolo, un po' meno in un villaggio e un po' di più in una città; gli oggetti magici restano quelli di un solo tesoro), gli altri mostri e qualche edificio vuoto hanno il tesoro incustodito di un livello di dungeon pericoloso quanto il luogo. In tutto, circa 750-2.000 mo a pericolo 1, 3.000-7.500 a pericolo 2, 10.000-20.000 a pericolo 3, 25.000-50.000 a pericolo 4 (le città verso l'alto, i villaggi verso il basso).
+
+Ogni insediamento ha **una storia a strati**: la fondazione e da due a quattro eventi (un incendio, una faida, una carestia, un'eresia, un tesoro trovato, un tradimento...), ciascuno con la sua epoca e **l'eredità** che ha lasciato: un rancore, un esilio, una pretesa, un debito, una reliquia perduta, un segreto, un voto, una maledizione, un tesoro nascosto, un tradimento, una profezia, una fortuna. Per una rovina gli strati sono quelli della sua storia (fondazione, splendore, caduta, saccheggio). Su quelle eredità si costruiscono:
+
+- **le fazioni** (da due a cinque secondo il tipo; attorno a una rovina, frugatori, briganti, avventurieri rivali, cultisti, studiosi...): nome e stemma, chi sono e quanto contano, cosa vogliono e **perché** (lo strato da cui nasce tutto), come agiscono e cosa hanno in mano, la sede, chi le guida, rivali e alleati;
+- **i PNG che contano** (il governante, il capo della minaccia, i capi delle fazioni, qualche gestore; attorno a una rovina, i capi delle fazioni e un sopravvissuto): tre frasi di storia personale legata a famiglie, dei, eventi e città vicine, cosa vogliono e perché, un segreto, **i legami** con gli altri PNG che contano (alleato, rivale, creditore, amore segreto, parente, ricattatore, maestro...) con il numero dell'edificio, e un lavoro per i personaggi.
+
+Le **voci** sono una tabella da d10 fatta da un generatore: chi la racconta (cinquanta fonti), come (ventiquattro modi di dirla), cosa (più di cento contenuti, presi dalla gente, dalle fazioni, dalle famiglie, dagli dei, dalla storia e dalla minaccia del luogo), e se è vera, falsa o **vera solo in parte** (con cosa c'è di sbagliato, per l'arbitro): centinaia di migliaia di voci diverse. Le tabelle stanno in `data/intrigue.json` e `data/rumors.json`.
 
 #### Tipi e popolazione
 
@@ -154,7 +161,7 @@ Compare la schermata di benvenuto con il castello, poi le domande. **Le domande 
 4. **Colori**: nero su bianco (per stampare), bianco su celeste, bianco su nero, oppure **a colori**, come in WyrmHex, su bianco o su nero: ogni simbolo nel suo colore (acqua blu, boschi verdi, mura grigio pietra, legno marrone, porte rosse, segreti magenta) e, su bianco, fondi chiari sotto acqua, strade ed edifici (vedi [A colori](#a-colori) nella galleria).
 5. **Simboli**: quelli di WyrmDelve (`▓ █ ≈ ♣ ╔═╗`) oppure **solo i caratteri della tastiera**, come in WyrmHex.
 6. **Nome sulla mappa**: quello generato, uno tuo, oppure nessuno.
-7. **Cosa vuoi nella chiave**: storia, abitanti e (in un luogo d'avventura) mostri e tesori; Spazio segna e toglie.
+7. **Cosa vuoi nella chiave**: storia, abitanti, (in un luogo d'avventura) mostri e tesori, e intrighi (i PNG che contano e le fazioni); Spazio segna e toglie.
 8. **Unità**: metri o piedi.
 9. **Formato di stampa**: A4, A3, A2 o A1, con quello consigliato già evidenziato.
 10. **Che file vuoi**: mappe in **PNG** e libro PDF separati, mappe in **PDF** e libro PDF separati, oppure **un unico PDF** con le due mappe e poi il libro.
@@ -201,7 +208,7 @@ Tutto va in `settlements_generated/<seme>/`:
 | `<seme>_referee.png` (o `.pdf`) | la **mappa dell'arbitro**: numeri degli edifici, l'**elenco degli edifici** (numero e nome), postierle segrete `$`, galleria segreta `░`, e una riga **Segreti** (il covo dei ladri, il covo della minaccia, dove comincia la galleria) |
 | `<seme>_players.png` (o `.pdf`) | la **mappa dei giocatori**: la stessa mappa, con i numeri e l'elenco degli edifici, senza i segreti |
 | `.txt` accanto a ogni mappa | la mappa come testo, solo caratteri della tastiera |
-| `<seme>_key.txt` | la **chiave**: storia, minaccia, governo e fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
+| `<seme>_key.txt` | la **chiave**: storia, minaccia, governo, i PNG che contano e le fazioni, demografia, economia, servizi e mercenari, voci ed eventi, mura e porte, e ogni edificio con il suo abitante |
 | `<seme>_key.pdf` | la stessa chiave come **libro A4** (titoli in Sebaldus-Gotisch, testo in Crimson Text); con l'opzione **PDF unico** contiene anche le due mappe |
 
 ### Simboli
@@ -262,7 +269,7 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--formato` / `--format` | `A4`, `A3`, `A2`, `A1` |
 | `--png`, `--pdf`, `--pdf-unico` / `--single-pdf` | mappe PNG e libro, mappe PDF e libro, oppure un unico PDF |
 | `--titolo` / `--title`, `--senza-titolo` / `--no-title` | nome sulla mappa |
-| `--contenuto` / `--content` | `storia`, `abitanti`, `mostri`, `tesori` separati da virgole; `mappa`; `tutto` |
+| `--contenuto` / `--content` | `storia`, `abitanti`, `mostri`, `tesori`, `intrighi` separati da virgole; `mappa`; `tutto` |
 | `--unita` / `--units` | `metrica` o `imperiale` |
 | `--solo-ascii` / `--ascii-only` | solo caratteri della tastiera |
 | `--font` | un font monospazio a tua scelta |
@@ -277,9 +284,11 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 | File | Cosa contiene |
 |---|---|
 | `names.json` | le radici dei nomi di luoghi, persone e dei: lingue, toni e come si compone un nome |
-| `settlements.json` | tipi di insediamento, epoche, terreni, domini degli dei, insegne, porte, contrade, frasi della storia, minacce, voci, eventi, agganci, e per le rovine la storia a strati, le voci, gli eventi e gli agganci |
+| `settlements.json` | tipi di insediamento, epoche, terreni, domini degli dei, insegne, porte, contrade, frasi della fondazione, minacce, eventi, agganci, e per le rovine la storia a strati, gli eventi e gli agganci |
 | `buildings.json` | gli edifici: nome, tipi ed epoche in cui compaiono, quanti (`sv`: uno ogni tanti abitanti; oppure `count`), dimensioni, pietra o legno, dove stanno (piazza, strada maestra, porta, mura, fiume, fuori), chi ci vive, servizi e prezzi, descrizioni |
-| `people.json` | soprannomi, mestieri, caratteri, desideri, segreti, governanti, fazioni, arti, classi, incantesimi, mercenari |
+| `people.json` | soprannomi, mestieri, caratteri, desideri, segreti, governanti, arti, classi, incantesimi, mercenari |
+| `intrigue.json` | gli strati della storia (epoche, eventi, eredità), le reliquie, le fazioni (tipi, stemmi, mezzi, rivalità, alleanze) e i PNG che contano (origini, ascese, legami, agganci) |
+| `rumors.json` | il generatore di voci: fonti, modi di dirle, contenuti e mezze verità |
 | `demographics.json` | i numeri di *Medieval Demographics Made Easy* |
 | `economy.json` | i numeri di *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | da WyrmDelve: bestiario, indizi, tesori di *Old-School Essentials* |
