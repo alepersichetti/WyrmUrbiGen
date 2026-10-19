@@ -100,6 +100,8 @@ Dopo il tipo puoi scrivere il numero esatto di abitanti (con Invio ne tieni uno 
 
 Pianura, collina, montagna, foresta, palude, costa, fiume e lago. Il terreno cambia la mappa: il mare e il lago tagliano le mura e portano un molo, il fiume fa da fossato e si attraversa con un ponte, in montagna l'abitato si allunga sul crinale, la foresta lascia una radura di campi, la palude circonda un'isola asciutta. Attorno ci sono i **campi** a strisce e appezzamenti (arati, seminati, prati, frutteti), diversi per ogni terreno.
 
+Se all'inizio lo chiedi, c'è anche la **foresta di funghi giganti**, ispirata a Morrowind (come in WyrmHex): funghi alti come torri (`⊤°`, in colore prugna) tutto intorno e qua e là tra le case al posto degli alberi; solo templi, palazzi e mura sono di pietra, il resto è per lo più **cresciuto dentro i gambi dei funghi** (nella chiave: *fungo* invece di *legno*, con com'è fatta la casa: stanze a spirale, finestre rotonde nella polpa, lanterne di spore). Ci sono edifici che esistono solo lì (la **torre cresciuta** del mago, le **colture di funghi**, le **stalle dei coleotteri** da soma e da sella), mestieri, dei, eventi della storia e peculiarità del luogo tutti suoi. La risposta pronta è **no**: in quel caso tutto resta come sempre, semi compresi.
+
 #### Economia del contado
 
 Dalle regole di *OSR: Land and Investments* (Skerples, blog *Coins and Scrolls*): quanto è sviluppato il contado, quanti contadini e villaggi ci sono nell'esagono di 6 miglia attorno (lo stesso di WyrmHex), la rendita netta del signore (dimezzata o divisa per 10 nei tempi difficili, cioè quando c'è una minaccia), e **proprietà in vendita** con costo, rendita e affittuari: fattorie, manieri, locande, botteghe, miniere.
@@ -148,12 +150,12 @@ python wyrmurbigen.py
 Compare la schermata di benvenuto con il castello, poi le domande. **Le domande a scelta sono menu**: frecce **↑ ↓**, **Invio** per confermare, oppure il numero dell'opzione. Le domande in cui scrivi hanno una risposta pronta tra parentesi quadre: Invio la accetta.
 
 1. **Lingua**: italiano o inglese.
-2. **Cosa vuoi fare?** Un insediamento casuale, **scelgo io**, oppure **rifaccio un insediamento dal suo seme**.
+2. **Cosa vuoi fare?** Un insediamento casuale, **scelgo io**, oppure **rifaccio un insediamento dal suo seme**. Per un insediamento nuovo il programma chiede subito se vuoi anche le **foreste di funghi giganti** tra i terreni (risposta pronta: no); se dici sì, compaiono nel menu dei terreni e il caso le sceglie una volta su tre.
 3. Se scegli tu, ogni domanda ha anche la risposta **A caso**:
    - **luogo di riposo o luogo d'avventura**;
    - **tipo** (villaggio, paese, città, grande città, castello, fortezza) e **numero di abitanti**;
    - **epoca** (alto medioevo, basso medioevo, Rinascimento);
-   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago), ognuno con una breve descrizione. In **montagna** l'insediamento è **arroccato** su uno sperone: dirupi tutt'intorno (`Λ`) tranne dalla parte dell'unica salita, dove si aprono una o due porte e le strade scendono a tornanti; dentro, le vie secondarie più ripide sono gradinate (`≣`) e la rocca, il palazzo e il tempio maggiore stanno in cima; niente fossati, ci sono già i dirupi;
+   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago e, se le hai chieste, foresta di funghi giganti), ognuno con una breve descrizione. In **montagna** l'insediamento è **arroccato** su uno sperone: dirupi tutt'intorno (`Λ`) tranne dalla parte dell'unica salita, dove si aprono una o due porte e le strade scendono a tornanti; dentro, le vie secondarie più ripide sono gradinate (`≣`) e la rocca, il palazzo e il tempio maggiore stanno in cima; niente fossati, ci sono già i dirupi;
    - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre) e lo **stato**: **in rovina** (mostri e storia a strati) o **abitato e minacciato**; a caso, una città è sempre in rovina, gli altri insediamenti una volta su tre;
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
@@ -175,7 +177,7 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2R-DE4-K7Q2MB`: tipo e abitan
 |---|---|
 | Tipo | `V` villaggio, `B` paese, `C` città, `G` grande città, `K` castello, `F` fortezza, seguito dagli abitanti |
 | Epoca | `A` alto medioevo, `B` basso medioevo, `R` Rinascimento |
-| Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago |
+| Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago, `G` funghi giganti |
 | Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo, seguito dallo stato: `R` in rovina, `T` abitato e minacciato |
 | Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano; poi, se le persone non hanno i nomi dei luoghi, `X` (fantasy) o il codice della loro lingua (`DE4NO`: luoghi tedeschi, persone danesi e svedesi) |
 
@@ -231,6 +233,7 @@ Tutto va in `settlements_generated/<seme>/`:
 | `≡` | `_` | campo arato |
 | `"` | `"` | prato e pascolo |
 | `♣` `♠` | `T` `Y` | bosco, frutteto |
+| `⊤` `°` | `f` `o` | funghi giganti e spore |
 | `∩` `▲` | `n` `^` | colline, montagne |
 | `†` | `t` | cimitero |
 | `○` `Θ` `π` | `o` `O` `h` | pozzo, fontana, banco del mercato |
@@ -257,7 +260,8 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--tipo` / `--type` | `villaggio`, `paese`, `citta`, `grande`, `castello`, `fortezza` (o da 1 a 6) |
 | `--popolazione` / `--population` | numero di abitanti (se manca il tipo, lo sceglie dal numero) |
 | `--epoca` / `--era` | `alto`, `basso`, `rinascimento` (o da 1 a 3) |
-| `--terreno` / `--terrain` | `pianura`, `collina`, `montagna`, `foresta`, `palude`, `costa`, `fiume`, `lago` |
+| `--terreno` / `--terrain` | `pianura`, `collina`, `montagna`, `foresta`, `palude`, `costa`, `fiume`, `lago`, `funghi` |
+| `--funghi` / `--mushrooms` | aggiunge le foreste di funghi giganti ai terreni che il caso può scegliere |
 | `--scopo` / `--purpose` | `riposo` o `avventura` |
 | `--pericolo` / `--danger` | da 1 a 4 (solo luogo d'avventura) |
 | `--stato` / `--state` | `rovina` (in rovina, mostri e storia a strati) o `abitato` (abitato e minacciato); solo luogo d'avventura |

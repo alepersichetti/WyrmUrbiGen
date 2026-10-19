@@ -149,6 +149,7 @@ PALETTES = {
         "garden": (60, 150, 60), "grave": (110, 110, 110), "well": (30, 100, 200), "fountain": (30, 100, 200),
         "stall": (180, 125, 25), "plough": (150, 110, 50), "sown": (175, 150, 30), "pasture": (90, 160, 70),
         "orchard": (40, 130, 60), "forest": (25, 125, 45), "tree": (25, 125, 45), "hill": (130, 85, 25), "mount": (105, 90, 80),
+        "shroom": (100, 60, 80),
         "reed": (118, 30, 95), "secret": (200, 0, 130),
         # fills, light enough for the symbols on top
         "bg:water": (180, 211, 236), "bg:street": (242, 238, 228), "bg:stone": (222, 222, 226),
@@ -161,6 +162,7 @@ PALETTES = {
         "garden": (90, 200, 100), "grave": (160, 160, 165), "well": (80, 150, 255), "fountain": (80, 150, 255),
         "stall": (235, 195, 95), "plough": (205, 160, 85), "sown": (225, 200, 80), "pasture": (120, 200, 100),
         "orchard": (70, 190, 90), "forest": (60, 190, 80), "tree": (60, 190, 80), "hill": (215, 165, 80), "mount": (195, 180, 165),
+        "shroom": (176, 140, 168),
         "reed": (195, 105, 165), "secret": (255, 80, 200),
         # only the water is filled, as WyrmHex's sea on black
         "bg:water": (18, 42, 82)},
@@ -412,6 +414,15 @@ TEXTS = {
     "lg_pasture": ("prato e pascolo", "meadow and pasture"),
     "lg_orchard": ("frutteto o oliveto", "orchard or olive grove"),
     "lg_forest": ("bosco", "woods"),
+    "lg_shroom": ("funghi giganti", "giant mushrooms"),
+    "lg_grown": ("cresciuto in un fungo, o in legno", "grown in a mushroom, or timber"),
+    "q_fungus": ("Vuoi anche le foreste di funghi giganti (ispirate a Morrowind) tra i terreni?",
+                 "Do you also want giant mushroom forests (inspired by Morrowind) among the terrains?"),
+    "fungus_no": ("no, i terreni di sempre", "no, the usual terrains"),
+    "fungus_yes": ("sì, anche le foreste di funghi giganti", "yes, giant mushroom forests too"),
+    "h_fungus": ("aggiunge le foreste di funghi giganti ai terreni che il caso può scegliere",
+                 "adds giant mushroom forests to the terrains chance may pick"),
+    "grown": ("fungo", "mushroom"),
     "lg_hill": ("colline", "hills"),
     "lg_mount": ("montagne", "mountains"),
     "lg_cliff": ("dirupi", "cliffs"),
@@ -579,8 +590,8 @@ TEXTS = {
     "h_type": ("villaggio, paese, citta, grande, castello, fortezza (o 1-6)", "village, town, city, bigcity, castle, fortress (or 1-6)"),
     "h_pop": ("numero di abitanti (sceglie anche il tipo, se manca)", "number of inhabitants (also picks the type, if missing)"),
     "h_era": ("alto (medioevo), basso (medioevo), rinascimento (o 1-3)", "early, late, renaissance (or 1-3)"),
-    "h_terrain": ("pianura, collina, montagna, foresta, palude, costa, fiume, lago (o 1-8)",
-                  "plains, hills, mountains, forest, swamp, coast, river, lake (or 1-8)"),
+    "h_terrain": ("pianura, collina, montagna, foresta, palude, costa, fiume, lago, funghi (o 1-9)",
+                  "plains, hills, mountains, forest, swamp, coast, river, lake, mushrooms (or 1-9)"),
     "h_purpose": ("riposo o avventura", "rest or adventure"),
     "h_danger": ("pericolo del luogo d'avventura, da 1 a 4", "danger of the place of adventure, 1 to 4"),
     "h_state": ("stato del luogo d'avventura: rovina (in rovina, mostri e storia a strati) o abitato (abitato e "
@@ -1003,14 +1014,20 @@ def random_pop(kind, rng):
     return int(max(lo, min(hi, round(value / step) * step)))
 
 
+FUNGUS_SHARE = 1 / 3        # with the giant mushroom forests asked for, how often chance picks them
+
+
 def random_params(n, fixed=None):
-    """Random parameters from the seed number; `fixed` ones are kept as they are."""
+    """Random parameters from the seed number; `fixed` ones are kept as they are. The giant mushroom forests are
+    drawn only when asked for (fixed["fungus"]): without them, the same seed number gives the same place as ever."""
     fixed = dict(fixed or {})
     r = random.Random(f"wyrmurbigen-params-{n}")
     p = {"type": r.choices([t["id"] for t in TYPES], weights=[5, 4, 2, 1, 3, 2][:len(TYPES)])[0],
          "era": r.choice([e["id"] for e in ERAS]),
-         "terrain": r.choice([t["id"] for t in TERRAINS]),
+         "terrain": r.choice([t["id"] for t in TERRAINS if not t.get("optional")]),
          "purpose": r.choice(PURPOSES)}
+    if fixed.get("fungus") and r.random() < FUNGUS_SHARE:
+        p["terrain"] = "fungus"
     p.update({k: v for k, v in fixed.items() if k in ("type", "era", "terrain", "purpose")})
     p["pop"] = fixed.get("pop") or random_pop(p["type"], r)
     if p["purpose"] == "adventure":
@@ -1645,6 +1662,13 @@ def environment(plan, p, rng, reach):
                     ground[y][x] = "water"
                 elif d > reach * 1.05 and a > 0.4 and t < 0.45:
                     ground[y][x] = "reed"
+            elif terrain == "fungus":
+                # giant mushrooms in groves all round, a few lone ones close to the houses
+                clearing = reach * (1.35 + 0.5 * a)
+                if d > clearing and t < 0.78:
+                    ground[y][x] = "shroom"
+                elif d > reach * 1.05 and b > 0.74 and t < 0.45:
+                    ground[y][x] = "shroom"
             elif terrain == "forest":
                 clearing = reach * (1.45 + 0.5 * a)
                 if d > clearing and t < 0.8:
@@ -2403,7 +2427,7 @@ def region_out(plan, near=None):
     """Free land cells outside the walls (grass, trees, hills), within `near` of the centre if given."""
     def region(x, y):
         """Whether x, y is free open land outside the walls (and near enough)."""
-        if plan.inside[y][x] or plan.cell[y][x] is not None or plan.ground[y][x] not in ("grass", "tree", "hill"):
+        if plan.inside[y][x] or plan.cell[y][x] is not None or plan.ground[y][x] not in ("grass", "tree", "shroom", "hill"):
             return False
         return near is None or vdist(x, y, plan.cx, plan.cy) <= near
     return region
@@ -2472,7 +2496,8 @@ def cemetery(plan, rng, church):
 # --- the countryside ---
 FIELD_WEIGHTS = {  # plough, sown, pasture, orchard, fallow
     "plains": (4, 4, 2, 1, 1), "river": (4, 3, 3, 1, 1), "coast": (2, 3, 3, 2, 1), "lake": (3, 3, 3, 1, 1),
-    "hills": (2, 2, 2, 4, 1), "mountains": (1, 1, 5, 1, 2), "forest": (2, 2, 3, 1, 2), "swamp": (1, 1, 5, 0, 3)}
+    "hills": (2, 2, 2, 4, 1), "mountains": (1, 1, 5, 1, 2), "forest": (2, 2, 3, 1, 2), "swamp": (1, 1, 5, 0, 3),
+    "fungus": (1, 1, 3, 0, 3)}
 FIELD_KINDS = ("plough", "sown", "pasture", "orchard", "fallow")
 
 
@@ -2547,7 +2572,7 @@ def roads_out(plan, rng):
         if c in (ROAD, BRIDGE):
             return 0.5
         g = plan.ground[y][x]
-        base = {"grass": 1.0, "tree": 2.5, "hill": 1.7, "mount": 5.0, "reed": 2.0, "water": 7.0}.get(g, 1.0)
+        base = {"grass": 1.0, "tree": 2.5, "shroom": 2.5, "hill": 1.7, "mount": 5.0, "reed": 2.0, "water": 7.0}.get(g, 1.0)
         if c in (DITCH, MOAT):
             base = 2.0
         return base * (1 + plan.n2[y][x])
@@ -2592,7 +2617,7 @@ def village_roads(plan, rng, n):
         if c in (ROAD, STREET, SQUARE, BRIDGE):
             return 0.5
         g = plan.ground[y][x]
-        base = {"grass": 1.0, "tree": 2.5, "hill": 1.7, "mount": 5.0, "reed": 2.0, "water": 7.0}.get(g, 1.0)
+        base = {"grass": 1.0, "tree": 2.5, "shroom": 2.5, "hill": 1.7, "mount": 5.0, "reed": 2.0, "water": 7.0}.get(g, 1.0)
         return base * (1 + plan.n2[y][x])
     angles = gate_angles(plan, plan.mask, n, rng)
     for a in angles:
@@ -2874,6 +2899,10 @@ def build_plan(p, seed):
         build_ward(plan, p, rng, lay)
     else:
         build_town(plan, p, rng, lay)
+    if p["terrain"] == "fungus":    # among the giant mushrooms only temples, palaces and walls are of stone
+        for b in plan.buildings:
+            if b.kind.get("stone", "late") == "late":
+                b.stone = False
     finish(plan, p, rng)
     return plan
 
@@ -3234,6 +3263,7 @@ def stairs(plan):
 def finish(plan, p, rng):
     """Fields, gardens, wells, the cemetery crosses, quarters, numbers, secrets."""
     ward = p["type"] in ("castle", "fortress")
+    tree = "shroom" if p["terrain"] == "fungus" else "tree"     # in a mushroom forest, a giant mushroom
     # fields around every settlement (castles: roads out first); a perched settlement first gets its cliffs and
     # its stairs
     if not ward or True:
@@ -3266,7 +3296,7 @@ def finish(plan, p, rng):
         elif p["type"] == "village":
             for c in free[:rng.randint(1, 3)]:
                 if c not in plan.feat:
-                    plan.feat[c] = "tree"
+                    plan.feat[c] = tree
     if ward:
         # a castle's well: in the middle of an open stretch of the courtyard
         yard = [(x, y) for y in range(plan.H) for x in range(plan.W) if plan.cell[y][x] == YARD and
@@ -3285,7 +3315,7 @@ def finish(plan, p, rng):
         for x in range(plan.W):
             # a few trees in the gardens
             if plan.cell[y][x] == GARDEN and plan.tex[y][x] < 0.05:
-                plan.feat[(x, y)] = "tree"
+                plan.feat[(x, y)] = tree
     # then quarters and building numbers, and the secret ways
     quarters_and_numbers(plan, p)
     secrets(plan, p, rng)
@@ -3510,6 +3540,24 @@ def join_pairs(pairs):
     return tuple(out)
 
 
+GROWN = 0.75                # in a mushroom forest, the share of non-stone buildings grown in a giant mushroom
+GROWN_TOLD = 0.3            # ... and of the grown houses whose key tells how (every notable building does)
+
+
+def grow_in_mushrooms(s, seed):
+    """In a giant mushroom forest most of what is not stone is grown inside a mushroom (b.grown), and the key says
+    how for the notable buildings and a few houses (b.grown_text); from a generator of its own."""
+    r = random.Random(f"wyrmurbigen-grown-{seed}")
+    lines = TERRAIN["fungus"]["grown"]
+    for b in s.plan.buildings:
+        if b.kind.get("grown"):         # a grown tower: a mushroom through and through, its own text says how
+            b.grown = True
+        elif not b.stone and r.random() < GROWN:
+            b.grown = True
+            if not b.kind.get("filler") or r.random() < GROWN_TOLD:
+                b.grown_text = r.choice(lines)
+
+
 def make_settlement(p, plan, seed):
     """Everything but the map: names, history, government, people in every
     building, demographics, economy; monsters and treasure come later."""
@@ -3602,6 +3650,8 @@ def make_settlement(p, plan, seed):
             b.title = ("Isolato", "Block")
         extra = rng.sample(trades, min(2, len(trades)))
         b.trades = [trade["m"]] + [t["m"] for t in extra]
+    if p["terrain"] == "fungus":
+        grow_in_mushrooms(s, seed)
     # government
     rulers = TABLES["rulers"][kind if kind in TABLES["rulers"] else building_type(kind)][p["era"]]
     title = rng.choice(rulers)
@@ -4636,6 +4686,7 @@ SYMBOLS = {
     "secret": ("$", "$"), "tunnel": ("░", ":"), "brambles": ("ψ", "&"), "cliff": ("Λ", "/"), "stairs": ("≣", ">"),
     "well": ("○", "o"), "fountain": ("Θ", "O"), "stall": ("π", "h"), "tree": ("♣", "T"),
     "forest1": ("♣", "T"), "forest2": ("♠", "Y"), "hill": ("∩", "n"), "mount": ("▲", "^"),
+    "shroom": ("⊤", "f"), "spores": ("°", "o"),       # giant mushrooms (wide caps on tall stems) and spores, as in WyrmHex
     "reed1": ("⌠", ","), "reed2": ('"', ";"),
     "plough": ("≡", "_"), "sown": ("τ", "v"), "pasture": ('"', '"'), "orchard": ("♣", "T"),
 }
@@ -4645,7 +4696,8 @@ DOUBLE = {"h": ("═", "="), "v": ("║", "H"), "tl": ("╔", "="), "tr": ("╗"
 SINGLE = {"h": ("─", "-"), "v": ("│", "|"), "tl": ("┌", "-"), "tr": ("┐", "-"), "bl": ("└", "-"), "br": ("┘", "-")}
 
 
-GROUND_TAGS = {"water": "water", "tree": "forest", "hill": "hill", "mount": "mount", "reed": "reed", "cliff": "mount"}
+GROUND_TAGS = {"water": "water", "tree": "forest", "shroom": "shroom", "hill": "hill", "mount": "mount", "reed": "reed",
+               "cliff": "mount"}
 
 
 def ground_tag(g):
@@ -4662,6 +4714,8 @@ def ground_char(plan, x, y, G):
         return G(*SYMBOLS["water"])
     if g == "tree":
         return G(*SYMBOLS["forest1" if t < 0.45 else "forest2"]) if t < 0.75 else " "
+    if g == "shroom":
+        return G(*SYMBOLS["shroom" if t < 0.5 else "spores"]) if t < 0.7 else " "
     if g == "hill":
         return G(*SYMBOLS["hill"])
     if g == "mount":
@@ -4822,7 +4876,8 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     if any(b.stone for b in plan.buildings):
         out.append([(G("╔═╗", "=H="), "n", "stone", "bg:stone"), (" " + tr("lg_stone"), "n")])
     if any(not b.stone for b in plan.buildings):
-        out.append([(G("┌─┐", "-|-"), "n", "wood", "bg:wood"), (" " + tr("lg_wood"), "n")])
+        wood = "lg_grown" if p.get("terrain") == "fungus" else "lg_wood"
+        out.append([(G("┌─┐", "-|-"), "n", "wood", "bg:wood"), (" " + tr(wood), "n")])
     out.append([("+", "n", "door"), (" " + tr("lg_door"), "n")])
     if referee:
         out.append([("12", "b", "number"), (" " + tr("lg_number"), "n")])
@@ -4862,6 +4917,9 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     for key in ("plough", "sown", "pasture", "orchard"):
         if key in fields_used:
             out.append([(G(*SYMBOLS[key]), "n", key), (" " + tr("lg_" + key), "n")])
+    if "shroom" in used or "shroom" in feats:
+        out.append([(G(SYMBOLS["shroom"][0] + SYMBOLS["spores"][0], SYMBOLS["shroom"][1] + SYMBOLS["spores"][1]), "n",
+                     "shroom"), (" " + tr("lg_shroom"), "n")])
     for key, sym, label in (("tree", "forest1", "lg_forest"), ("hill", "hill", "lg_hill"), ("mount", "mount", "lg_mount"),
                             ("cliff", "cliff", "lg_cliff"), ("reed", "reed1", "lg_reed")):
         if key in used:
@@ -5313,7 +5371,7 @@ def write_text(path, canvas):
 def kind_label(b):
     """What a building is and what it is made of: inn, stone."""
     name = pick(b.kind["name"])
-    material = tr("stone") if b.stone else tr("wood")
+    material = tr("stone") if b.stone else tr("grown") if getattr(b, "grown", None) else tr("wood")
     return f"{name}, {material}"
 
 
@@ -5344,6 +5402,8 @@ def building_lines(s, b, people_on, monsters_on, treasure_on):
             lines.append(npc_line(b.npc, full=True) + household)
         elif b.npc:
             lines.append(npc_line(b.npc, full=False))
+    if getattr(b, "grown_text", None) and not ruin:     # a house grown in a giant mushroom
+        lines.append(capitalized(pick(b.grown_text)) + ".")
     if getattr(b, "named", None):     # a name from the past or from the place
         text, values = b.named
         lines.append(pick(fmt(text, **values)))
@@ -6026,11 +6086,12 @@ def ask_choice(question, items, labels, hints=None):
     return None if k == 0 else items[k - 1]
 
 
-def ask_params():
+def ask_params(fungus=False):
     """The questions of "I'll choose": purpose, type and people, era, terrain, danger, names, tone and people's
-    names; every one may be left to chance. Returns the fixed parameters."""
+    names; every one may be left to chance (the giant mushroom forests among the terrains only if `fungus`).
+    Returns the fixed parameters."""
     # one question per parameter; an empty answer (random) leaves it out of `fixed`
-    fixed = {}
+    fixed = {"fungus": True} if fungus else {}
     purpose = ask_choice(tr("q_purpose"), list(PURPOSES), [tr("purpose_rest_menu"), tr("purpose_adventure_menu")],
                          [tr("purpose_rest_hint"), tr("purpose_adventure_hint")])
     if purpose:
@@ -6047,8 +6108,9 @@ def ask_params():
                      [pick(e["about"]) for e in ERAS])
     if era:
         fixed["era"] = era
-    terrain = ask_choice(tr("q_terrain"), [t["id"] for t in TERRAINS], [pick(t["menu"]) for t in TERRAINS],
-                         [pick(t["about"]) if t.get("about") else "" for t in TERRAINS])
+    terrains = [t for t in TERRAINS if fungus or not t.get("optional")]
+    terrain = ask_choice(tr("q_terrain"), [t["id"] for t in terrains], [pick(t["menu"]) for t in terrains],
+                         [pick(t["about"]) if t.get("about") else "" for t in terrains])
     if terrain:
         fixed["terrain"] = terrain
     # names and tone show a few examples generated on the spot
@@ -6157,10 +6219,11 @@ def ask_settings():
                 break
             print(tr("seed_invalid", example=example_seed()))
         p.update(seed)
-    elif mode == "params":
-        p.update(random_params(new_number(), ask_params()))
     else:
-        p.update(random_params(new_number()))
+        # the giant mushroom forests are optional: without them, places are made as always
+        fungus = menu(tr("q_fungus"), [tr("fungus_no"), tr("fungus_yes")], 0) == 1
+        fixed = ask_params(fungus) if mode == "params" else {"fungus": True} if fungus else {}
+        p.update(random_params(new_number(), fixed))
     p["colors"] = ask_colors()
     p["ascii_only"] = menu(tr("ascii_intro"), [tr("ascii_no"), tr("ascii_yes")], 0) == 1
     p["title"] = ask_name()
@@ -6216,6 +6279,7 @@ def settings_from_options(argv):
     ap.add_argument(*names("epoca", "era"), dest="era", type=read_choice(ERAS, "epoca"), default=None, help=tr("h_era"))
     ap.add_argument(*names("terreno", "terrain"), dest="terrain", type=read_choice(TERRAINS, "terreno"), default=None,
                     help=tr("h_terrain"))
+    ap.add_argument(*names("funghi", "mushrooms"), dest="fungus", action="store_true", help=tr("h_fungus"))
     ap.add_argument(*names("scopo", "purpose"), dest="purpose", default=None, help=tr("h_purpose"))
     ap.add_argument(*names("pericolo", "danger"), dest="danger", type=int, choices=DANGERS, default=None,
                     help=tr("h_danger"))
@@ -6263,6 +6327,8 @@ def settings_from_options(argv):
     fixed = {k: v for k, v in (("type", a.type), ("era", a.era), ("terrain", a.terrain), ("pop", a.pop),
                                 ("danger", a.danger), ("state", a.state), ("names", a.names), ("tone", a.tone),
                                 ("people", a.people)) if v is not None}
+    if a.fungus:
+        fixed["fungus"] = True
     if a.purpose:
         purpose = {"riposo": "rest", "rest": "rest", "avventura": "adventure", "adventure": "adventure"}.get(
             a.purpose.strip().lower())
