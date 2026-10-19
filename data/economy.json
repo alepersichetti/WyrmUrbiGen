@@ -8,7 +8,8 @@
       {"id": "wild", "name": {"it": "montagna o terra selvaggia", "en": "mountain or wasteland"}, "per_sq_mile": 2, "per_hex": 60, "villages": 1, "revenue": 10}
     ],
     "terrain_region": {"plains": "core", "river": "core", "coast": "developed", "hills": "developed", "lake": "developed",
-                       "forest": "undeveloped", "swamp": "undeveloped", "mountains": "wild"},
+                       "forest": "undeveloped", "swamp": "undeveloped", "mountains": "wild",
+                       "fungus": "undeveloped"},
     "settlement_revenue": {"town": 20, "city": 75, "bigcity": 75},
     "village_pop": 200,
     "troubled": {"half": ["plague", "raiders", "bandits", "dragon", "deeps", "mine", "feud"], "tenth": ["ruin", "tyrant"]},
