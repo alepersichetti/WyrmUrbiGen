@@ -499,10 +499,8 @@ TEXTS = {
     "slack": (" (poche: la città è trascurata)", " (few: a slack town)"),
     "demo_shops": ("Botteghe e mestieri: ", "Shops and trades: "),
     "demo_maybe": ("Forse (probabilità che ce ne sia uno): ", "Maybe (chance there is one): "),
-    "demo_note": ("Numeri da Medieval Demographics Made Easy di S. John Ross: le botteghe sono tutte in città, sulla mappa "
-                  "ci sono le {n} più importanti.",
-                  "Numbers from S. John Ross's Medieval Demographics Made Easy: every shop is in town, the map shows the "
-                  "{n} most important ones."),
+    "demo_note": ("Le botteghe sono tutte in città; sulla mappa ci sono le {n} più importanti.",
+                  "Every shop is in town; the map shows the {n} most important ones."),
     "demo_ward": ("Guarnigione: {g}. Famiglia del signore, servi e artigiani: {s}. Cavalli: {h}. Altri animali: {l}.",
                   "Garrison: {g}. The lord's family, servants and craftsmen: {s}. Horses: {h}. Other livestock: {l}."),
     "h_economy": ("Contado ed economia", "Countryside and economy"),
@@ -515,14 +513,12 @@ TEXTS = {
     "eco_cost": (" ({c} mo)", " ({c} gp)"),
     "eco_people": ("Con {n} {w}.", "With {n} {w}."),
     "eco_seller": ("Vende: {s}.", "Seller: {s}."),
-    "eco_rules": ("Regole di Coins and Scrolls (OSR: Land and Investments): la terra di rado si vende, più spesso si "
-                  "eredita, si dona o si conquista. In tempi di peste, guerra o carestia ogni rendita si dimezza; in tempi "
-                  "di vero caos si divide per 10. Chi imbroglia sulle tasse tiene un altro {c}% della rendita, finché un "
-                  "signore attento non controlla i conti.",
-                  "Rules from Coins and Scrolls (OSR: Land and Investments): land is rarely sold, it is more often "
-                  "inherited, given or seized. In times of plague, war or famine every income is halved; in truly "
-                  "chaotic times it is divided by 10. Whoever cheats on taxes keeps another {c}% of the income, until a "
-                  "careful lord audits the books."),
+    "eco_rules": ("La terra di rado si vende, più spesso si eredita, si dona o si conquista. In tempi di peste, guerra o "
+                  "carestia ogni rendita si dimezza; in tempi di vero caos si divide per 10. Chi imbroglia sulle tasse tiene "
+                  "un altro {c}% della rendita, finché un signore attento non controlla i conti.",
+                  "Land is rarely sold, it is more often inherited, given or seized. In times of plague, war or famine "
+                  "every income is halved; in truly chaotic times it is divided by 10. Whoever cheats on taxes keeps "
+                  "another {c}% of the income, until a careful lord audits the books."),
     "h_services": ("Servizi per gli avventurieri", "Services for adventurers"),
     "mercenaries": ("Mercenari e seguaci (paga al mese)", "Mercenaries and followers (monthly wage)"),
     "merc_row": ("{n} {name}, {w} mo al mese ({s})", "{n} {name}, {w} gp a month ({s})"),
@@ -572,13 +568,6 @@ TEXTS = {
     "stone": ("pietra", "stone"),
     "wood": ("legno", "timber"),
     "ref_no": ("n.", "no."),
-    "h_sources": ("Fonti", "Sources"),
-    "sources": ("Mostri, indizi e tesori vengono da WyrmDelve (tesori: Old-School Essentials SRD, Open Game License 1.0a). "
-                "Popolazione, densità e mestieri: S. John Ross, Medieval Demographics Made Easy. Contado, rendite e proprietà: "
-                "Skerples, OSR: Land and Investments (Coins and Scrolls). Di queste fonti sono usati solo i numeri.",
-                "Monsters, clues and treasure come from WyrmDelve (treasure: Old-School Essentials SRD, Open Game License 1.0a). "
-                "Population, density and trades: S. John Ross, Medieval Demographics Made Easy. Country, revenue and property: "
-                "Skerples, OSR: Land and Investments (Coins and Scrolls). Only the numbers of these sources are used."),
     # help
     "h_description": ("WyrmUrbiGen: genera villaggi, paesi, città, castelli e fortezze per giochi OSR, in ASCII come un "
                       "roguelike, con abitanti, mostri e tesori. Mappe PNG o PDF a 600 dpi + TXT, chiave in TXT e in un file PDF.",
@@ -5527,9 +5516,6 @@ def key_blocks(s, title, units, content):
                 blocks.append(("quarter", capitalized(pick(s.quarter_names[q]))))
         blocks.append(("building", str(b.number), f"{pick(b.title)} ({kind_label(b)})",
                        building_lines(s, b, people_on, monsters_on, treasure_on)))
-    # the sources last
-    blocks.append(("h", tr("h_sources")))
-    blocks.append(("note", tr("sources")))
     return blocks
 
 
