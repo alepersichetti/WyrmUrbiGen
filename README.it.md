@@ -7,45 +7,29 @@
 </div>
 
 <table align="center"><tr><td><pre>
-                                 ____
-                              .-"    `-.      ,
-                            .'          '.   /j\
-                           /              \,/:/#\                /\
-                          ;              ,//' '/#\              //#\
-                          |             /' :   '/#\            /  /#\
-                          :         ,  /' /'    '/#\__..--""""/    /#\__
-                           \       /'\'-._:__    '/#\        ;      /#, """---
-                            `-.   / ;#\']" ; """--./#J       ':____...!
-                               `-/   /#\  J  [;[;[;Y]         |      ;
-""""""---....             __.--"/    '/#\ ;   " "  |     !    |   #! |
-             ""--.. _.--""     /      ,/#\'-..____.;_,   |    |   '  |
-                   "-.        :_....___,/#} "####" | '_.-",   | #['  |
-                      '-._      |[;[;[;[;|         |.;'  /;\  |      |
-                      ,   `-.   |        :     _   .;'    /;\ |   #" |
-                      !      `._:      _  ;   ##' .;'      /;\|  _,  |
-                     .#\"""---..._    ';, |      .;{___     /;\  ]#' |__....--
-          .--.      ;'/#\         \    ]! |       "| , """--./_J    /
-         /  '%;    /  '/#\         \   !' :        |!# #! #! #|    :`.__
-        i__..'%] _:_   ;##J         \      :"#...._!   '  "  "|__  |    `--.._
-         | .--""" !|""""  |"""----...J     | '##"" `-._       |  """---.._
-     ____: |      #|      |         #|     |          "]      ;   ___...-"T,
-    /   :  :      !|      |   _______!_    |           |__..--;"""     ,;MM;
-   :____| :    .-.#|      |  /\      /#\   |          /'               ''MM;
-    |""": |   /   \|   .----+  ;      /#\  :___..--"";                  ,'MM;
-   _Y--:  |  ;     ;.-'      ;  \______/#: /         ;                  ''MM;
-  /    |  | ;_______;     ____!  |"##"""MM!         ;                    ,'MM;
- !_____|  |  |"#"#"|____.'""##"  |       :         ;                     ''MM
-  | """"--!._|     |##""         !       !         :____.....-------"""""" |'
-  |          :     |______                        ___!_ "#""#""#"""#"""#"""|
-__|          ;     |MM"MM"""""---..._______...--""MM"MM]                   |
-  "\-.      :      |#                                  :                   |
-    /#'.    |      /##,                                !                   |
-   .',/'\   |       #:#,                                ;       .==.       |
-  /"\'#"\',.|       ##;#,                               !     ,'||||',     |
-        /;/`:       ######,          ____             _ :     M||||||M     |
-       ###          /;"\.__"-._   """                   |===..M!!!!!!M_____|
-                           `--..`--.._____             _!_
-                                          `--...____,="_.'`-.____        fsc
+                  ^
+                 / \
+            ^   _|.|_   ^
+          _|I|  |I .|  |.|_
+          \II||~~| |~~||  /
+           ~\~|~~~~~~~|~/~
+             \|II I ..|/
+        /\    |II.    |    /\
+       /  \  _|III .  |_  /  \
+       |-~| /(|I.I I  |)\ |~-|
+     _/(I | +-----------+ |. )\_
+     \~-----/____-~-____\-----~/
+      |I.III|  /(===)\  |  .. |
+      /~~~-----_________---~~~\
+     `##########!\-#####%!!!!!| |\
+    _/###########!!\~~-_##%!!!\_/|
+    \##############!!!!!/~~-_%!!!!\
+     ~)#################!!!!!/~~--\_
+  __ /#####################%%!!!!/ /
+  \,~\-_____##############%%%!!!!\/
+  /!!!!\ \ \~-_###########%%%!!!!\
+ /#####!!!!!!!\~-_#######%%%!!!!!!\_
+/#############!!!\#########%%%!!!!!!\
 </pre></td></tr></table>
 
 <div align="center">
@@ -363,7 +347,6 @@ I due schemi a colori, `--colori 4` (su bianco) e `--colori 5` (su nero): ogni s
 - **Popolazione, densità, mestieri, clero, nobili, guardie, bestiame**: S. John Ross, *Medieval Demographics Made Easy* (Cumberland Games). Sono usati solo i numeri; il testo non è copiato.
 - **Contado, rendite, proprietà, tempi difficili**: Skerples, [*OSR: Land and Investments*](https://coinsandscrolls.blogspot.com/2017/09/osr-land-and-investments.html) (*Coins and Scrolls*). Sono usati solo i numeri.
 - **Mostri, indizi e tesori**: da [WyrmDelve](https://github.com/alepersichetti/WyrmDelve); le tabelle dei tesori sono adattate dall'*Old-School Essentials System Reference Document* © 2019 Gavin Norman, Open Game Content con [Open Game License 1.0a](LICENSE-OGL.txt).
-- **Disegno del castello** nella schermata di benvenuto: Marcin "StfoReK" Glinski (firma `fsc`), da [asciiart.eu](https://www.asciiart.eu/art/692e286c8f3199ee).
 - I **font** mantengono le loro licenze (vedi `fonts/README.md`).
 
 WyrmUrbiGen è software libero con licenza [GNU General Public License v3.0](LICENSE).
