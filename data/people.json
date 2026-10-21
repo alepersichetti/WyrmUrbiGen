@@ -653,6 +653,76 @@
    "where": [
     "fortress"
    ]
+  },
+  {
+   "m": {
+    "it": "coltivatore di funghi",
+    "en": "mushroom farmer"
+   },
+   "f": {
+    "it": "coltivatrice di funghi",
+    "en": "mushroom farmer"
+   },
+   "where": [
+    "village",
+    "town",
+    "city"
+   ],
+   "terrains": [
+    "fungus"
+   ]
+  },
+  {
+   "m": {
+    "it": "allevatore di coleotteri",
+    "en": "beetle herder"
+   },
+   "f": {
+    "it": "allevatrice di coleotteri",
+    "en": "beetle herder"
+   },
+   "where": [
+    "village",
+    "town"
+   ],
+   "terrains": [
+    "fungus"
+   ]
+  },
+  {
+   "m": {
+    "it": "raccoglitore di spore",
+    "en": "spore gatherer"
+   },
+   "f": {
+    "it": "raccoglitrice di spore",
+    "en": "spore gatherer"
+   },
+   "where": [
+    "village",
+    "town",
+    "city"
+   ],
+   "terrains": [
+    "fungus"
+   ]
+  },
+  {
+   "m": {
+    "it": "intagliatore di gambi",
+    "en": "stalk carver"
+   },
+   "f": {
+    "it": "intagliatrice di gambi",
+    "en": "stalk carver"
+   },
+   "where": [
+    "town",
+    "city"
+   ],
+   "terrains": [
+    "fungus"
+   ]
   }
  ],
  "traits": [

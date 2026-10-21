@@ -7,45 +7,29 @@
 </div>
 
 <table align="center"><tr><td><pre>
-                                 ____
-                              .-"    `-.      ,
-                            .'          '.   /j\
-                           /              \,/:/#\                /\
-                          ;              ,//' '/#\              //#\
-                          |             /' :   '/#\            /  /#\
-                          :         ,  /' /'    '/#\__..--""""/    /#\__
-                           \       /'\'-._:__    '/#\        ;      /#, """---
-                            `-.   / ;#\']" ; """--./#J       ':____...!
-                               `-/   /#\  J  [;[;[;Y]         |      ;
-""""""---....             __.--"/    '/#\ ;   " "  |     !    |   #! |
-             ""--.. _.--""     /      ,/#\'-..____.;_,   |    |   '  |
-                   "-.        :_....___,/#} "####" | '_.-",   | #['  |
-                      '-._      |[;[;[;[;|         |.;'  /;\  |      |
-                      ,   `-.   |        :     _   .;'    /;\ |   #" |
-                      !      `._:      _  ;   ##' .;'      /;\|  _,  |
-                     .#\"""---..._    ';, |      .;{___     /;\  ]#' |__....--
-          .--.      ;'/#\         \    ]! |       "| , """--./_J    /
-         /  '%;    /  '/#\         \   !' :        |!# #! #! #|    :`.__
-        i__..'%] _:_   ;##J         \      :"#...._!   '  "  "|__  |    `--.._
-         | .--""" !|""""  |"""----...J     | '##"" `-._       |  """---.._
-     ____: |      #|      |         #|     |          "]      ;   ___...-"T,
-    /   :  :      !|      |   _______!_    |           |__..--;"""     ,;MM;
-   :____| :    .-.#|      |  /\      /#\   |          /'               ''MM;
-    |""": |   /   \|   .----+  ;      /#\  :___..--"";                  ,'MM;
-   _Y--:  |  ;     ;.-'      ;  \______/#: /         ;                  ''MM;
-  /    |  | ;_______;     ____!  |"##"""MM!         ;                    ,'MM;
- !_____|  |  |"#"#"|____.'""##"  |       :         ;                     ''MM
-  | """"--!._|     |##""         !       !         :____.....-------"""""" |'
-  |          :     |______                        ___!_ "#""#""#"""#"""#"""|
-__|          ;     |MM"MM"""""---..._______...--""MM"MM]                   |
-  "\-.      :      |#                                  :                   |
-    /#'.    |      /##,                                !                   |
-   .',/'\   |       #:#,                                ;       .==.       |
-  /"\'#"\',.|       ##;#,                               !     ,'||||',     |
-        /;/`:       ######,          ____             _ :     M||||||M     |
-       ###          /;"\.__"-._   """                   |===..M!!!!!!M_____|
-                           `--..`--.._____             _!_
-                                          `--...____,="_.'`-.____        fsc
+                  ^
+                 / \
+            ^   _|.|_   ^
+          _|I|  |I .|  |.|_
+          \II||~~| |~~||  /
+           ~\~|~~~~~~~|~/~
+             \|II I ..|/
+        /\    |II.    |    /\
+       /  \  _|III .  |_  /  \
+       |-~| /(|I.I I  |)\ |~-|
+     _/(I | +-----------+ |. )\_
+     \~-----/____-~-____\-----~/
+      |I.III|  /(===)\  |  .. |
+      /~~~-----_________---~~~\
+     `##########!\-#####%!!!!!| |\
+    _/###########!!\~~-_##%!!!\_/|
+    \##############!!!!!/~~-_%!!!!\
+     ~)#################!!!!!/~~--\_
+  __ /#####################%%!!!!/ /
+  \,~\-_____##############%%%!!!!\/
+  /!!!!\ \ \~-_###########%%%!!!!\
+ /#####!!!!!!!\~-_#######%%%!!!!!!\_
+/#############!!!\#########%%%!!!!!!\
 </pre></td></tr></table>
 
 <div align="center">
@@ -100,6 +84,8 @@ After the type you can type the exact number of people (Enter keeps a random one
 
 Plains, hills, mountains, forest, swamp, coast, river and lake. The terrain changes the map: the sea and the lake cut the walls and bring a pier, the river becomes a moat crossed by a bridge, in the mountains the town stretches along the ridge, the forest leaves a clearing of fields, the swamp surrounds a dry island. All around lie the **fields** in strips and patches (ploughed, sown, meadows, orchards), different for every terrain.
 
+If you ask for it at the start, there is also the **giant mushroom forest**, inspired by Morrowind (as in WyrmHex): mushrooms as tall as towers (`⊤°`, in plum) all round and here and there among the houses instead of trees; only temples, palaces and walls are of stone, the rest is mostly **grown inside the mushroom stalks** (in the key: *mushroom* instead of *timber*, with what the house is like: spiral rooms, round windows in the flesh, spore lanterns). Some buildings exist only there (the wizard's **grown tower**, the **mushroom farms**, the **beetle stables** for pack and riding beetles), and so do some trades, gods, events in the history and traits of the place. The ready answer is **no**: then everything stays as always, seeds included.
+
 #### The economy of the country around
 
 From the rules of *OSR: Land and Investments* (Skerples, the *Coins and Scrolls* blog): how developed the country is, how many peasants and villages live in the surrounding 6-mile hex (the same as WyrmHex's), the lord's net revenue (halved or divided by 10 in troubled times, that is when there is a threat), and **property for sale** with cost, income and tenants: farms, manors, inns, shops, mines.
@@ -148,12 +134,12 @@ python wyrmurbigen.py
 The welcome screen with the castle comes up, then the questions. **Multiple-choice questions are menus**: arrows **↑ ↓**, **Enter** to confirm, or the number of the option. Questions where you type have a ready answer in square brackets: Enter accepts it.
 
 1. **Language**: Italian or English.
-2. **What do you want to do?** A random settlement, **I'll choose**, or **rebuild a settlement from its seed**.
+2. **What do you want to do?** A random settlement, **I'll choose**, or **rebuild a settlement from its seed**. For a new settlement the program asks at once whether you also want **giant mushroom forests** among the terrains (ready answer: no); if you say yes, they appear in the terrain menu and chance picks them one time in three.
 3. If you choose, every question also has the answer **At random**:
    - **place of rest or place of adventure**;
    - **type** (village, town, city, big city, castle, fortress) and **number of people**;
    - **era** (Early Middle Ages, Late Middle Ages, Renaissance);
-   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake), each with a short description. In the **mountains** the settlement is **perched** on a spur: cliffs all round (`Λ`) but on the side of the one way up, where one or two gates open and the roads wind down in hairpin bends; inside, the steepest side lanes are flights of steps (`≣`) and the castle, the palace and the great temple stand at the top; no moats, the cliffs are enough;
+   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake and, if you asked for them, giant mushroom forest), each with a short description. In the **mountains** the settlement is **perched** on a spur: cliffs all round (`Λ`) but on the side of the one way up, where one or two gates open and the roads wind down in hairpin bends; inside, the steepest side lanes are flights of steps (`≣`) and the castle, the palace and the great temple stand at the top; no moats, the cliffs are enough;
    - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up) and its **state**: **in ruins** (monsters and a layered history) or **inhabited and threatened**; at random, a city is always in ruins, other settlements one time in three;
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
@@ -175,7 +161,7 @@ Every settlement has a **seed**, like `C9500-B-R-A2R-DE4-K7Q2MB`: type and peopl
 |---|---|
 | Type | `V` village, `B` town, `C` city, `G` big city, `K` castle, `F` fortress, followed by the number of people |
 | Era | `A` Early Middle Ages, `B` Late Middle Ages, `R` Renaissance |
-| Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake |
+| Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake, `G` giant mushrooms |
 | Purpose | `R0` place of rest, `A1`-`A4` place of adventure with its danger, then its state: `R` in ruins, `T` inhabited and threatened |
 | Names | `IT` medieval Italian, `OE` Old English, `RE` Renaissance English, `GA` Scottish Gaelic, `TO` Tolkienesque, `PA` Persian and Arabesque, `BY` Byzantine Greek, `DE` German, `FR` French, `NO` Danish and Swedish, `RU` Russian and Baltic, `MX` a mix of them all; then the tone: `1` fair, `2` homely, `3` stately, `4` grim, `5` eerie; then, if the people are not named like the places, `X` (fantasy) or the code of their language (`DE4NO`: German places, Danish and Swedish people) |
 
@@ -231,6 +217,7 @@ Everything goes into `settlements_generated/<seed>/`:
 | `≡` | `_` | ploughed field |
 | `"` | `"` | meadow and pasture |
 | `♣` `♠` | `T` `Y` | woods, orchard |
+| `⊤` `°` | `f` `o` | giant mushrooms and spores |
 | `∩` `▲` | `n` `^` | hills, mountains |
 | `†` | `t` | graveyard |
 | `○` `Θ` `π` | `o` `O` `h` | well, fountain, market stall |
@@ -257,7 +244,8 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--type` / `--tipo` | `village`, `town`, `city`, `bigcity`, `castle`, `fortress` (or 1 to 6) |
 | `--population` / `--popolazione` | number of people (if the type is missing, it is chosen from the number) |
 | `--era` / `--epoca` | `early`, `late`, `renaissance` (or 1 to 3) |
-| `--terrain` / `--terreno` | `plains`, `hills`, `mountains`, `forest`, `swamp`, `coast`, `river`, `lake` |
+| `--terrain` / `--terreno` | `plains`, `hills`, `mountains`, `forest`, `swamp`, `coast`, `river`, `lake`, `mushrooms` |
+| `--mushrooms` / `--funghi` | adds giant mushroom forests to the terrains chance may pick |
 | `--purpose` / `--scopo` | `rest` or `adventure` |
 | `--danger` / `--pericolo` | 1 to 4 (place of adventure only) |
 | `--state` / `--stato` | `ruin` (in ruins, monsters and a layered history) or `inhabited` (inhabited and threatened); place of adventure only |
@@ -359,7 +347,6 @@ The two colour schemes, `--colors 4` (on white) and `--colors 5` (on black): eve
 - **Population, density, trades, clergy, nobles, guards, livestock**: S. John Ross, *Medieval Demographics Made Easy* (Cumberland Games). Only the numbers are used; the text is not copied.
 - **Country, revenue, property, troubled times**: Skerples, [*OSR: Land and Investments*](https://coinsandscrolls.blogspot.com/2017/09/osr-land-and-investments.html) (*Coins and Scrolls*). Only the numbers are used.
 - **Monsters, clues and treasure**: from [WyrmDelve](https://github.com/alepersichetti/WyrmDelve); the treasure tables are adapted from the *Old-School Essentials System Reference Document* © 2019 Gavin Norman, Open Game Content under the [Open Game License 1.0a](LICENSE-OGL.txt).
-- **Castle drawing** on the welcome screen: Marcin "StfoReK" Glinski (signed `fsc`), from [asciiart.eu](https://www.asciiart.eu/art/692e286c8f3199ee).
 - The **fonts** keep their own licences (see `fonts/README.md`).
 
 WyrmUrbiGen is free software under the [GNU General Public License v3.0](LICENSE).
