@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-WyrmUrbiGen v1.0.0 - random villages, boroughs, walled cities, castles and
+WyrmUrbiGen v0.0.1 - random villages, boroughs, walled cities, castles and
 fortresses for OSR games, all in ASCII.
 
 Sibling of WyrmHex (hexcrawl maps) and WyrmDelve (dungeons). It draws the plan
@@ -120,7 +120,7 @@ Image.MAX_IMAGE_PIXELS = None           # A1 at 600 dpi: our own maps, no bomb c
 
 # --- settings ---
 
-VERSION = "1.0.0"
+VERSION = "0.0.1"
 PROGRAM = "WyrmUrbiGen"
 DPI = 600
 MARGIN_MM = 10.0
