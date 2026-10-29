@@ -86,6 +86,8 @@ Plains, hills, mountains, forest, swamp, coast, river and lake. The terrain chan
 
 If you ask for it at the start, there is also the **giant mushroom forest**, inspired by Morrowind (as in WyrmHex): mushrooms as tall as towers (`⊤°`, in plum) all round and here and there among the houses instead of trees; only temples, palaces and walls are of stone, the rest is mostly **grown inside the mushroom stalks** (in the key: *mushroom* instead of *timber*, with what the house is like: spiral rooms, round windows in the flesh, spore lanterns). Some buildings exist only there (the wizard's **grown tower**, the **mushroom farms**, the **beetle stables** for pack and riding beetles), and so do some trades, gods, events in the history and traits of the place. The ready answer is **no**: then everything stays as always, seeds included.
 
+And if you ask for it there is the **underground** too: **cities below**, inspired by Dwarf Fortress's caverns and more. The city is dug into the rock (as in WyrmDelve and Dwarf Fortress, untouched rock is left blank and its face is a `#`; in the colour maps the rock has a stone-coloured ground), the streets are tunnels running to the edges of the map and every building is **carved into the rock**; around it lie natural caverns with **giant fungi**, moss, **black lakes** and **magma**, each joined to the city by a tunnel. Its people are one of eleven **folk**: **dwarves** (the most common), kobolds, goblins, deep gnomes, troglodytes, dark elves, mole folk, but also the **fungus folk** (who live in giant mushrooms grown in the caverns, like the houses of the mushroom forests), the **serpent folk** of sword & sorcery, the **automata of the vanished builders** of science fantasy and the **pale ones** of the weird; every folk has its ruler and its way of digging, and the key tells it. Below, all the rest holds too: the layered history with its events of the deep (the dig too deep, the forgotten beast, the builders' hall…), factions (the Miners' Guild, the Gate Wardens, the Cult of the Bottom among them), rumours of the deep, great families, building names, threats (the collapsed mine and what rises from the water too). All this is in `data/underground.json`, which uses the formats of the other tables and adds to them without changing them: it adds entries (`extend`), opens existing ones to the underground (`allow`, such as the mushroom farms and beetle stables) or keeps them out (`deny`, such as mills and dovecotes), and sets the caverns (`caverns`). Without that file there is no underground; if you don't ask for it, seeds and places stay as ever.
+
 #### The economy of the country around
 
 From the rules of *OSR: Land and Investments* (Skerples, the *Coins and Scrolls* blog): how developed the country is, how many peasants and villages live in the surrounding 6-mile hex (the same as WyrmHex's), the lord's net revenue (halved or divided by 10 in troubled times, that is when there is a threat), and **property for sale** with cost, income and tenants: farms, manors, inns, shops, mines.
@@ -134,12 +136,12 @@ python wyrmurbigen.py
 The welcome screen with the castle comes up, then the questions. **Multiple-choice questions are menus**: arrows **↑ ↓**, **Enter** to confirm, or the number of the option. Questions where you type have a ready answer in square brackets: Enter accepts it.
 
 1. **Language**: Italian or English.
-2. **What do you want to do?** A random settlement, **I'll choose**, or **rebuild a settlement from its seed**. For a new settlement the program asks at once whether you also want **giant mushroom forests** among the terrains (ready answer: no); if you say yes, they appear in the terrain menu and chance picks them one time in three.
+2. **What do you want to do?** A random settlement, **I'll choose**, or **rebuild a settlement from its seed**. For a new settlement the program asks at once whether to add **special terrains**: the **giant mushroom forests**, the **underground**, both or neither (ready answer: neither; Space ticks and unticks). Those you tick appear in the terrain menu and chance picks one of them one time in three.
 3. If you choose, every question also has the answer **At random**:
    - **place of rest or place of adventure**;
    - **type** (village, town, city, big city, castle, fortress) and **number of people**;
    - **era** (Early Middle Ages, Late Middle Ages, Renaissance);
-   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake and, if you asked for them, giant mushroom forest), each with a short description. In the **mountains** the settlement is **perched** on a spur: cliffs all round (`Λ`) but on the side of the one way up, where one or two gates open and the roads wind down in hairpin bends; inside, the steepest side lanes are flights of steps (`≣`) and the castle, the palace and the great temple stand at the top; no moats, the cliffs are enough;
+   - **terrain** (plains, hills, mountains, forest, swamp, coast, river, lake and, if you asked for them, giant mushroom forest and underground; below, also **who lives there**: dwarves, kobolds, goblins… or at random), each with a short description. In the **mountains** the settlement is **perched** on a spur: cliffs all round (`Λ`) but on the side of the one way up, where one or two gates open and the roads wind down in hairpin bends; inside, the steepest side lanes are flights of steps (`≣`) and the castle, the palace and the great temple stand at the top; no moats, the cliffs are enough;
    - for a place of adventure, the **danger** from 1 to 4 (for characters of level 1-2, 3-4, 5-7, 8 and up) and its **state**: **in ruins** (monsters and a layered history) or **inhabited and threatened**; at random, a city is always in ruins, other settlements one time in three;
    - the **language the place names sound like**, each with three sample names: medieval Italian, Old English, Renaissance English, Scottish Gaelic, Tolkienesque (elvish), Persian and Arabesque, Byzantine Greek, German, French, Danish and Swedish, Russian and Baltic, or **a mix of them all**;
    - the **tone of the names**: fair, homely, stately, grim or eerie (see [Place names](#place-names));
@@ -161,7 +163,7 @@ Every settlement has a **seed**, like `C9500-B-R-A2R-DE4-K7Q2MB`: type and peopl
 |---|---|
 | Type | `V` village, `B` town, `C` city, `G` big city, `K` castle, `F` fortress, followed by the number of people |
 | Era | `A` Early Middle Ages, `B` Late Middle Ages, `R` Renaissance |
-| Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake, `G` giant mushrooms |
+| Terrain | `P` plains, `H` hills, `M` mountains, `F` forest, `S` swamp, `C` coast, `R` river, `L` lake, `G` giant mushrooms, `U` underground followed by its folk (`UN` dwarves, `UK` kobolds, `UB` goblins, `UG` gnomes, `UT` troglodytes, `UE` dark elves, `UM` mole folk, `UF` fungus folk, `US` serpent folk, `UA` automata, `UP` pale ones) |
 | Purpose | `R0` place of rest, `A1`-`A4` place of adventure with its danger, then its state: `R` in ruins, `T` inhabited and threatened |
 | Names | `IT` medieval Italian, `OE` Old English, `RE` Renaissance English, `GA` Scottish Gaelic, `TO` Tolkienesque, `PA` Persian and Arabesque, `BY` Byzantine Greek, `DE` German, `FR` French, `NO` Danish and Swedish, `RU` Russian and Baltic, `MX` a mix of them all; then the tone: `1` fair, `2` homely, `3` stately, `4` grim, `5` eerie; then, if the people are not named like the places, `X` (fantasy) or the code of their language (`DE4NO`: German places, Danish and Swedish people) |
 
@@ -218,6 +220,9 @@ Everything goes into `settlements_generated/<seed>/`:
 | `"` | `"` | meadow and pasture |
 | `♣` `♠` | `T` `Y` | woods, orchard |
 | `⊤` `°` | `f` `o` | giant mushrooms and spores |
+| `#` | `#` | rock face (underground) |
+| red `≈` | `~` | magma (underground) |
+| `"` | `"` | cave moss (underground) |
 | `∩` `▲` | `n` `^` | hills, mountains |
 | `†` | `t` | graveyard |
 | `○` `Θ` `π` | `o` `O` `h` | well, fountain, market stall |
@@ -246,6 +251,8 @@ python wyrmurbigen.py --lingua it --tipo castello --scopo riposo --png
 | `--era` / `--epoca` | `early`, `late`, `renaissance` (or 1 to 3) |
 | `--terrain` / `--terreno` | `plains`, `hills`, `mountains`, `forest`, `swamp`, `coast`, `river`, `lake`, `mushrooms` |
 | `--mushrooms` / `--funghi` | adds giant mushroom forests to the terrains chance may pick |
+| `--underground` / `--sottosuolo` | adds the underground (cities below) to the terrains chance may pick |
+| `--folk` / `--popolo` | who lives below: `dwarves`, `kobolds`, `goblins`, `gnomes`, `troglodytes`, `elves`, `mole`, `fungus`, `serpent`, `automata`, `pale` (also means `--terrain underground`) |
 | `--purpose` / `--scopo` | `rest` or `adventure` |
 | `--danger` / `--pericolo` | 1 to 4 (place of adventure only) |
 | `--state` / `--stato` | `ruin` (in ruins, monsters and a layered history) or `inhabited` (inhabited and threatened); place of adventure only |
@@ -278,6 +285,7 @@ The tables live in the `data` folder, in JSON files you can edit with any text e
 | `intrigue.json` | the layers of history (ages, events, legacies and the names they leave on buildings), the place's traits, relics, factions (kinds, emblems, means, rivalries, alliances) and the NPCs who matter (origins, rises, ties, hooks) |
 | `rumors.json` | the rumour generator: sources, ways of telling, contents, the pieces to put more together, and half-truths |
 | `nobility.json` | the roots and endings of the noble houses, for the names of the great families |
+| `underground.json` | the underground: its terrain, folk and caverns, and the entries to add to the other tables (gods, trades, buildings, events, traits, factions, rumours) or to open and keep out below |
 | `demographics.json` | the numbers of *Medieval Demographics Made Easy* |
 | `economy.json` | the numbers of *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | from WyrmDelve: bestiary, clues, *Old-School Essentials* treasure |
