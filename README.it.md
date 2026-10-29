@@ -39,7 +39,7 @@ Compatibile con qualunque gioco di ruolo analogico "OSR". Fratello di [WyrmHex](
 
 </div>
 
-### WyrmUrbiGen v0.0.1
+### WyrmUrbiGen v0.2.0
 
 **WyrmUrbiGen** disegna a caso **villaggi, paesi, città, grandi città, castelli e fortezze** per campagne old school (OSR), fatti solo di lettere e simboli come nei roguelike NetHack, ADOM e Dwarf Fortress. Ogni edificio ha il suo **numero** sulla mappa dell'arbitro, e la **chiave** (in `.txt` e in un **file formattato PDF**) racconta tutto dell'insediamento: storia, governo e fazioni, i PNG che contano, gli abitanti di ogni edificio con le loro statistiche OSR, la demografia, l'economia del contado, le voci e gli eventi.
 
@@ -86,6 +86,8 @@ Pianura, collina, montagna, foresta, palude, costa, fiume e lago. Il terreno cam
 
 Se all'inizio lo chiedi, c'è anche la **foresta di funghi giganti**, ispirata a Morrowind (come in WyrmHex): funghi alti come torri (`⊤°`, in colore prugna) tutto intorno e qua e là tra le case al posto degli alberi; solo templi, palazzi e mura sono di pietra, il resto è per lo più **cresciuto dentro i gambi dei funghi** (nella chiave: *fungo* invece di *legno*, con com'è fatta la casa: stanze a spirale, finestre rotonde nella polpa, lanterne di spore). Ci sono edifici che esistono solo lì (la **torre cresciuta** del mago, le **colture di funghi**, le **stalle dei coleotteri** da soma e da sella), mestieri, dei, eventi della storia e peculiarità del luogo tutti suoi. La risposta pronta è **no**: in quel caso tutto resta come sempre, semi compresi.
 
+E se lo chiedi c'è anche il **sottosuolo**: **città sotterranee**, ispirate alle caverne di Dwarf Fortress ma non solo. La città è scavata nella roccia (in WyrmDelve come in Dwarf Fortress la roccia intatta resta vuota e la sua parete è un `#`; nelle mappe a colori la roccia ha un fondo color pietra), le strade sono gallerie che arrivano fino ai bordi della mappa e ogni edificio è **scavato nella roccia**; attorno ci sono caverne naturali con **funghi giganti**, muschio, **laghi neri** e **magma**, ognuna collegata alla città da un cunicolo. Chi ci vive è uno di undici **popoli**: **nani** (i più frequenti), coboldi, goblin, gnomi del profondo, trogloditi, elfi del buio, uomini-talpa, ma anche il **popolo dei funghi** (che abita funghi giganti cresciuti nelle caverne, come le case delle foreste di funghi), gli **uomini-serpente** dello sword & sorcery, gli **automi dei costruttori scomparsi** della science fantasy e i **pallidi** del weird; ogni popolo ha il suo capo e il suo modo di scavare, e la chiave lo racconta. Sotto terra valgono anche tutti gli altri elementi: storia a strati con i suoi eventi del profondo (lo scavo troppo profondo, la bestia dimenticata, la sala dei costruttori…), fazioni (anche la Gilda dei Minatori, i Guardiani delle Porte, il Culto del Fondo), voci del profondo, grandi famiglie, nomi degli edifici, minacce (anche la miniera crollata e ciò che sale dall'acqua). Tutto questo sta in `data/underground.json`, che usa gli stessi formati delle altre tabelle e le completa senza cambiarle: aggiunge voci (`extend`), apre al sottosuolo quelle che esistono già (`allow`, come le colture di funghi e le stalle dei coleotteri) o le esclude (`deny`, come i mulini e le colombaie), e regola le caverne (`caverns`). Senza quel file il sottosuolo non c'è; se non lo chiedi, semi e luoghi restano quelli di sempre.
+
 #### Economia del contado
 
 Dalle regole di *OSR: Land and Investments* (Skerples, blog *Coins and Scrolls*): quanto è sviluppato il contado, quanti contadini e villaggi ci sono nell'esagono di 6 miglia attorno (lo stesso di WyrmHex), la rendita netta del signore (dimezzata o divisa per 10 nei tempi difficili, cioè quando c'è una minaccia), e **proprietà in vendita** con costo, rendita e affittuari: fattorie, manieri, locande, botteghe, miniere.
@@ -131,15 +133,15 @@ Con l'ambiente virtuale attivo:
 python wyrmurbigen.py
 ```
 
-Compare la schermata di benvenuto con il castello, poi le domande. **Le domande a scelta sono menu**: frecce **↑ ↓**, **Invio** per confermare, oppure il numero dell'opzione. Le domande in cui scrivi hanno una risposta pronta tra parentesi quadre: Invio la accetta.
+Compare la schermata di benvenuto con il castello, poi le domande. **Le domande a scelta sono menu**: frecce **↑ ↓**, **Invio** per confermare, oppure il numero dell'opzione. Le domande in cui scrivi (abitanti, nome della mappa, seme) hanno un campo nella stessa schermata: **Invio** conferma, **⌫** cancella, **Esc** svuota, e se il valore non va bene te lo dice sotto il campo. Tutto resta in un'unica schermata, dalle domande alla generazione delle mappe: il terminale torna normale solo alla fine, con il riepilogo di risposte e file salvati. Senza asciimatics (o senza un terminale) le domande sono numerate e la risposta pronta è tra parentesi quadre: Invio la accetta.
 
 1. **Lingua**: italiano o inglese.
-2. **Cosa vuoi fare?** Un insediamento casuale, **scelgo io**, oppure **rifaccio un insediamento dal suo seme**. Per un insediamento nuovo il programma chiede subito se vuoi anche le **foreste di funghi giganti** tra i terreni (risposta pronta: no); se dici sì, compaiono nel menu dei terreni e il caso le sceglie una volta su tre.
+2. **Cosa vuoi fare?** Un insediamento casuale, **scelgo io**, oppure **rifaccio un insediamento dal suo seme**. Per un insediamento nuovo il programma chiede subito se vuoi aggiungere dei **terreni speciali**: le **foreste di funghi giganti**, il **sottosuolo**, tutti e due o nessuno (risposta pronta: nessuno; Spazio segna e toglie). Quelli che segni compaiono nel menu dei terreni e il caso ne sceglie uno una volta su tre.
 3. Se scegli tu, ogni domanda ha anche la risposta **A caso**:
    - **luogo di riposo o luogo d'avventura**;
    - **tipo** (villaggio, paese, città, grande città, castello, fortezza) e **numero di abitanti**;
    - **epoca** (alto medioevo, basso medioevo, Rinascimento);
-   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago e, se le hai chieste, foresta di funghi giganti), ognuno con una breve descrizione. In **montagna** l'insediamento è **arroccato** su uno sperone: dirupi tutt'intorno (`Λ`) tranne dalla parte dell'unica salita, dove si aprono una o due porte e le strade scendono a tornanti; dentro, le vie secondarie più ripide sono gradinate (`≣`) e la rocca, il palazzo e il tempio maggiore stanno in cima; niente fossati, ci sono già i dirupi;
+   - **terreno** (pianura, collina, montagna, foresta, palude, costa, fiume, lago e, se li hai chiesti, foresta di funghi giganti e sottosuolo), ognuno con una breve descrizione; nel sottosuolo anche **chi ci vive** (nani, coboldi, goblin… o a caso). In **montagna** l'insediamento è **arroccato** su uno sperone: dirupi tutt'intorno (`Λ`) tranne dalla parte dell'unica salita, dove si aprono una o due porte e le strade scendono a tornanti; dentro, le vie secondarie più ripide sono gradinate (`≣`) e la rocca, il palazzo e il tempio maggiore stanno in cima; niente fossati, ci sono già i dirupi;
    - per un luogo d'avventura, il **pericolo** da 1 a 4 (per personaggi di livello 1-2, 3-4, 5-7, 8 e oltre) e lo **stato**: **in rovina** (mostri e storia a strati) o **abitato e minacciato**; a caso, una città è sempre in rovina, gli altri insediamenti una volta su tre;
    - la **lingua a cui somigliano i nomi dei luoghi**, ognuna con tre nomi di esempio: italiano medievale, inglese antico (Old English), inglese rinascimentale, gaelico scozzese, tolkieniano (elfico), persiano e arabeggiante, greco bizantino, tedesco, francese, danese e svedese, russo e baltico, oppure **una mescolanza di tutte**;
    - il **tono dei nomi**: luminoso, rustico, solenne, cupo o arcano (vedi [I nomi dei luoghi](#i-nomi-dei-luoghi));
@@ -161,7 +163,7 @@ Ogni insediamento ha un **seme**, come `C9500-B-R-A2R-DE4-K7Q2MB`: tipo e abitan
 |---|---|
 | Tipo | `V` villaggio, `B` paese, `C` città, `G` grande città, `K` castello, `F` fortezza, seguito dagli abitanti |
 | Epoca | `A` alto medioevo, `B` basso medioevo, `R` Rinascimento |
-| Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago, `G` funghi giganti |
+| Terreno | `P` pianura, `H` collina, `M` montagna, `F` foresta, `S` palude, `C` costa, `R` fiume, `L` lago, `G` funghi giganti, `U` sottosuolo seguito dal popolo (`UN` nani, `UK` coboldi, `UB` goblin, `UG` gnomi, `UT` trogloditi, `UE` elfi del buio, `UM` uomini-talpa, `UF` popolo dei funghi, `US` uomini-serpente, `UA` automi, `UP` pallidi) |
 | Scopo | `R0` luogo di riposo, `A1`-`A4` luogo d'avventura con il suo pericolo, seguito dallo stato: `R` in rovina, `T` abitato e minacciato |
 | Nomi | `IT` italiano medievale, `OE` inglese antico, `RE` inglese rinascimentale, `GA` gaelico scozzese, `TO` tolkieniano, `PA` persiano e arabeggiante, `BY` greco bizantino, `DE` tedesco, `FR` francese, `NO` danese e svedese, `RU` russo e baltico, `MX` mescolanza di tutte; poi il tono: `1` luminoso, `2` rustico, `3` solenne, `4` cupo, `5` arcano; poi, se le persone non hanno i nomi dei luoghi, `X` (fantasy) o il codice della loro lingua (`DE4NO`: luoghi tedeschi, persone danesi e svedesi) |
 
@@ -218,6 +220,9 @@ Tutto va in `settlements_generated/<seme>/`:
 | `"` | `"` | prato e pascolo |
 | `♣` `♠` | `T` `Y` | bosco, frutteto |
 | `⊤` `°` | `f` `o` | funghi giganti e spore |
+| `#` | `#` | parete di roccia (sottosuolo) |
+| `≈` rosso | `~` | magma (sottosuolo) |
+| `"` | `"` | muschio delle caverne (sottosuolo) |
 | `∩` `▲` | `n` `^` | colline, montagne |
 | `†` | `t` | cimitero |
 | `○` `Θ` `π` | `o` `O` `h` | pozzo, fontana, banco del mercato |
@@ -246,6 +251,8 @@ python wyrmurbigen.py --language en --type castle --purpose rest --png
 | `--epoca` / `--era` | `alto`, `basso`, `rinascimento` (o da 1 a 3) |
 | `--terreno` / `--terrain` | `pianura`, `collina`, `montagna`, `foresta`, `palude`, `costa`, `fiume`, `lago`, `funghi` |
 | `--funghi` / `--mushrooms` | aggiunge le foreste di funghi giganti ai terreni che il caso può scegliere |
+| `--sottosuolo` / `--underground` | aggiunge il sottosuolo (città sotterranee) ai terreni che il caso può scegliere |
+| `--popolo` / `--folk` | chi vive nel sottosuolo: `nani`, `coboldi`, `goblin`, `gnomi`, `trogloditi`, `elfi`, `talpa`, `funghi`, `serpente`, `automi`, `pallidi` (vale anche come `--terreno sottosuolo`) |
 | `--scopo` / `--purpose` | `riposo` o `avventura` |
 | `--pericolo` / `--danger` | da 1 a 4 (solo luogo d'avventura) |
 | `--stato` / `--state` | `rovina` (in rovina, mostri e storia a strati) o `abitato` (abitato e minacciato); solo luogo d'avventura |
@@ -278,6 +285,7 @@ Le tabelle stanno nella cartella `data`, in file JSON che puoi modificare con un
 | `intrigue.json` | gli strati della storia (epoche, eventi, eredità e i nomi che lasciano agli edifici), le peculiarità del luogo, le reliquie, le fazioni (tipi, stemmi, mezzi, rivalità, alleanze) e i PNG che contano (origini, ascese, legami, agganci) |
 | `rumors.json` | il generatore di voci: fonti, modi di dirle, contenuti, i pezzi da cui comporne altri e le mezze verità |
 | `nobility.json` | le radici e le desinenze delle casate nobili, per i nomi delle grandi famiglie |
+| `underground.json` | il sottosuolo: il terreno, i popoli, le caverne, e le voci da aggiungere alle altre tabelle (dei, mestieri, edifici, eventi, peculiarità, fazioni, voci) o da aprire ed escludere sotto terra |
 | `demographics.json` | i numeri di *Medieval Demographics Made Easy* |
 | `economy.json` | i numeri di *OSR: Land and Investments* |
 | `monsters.json`, `clues.json`, `treasure.json` | da WyrmDelve: bestiario, indizi, tesori di *Old-School Essentials* |

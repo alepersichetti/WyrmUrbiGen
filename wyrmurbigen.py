@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-WyrmUrbiGen v0.0.1 - random villages, boroughs, walled cities, castles and
+WyrmUrbiGen v0.2.0 - random villages, boroughs, walled cities, castles and
 fortresses for OSR games, all in ASCII.
 
 Sibling of WyrmHex (hexcrawl maps) and WyrmDelve (dungeons). It draws the plan
@@ -81,6 +81,7 @@ import os
 import random
 import re
 import sys
+import textwrap
 import time
 import zlib
 from collections import Counter, deque
@@ -120,7 +121,7 @@ Image.MAX_IMAGE_PIXELS = None           # A1 at 600 dpi: our own maps, no bomb c
 
 # --- settings ---
 
-VERSION = "0.0.1"
+VERSION = "0.2.0"
 PROGRAM = "WyrmUrbiGen"
 DPI = 600
 MARGIN_MM = 10.0
@@ -149,7 +150,8 @@ PALETTES = {
         "garden": (60, 150, 60), "grave": (110, 110, 110), "well": (30, 100, 200), "fountain": (30, 100, 200),
         "stall": (180, 125, 25), "plough": (150, 110, 50), "sown": (175, 150, 30), "pasture": (90, 160, 70),
         "orchard": (40, 130, 60), "forest": (25, 125, 45), "tree": (25, 125, 45), "hill": (130, 85, 25), "mount": (105, 90, 80),
-        "shroom": (100, 60, 80),
+        "shroom": (100, 60, 80), "rock": (110, 98, 86), "magma": (205, 70, 20), "moss": (90, 140, 60),
+        "bg:rock": (226, 220, 210),
         "reed": (118, 30, 95), "secret": (200, 0, 130),
         # fills, light enough for the symbols on top
         "bg:water": (180, 211, 236), "bg:street": (242, 238, 228), "bg:stone": (222, 222, 226),
@@ -162,7 +164,7 @@ PALETTES = {
         "garden": (90, 200, 100), "grave": (160, 160, 165), "well": (80, 150, 255), "fountain": (80, 150, 255),
         "stall": (235, 195, 95), "plough": (205, 160, 85), "sown": (225, 200, 80), "pasture": (120, 200, 100),
         "orchard": (70, 190, 90), "forest": (60, 190, 80), "tree": (60, 190, 80), "hill": (215, 165, 80), "mount": (195, 180, 165),
-        "shroom": (176, 140, 168),
+        "shroom": (176, 140, 168), "rock": (170, 155, 140), "magma": (255, 120, 40), "moss": (120, 190, 90),
         "reed": (195, 105, 165), "secret": (255, 80, 200),
         # only the water is filled, as WyrmHex's sea on black
         "bg:water": (18, 42, 82)},
@@ -217,6 +219,8 @@ TEXTS = {
     "menu_keys_multi": ("↑ ↓ scegli   ·   Spazio segna o toglie   ·   Invio conferma",
                         "↑ ↓ move   ·   Space ticks or unticks   ·   Enter confirms"),
     "menu_none": ("nessuno", "none"),
+    "type_keys": ("Scrivi   ·   ⌫ cancella   ·   Esc svuota   ·   Invio conferma",
+                  "Type   ·   ⌫ deletes   ·   Esc clears   ·   Enter confirms"),
     "at_random": ("A caso", "At random"),
     # welcome
     "welcome_subtitle": ("generatore di villaggi, paesi, città, castelli e fortezze per campagne OSR",
@@ -294,6 +298,8 @@ TEXTS = {
                          "intrigue: the NPCs who matter, with story, motives and ties; the factions and their roots"),
     "content_help": ("    Scrivi i numeri che vuoi, separati da virgole (es. 1,2); 0 = solo l'elenco degli edifici.",
                      "    Type the numbers you want, separated by commas (e.g. 1,2); 0 = only the list of buildings."),
+    "optional_help": ("    Scrivi i numeri che vuoi, separati da virgole (es. 1,2); 0 = nessuno.",
+                      "    Type the numbers you want, separated by commas (e.g. 1,2); 0 = none."),
     "units_intro": ("Unità di misura:", "Units:"),
     "units_imperial": ("imperiale (piedi)", "imperial (feet)"),
     "units_metric": ("metrica (metri)", "metric (metres)"),
@@ -416,10 +422,24 @@ TEXTS = {
     "lg_forest": ("bosco", "woods"),
     "lg_shroom": ("funghi giganti", "giant mushrooms"),
     "lg_grown": ("cresciuto in un fungo, o in legno", "grown in a mushroom, or timber"),
-    "q_fungus": ("Vuoi anche le foreste di funghi giganti (ispirate a Morrowind) tra i terreni?",
-                 "Do you also want giant mushroom forests (inspired by Morrowind) among the terrains?"),
-    "fungus_no": ("no, i terreni di sempre", "no, the usual terrains"),
-    "fungus_yes": ("sì, anche le foreste di funghi giganti", "yes, giant mushroom forests too"),
+    "q_optional": ("Vuoi aggiungere terreni speciali? (nessuno: i terreni di sempre)",
+                   "Do you want to add special terrains? (none: the usual terrains)"),
+    "opt_fungus": ("Foreste di funghi giganti: ispirate a Morrowind",
+                   "Giant mushroom forests: inspired by Morrowind"),
+    "opt_underground": ("Sottosuolo: città sotterranee di nani e altri popoli, ispirate a Dwarf Fortress",
+                        "Underground: cities below, of dwarves and other folk, inspired by Dwarf Fortress"),
+    "q_folk": ("Chi ci vive?", "Who lives there?"),
+    "h_underground": ("aggiunge il sottosuolo (città sotterranee) ai terreni che il caso può scegliere",
+                      "adds the underground (cities below) to the terrains chance may pick"),
+    "h_folk": ("chi vive nel sottosuolo: nani, coboldi, goblin, gnomi, trogloditi, elfi, talpa, funghi, serpente, "
+               "automi, pallidi", "who lives below: dwarves, kobolds, goblins, gnomes, troglodytes, elves, mole, fungus, "
+               "serpent, automata, pale"),
+    "lg_rock": ("parete di roccia", "rock face"),
+    "lg_magma": ("magma", "magma"),
+    "lg_moss": ("muschio delle caverne", "cave moss"),
+    "lg_carved": ("scavato nella roccia", "carved into the rock"),
+    "carved": ("roccia", "rock-cut"),
+    "key_folk": ("Chi ci vive: {f}.", "Who lives here: {f}."),
     "h_fungus": ("aggiunge le foreste di funghi giganti ai terreni che il caso può scegliere",
                  "adds giant mushroom forests to the terrains chance may pick"),
     "grown": ("fungo", "mushroom"),
@@ -579,8 +599,8 @@ TEXTS = {
     "h_type": ("villaggio, paese, citta, grande, castello, fortezza (o 1-6)", "village, town, city, bigcity, castle, fortress (or 1-6)"),
     "h_pop": ("numero di abitanti (sceglie anche il tipo, se manca)", "number of inhabitants (also picks the type, if missing)"),
     "h_era": ("alto (medioevo), basso (medioevo), rinascimento (o 1-3)", "early, late, renaissance (or 1-3)"),
-    "h_terrain": ("pianura, collina, montagna, foresta, palude, costa, fiume, lago, funghi (o 1-9)",
-                  "plains, hills, mountains, forest, swamp, coast, river, lake, mushrooms (or 1-9)"),
+    "h_terrain": ("pianura, collina, montagna, foresta, palude, costa, fiume, lago, funghi, sottosuolo (o 1-10)",
+                  "plains, hills, mountains, forest, swamp, coast, river, lake, mushrooms, underground (or 1-10)"),
     "h_purpose": ("riposo o avventura", "rest or adventure"),
     "h_danger": ("pericolo del luogo d'avventura, da 1 a 4", "danger of the place of adventure, 1 to 4"),
     "h_state": ("stato del luogo d'avventura: rovina (in rovina, mostri e storia a strati) o abitato (abitato e "
@@ -717,12 +737,21 @@ class LiveBar:
         percent = int(fraction * 100)
         if self.live and (percent, label) != self.shown:
             self.shown = (percent, label)
-            print(f"\r        {bar(fraction, 30)} {percent:>3}%  {label:<14}", end="", flush=True)
+            line = f"        {bar(fraction, 30)} {percent:>3}%  {label:<14}"
+            if SCREEN["open"] is not None:
+                SCREEN["live"] = line
+                draw_console()
+            else:
+                print("\r" + line, end="", flush=True)
 
     def finish(self):
         """Fill the bar and end its line."""
         if self.live:
-            print(f"\r        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
+            SCREEN["live"] = None
+            if SCREEN["open"] is not None:
+                console(f"        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
+            else:
+                print(f"\r        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
 
 
 class Log:
@@ -736,23 +765,23 @@ class Log:
         """Start the next step: its bar, its number and what it does."""
         self.step_number += 1
         progress = bar(self.step_number / self.total_steps, self.total_steps)
-        print(f"\n{progress} {self.step_number:>2}/{self.total_steps}  {message}")
+        console(f"\n{progress} {self.step_number:>2}/{self.total_steps}  {message}")
 
     def info(self, message):
         """A line of information under the current step."""
-        print(f"        · {message}")
+        console(f"        · {message}")
 
     def warn(self, message):
         """A warning: something is missing or poor, but the run goes on."""
-        print(f"        ! {message}")
+        console(f"        ! {message}")
 
     def error(self, message):
         """An error: a part (such as the PDF file) could not be made."""
-        print(f"        ✗ {message}")
+        console(f"        ✗ {message}")
 
     def done(self):
         """The last line: how long the whole run took."""
-        print("\n" + tr("done", s=time.perf_counter() - self.start_time))
+        console("\n" + tr("done", s=time.perf_counter() - self.start_time))
 
 
 # --- tables ---
@@ -826,7 +855,30 @@ def load_optional(path, keys=()):
     return tables if isinstance(tables, dict) and all(k in tables for k in keys) else {}
 
 
+def add_underground(tables):
+    """data/underground.json: the underground settlements. Its terrain (optional, like the giant mushroom forests)
+    goes among the terrains with its folk and caverns; "extend" adds entries to the other tables in their own
+    formats, "allow" opens existing ones to the underground and "deny" keeps some out of it. Without the file,
+    there is no underground terrain."""
+    u = tables.get("underground")
+    if not u:
+        return
+    tables["terrains"] = tables["terrains"] + [dict(u["terrain"], folks=u["folks"], caverns=u["caverns"])]
+    tables["economy"]["terrain_region"]["underground"] = u["region"]
+    for key, items in u["extend"].items():
+        tables[key] = tables[key] + items
+    for key, names in u["allow"].items():       # by id, or by a trade's masculine Italian name
+        for item in tables[key]:
+            if item.get("terrains") and (item.get("id") or item.get("m", ("",))[0]) in names:
+                item["terrains"] = list(item["terrains"]) + ["underground"]
+    for key, names in u["deny"].items():
+        for item in tables[key]:
+            if item.get("id") in names:
+                item["deny"] = list(item.get("deny", [])) + ["underground"]
+
+
 TABLES = load_tables()
+add_underground(TABLES)
 TYPES = TABLES["settlement_types"]
 TYPE = {t["id"]: t for t in TYPES}
 TYPE_BY_CODE = {t["code"]: t["id"] for t in TYPES}
@@ -836,6 +888,9 @@ ERA_BY_CODE = {e["code"]: e["id"] for e in ERAS}
 TERRAINS = TABLES["terrains"]
 TERRAIN = {t["id"]: t for t in TERRAINS}
 TERRAIN_BY_CODE = {t["code"]: t["id"] for t in TERRAINS}
+FOLKS = TERRAIN["underground"]["folks"] if "underground" in TERRAIN else []     # who lives below
+FOLK = {f["id"]: f for f in FOLKS}
+FOLK_BY_CODE = {f["code"]: f["id"] for f in FOLKS}
 NAME_STYLES = TABLES["name_styles"]
 NAME_STYLE = {n["id"]: n for n in NAME_STYLES}
 NAME_STYLE_BY_CODE = {n["code"]: n["id"] for n in NAME_STYLES}
@@ -941,7 +996,8 @@ def make_seed(p):
     people = p.get("people") or "places"
     people = "" if people == "places" else "X" if people == "fantasy" else NAME_STYLE[people]["code"]
     names = f"{NAME_STYLE[p['names']]['code']}{NAME_TONE[p['tone']]['code']}{people}-" if p.get("names") else ""
-    return (f"{TYPE[p['type']]['code']}{p['pop']}-{ERA[p['era']]['code']}-{TERRAIN[p['terrain']]['code']}-"
+    terrain = TERRAIN[p["terrain"]]["code"] + (FOLK[p["folk"]]["code"] if p["terrain"] == "underground" else "")
+    return (f"{TYPE[p['type']]['code']}{p['pop']}-{ERA[p['era']]['code']}-{terrain}-"
             f"{purpose}{p['danger']}{state}-{names}{to_code(p['number'])}")
 
 
@@ -964,13 +1020,18 @@ def read_seed(text):
     state = {"R": "ruin", "T": "threat", "": None}.get(parts[3][2:])
     if parts[3][2:] and (state is None or parts[3][0] != "A"):
         return None
-    kind, era, terrain = TYPE_BY_CODE.get(parts[0][0]), ERA_BY_CODE.get(parts[1]), TERRAIN_BY_CODE.get(parts[2])
+    kind, era, terrain = TYPE_BY_CODE.get(parts[0][0]), ERA_BY_CODE.get(parts[1]), TERRAIN_BY_CODE.get(parts[2][:1])
+    folk = FOLK_BY_CODE.get(parts[2][1:]) if terrain == "underground" else None
+    if (terrain == "underground") != (folk is not None) or (folk is None and len(parts[2]) != 1):
+        return None
     purpose = {"A": "adventure", "R": "rest"}.get(parts[3][0])
     n = from_code(parts[4])
     if None in (kind, era, terrain, purpose, n) or not parts[0][1:].isdigit() or not parts[3][1].isdigit():
         return None
     p = {"type": kind, "pop": int(parts[0][1:]), "era": era, "terrain": terrain, "purpose": purpose,
          "danger": int(parts[3][1]), "state": state, "names": names, "tone": tone, "people": people, "number": n}
+    if folk:
+        p["folk"] = folk
     return None if check_params(p) else p
 
 
@@ -1003,21 +1064,25 @@ def random_pop(kind, rng):
     return int(max(lo, min(hi, round(value / step) * step)))
 
 
-FUNGUS_SHARE = 1 / 3        # with the giant mushroom forests asked for, how often chance picks them
+OPTIONAL_SHARE = 1 / 3      # with optional terrains asked for, how often chance picks one of them
 
 
 def random_params(n, fixed=None):
-    """Random parameters from the seed number; `fixed` ones are kept as they are. The giant mushroom forests are
-    drawn only when asked for (fixed["fungus"]): without them, the same seed number gives the same place as ever."""
+    """Random parameters from the seed number; `fixed` ones are kept as they are. The optional terrains (giant
+    mushroom forests, the underground) are drawn only when asked for (fixed["fungus"], fixed["underground"]):
+    without them, the same seed number gives the same place as ever. Below, a folk too."""
     fixed = dict(fixed or {})
     r = random.Random(f"wyrmurbigen-params-{n}")
     p = {"type": r.choices([t["id"] for t in TYPES], weights=[5, 4, 2, 1, 3, 2][:len(TYPES)])[0],
          "era": r.choice([e["id"] for e in ERAS]),
          "terrain": r.choice([t["id"] for t in TERRAINS if not t.get("optional")]),
          "purpose": r.choice(PURPOSES)}
-    if fixed.get("fungus") and r.random() < FUNGUS_SHARE:
-        p["terrain"] = "fungus"
+    optional = [t["id"] for t in TERRAINS if t.get("optional") and fixed.get(t["id"])]
+    if optional and r.random() < OPTIONAL_SHARE:
+        p["terrain"] = r.choice(optional)
     p.update({k: v for k, v in fixed.items() if k in ("type", "era", "terrain", "purpose")})
+    if p["terrain"] == "underground":
+        p["folk"] = fixed.get("folk") or r.choices([f["id"] for f in FOLKS], weights=[f["weight"] for f in FOLKS])[0]
     p["pop"] = fixed.get("pop") or random_pop(p["type"], r)
     if p["purpose"] == "adventure":
         p["danger"] = fixed.get("danger") or r.choices(DANGERS, weights=[4, 4, 3, 1])[0]
@@ -2679,7 +2744,7 @@ def building_list(p, rng):
             continue
         if spec.get("eras") and era not in spec["eras"]:
             continue
-        if spec.get("terrains") and terrain not in spec["terrains"]:
+        if spec.get("terrains") and terrain not in spec["terrains"] or terrain in spec.get("deny", ()):
             continue
         count = spec.get("count", {})
         fixed = count.get(kind, count.get(building_type(kind)))
@@ -2875,6 +2940,10 @@ def build_plan(p, seed):
     lay = layout_for(p, rng)
     if p["terrain"] == "mountains":
         lay["moat"] = None          # perched: the cliffs are the moat
+    if p["terrain"] == "underground":     # below, the rock is the wall: only castles and fortresses keep theirs
+        lay["moat"] = None
+        if kind not in ("castle", "fortress"):
+            lay.update(walls=None, towers=False)
     W = int(R * 2 * ASPECT * (1.55 + 0.35 * lay["reach"])) + 14
     H = int(R * 2 * (1.12 + 0.18 * lay["reach"])) + 8
     plan = Plan(W, H, rng)
@@ -2892,8 +2961,84 @@ def build_plan(p, seed):
         for b in plan.buildings:
             if b.kind.get("stone", "late") == "late":
                 b.stone = False
+    if p["terrain"] == "underground":     # below, everything is carved into the rock
+        for b in plan.buildings:
+            b.stone = b.carved = True
     finish(plan, p, rng)
+    if p["terrain"] == "underground":
+        dig_out(plan, random.Random(f"wyrmurbigen-deep-{seed}"))
     return plan
+
+
+def dig_out(plan, rng):
+    """Below: what was built, and a margin round it, is dug out of the rock; around it lie a few natural caverns
+    (cave floor, giant fungi, moss, a black lake, a little magma), each joined to the town by a crooked tunnel;
+    the rest is solid rock. plan.face: the rock cells that touch open space, drawn as rock faces."""
+    W, H, cfg = plan.W, plan.H, TERRAIN["underground"]["caverns"]
+    mx, my = cfg["margin"]
+    dug = [[False] * W for _ in range(H)]
+    for y in range(H):
+        for x in range(W):
+            if plan.cell[y][x] is not None or (x, y) in plan.feat:
+                for dy in range(-my, my + 1):
+                    for dx in range(-mx, mx + 1):
+                        if plan.ok(x + dx, y + dy):
+                            dug[y + dy][x + dx] = True
+    cave = [[False] * W for _ in range(H)]
+    caverns = []
+    wanted = rng.randint(*cfg["count"])
+    for _ in range(wanted * 30):
+        if len(caverns) >= wanted:
+            break
+        r = rng.uniform(*cfg["radius"])
+        cx, cy = rng.uniform(r * ASPECT + 1, W - r * ASPECT - 2), rng.uniform(r + 1, H - r - 2)
+        if cx < 1 or cy < 1 or any(vdist(cx, cy, ox, oy) < r + orad + 2 for ox, oy, orad in caverns):
+            continue
+        cells = [(x, y) for y in range(max(0, int(cy - r - 1)), min(H, int(cy + r + 2)))
+                 for x in range(max(0, int(cx - r * ASPECT - 1)), min(W, int(cx + r * ASPECT + 2)))
+                 if vdist(x, y, cx, cy) < r * (0.8 + 0.4 * plan.n1[y][x])]
+        if not cells or any(dug[y][x] for x, y in cells):
+            continue
+        caverns.append((cx, cy, r))
+        for x, y in cells:
+            cave[y][x] = True
+        # a crooked tunnel towards the town, until it reaches what was dug
+        x, y = cx, cy
+        for _ in range(W + H):
+            ix, iy = int(round(x)), int(round(y))
+            if not plan.ok(ix, iy) or dug[iy][ix]:
+                break
+            for dx in (0, 1):
+                if plan.ok(ix + dx, iy):
+                    cave[iy][ix + dx] = True
+            a = math.atan2(plan.cy - y, (plan.cx - x) / ASPECT) + rng.uniform(-0.6, 0.6)
+            x, y = x + math.cos(a) * ASPECT, y + math.sin(a)
+    # what is in the caverns: a black lake in one, magma in another, giant fungi and moss everywhere
+    kinds = {}
+    for k, (cx, cy, r) in enumerate(caverns):
+        roll = rng.random()
+        kinds[k] = "water" if roll < cfg["lake"] else "magma" if roll < cfg["lake"] + cfg["magma"] else None
+    for y in range(H):
+        for x in range(W):
+            if dug[y][x]:
+                if plan.cell[y][x] is None and plan.ground[y][x] in ("grass", "tree"):
+                    plan.ground[y][x] = "cave"
+                continue
+            if not cave[y][x]:
+                plan.ground[y][x] = "rock"
+                continue
+            t = plan.tex[y][x]
+            g = "cave"
+            for k, (cx, cy, r) in enumerate(caverns):
+                if kinds[k] and vdist(x, y, cx, cy) < r * 0.5 * (0.8 + 0.4 * plan.n2[y][x]):
+                    g = kinds[k]
+            if g == "cave":
+                g = "shroom" if t < cfg["fungi"] else "moss" if t < cfg["fungi"] + cfg["moss"] else "cave"
+            plan.ground[y][x] = g
+    plan.face = {(x, y) for y in range(H) for x in range(W) if plan.ground[y][x] == "rock" and plan.cell[y][x] is None
+                 and any(plan.ok(x + dx, y + dy) and (plan.ground[y + dy][x + dx] != "rock"
+                                                      or plan.cell[y + dy][x + dx] is not None)
+                         for dx in (-1, 0, 1) for dy in (-1, 0, 1))}
 
 
 def shape_points(plan, p, rng, lay):
@@ -3252,7 +3397,7 @@ def stairs(plan):
 def finish(plan, p, rng):
     """Fields, gardens, wells, the cemetery crosses, quarters, numbers, secrets."""
     ward = p["type"] in ("castle", "fortress")
-    tree = "shroom" if p["terrain"] == "fungus" else "tree"     # in a mushroom forest, a giant mushroom
+    tree = "shroom" if p["terrain"] in ("fungus", "underground") else "tree"     # there, a giant mushroom
     # fields around every settlement (castles: roads out first); a perched settlement first gets its cliffs and
     # its stairs
     if not ward or True:
@@ -3261,7 +3406,8 @@ def finish(plan, p, rng):
         if plan.height:
             cliffs(plan)
             plan.stairs = stairs(plan)
-        fields(plan, rng, p["terrain"], plan.R * plan.lay["reach"])
+        if p["terrain"] != "underground":          # below, the caverns feed the town (dig_out)
+            fields(plan, rng, p["terrain"], plan.R * plan.lay["reach"])
     # what is left inside the walls: courtyards and kitchen gardens
     for y in range(plan.H):
         for x in range(plan.W):
@@ -3533,6 +3679,24 @@ GROWN = 0.75                # in a mushroom forest, the share of non-stone build
 GROWN_TOLD = 0.3            # ... and of the grown houses whose key tells how (every notable building does)
 
 
+FOLK_TOLD = 2               # below, how many notable buildings tell each of the folk's lines, at most
+
+
+def dig_in(s, seed):
+    """Below: the folk (s.folk), how their notable buildings look (b.grown_text, as for the mushroom houses) and,
+    for the fungus folk, houses grown in giant mushrooms; from a generator of its own."""
+    s.folk = FOLK[s.p["folk"]]
+    r = random.Random(f"wyrmurbigen-folk-{seed}")
+    for b in s.plan.buildings:
+        if s.folk.get("grown") and not b.kind.get("stone") == "always":
+            b.grown = True
+    notable = [b for b in s.plan.buildings if not b.kind.get("filler")]
+    lines = list(s.folk["lines"]) * FOLK_TOLD
+    r.shuffle(lines)
+    for b, line in zip(r.sample(notable, min(len(notable), len(lines))), lines):
+        b.grown_text = line
+
+
 def grow_in_mushrooms(s, seed):
     """In a giant mushroom forest most of what is not stone is grown inside a mushroom (b.grown), and the key says
     how for the notable buildings and a few houses (b.grown_text); from a generator of its own."""
@@ -3641,6 +3805,8 @@ def make_settlement(p, plan, seed):
         b.trades = [trade["m"]] + [t["m"] for t in extra]
     if p["terrain"] == "fungus":
         grow_in_mushrooms(s, seed)
+    if p["terrain"] == "underground":
+        dig_in(s, seed)
     # government
     rulers = TABLES["rulers"][kind if kind in TABLES["rulers"] else building_type(kind)][p["era"]]
     title = rng.choice(rulers)
@@ -3648,6 +3814,8 @@ def make_settlement(p, plan, seed):
     lv_range = {"village": (1, 3), "town": (2, 4), "city": (4, 6), "bigcity": (5, 8), "castle": (3, 7),
                 "fortress": (4, 8)}[kind]
     s.ruler = make_npc(rng, used_names, title, None, cls, rng.randint(*lv_range), align=rng.choice((0, 0, 1, 2)))
+    if p["terrain"] == "underground":     # below, the folk's own ruler
+        s.ruler["role"] = s.folk["ruler"][s.ruler["gender"]]
     seat = [b for b in notable if b.kind.get("keep")] or \
            [b for b in notable if b.id in ("town_hall", "lords_hall", "manor", "rocca", "palazzo", "command")]
     s.ruler_seat = seat[0] if seat else None
@@ -4193,7 +4361,8 @@ def plan_factions(s, rng):
     p, plan = s.p, s.plan
     ruin = hasattr(s, "layers")
     kind = "ruin" if ruin else p["type"]
-    kinds = [k for k in TABLES["faction_kinds"] if ("ruin" in k["where"]) == ruin and (ruin or allowed_in(k["where"], kind))]
+    kinds = [k for k in TABLES["faction_kinds"] if ("ruin" in k["where"]) == ruin and (ruin or allowed_in(k["where"], kind))
+             and (not k.get("terrains") or p["terrain"] in k["terrains"])]
     rng.shuffle(kinds)
     taken, factions, goals = set(), [], set()
     gates = [g for g in getattr(s, "gates", []) if g.get("name")]
@@ -4429,6 +4598,7 @@ def rumour_values(s, rng):
 RUMOURS = 10                # the rumours table: a d10
 THREAT_RUMOURS = 3          # ... of which about the threat, in a place of adventure
 KIT_SHARE = 0.6             # how often a rumour comes from a kit rather than the list of contents
+TERRAIN_SHARE = 0.3         # ... and how often from the contents of the place's own terrain, if it has some
 
 
 def expand_kit(kit):
@@ -4455,7 +4625,8 @@ def plan_rumours(s, rng):
     for the referee); a few about the threat in a place of adventure."""
     where = "ruin" if hasattr(s, "layers") else "living"
     threat_keys = ("dwellers", "dwellers_pl", "lair", "monster")
-    contents = [c for c in TABLES["rumor_contents"] if where in c["where"]]
+    contents = [c for c in TABLES["rumor_contents"] if where in c["where"]
+                and (not c.get("terrains") or s.p["terrain"] in c["terrains"])]
     kits = [[c for c in kit if where in c["where"]] for kit in RUMOUR_KITS]
     out, used = [], set()
     wanted_threat = THREAT_RUMOURS if getattr(s, "situation", None) else 0
@@ -4465,7 +4636,10 @@ def plan_rumours(s, rng):
         values = rumour_values(s, rng)
         about_threat = len(out) < wanted_threat
         # from the list, or from a kit (one kit as likely as another, whatever its size)
-        table = rng.choice([k for k in kits if k]) if rng.random() < KIT_SHARE else contents
+        own = [c for c in contents if c.get("terrains")]
+        roll = rng.random()
+        table = own if own and roll < TERRAIN_SHARE else rng.choice([k for k in kits if k]) if roll < KIT_SHARE \
+            else contents
         pool = [c for c in table if (any("{" + k + "}" in c["it"] for k in threat_keys) == about_threat)
                 and all(key in values for key in re.findall(r"\{(\w+)\}", c["it"]))]
         if not pool:
@@ -4686,7 +4860,7 @@ SINGLE = {"h": ("─", "-"), "v": ("│", "|"), "tl": ("┌", "-"), "tr": ("┐"
 
 
 GROUND_TAGS = {"water": "water", "tree": "forest", "shroom": "shroom", "hill": "hill", "mount": "mount", "reed": "reed",
-               "cliff": "mount"}
+               "cliff": "mount", "rock": "rock", "magma": "magma", "moss": "moss"}
 
 
 def ground_tag(g):
@@ -4705,6 +4879,12 @@ def ground_char(plan, x, y, G):
         return G(*SYMBOLS["forest1" if t < 0.45 else "forest2"]) if t < 0.75 else " "
     if g == "shroom":
         return G(*SYMBOLS["shroom" if t < 0.5 else "spores"]) if t < 0.7 else " "
+    if g == "rock":         # solid rock is left blank; its face, where it meets open space, as in WyrmDelve's caves
+        return "#" if (x, y) in getattr(plan, "face", ()) else " "
+    if g == "magma":
+        return G(*SYMBOLS["water"])
+    if g == "moss":
+        return '"' if t < 0.2 else " "
     if g == "hill":
         return G(*SYMBOLS["hill"])
     if g == "mount":
@@ -4745,6 +4925,8 @@ def map_canvas(plan, referee, G, labels=True, secrets=None):
                 c.fill(x, y, "bg:street")
             elif cell == MOAT or (cell is None and plan.ground[y][x] == "water"):
                 c.fill(x, y, "bg:water")
+            elif cell is None and plan.ground[y][x] == "rock":
+                c.fill(x, y, "bg:rock")
             if (x, y) in plan.feat and cell not in (BLDG,) + tuple(FORT):
                 feat = plan.feat[(x, y)]
                 c.put(x, y, G(*SYMBOLS[feat]), "b" if feat in ("well", "fountain") else "n", feat)
@@ -4863,7 +5045,8 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     # buildings, walls and gates, water, streets and roads, features, fields and land, secrets, scale: in this order
     out = []
     if any(b.stone for b in plan.buildings):
-        out.append([(G("╔═╗", "=H="), "n", "stone", "bg:stone"), (" " + tr("lg_stone"), "n")])
+        stone = "lg_carved" if p.get("terrain") == "underground" else "lg_stone"
+        out.append([(G("╔═╗", "=H="), "n", "stone", "bg:stone"), (" " + tr(stone), "n")])
     if any(not b.stone for b in plan.buildings):
         wood = "lg_grown" if p.get("terrain") == "fungus" else "lg_wood"
         out.append([(G("┌─┐", "-|-"), "n", "wood", "bg:wood"), (" " + tr(wood), "n")])
@@ -4906,6 +5089,12 @@ def legend_entries(plan, p, referee, G, units, secrets=None):
     for key in ("plough", "sown", "pasture", "orchard"):
         if key in fields_used:
             out.append([(G(*SYMBOLS[key]), "n", key), (" " + tr("lg_" + key), "n")])
+    if "rock" in used:
+        out.append([("#", "n", "rock"), (" " + tr("lg_rock"), "n")])
+    if "magma" in used:
+        out.append([(G(*SYMBOLS["water"]), "n", "magma"), (" " + tr("lg_magma"), "n")])
+    if "moss" in used:
+        out.append([('"', "n", "moss"), (" " + tr("lg_moss"), "n")])
     if "shroom" in used or "shroom" in feats:
         out.append([(G(SYMBOLS["shroom"][0] + SYMBOLS["spores"][0], SYMBOLS["shroom"][1] + SYMBOLS["spores"][1]), "n",
                      "shroom"), (" " + tr("lg_shroom"), "n")])
@@ -5360,7 +5549,8 @@ def write_text(path, canvas):
 def kind_label(b):
     """What a building is and what it is made of: inn, stone."""
     name = pick(b.kind["name"])
-    material = tr("stone") if b.stone else tr("grown") if getattr(b, "grown", None) else tr("wood")
+    material = (tr("grown") if getattr(b, "grown", None) else tr("carved") if getattr(b, "carved", None) else
+                tr("stone") if b.stone else tr("wood"))
     return f"{name}, {material}"
 
 
@@ -5436,6 +5626,8 @@ def key_blocks(s, title, units, content):
                ("meta", f"{capitalized(type_name(p['type']))} · {capitalized(pick(ERA[p['era']]['name']))} · "
                         f"{capitalized(pick(TERRAIN[p['terrain']]['name']))}"),
                ("meta", f"{purpose} · {tr('key_pop_ruin' if ruin else 'key_pop', n=number(p['pop']))}")]
+    if getattr(s, "folk", None):
+        blocks.append(("meta", tr("key_folk", f=pick(s.folk["about"]))))
     if p.get("names"):
         blocks.append(("meta", tr("key_names", s=pick(NAME_STYLE[p["names"]]["name"]),
                                   t=pick(NAME_TONE[p["tone"]]["name"]))))
@@ -5878,27 +6070,164 @@ def menus_on():
     return Screen is not None and sys.stdin.isatty() and sys.stdout.isatty()
 
 
-def ask(question, default, kind=int, lowest=None, highest=None):
-    """Keep asking until the answer is valid. Enter = default."""
+# One screen for the whole interactive run, as in WyrmHex's editor: the
+# first menu opens it and it stays open from question to question, and
+# while the settlement is made, so the terminal never goes back to the
+# console in between. The answers and the log are kept and printed to the
+# console when it closes, at the end (or on Ctrl+C or an error).
+SCREEN = {"open": None, "echo": [], "live": None}
+
+
+def screen_on():
+    """The questions' screen, opened if it isn't yet."""
+    if SCREEN["open"] is None:
+        SCREEN["open"] = Screen.open()
+    return SCREEN["open"]
+
+
+def screen_off():
+    """Back to the console: close the questions' screen and print what was answered there."""
+    if SCREEN["open"] is not None:
+        SCREEN["open"].close()
+        SCREEN["open"] = None
+    for line in SCREEN["echo"]:
+        print(line)
+    SCREEN["echo"].clear()
+
+
+def say(line):
+    """A console line; kept for later while the questions' screen is open."""
+    if SCREEN["open"] is not None:
+        SCREEN["echo"].append(line)
+    else:
+        print(line)
+
+
+def console(line):
+    """A line of the run's log: printed, or kept and shown on the questions' screen while it's open."""
+    say(line)
+    if SCREEN["open"] is not None:
+        draw_console()
+
+
+def console_lines():
+    """The console lines kept while the questions' screen is open, one per row, and the live bar."""
+    lines = [row for line in SCREEN["echo"] for row in line.split("\n")]
+    return lines + ([SCREEN["live"]] if SCREEN["live"] else [])
+
+
+def draw_console():
+    """The run's log on the questions' screen: its last lines, as the console would show them."""
+    screen = SCREEN["open"]
+    screen.clear_buffer(Screen.COLOUR_WHITE, Screen.A_NORMAL, Screen.COLOUR_BLACK)
+    screen.print_at(f" {PROGRAM} v{VERSION} ", 2, 1, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_YELLOW)
+    room = max(1, screen.height - 4)
+    for row, line in enumerate(console_lines()[-room:]):
+        screen.print_at(line[:screen.width - 1], 0, 3 + row)
+    screen.refresh()
+
+
+def on_screen(run):
+    """run(screen) on the questions' screen; a resized terminal opens it again and draws it all anew."""
     while True:
-        answer = input(f"  {question} [{default}]: ").strip()
-        if not answer:
-            return default
         try:
-            value = kind(answer.replace(".", "").replace(",", "") if kind is int else answer)
-        except ValueError:
-            print(tr("invalid_value"))
-            continue
-        if (lowest is not None and value < lowest) or (highest is not None and value > highest):
-            print(tr("value_range", lo=lowest, hi=highest))
+            return run(screen_on())
+        except ResizeScreenError:
+            SCREEN["open"].close()
+            SCREEN["open"] = None
+
+
+def read_value(answer, default, kind=int, lowest=None, highest=None):
+    """A typed answer as (value, None), or (None, what's wrong with it). Empty = default."""
+    answer = answer.strip()
+    if not answer:
+        return default, None
+    try:
+        value = kind(answer.replace(".", "").replace(",", "") if kind is int else answer)
+    except ValueError:
+        return None, tr("invalid_value")
+    if (lowest is not None and value < lowest) or (highest is not None and value > highest):
+        return None, tr("value_range", lo=lowest, hi=highest)
+    return value, None
+
+
+def ask(question, default, kind=int, lowest=None, highest=None):
+    """Keep asking until the answer is valid. Enter = default. With menus, typed in a field on their screen."""
+    if menus_on():
+        return type_in(question, str(default), lambda text: read_value(text, default, kind, lowest, highest))
+    while True:
+        value, wrong = read_value(input(f"  {question} [{default}]: "), default, kind, lowest, highest)
+        if wrong:
+            print(wrong)
             continue
         return value
 
 
-def menu(question, options, default=0, hints=None, ticks=None, header=None, keys=None):
+def type_in(question, text="", check=None, limit=60):
+    """WyrmHex's text box, on the questions' screen: a line typed in a field, Enter confirms. `check` turns the text
+    into the answer as (answer, None), or says what's wrong as (None, message), shown under the field."""
+    question = question.strip().rstrip(":").strip()
+    check = check or (lambda t: (t.strip(), None))
+    state = {"text": text, "wrong": ""}
+
+    def draw(screen):
+        """Draw the field's screen: title, question, the field with its cursor, what's wrong, keys."""
+        screen.clear_buffer(Screen.COLOUR_WHITE, Screen.A_NORMAL, Screen.COLOUR_BLACK)
+        screen.print_at(f" {PROGRAM} v{VERSION} ", 2, 1, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_YELLOW)
+        x, y, room = 2, 3, max(20, screen.width - 4)
+        for line in textwrap.wrap(question, room):
+            screen.print_at(line, x, y, Screen.COLOUR_YELLOW, Screen.A_BOLD)
+            y += 1
+        y += 1
+        width = max(4, min(limit, screen.width - 2 * x - 4))
+        shown = state["text"][-(width - 1):]
+        screen.print_at(" " * (width + 2), x, y, Screen.COLOUR_BLACK, Screen.A_NORMAL, Screen.COLOUR_WHITE)
+        screen.print_at(shown + "_", x + 1, y, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_WHITE)
+        y += 2
+        for line in textwrap.wrap(state["wrong"].strip(), room):
+            screen.print_at(line, x, y, Screen.COLOUR_RED, Screen.A_BOLD)
+            y += 1
+        keys = tr("type_keys")
+        footer = [keys] if x + len(keys) < screen.width else keys.split("   ·   ")
+        for row, line in enumerate(footer):
+            screen.print_at(line[:screen.width - x - 1], x, screen.height - 1 - len(footer) + row, Screen.COLOUR_WHITE)
+        screen.refresh()
+
+    def run(screen):
+        """The field's loop: letters are typed, Backspace deletes, Esc clears, Enter confirms."""
+        while True:
+            draw(screen)
+            screen.wait_for_input(0.5)
+            event = screen.get_event()
+            if screen.has_resized():
+                raise ResizeScreenError("resized")
+            if not isinstance(event, KeyboardEvent):
+                continue
+            code = event.key_code
+            if code in (10, 13):
+                answer, state["wrong"] = check(state["text"])
+                if not state["wrong"]:
+                    return answer
+            elif code in (Screen.KEY_BACK, Screen.KEY_DELETE, 8, 127):
+                state["text"], state["wrong"] = state["text"][:-1], ""
+            elif code == Screen.KEY_ESCAPE:
+                state["text"], state["wrong"] = "", ""
+            elif code == 3:                    # Ctrl+C, when the terminal hands it over as a key
+                raise KeyboardInterrupt
+            elif 32 <= code < 0x110000 and chr(code).isprintable() and len(state["text"]) < limit:
+                state["text"], state["wrong"] = state["text"] + chr(code), ""
+
+    answer = on_screen(run)
+    say(f"  {question}: {state['text'].strip() or answer}")
+    return answer
+
+
+def menu(question, options, default=0, hints=None, ticks=None, header=None, keys=None, help_key="content_help",
+         tail=False):
     """WyrmDelve's menu: arrows (or the mouse) move, Enter chooses, a number
-    jumps to its option; with `ticks`, Space ticks several. Without a terminal
-    or asciimatics: the numbered question of old."""
+    jumps to its option; with `ticks`, Space ticks several; `header`: lines
+    above the question (its last ones if `tail`, when they don't all fit).
+    Without a terminal or asciimatics: the numbered question of old."""
     question = question.strip()
     hints = hints or [""] * len(options)
     # no full-screen menu: the options numbered, the answer typed (several numbers separated by commas when ticking)
@@ -5908,7 +6237,7 @@ def menu(question, options, default=0, hints=None, ticks=None, header=None, keys
             print(f"    {k} = {text}" + (f": {hint}" if hint else ""))
         if ticks is None:
             return ask(tr("choice"), default + 1, int, 1, len(options)) - 1
-        print(tr("content_help"))
+        print(tr(help_key))
         while True:
             answer = input(f"  {tr('choice')} [{','.join(str(k + 1) for k, on in enumerate(ticks) if on) or '0'}]: ").strip()
             if not answer:
@@ -5936,7 +6265,7 @@ def menu(question, options, default=0, hints=None, ticks=None, header=None, keys
             y = 3
         else:
             keep = max(0, min(len(lines), screen.height - len(options) - 7))
-            for row, line in enumerate(lines[:keep]):
+            for row, line in enumerate(lines[len(lines) - keep:] if tail else lines[:keep]):
                 screen.print_at(line[:screen.width], 0, row)
             y = keep + 1
         screen.print_at(question, x, y, Screen.COLOUR_YELLOW, Screen.A_BOLD)
@@ -5993,18 +6322,14 @@ def menu(question, options, default=0, hints=None, ticks=None, header=None, keys
                 state["ticks"][state["at"]] = not state["ticks"][state["at"]]
             elif code in (10, 13):
                 return tuple(state["ticks"]) if ticks is not None else state["at"]
+            elif code == 3:                    # Ctrl+C, when the terminal hands it over as a key
+                raise KeyboardInterrupt
 
-    while True:
-        try:
-            answer = Screen.wrapper(run)
-            break
-        # a resized terminal: draw it all again
-        except ResizeScreenError:
-            continue
+    answer = on_screen(run)
     # echo the answer, so it stays on screen afterwards
     chosen = options[answer] if ticks is None else (", ".join(o for o, on in zip(options, answer) if on)
                                                     or tr("menu_none"))
-    print(f"  {question} {chosen}")
+    say(f"  {question} {chosen}")
     return answer
 
 
@@ -6043,7 +6368,7 @@ def welcome_screen():
 def show_welcome():
     """Show the welcome screen and ask what to do: random, choose, or rebuild from a seed."""
     screen = welcome_screen()
-    print("\n" + "\n".join(line.rstrip() for line in screen) + "\n")
+    say("\n" + "\n".join(line.rstrip() for line in screen) + "\n")
     modes = ("random", "params", "rebuild")
     if menus_on():
         return modes[menu(tr("welcome_q"), [tr("mode_" + m) for m in modes], header=[l.rstrip() for l in screen])]
@@ -6056,12 +6381,12 @@ def ask_choice(question, items, labels, hints=None):
     return None if k == 0 else items[k - 1]
 
 
-def ask_params(fungus=False):
-    """The questions of "I'll choose": purpose, type and people, era, terrain, danger, names, tone and people's
-    names; every one may be left to chance (the giant mushroom forests among the terrains only if `fungus`).
-    Returns the fixed parameters."""
+def ask_params(extra=()):
+    """The questions of "I'll choose": purpose, type and people, era, terrain (and below, the folk), danger, names,
+    tone and people's names; every one may be left to chance (the optional terrains among them only if in
+    `extra`). Returns the fixed parameters."""
     # one question per parameter; an empty answer (random) leaves it out of `fixed`
-    fixed = {"fungus": True} if fungus else {}
+    fixed = dict.fromkeys(extra, True)
     purpose = ask_choice(tr("q_purpose"), list(PURPOSES), [tr("purpose_rest_menu"), tr("purpose_adventure_menu")],
                          [tr("purpose_rest_hint"), tr("purpose_adventure_hint")])
     if purpose:
@@ -6078,11 +6403,16 @@ def ask_params(fungus=False):
                      [pick(e["about"]) for e in ERAS])
     if era:
         fixed["era"] = era
-    terrains = [t for t in TERRAINS if fungus or not t.get("optional")]
+    terrains = [t for t in TERRAINS if t["id"] in extra or not t.get("optional")]
     terrain = ask_choice(tr("q_terrain"), [t["id"] for t in terrains], [pick(t["menu"]) for t in terrains],
                          [pick(t["about"]) if t.get("about") else "" for t in terrains])
     if terrain:
         fixed["terrain"] = terrain
+    if terrain == "underground":
+        folk = ask_choice(tr("q_folk"), [f["id"] for f in FOLKS], [capitalized(pick(f["name"])) for f in FOLKS],
+                          [pick(f["about"]) for f in FOLKS])
+        if folk:
+            fixed["folk"] = folk
     # names and tone show a few examples generated on the spot
     names = ask_choice(tr("q_names"), [n["id"] for n in NAME_STYLES], [capitalized(pick(n["name"])) for n in NAME_STYLES],
                        [", ".join(name_examples(n["id"], t, 1)[0] for t in ("fair", "stately", "grim")) for n in NAME_STYLES])
@@ -6128,6 +6458,8 @@ def ask_name():
         return None
     if k == 2:
         return ""
+    if menus_on():
+        return type_in(tr("q_name"), check=lambda t: (t.strip(), None) if t.strip() else (None, tr("name_empty")))
     while True:
         name = input(tr("q_name")).strip()
         if name:
@@ -6179,10 +6511,14 @@ def ask_settings():
     look. Returns the parameters."""
     ask_language()
     mode = show_welcome()
-    print(tr("enter_accepts"))
+    if not menus_on():
+        print(tr("enter_accepts"))
     p = {"title": None, "ascii_only": False, "font": None, "paper": None, "output": OUTPUT_FOLDER, "units": None,
          "files": None}
-    if mode == "rebuild":
+    if mode == "rebuild" and menus_on():
+        p.update(type_in(tr("ask_seed", example=example_seed()), limit=40, check=lambda t: (
+            (read_seed(t), None) if read_seed(t) else (None, tr("seed_invalid", example=example_seed())))))
+    elif mode == "rebuild":
         while True:
             seed = read_seed(input(tr("ask_seed", example=example_seed())))
             if seed:
@@ -6190,9 +6526,13 @@ def ask_settings():
             print(tr("seed_invalid", example=example_seed()))
         p.update(seed)
     else:
-        # the giant mushroom forests are optional: without them, places are made as always
-        fungus = menu(tr("q_fungus"), [tr("fungus_no"), tr("fungus_yes")], 0) == 1
-        fixed = ask_params(fungus) if mode == "params" else {"fungus": True} if fungus else {}
+        # the optional terrains: none ticked, places are made as always
+        optional = [t["id"] for t in TERRAINS if t.get("optional")]
+        ticks = menu(tr("q_optional"), [tr("opt_" + t).split(": ", 1)[0] for t in optional],
+                     hints=[tr("opt_" + t).split(": ", 1)[1] for t in optional], ticks=(False,) * len(optional),
+                     help_key="optional_help")
+        extra = [t for t, on in zip(optional, ticks) if on]
+        fixed = ask_params(extra) if mode == "params" else dict.fromkeys(extra, True)
         p.update(random_params(new_number(), fixed))
     p["colors"] = ask_colors()
     p["ascii_only"] = menu(tr("ascii_intro"), [tr("ascii_no"), tr("ascii_yes")], 0) == 1
@@ -6250,6 +6590,10 @@ def settings_from_options(argv):
     ap.add_argument(*names("terreno", "terrain"), dest="terrain", type=read_choice(TERRAINS, "terreno"), default=None,
                     help=tr("h_terrain"))
     ap.add_argument(*names("funghi", "mushrooms"), dest="fungus", action="store_true", help=tr("h_fungus"))
+    ap.add_argument(*names("sottosuolo", "underground"), dest="underground", action="store_true",
+                    help=tr("h_underground"))
+    ap.add_argument(*names("popolo", "folk"), dest="folk", type=read_choice(FOLKS, "popolo"), default=None,
+                    help=tr("h_folk"))
     ap.add_argument(*names("scopo", "purpose"), dest="purpose", default=None, help=tr("h_purpose"))
     ap.add_argument(*names("pericolo", "danger"), dest="danger", type=int, choices=DANGERS, default=None,
                     help=tr("h_danger"))
@@ -6299,6 +6643,11 @@ def settings_from_options(argv):
                                 ("people", a.people)) if v is not None}
     if a.fungus:
         fixed["fungus"] = True
+    if a.underground:
+        fixed["underground"] = True
+    if a.folk:                  # a folk means the underground
+        fixed["folk"] = a.folk
+        fixed.setdefault("terrain", "underground")
     if a.purpose:
         purpose = {"riposo": "rest", "rest": "rest", "avventura": "adventure", "adventure": "adventure"}.get(
             a.purpose.strip().lower())
@@ -6331,18 +6680,23 @@ def main():
     """Run WyrmUrbiGen: interactive without options, else from the options; in interactive mode, offer to make the
     same settlement again in another look."""
     interactive = len(sys.argv) == 1
-    params = ask_settings() if interactive else settings_from_options(sys.argv[1:])
-    make(params, interactive)
-    while interactive and ask_again():
-        restyle(params)
-        make(params, interactive, again=True)
+    try:
+        params = ask_settings() if interactive else settings_from_options(sys.argv[1:])
+        make(params, interactive)
+        while interactive and ask_again():
+            restyle(params)
+            make(params, interactive, again=True)
+    finally:
+        # never leave the terminal on the questions' screen, not even on Ctrl+C or an error
+        screen_off()
 
 
 def ask_again():
     """At the end: the same settlement again, in other colours and styles?"""
-    print()
+    say("")
+    log = console_lines() if SCREEN["open"] is not None else None
     try:
-        return menu(tr("again_q"), [tr("again_no"), tr("again_yes")], 0) == 1
+        return menu(tr("again_q"), [tr("again_no"), tr("again_yes")], 0, header=log, tail=True) == 1
     except EOFError:
         return False
 
