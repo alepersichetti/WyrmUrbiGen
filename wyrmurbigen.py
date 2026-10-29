@@ -81,6 +81,7 @@ import os
 import random
 import re
 import sys
+import textwrap
 import time
 import zlib
 from collections import Counter, deque
@@ -218,6 +219,8 @@ TEXTS = {
     "menu_keys_multi": ("↑ ↓ scegli   ·   Spazio segna o toglie   ·   Invio conferma",
                         "↑ ↓ move   ·   Space ticks or unticks   ·   Enter confirms"),
     "menu_none": ("nessuno", "none"),
+    "type_keys": ("Scrivi   ·   ⌫ cancella   ·   Esc svuota   ·   Invio conferma",
+                  "Type   ·   ⌫ deletes   ·   Esc clears   ·   Enter confirms"),
     "at_random": ("A caso", "At random"),
     # welcome
     "welcome_subtitle": ("generatore di villaggi, paesi, città, castelli e fortezze per campagne OSR",
@@ -734,12 +737,21 @@ class LiveBar:
         percent = int(fraction * 100)
         if self.live and (percent, label) != self.shown:
             self.shown = (percent, label)
-            print(f"\r        {bar(fraction, 30)} {percent:>3}%  {label:<14}", end="", flush=True)
+            line = f"        {bar(fraction, 30)} {percent:>3}%  {label:<14}"
+            if SCREEN["open"] is not None:
+                SCREEN["live"] = line
+                draw_console()
+            else:
+                print("\r" + line, end="", flush=True)
 
     def finish(self):
         """Fill the bar and end its line."""
         if self.live:
-            print(f"\r        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
+            SCREEN["live"] = None
+            if SCREEN["open"] is not None:
+                console(f"        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
+            else:
+                print(f"\r        {bar(1, 30)} 100%  {tr('pb_done'):<14}")
 
 
 class Log:
@@ -753,23 +765,23 @@ class Log:
         """Start the next step: its bar, its number and what it does."""
         self.step_number += 1
         progress = bar(self.step_number / self.total_steps, self.total_steps)
-        print(f"\n{progress} {self.step_number:>2}/{self.total_steps}  {message}")
+        console(f"\n{progress} {self.step_number:>2}/{self.total_steps}  {message}")
 
     def info(self, message):
         """A line of information under the current step."""
-        print(f"        · {message}")
+        console(f"        · {message}")
 
     def warn(self, message):
         """A warning: something is missing or poor, but the run goes on."""
-        print(f"        ! {message}")
+        console(f"        ! {message}")
 
     def error(self, message):
         """An error: a part (such as the PDF file) could not be made."""
-        print(f"        ✗ {message}")
+        console(f"        ✗ {message}")
 
     def done(self):
         """The last line: how long the whole run took."""
-        print("\n" + tr("done", s=time.perf_counter() - self.start_time))
+        console("\n" + tr("done", s=time.perf_counter() - self.start_time))
 
 
 # --- tables ---
@@ -6058,27 +6070,164 @@ def menus_on():
     return Screen is not None and sys.stdin.isatty() and sys.stdout.isatty()
 
 
-def ask(question, default, kind=int, lowest=None, highest=None):
-    """Keep asking until the answer is valid. Enter = default."""
+# One screen for the whole interactive run, as in WyrmHex's editor: the
+# first menu opens it and it stays open from question to question, and
+# while the settlement is made, so the terminal never goes back to the
+# console in between. The answers and the log are kept and printed to the
+# console when it closes, at the end (or on Ctrl+C or an error).
+SCREEN = {"open": None, "echo": [], "live": None}
+
+
+def screen_on():
+    """The questions' screen, opened if it isn't yet."""
+    if SCREEN["open"] is None:
+        SCREEN["open"] = Screen.open()
+    return SCREEN["open"]
+
+
+def screen_off():
+    """Back to the console: close the questions' screen and print what was answered there."""
+    if SCREEN["open"] is not None:
+        SCREEN["open"].close()
+        SCREEN["open"] = None
+    for line in SCREEN["echo"]:
+        print(line)
+    SCREEN["echo"].clear()
+
+
+def say(line):
+    """A console line; kept for later while the questions' screen is open."""
+    if SCREEN["open"] is not None:
+        SCREEN["echo"].append(line)
+    else:
+        print(line)
+
+
+def console(line):
+    """A line of the run's log: printed, or kept and shown on the questions' screen while it's open."""
+    say(line)
+    if SCREEN["open"] is not None:
+        draw_console()
+
+
+def console_lines():
+    """The console lines kept while the questions' screen is open, one per row, and the live bar."""
+    lines = [row for line in SCREEN["echo"] for row in line.split("\n")]
+    return lines + ([SCREEN["live"]] if SCREEN["live"] else [])
+
+
+def draw_console():
+    """The run's log on the questions' screen: its last lines, as the console would show them."""
+    screen = SCREEN["open"]
+    screen.clear_buffer(Screen.COLOUR_WHITE, Screen.A_NORMAL, Screen.COLOUR_BLACK)
+    screen.print_at(f" {PROGRAM} v{VERSION} ", 2, 1, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_YELLOW)
+    room = max(1, screen.height - 4)
+    for row, line in enumerate(console_lines()[-room:]):
+        screen.print_at(line[:screen.width - 1], 0, 3 + row)
+    screen.refresh()
+
+
+def on_screen(run):
+    """run(screen) on the questions' screen; a resized terminal opens it again and draws it all anew."""
     while True:
-        answer = input(f"  {question} [{default}]: ").strip()
-        if not answer:
-            return default
         try:
-            value = kind(answer.replace(".", "").replace(",", "") if kind is int else answer)
-        except ValueError:
-            print(tr("invalid_value"))
-            continue
-        if (lowest is not None and value < lowest) or (highest is not None and value > highest):
-            print(tr("value_range", lo=lowest, hi=highest))
+            return run(screen_on())
+        except ResizeScreenError:
+            SCREEN["open"].close()
+            SCREEN["open"] = None
+
+
+def read_value(answer, default, kind=int, lowest=None, highest=None):
+    """A typed answer as (value, None), or (None, what's wrong with it). Empty = default."""
+    answer = answer.strip()
+    if not answer:
+        return default, None
+    try:
+        value = kind(answer.replace(".", "").replace(",", "") if kind is int else answer)
+    except ValueError:
+        return None, tr("invalid_value")
+    if (lowest is not None and value < lowest) or (highest is not None and value > highest):
+        return None, tr("value_range", lo=lowest, hi=highest)
+    return value, None
+
+
+def ask(question, default, kind=int, lowest=None, highest=None):
+    """Keep asking until the answer is valid. Enter = default. With menus, typed in a field on their screen."""
+    if menus_on():
+        return type_in(question, str(default), lambda text: read_value(text, default, kind, lowest, highest))
+    while True:
+        value, wrong = read_value(input(f"  {question} [{default}]: "), default, kind, lowest, highest)
+        if wrong:
+            print(wrong)
             continue
         return value
 
 
-def menu(question, options, default=0, hints=None, ticks=None, header=None, keys=None, help_key="content_help"):
+def type_in(question, text="", check=None, limit=60):
+    """WyrmHex's text box, on the questions' screen: a line typed in a field, Enter confirms. `check` turns the text
+    into the answer as (answer, None), or says what's wrong as (None, message), shown under the field."""
+    question = question.strip().rstrip(":").strip()
+    check = check or (lambda t: (t.strip(), None))
+    state = {"text": text, "wrong": ""}
+
+    def draw(screen):
+        """Draw the field's screen: title, question, the field with its cursor, what's wrong, keys."""
+        screen.clear_buffer(Screen.COLOUR_WHITE, Screen.A_NORMAL, Screen.COLOUR_BLACK)
+        screen.print_at(f" {PROGRAM} v{VERSION} ", 2, 1, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_YELLOW)
+        x, y, room = 2, 3, max(20, screen.width - 4)
+        for line in textwrap.wrap(question, room):
+            screen.print_at(line, x, y, Screen.COLOUR_YELLOW, Screen.A_BOLD)
+            y += 1
+        y += 1
+        width = max(4, min(limit, screen.width - 2 * x - 4))
+        shown = state["text"][-(width - 1):]
+        screen.print_at(" " * (width + 2), x, y, Screen.COLOUR_BLACK, Screen.A_NORMAL, Screen.COLOUR_WHITE)
+        screen.print_at(shown + "_", x + 1, y, Screen.COLOUR_BLACK, Screen.A_BOLD, Screen.COLOUR_WHITE)
+        y += 2
+        for line in textwrap.wrap(state["wrong"].strip(), room):
+            screen.print_at(line, x, y, Screen.COLOUR_RED, Screen.A_BOLD)
+            y += 1
+        keys = tr("type_keys")
+        footer = [keys] if x + len(keys) < screen.width else keys.split("   ·   ")
+        for row, line in enumerate(footer):
+            screen.print_at(line[:screen.width - x - 1], x, screen.height - 1 - len(footer) + row, Screen.COLOUR_WHITE)
+        screen.refresh()
+
+    def run(screen):
+        """The field's loop: letters are typed, Backspace deletes, Esc clears, Enter confirms."""
+        while True:
+            draw(screen)
+            screen.wait_for_input(0.5)
+            event = screen.get_event()
+            if screen.has_resized():
+                raise ResizeScreenError("resized")
+            if not isinstance(event, KeyboardEvent):
+                continue
+            code = event.key_code
+            if code in (10, 13):
+                answer, state["wrong"] = check(state["text"])
+                if not state["wrong"]:
+                    return answer
+            elif code in (Screen.KEY_BACK, Screen.KEY_DELETE, 8, 127):
+                state["text"], state["wrong"] = state["text"][:-1], ""
+            elif code == Screen.KEY_ESCAPE:
+                state["text"], state["wrong"] = "", ""
+            elif code == 3:                    # Ctrl+C, when the terminal hands it over as a key
+                raise KeyboardInterrupt
+            elif 32 <= code < 0x110000 and chr(code).isprintable() and len(state["text"]) < limit:
+                state["text"], state["wrong"] = state["text"] + chr(code), ""
+
+    answer = on_screen(run)
+    say(f"  {question}: {state['text'].strip() or answer}")
+    return answer
+
+
+def menu(question, options, default=0, hints=None, ticks=None, header=None, keys=None, help_key="content_help",
+         tail=False):
     """WyrmDelve's menu: arrows (or the mouse) move, Enter chooses, a number
-    jumps to its option; with `ticks`, Space ticks several. Without a terminal
-    or asciimatics: the numbered question of old."""
+    jumps to its option; with `ticks`, Space ticks several; `header`: lines
+    above the question (its last ones if `tail`, when they don't all fit).
+    Without a terminal or asciimatics: the numbered question of old."""
     question = question.strip()
     hints = hints or [""] * len(options)
     # no full-screen menu: the options numbered, the answer typed (several numbers separated by commas when ticking)
@@ -6116,7 +6265,7 @@ def menu(question, options, default=0, hints=None, ticks=None, header=None, keys
             y = 3
         else:
             keep = max(0, min(len(lines), screen.height - len(options) - 7))
-            for row, line in enumerate(lines[:keep]):
+            for row, line in enumerate(lines[len(lines) - keep:] if tail else lines[:keep]):
                 screen.print_at(line[:screen.width], 0, row)
             y = keep + 1
         screen.print_at(question, x, y, Screen.COLOUR_YELLOW, Screen.A_BOLD)
@@ -6173,18 +6322,14 @@ def menu(question, options, default=0, hints=None, ticks=None, header=None, keys
                 state["ticks"][state["at"]] = not state["ticks"][state["at"]]
             elif code in (10, 13):
                 return tuple(state["ticks"]) if ticks is not None else state["at"]
+            elif code == 3:                    # Ctrl+C, when the terminal hands it over as a key
+                raise KeyboardInterrupt
 
-    while True:
-        try:
-            answer = Screen.wrapper(run)
-            break
-        # a resized terminal: draw it all again
-        except ResizeScreenError:
-            continue
+    answer = on_screen(run)
     # echo the answer, so it stays on screen afterwards
     chosen = options[answer] if ticks is None else (", ".join(o for o, on in zip(options, answer) if on)
                                                     or tr("menu_none"))
-    print(f"  {question} {chosen}")
+    say(f"  {question} {chosen}")
     return answer
 
 
@@ -6223,7 +6368,7 @@ def welcome_screen():
 def show_welcome():
     """Show the welcome screen and ask what to do: random, choose, or rebuild from a seed."""
     screen = welcome_screen()
-    print("\n" + "\n".join(line.rstrip() for line in screen) + "\n")
+    say("\n" + "\n".join(line.rstrip() for line in screen) + "\n")
     modes = ("random", "params", "rebuild")
     if menus_on():
         return modes[menu(tr("welcome_q"), [tr("mode_" + m) for m in modes], header=[l.rstrip() for l in screen])]
@@ -6313,6 +6458,8 @@ def ask_name():
         return None
     if k == 2:
         return ""
+    if menus_on():
+        return type_in(tr("q_name"), check=lambda t: (t.strip(), None) if t.strip() else (None, tr("name_empty")))
     while True:
         name = input(tr("q_name")).strip()
         if name:
@@ -6364,10 +6511,14 @@ def ask_settings():
     look. Returns the parameters."""
     ask_language()
     mode = show_welcome()
-    print(tr("enter_accepts"))
+    if not menus_on():
+        print(tr("enter_accepts"))
     p = {"title": None, "ascii_only": False, "font": None, "paper": None, "output": OUTPUT_FOLDER, "units": None,
          "files": None}
-    if mode == "rebuild":
+    if mode == "rebuild" and menus_on():
+        p.update(type_in(tr("ask_seed", example=example_seed()), limit=40, check=lambda t: (
+            (read_seed(t), None) if read_seed(t) else (None, tr("seed_invalid", example=example_seed())))))
+    elif mode == "rebuild":
         while True:
             seed = read_seed(input(tr("ask_seed", example=example_seed())))
             if seed:
@@ -6529,18 +6680,23 @@ def main():
     """Run WyrmUrbiGen: interactive without options, else from the options; in interactive mode, offer to make the
     same settlement again in another look."""
     interactive = len(sys.argv) == 1
-    params = ask_settings() if interactive else settings_from_options(sys.argv[1:])
-    make(params, interactive)
-    while interactive and ask_again():
-        restyle(params)
-        make(params, interactive, again=True)
+    try:
+        params = ask_settings() if interactive else settings_from_options(sys.argv[1:])
+        make(params, interactive)
+        while interactive and ask_again():
+            restyle(params)
+            make(params, interactive, again=True)
+    finally:
+        # never leave the terminal on the questions' screen, not even on Ctrl+C or an error
+        screen_off()
 
 
 def ask_again():
     """At the end: the same settlement again, in other colours and styles?"""
-    print()
+    say("")
+    log = console_lines() if SCREEN["open"] is not None else None
     try:
-        return menu(tr("again_q"), [tr("again_no"), tr("again_yes")], 0) == 1
+        return menu(tr("again_q"), [tr("again_no"), tr("again_yes")], 0, header=log, tail=True) == 1
     except EOFError:
         return False
 

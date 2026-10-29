@@ -133,7 +133,7 @@ Con l'ambiente virtuale attivo:
 python wyrmurbigen.py
 ```
 
-Compare la schermata di benvenuto con il castello, poi le domande. **Le domande a scelta sono menu**: frecce **↑ ↓**, **Invio** per confermare, oppure il numero dell'opzione. Le domande in cui scrivi hanno una risposta pronta tra parentesi quadre: Invio la accetta.
+Compare la schermata di benvenuto con il castello, poi le domande. **Le domande a scelta sono menu**: frecce **↑ ↓**, **Invio** per confermare, oppure il numero dell'opzione. Le domande in cui scrivi (abitanti, nome della mappa, seme) hanno un campo nella stessa schermata: **Invio** conferma, **⌫** cancella, **Esc** svuota, e se il valore non va bene te lo dice sotto il campo. Tutto resta in un'unica schermata, dalle domande alla generazione delle mappe: il terminale torna normale solo alla fine, con il riepilogo di risposte e file salvati. Senza asciimatics (o senza un terminale) le domande sono numerate e la risposta pronta è tra parentesi quadre: Invio la accetta.
 
 1. **Lingua**: italiano o inglese.
 2. **Cosa vuoi fare?** Un insediamento casuale, **scelgo io**, oppure **rifaccio un insediamento dal suo seme**. Per un insediamento nuovo il programma chiede subito se vuoi aggiungere dei **terreni speciali**: le **foreste di funghi giganti**, il **sottosuolo**, tutti e due o nessuno (risposta pronta: nessuno; Spazio segna e toglie). Quelli che segni compaiono nel menu dei terreni e il caso ne sceglie uno una volta su tre.

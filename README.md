@@ -133,7 +133,7 @@ With the virtual environment active:
 python wyrmurbigen.py
 ```
 
-The welcome screen with the castle comes up, then the questions. **Multiple-choice questions are menus**: arrows **↑ ↓**, **Enter** to confirm, or the number of the option. Questions where you type have a ready answer in square brackets: Enter accepts it.
+The welcome screen with the castle comes up, then the questions. **Multiple-choice questions are menus**: arrows **↑ ↓**, **Enter** to confirm, or the number of the option. Questions where you type (people, map name, seed) have a field on the same screen: **Enter** confirms, **⌫** deletes, **Esc** clears, and a wrong value is pointed out under the field. Everything stays on one screen, from the questions to the making of the maps: the terminal goes back to normal only at the end, with the record of the answers and the saved files. Without asciimatics (or without a terminal) the questions are numbered and the ready answer is in square brackets: Enter accepts it.
 
 1. **Language**: Italian or English.
 2. **What do you want to do?** A random settlement, **I'll choose**, or **rebuild a settlement from its seed**. For a new settlement the program asks at once whether to add **special terrains**: the **giant mushroom forests**, the **underground**, both or neither (ready answer: neither; Space ticks and unticks). Those you tick appear in the terrain menu and chance picks one of them one time in three.
